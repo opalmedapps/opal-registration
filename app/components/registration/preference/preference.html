@@ -1,0 +1,148 @@
+﻿<!--Preference form to enter patient prefered opal application language and opal level of access-->
+<form name="preferenceForm" class="p-4 mb-2 bg-light rounded" ng-submit=" vm.preferenceFormSubmit()" novalidate>
+
+    <!--Page title-->
+    <div class="d-flex justify-content-between text-muted">
+        <div><h4 class="font-weight-bold">{{'PREFERENCE.STEPS' | translate}}{{'PREFERENCE.TITLE' | translate}}</h4></div>
+        <div> <h4 class="font-weight-bold">{{vm.formData.firstName}} {{vm.formData.lastName}}</h4></div>
+    </div>
+
+    <!--Instruction to follow-->
+    <div class="d-flex justify-content-between ">
+        <div class="text-muted mr-2"><label>{{'PREFERENCE.INSTRUCTION' | translate}}</label></div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Form section-->
+    <div class="form-row mb-2 mt-4">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="accessLevel" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.ACCESSLEVEL' | translate}}</label>
+            <div class="text-muted"><label>{{'PREFERENCE.FIELDNAMES.ACCESSLEVELINSTRUCTION' | translate}}</label></div>
+        </div>
+    </div>
+
+    <div class="form-row text-muted">
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="border rounded">
+                <div class="custom-control custom-radio m-2" role="group">
+                    <input type="radio" class="custom-control-input" id="allAccessLevel" ng-model="vm.formData.formFieldsData.accessLevel" value="3"
+                           ng-class="{
+                           'is-invalid':(vm.formData.allAccessLevelFormat.status == 'invalid'),
+                            'is-valid':(vm.formData.allAccessLevelFormat.status == 'valid')}"
+                           name="allAccessLevel" ng-change='vm.validateAccessLevel()' tabindex="1">
+                    <label class="custom-control-label" for="allAccessLevel"></label>
+                    <span class="font-weight-bold"> {{'PREFERENCE.FIELDNAMES.ALLACCESSLEVEL' | translate}} </span>
+                </div>
+                <div class="bg-white rounded m-3">
+                    <label class="font-weight-bold text-muted pl-3 pt-2">{{'PREFERENCE.FIELDNAMES.ACCESSLECELINCLUDESTITLE' | translate}}</label>
+                    <ul class="rounded">
+                        <li class="border-0 py-2" ng-repeat="allAccess in vm.formData.allAccessLevelList">{{allAccess.VALUE}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <div class="border rounded">
+                <div class="custom-control custom-radio m-2" role="group">
+                    <input type="radio" class="custom-control-input" id="needToKnowAccessLevel" ng-model="vm.formData.formFieldsData.accessLevel" value="1"
+                           ng-class="{
+                           'is-invalid':(vm.formData.needToKnowAccessLevelFormat.status == 'invalid'),
+                            'is-valid':(vm.formData.needToKnowAccessLevelFormat.status == 'valid')}"
+                           name="needToKnowAccessLevel" ng-change='vm.validateAccessLevel()' tabindex="2">
+                    <label class="custom-control-label" for="needToKnowAccessLevel"></label>
+                    <span class="font-weight-bold"> {{'PREFERENCE.FIELDNAMES.NEEDTOKNOWACCESSLEVEL' | translate}} </span>
+                </div>
+                <div class="bg-white rounded m-3">
+                    <label class="font-weight-bold text-muted pl-3 pt-2">{{'PREFERENCE.FIELDNAMES.ACCESSLECELINCLUDESTITLE' | translate}}</label>
+                    <ul class="rounded">
+                        <li class="border-0 py-2" ng-repeat="needToKnowAccess in vm.formData.needToKnowAccessLevelList"> {{needToKnowAccess.VALUE}} </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Display error if didn't select level of access-->
+    <div class="form-row">
+        <div class="form-group col-md-12 col-sm-12">
+            <div ng-show="vm.formData.accessLevelFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold">{{vm.formData.accessLevelFormat.message}}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-2 mt-3">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="language" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.LANGUAGE' | translate}}</label>
+            <select class="form-control" name="language" ng-model="vm.formData.formFieldsData.language" ng-change="vm.validateLanguage()"
+                    ng-class="{
+                            'is-invalid':(vm.formData.languageFormat.status == 'invalid'),
+                           'is-valid':(vm.formData.languageFormat.status == 'valid')}"
+                    tabindex="3" required>
+
+                <option value="">{{'PREFERENCE.FIELDNAMES.LANGUAGEDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="languageList in vm.formData.languageList" value="{{languageList.PREFIX}}">{{languageList.VALUE}}</option>
+            </select>
+
+            <!--Display error if user didn't select language-->
+            <div ng-show="vm.formData.languageFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold">{{vm.formData.languageFormat.message}}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mt-4">
+        <div class="form-group col-md-12 col-sm-12">
+            <label for="accessLevel" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.AUTHORIZETRANSMISSION' | translate}}</label>
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-12 col-sm-12  text-muted">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input"
+                       ng-class="{
+                           'is-invalid':(vm.formData.accessLevelSignFormat.status == 'invalid'),
+                           'is-valid': (vm.formData.accessLevelSignFormat.status == 'valid')}"
+                       ng-model="vm.formData.formFieldsData.accessLevelSign" id="accessLevelSign" ng-change="vm.validateaccessLevelSign()" tabindex="4" required />
+                <label class="custom-control-label" for="accessLevelSign"></label>
+                <span class="font-weight-bold">{{'PREFERENCE.FIELDNAMES.AUTHORIZETRANSMISSIONCHECKBOXTEXT' | translate}}</span>
+
+                <!--Display error if user didn't check the check box-->
+                <div ng-show="vm.formData.accessLevelSignFormat.status == 'invalid'">
+                    <small class="text-danger font-weight-bold">{{vm.formData.accessLevelSignFormat.message}}</small>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-md-6 col-sm-12"></div>
+    </div>
+
+    <!--Display error if any fields has a blank value-->
+    <div ng-hide="vm.sharedErrorMessage">
+        <div class="form-row mt-4">
+            <div class="form-group col-md-12 col-sm-12">
+                <small class="text-danger font-weight-bold">{{'SHARED.ERRORMESSAGE' | translate}}</small>
+            </div>
+        </div>
+    </div>
+
+    <!--Navigation button-->
+    <div class="form-row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.secure" tabindex="5">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i>  {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="6">
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+<!--Level of access tooltip example-->
+<script type="text/ng-template" id="accessLevelTooltipTemplate.html">
+    <div class="text-muted p-1"><small>{{vm.accessLevelTooltip.content}}</small></div>
+</script>

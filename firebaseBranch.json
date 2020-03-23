@@ -1,0 +1,7 @@
+{
+   "_comment": "Firebase branch declaration file",
+    "parentBranch": "registration",
+    "firebaseChildBranch": "branch",
+    "requestChildBranch": "requests",
+    "responseChildBranch": "users"
+}

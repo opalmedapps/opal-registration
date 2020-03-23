@@ -1,0 +1,17 @@
+﻿{
+  "languageList": [
+    {
+      "ID": 1,
+      "VALUE_FR": "Anglais",
+      "VALUE_EN": "English",
+      "PREFIX": "EN"
+    },
+    {
+      "ID": 2,
+      "VALUE_FR": "Français",
+      "VALUE_EN": "French",
+      "PREFIX": "FR"
+    }
+  ]
+}
+
