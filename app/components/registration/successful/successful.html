@@ -1,0 +1,54 @@
+﻿<!--Display successful registration message-->
+<form name="successfulForm" class="p-4 mb-2 bg-light rounded" novalidate>
+
+    <!--Page title-->
+    <div class="d-flex justify-content-between text-muted">
+        <div><h4 class="font-weight-bold">{{'SUCCESS.STEPS' | translate}}{{'SUCCESS.TITLE' | translate}}</h4></div>
+        <div> <h4 class="font-weight-bold">{{vm.formData.firstName}} {{vm.formData.lastName}}</h4></div>
+    </div>
+
+    <!--Instruction to follow-->
+    <div class="d-flex justify-content-between">
+        <div class="text-muted mr-2"><label>{{'SUCCESS.INSTRUCTION' | translate}}</label></div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Message section-->
+    <div class="form-row mt-3">
+        <div class="form-group col-12">
+            <p class="text-muted p2 ">
+                <h4 class="font-weight-bold text-muted">
+                    {{'SUCCESS.THANKYOUMESSAGE' | translate}}
+                </h4>
+
+            </p>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-12">
+            <p class="text-muted p2 ">
+                {{'SUCCESS.DOWNLOADAPP' | translate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-12">
+            <p class="text-muted">
+                {{'SUCCESS.PROCESS' | translate}}
+            </p>
+        </div>
+    </div>
+
+    <div class="form-row align-items-center">
+        <div class="form-group col-6">
+            <a href="https://itunes.apple.com/us/app/opal-health/id1446920350?ls=1&mt=8" target="_blank" alt="download link"><img ng-src="{{'SUCCESS.APPSTORELOGO' | translate}}" class="w-50 float-right" /></a>
+        </div>
+        <div class="form-group col-6">
+            <a href="https://play.google.com/store/apps/details?id=com.hig.opal2" target="_blank" alt="download link"><img ng-src="{{'SUCCESS.PLAYSTORELOGO' | translate}}" class="w-50" /></a>
+        </div>
+    </div>
+</form>

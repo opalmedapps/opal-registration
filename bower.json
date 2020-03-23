@@ -1,0 +1,26 @@
+{
+  "name": "opal-landing-page",
+  "description": "opal application heighlights",
+  "main": "bower.json",
+  "authors": [
+    "Jinal Vyas"
+  ],
+  "gitmasterbranch": "https://github.com/Sable/opal-landing-page.git",
+  "dependencies": {
+    "angular": "^1.7.6",
+    "angular-ui-router": "1.0.22",
+    "bootstrap": "4.3.1",
+    "jquery": "3.3.1",
+    "font-awesome": "^5.7.2",
+    "angular-tooltips": "^1.2.2",
+    "zxcvbn": "4.4.1",
+    "angular-translate": "2.18.1",
+    "angular-translate-loader-static-files": "2.18.1",
+    "angularjs-datepicker": "2.1.23",
+    "firebase": "^3.7.6",
+    "crypto-js": "^3.1.6",
+    "tweetnacl-util": "^0.15.0",
+    "tweetnacl": "^1.0.0",
+    "angularfire": "^2.1.0"
+  }
+}

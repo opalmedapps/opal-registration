@@ -1,0 +1,14 @@
+{
+  "needToKnow": [
+    {
+      "ID": 1,
+      "VALUE_FR": "Rendez-vous",
+      "VALUE_EN": "Appointment schedule"
+    },
+    {
+      "ID": 2,
+      "VALUE_FR": "Matériel éducatif",
+      "VALUE_EN": "Educational material"
+    }
+  ]
+}

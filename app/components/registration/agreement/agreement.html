@@ -1,0 +1,67 @@
+﻿<!--Aggrement form to aggre on terms and usage document-->
+<form class="p-4 mb-2 bg-light rounded" name="agreementForm" ng-submit="vm.agreementFormSubmit()" novalidate>
+
+    <!--Page title-->
+    <div class="d-flex justify-content-between text-muted">
+        <div><h4 class="font-weight-bold">{{'AGREEMENT.STEPS' | translate}}{{'AGREEMENT.TITLE' | translate}}</h4></div>
+        <div> <h4 class="font-weight-bold">{{vm.formData.firstName}} {{vm.formData.lastName}}</h4></div>
+    </div>
+
+    <!--Instruction to follow-->
+    <div class="d-flex justify-content-between ">
+        <div class="text-muted mr-2"><label>{{'AGREEMENT.INSTRUCTION' | translate}}</label></div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Form section-->
+    <div class="card text-center mt-5">
+        <div class="card-header text-muted">
+            <h4 class="font-weight-bold text-center">{{'AGREEMENT.TITLE' | translate}}</h4>
+            <h5>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}} <a ng-href="{{'AGREEMENT.FIELDNAMES.PDFLINK' | translate}}" target="_blank"><span class="text-primary">{{'SHARED.CLICKHERE' | translate}}</span></a></h5>
+        </div>
+        <div class="card-body document-layout">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" ng-src="{{'AGREEMENT.FIELDNAMES.DOUCMENTLINK' | translate}}" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="card-footer text-muted font-weight-bold">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input"
+                       ng-class="{
+                           'is-invalid':(vm.formData.termsandAggreementSignFormat.status == 'invalid'),
+                           'is-valid': (vm.formData.termsandAggreementSignFormat.status == 'valid')}"
+                       ng-model="vm.formData.formFieldsData.termsandAggreementSign" id="termsandAggreementSign" ng-change="vm.validateAgreementSign()" tabindex="1" required>
+                <label class="custom-control-label" for="termsandAggreementSign"></label>
+                <span class="font-weight-bold" for="termsandAggreementSign">{{'AGREEMENT.FIELDNAMES.ACCEPTCHECKBOX' | translate}}</span>
+
+                <!--Display error if registration code field is blank or format is inappropriate-->
+                <div ng-show="vm.formData.termsandAggreementSignFormat.status == 'invalid'">
+                    <small class="text-danger font-weight-bold">{{vm.formData.termsandAggreementSignFormat.message}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Display error if any fields has a blank value-->
+    <div ng-hide="vm.sharedErrorMessage">
+        <div class="form-row mt-4">
+            <div class="form-group col-md-12 col-sm-12">
+                <small class="text-danger font-weight-bold">{{'SHARED.ERRORMESSAGE' | translate}}</small>
+            </div>
+        </div>
+    </div>
+
+    <!--Navigation buttons-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.preference" tabindex="2">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="3">
+                {{'FORM.BUTTONS.FINISH' | translate}}  <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+</form>

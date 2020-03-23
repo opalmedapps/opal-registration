@@ -1,0 +1,155 @@
+﻿{
+  "HEADER": {
+    "LANGUAGE": "Français",
+    "PAGETITLE": "Opal User Registration",
+    "OPALLOGO": "images/logos/navbar-logo.png"
+  },
+  "FOOTER": {
+    "COPYRIGHT": "Copyright © 2020 OPAL, All rights reserved"
+  },
+  "FORM": {
+    "SEARCH": "Identity",
+    "SECURE": "Account",
+    "PREFERENCE": "Data",
+    "AGREEMENT": "Terms",
+    "SUCCESS": "Success",
+    "BUTTONS": {
+      "NEXT": "Next",
+      "PREVIOUS": "Previous",
+      "FINISH": "Finish"
+    }
+  },
+  "SHARED": {
+    "ERRORMESSAGE": "Please complete all fields before continuing.",
+    "CLICKHERE": "click here",
+    "LOADINGPLEASEWAIT": "Please wait.",
+    "LOADINGMESSAGE": "We are processing your request. Please do not refresh this page."
+  },
+  "WELCOME": {
+    "TITLE": "",
+    "INSTRUCTION": "Opal is currently available for patients at the Cedars Cancer Centre of the McGill University Health Centre in Montreal.",
+    "STAPES": "If you are a patient at the Cedars Cancer Centre, please proceed to the Cedars Cancer Foundation kiosk at the S1 level of the Cancer Centre. The staff there will be happy to register you for an Opal account."
+  },
+  "SEARCH": {
+    "STEPS": "Step 1 of 5: ",
+    "TITLE": "Confirm Your Identity",
+    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number to confirm your identity.",
+    "FIELDNAMES": {
+      "RAMQ": "Your RAMQ Number",
+      "REGISTRATIONCODE": "Your Registration Code"
+    },
+    "FIELDERRORMESSAGES": {
+      "CODEREQUIRED": "Please enter a valid registration code.",
+      "RAMQREQUIRED": "Please enter a valid RAMQ number.",
+      "SHORTCODELENGTH": "Registration code is too short.",
+      "LONGCODELENGTH": "Registration code is too long.",
+      "SHORTRAMQLENGTH": "RAMQ number is too short.",
+      "LONGRAMQLENGTH": "RAMQ number is too long."
+    }
+  },
+  "SECURE": {
+    "STEPS": "Step 2 of 5: ",
+    "TITLE": "Create Your Opal Account",
+    "INSTRUCTION": "Please complete the form below to create your Opal account. All fields are required.",
+    "FIELDNAMES": {
+      "EMAIL": "Email Address",
+      "CONFIRMEMAIL": "Confirm Email Address",
+      "PASSWORD": "Password",
+      "CONFIRMPASSWORD": "Confirm Password",
+      "SECURITYQUESTION1": "Security Question 1",
+      "ANSWER1": "Answer 1",
+      "SECURITYQUESTION2": "Security Question 2",
+      "ANSWER2": "Answer 2",
+      "SECURITYQUESTION3": "Security Question 3",
+      "ANSWER3": "Answer 3",
+      "SECUREDROPDOWNDEAFULT": "--- Select a security question ---"
+    },
+    "FIELDERRORMESSAGES": {
+      "EMAILREQUIRED": "Please enter your email address.",
+      "CONFIRMEMAILREQUIRED": "Please enter your email address again.",
+      "PASSWORDREQUIRED": "Please enter your password.",
+      "CONFIRMPASSWORDREQUIRED": "Please enter your password again.",
+      "SECURITYQUESTIONREQUIRED": "Please select a security question.",
+      "ANSWERREQUIRED": "Please provide an answer to the security question above.",
+      "EMAILFORMAT": "Please enter a valid email address.",
+      "COMPAREEMAIL": "Email and email confirmation should match.",
+      "SHOTPASSWORDLENGTH": "Password is too short.",
+      "LONGPASSWORDLENGTH": "Password is too long.",
+      "PASSWORDFORMAT": "Your password should be at least 8 characters long and should contain at least one number, one capital letter, and one special character.",
+      "COMPAREPASSWORD": "Password and password confirmation should match.",
+      "DUPLICATESECURITYQUESTION": "Please select a different security question.",
+      "DUPLICATESECURITYANSWER": "Please select a different security answer.",
+      "EMAILINUSE": "This email address is already in use."
+    }
+  },
+  "PREFERENCE": {
+    "STEPS": "Step 3 of 5: ",
+    "TITLE": "Your Data Access",
+    "INSTRUCTION": "In order to access your medical data using Opal, you must give your consent using the form below.",
+    "FIELDNAMES": {
+      "ACCESSLEVEL": "Data Access Level",
+      "ACCESSLEVELINSTRUCTION": "Please choose the level of access to your personal medical data that you would like to have in Opal. Each access level is explained below:",
+      "ALLACCESSLEVEL": "I want to receive all of my medical data that are accessible using Opal. ",
+      "NEEDTOKNOWACCESSLEVEL": "I want to receive only my need-to-know medical data using Opal.",
+      "ACCESSLECELINCLUDESTITLE": "Currently, the following data are available (note: not all patients will have all of these)",
+      "LANGUAGE": "Your Language Preference",
+      "LANGUAGEDROPDOWNDEAFULT": "--- Select a language ---",
+      "AUTHORIZETRANSMISSION": "Authorization",
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "I authorize the secure transmission of the medical data that I have selected above to my Opal app."
+    },
+    "FIELDERRORMESSAGES": {
+      "LANGUAGEREQUIRED": "Please select your preferred language.",
+      "ACCESSLEVELREQUIRED": "Please select your preferred level of medical data access.",
+      "AUTHORIZETRANSMISSIONREQUIRED": "You must provide your authorization in order to proceed."
+    }
+  },
+  "AGREEMENT": {
+    "STEPS": "Step 4 of 5: ",
+    "TITLE": "Terms of Use Agreement",
+    "INSTRUCTION": "Please review the document below and accept the terms in order to complete the registration process.",
+    "FIELDNAMES": {
+      "PRINTANDDOWNLOADDOCUEMNT": "To download or print this document",
+      "ACCEPTCHECKBOX": "I have read and accept the Terms of Use Agreement.",
+      "DOUCMENTLINK": "documents/TermsofUseAgreement.html",
+      "PDFLINK": "documents/TermsofUseAgreement.pdf"
+    },
+    "FIELDERRORMESSAGES": {
+      "ACCEPTCHECKBOXREQUIRED": "Please accept the terms of use agreement above in order to proceed."
+    }
+  },
+  "SUCCESS": {
+    "STEPS": "Step 5 of 5: ",
+    "TITLE": "Registration Successful",
+    "INSTRUCTION": "Your Opal account is now ready. You will receive a confirmation email soon.",
+    "THANKYOUMESSAGE": "Thank you for registering for Opal!",
+    "DOWNLOADAPP": "If you haven’t done so already, please download the Opal app from the iOS App Store or Google Play Store and login to access your medical data.",
+    "PROCESS": "If you are on a tablet or smartphone, you may download Opal immediately using the links below. Otherwise, you may click on the links provided in your confirmation email from your mobile device.",
+    "APPSTORELOGO": "images/logos/AppStore_EN.svg",
+    "PLAYSTORELOGO": "images/logos/PlayStore_EN.png"
+  },
+  "TOOLTIP": {
+    "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
+    "PASSWORDFORMAT": "Your password should be at least 8 characters long and should contain at least one number, one capital letter, and one special character.",
+    "REGISTRATIONCODE": "Your registration code is a 10-digit code provided by your clinical team at a participating Quebec healthcare institution."
+  },
+  "ERRORMODAL": {
+    "PATIENTNOTFOUNDERROR": {
+      "TITLE": "Patient Record Not Found",
+      "DESCRIPTION": "We couldn't find a patient record matching the information you have entered. Please check your input and try again."
+    },
+    "CONTACTUSERRROR": {
+      "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact us at",
+      "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
+    },
+    "REGISTRATIONERROR": {
+      "DESCRIPTION": "We are unable to register your information. Please try again later."
+    },
+    "SOMETHINGWENTWRONGERROR": {
+      "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please try again after 24 hours."
+    },
+    "SHARED": {
+      "MODALTITLE": "Something Went Wrong",
+      "BUTTONDISMISS": "Dismiss"
+    }
+  }
+}

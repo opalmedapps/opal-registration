@@ -1,0 +1,92 @@
+﻿<!--Header view injected here-->
+<div ui-view="header"></div>
+
+<div class="container my-4 py-3 shadow-lg rounded">
+
+    <!--Step wizard-->
+    <div class=" row">
+        <div class="col-12">
+            <div class="d-flex justify-content-center steps">
+                <ul role="tablist" class="list-style">
+                    <div class="liner mt-5"></div>
+                    <li class="mx-4">
+                        <a class="text-decoration-none {{vm.formData.searchForm}}">
+                            <span class="tab rounded-circle">
+                                <span class="icon pt-1"><i class="fas fa-search"></i></span>
+                                <span>{{'FORM.SEARCH' | translate}}</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mx-4">
+                        <!--<a ui-sref-active="active" ui-sref="form.secure" data-toggle="tab" title="secure" class="text-decoration-none">-->
+                        <a class="text-decoration-none {{vm.formData.secureForm.status}}">
+                            <span class="tab rounded-circle">
+                                <span class="icon pt-1"><i class="fas fa-user-lock"></i></span>
+                                <span>{{'FORM.SECURE' | translate}}</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mx-4">
+                        <!--<a ui-sref-active="active" ui-sref="form.preference" data-toggle="tab" title="preference" class="text-decoration-none">-->
+                        <a class="text-decoration-none {{vm.formData.preferenceForm.status}}">
+                            <span class="tab rounded-circle">
+                                <span class="icon pt-1"><i class="fas fa-cogs"></i></span>
+                                <span>{{'FORM.PREFERENCE' | translate}}</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="mx-4">
+                        <!--<a ui-sref-active="active" ui-sref="form.agreement" data-toggle="tab" title="Aggrement" class="text-decoration-none">-->
+                        <a class="text-decoration-none {{vm.formData.agreementForm.status}}">
+                            <span class="tab rounded-circle">
+                                <span class="icon pt-1"><i class="fas fa-file-contract"></i></span>
+                                <span>{{'FORM.AGREEMENT' | translate}}</span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="mx-4">
+                        <!--<a ui-sref-active="active" ui-sref="form.successful" data-toggle="tab" title="success" class="text-decoration-none" ng-click="vm.finalStep()">-->
+                        <a class="text-decoration-none {{vm.formData.successForm.status}}">
+                            <span class="tab rounded-circle">
+                                <span class="icon pt-1"><img src="images/icon/icons8-registeredsuccessful.png" /></span>
+                                <span>{{'FORM.SUCCESS' | translate}}</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Display spinner-->
+            <div ng-hide="vm.formData.displaySpinner">
+                <div class="spinner">
+                    <div class="row align-items-center h-100">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <div class="spinner-grow text-secondary" role="status">
+                                    <span class="sr-only">{{'SHARED.LOADINGPLEASEWAIT' | translate}}</span>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h4 class="mt-3 text-center text-secondary">
+                                    <strong> {{'SHARED.LOADINGMESSAGE' | translate}}</strong>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Bind all child form views-->
+            <div>
+                <div ui-view="content"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--Footer view injected here-->
+<!--<div ui-view="footer"></div>-->
+

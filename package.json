@@ -1,0 +1,17 @@
+{
+  "name": "opal-landing-page",
+  "description": "opal application heighlights",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sable/opal-landing-page.git"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "firebase": "^3.7.6",
+    "firebase-admin": "^4.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

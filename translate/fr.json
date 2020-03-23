@@ -1,0 +1,155 @@
+﻿{
+  "HEADER": {
+    "LANGUAGE": "English",
+    "PAGETITLE": "Création de compte Opal",
+    "OPALLOGO": "images/logos/navbar-logo-fr.png"
+  },
+  "FOOTER": {
+    "COPYRIGHT": "Droits d'auteur © 2020 OPAL, Tous droits réservés"
+  },
+  "FORM": {
+    "SEARCH": "Identité",
+    "SECURE": "Compte",
+    "PREFERENCE": "Données",
+    "AGREEMENT": "Conditions",
+    "SUCCESS": "Succès",
+    "BUTTONS": {
+      "NEXT": "Prochain",
+      "PREVIOUS": "Précédent",
+      "FINISH": "Finir"
+    }
+  },
+  "SHARED": {
+    "ERRORMESSAGE": "Veuillez remplir tous les champs avant de continuer.",
+    "CLICKHERE": "cliquez ici",
+    "LOADINGPLEASEWAIT": "Veuillez patienter.",
+    "LOADINGMESSAGE": "Nous traitons votre demande. Veuillez ne pas actualiser cette page."
+  },
+  "WELCOME": {
+    "TITLE": "",
+    "INSTRUCTION": "Opal est actuellement disponible pour les patients du Centre du cancer des Cèdres au Centre universitaire de santé McGill.",
+    "STAPES": "Si vous êtes un patient du Centre du cancer des Cèdres, veuillez procéder au kiosque du Centre de la Fondation du Cancer des Cèdres au niveau S1 du Centre. Il nous fera plaisir de vous créer un compte Opal. "
+  },
+  "SEARCH": {
+    "STEPS": "Étape 1 de 5: ",
+    "TITLE": "Confirmez votre identité",
+    "INSTRUCTION": "Pour créer un compte Opal, vous devez obtenir un code d’inscription à l’un de nos hôpitaux participants. Si vous avez un code d’inscription, veuillez entrer ce code ainsi que votre numéro d'assurance maladie (RAMQ) ci-dessous pour confirmer votre identité.",
+    "FIELDNAMES": {
+      "RAMQ": "Votre numéro d'assurance maladie (RAMQ)",
+      "REGISTRATIONCODE": "Votre code d’inscription"
+    },
+    "FIELDERRORMESSAGES": {
+      "CODEREQUIRED": "Veuillez entrer un code d’inscription valide.",
+      "RAMQREQUIRED": "Veuillez entrer un numéro d'assurance maladie valide.",
+      "SHORTCODELENGTH": "Code d’inscription trop court.",
+      "LONGCODELENGTH": "Code d’inscription trop long.",
+      "SHORTRAMQLENGTH": "Numéro d'assurance maladie trop court.",
+      "LONGRAMQLENGTH": "Numéro d'assurance maladie trop long."
+    }
+  },
+  "SECURE": {
+    "STEPS": "Étape 2 de 5: ",
+    "TITLE": "Créez votre compte Opal",
+    "INSTRUCTION": "Veuillez remplir le formulaire ci-dessous afin de créer votre compte Opal. Tous les champs sont requis.",
+    "FIELDNAMES": {
+      "EMAIL": "Adresse courriel",
+      "CONFIRMEMAIL": "Confirmez votre adresse courriel",
+      "PASSWORD": "Mot de passe",
+      "CONFIRMPASSWORD": "Confirmez votre mot de passe",
+      "SECURITYQUESTION1": "Première question de sécurité",
+      "ANSWER1": "Première réponse",
+      "SECURITYQUESTION2": "Deuxième question de sécurité",
+      "ANSWER2": "Deuxième réponse",
+      "SECURITYQUESTION3": "Troisième question de sécurité",
+      "ANSWER3": "Troisième réponse",
+      "SECUREDROPDOWNDEAFULT": "--- Sélectionnez une question de sécurité ---"
+    },
+    "FIELDERRORMESSAGES": {
+      "EMAILREQUIRED": "Veuillez entrer votre adresse courriel.",
+      "CONFIRMEMAILREQUIRED": "Veuillez entrer votre adresse courriel de nouveau.",
+      "PASSWORDREQUIRED": "Veuillez entrer votre mot de passe.",
+      "CONFIRMPASSWORDREQUIRED": "Veuillez entrer votre mot de passe de nouveau.",
+      "SECURITYQUESTIONREQUIRED": "Veuillez choisir une question de sécurité.",
+      "ANSWERREQUIRED": "Veuillez répondre à la question de sécurité ci-dessus.",
+      "EMAILFORMAT": "Veuillez entrer une adresse courriel valide.",
+      "COMPAREEMAIL": "Votre adresse courriel et votre adresse courriel de confirmation devraient être les mêmes.",
+      "SHOTPASSWORDLENGTH": "Votre mot de passe est trop court.",
+      "LONGPASSWORDLENGTH": "Votre mot de passe est trop long.",
+      "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 8 caractères dont au moins un chiffre, une lettre majuscule, et une lettre spéciale.",
+      "COMPAREPASSWORD": "Votre mot de passe et votre mot de passe de confirmation devraient être les mêmes.",
+      "DUPLICATESECURITYQUESTION": "Veuillez choisir une question de sécurité différente.",
+      "DUPLICATESECURITYANSWER": "Veuillez choisir une réponse différente.",
+      "EMAILINUSE": "Votre adresse courriel est déjà utilisée."
+    }
+  },
+  "PREFERENCE": {
+    "STEPS": "Étape 3 de 5: ",
+    "TITLE": "Accès aux données",
+    "INSTRUCTION": "Afin d’avoir accès à vos données médicales via Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
+    "FIELDNAMES": {
+      "ACCESSLEVEL": "Niveau d’accès aux données",
+      "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d’accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d’accès est expliqué ci-dessous:",
+      "ALLACCESSLEVEL": "J’aimerais recevoir toutes mes données médicales qui sont accessibles avec Opal. ",
+      "NEEDTOKNOWACCESSLEVEL": "J’aimerais recevoir seulement les données médicales essentielles avec Opal.",
+      "ACCESSLECELINCLUDESTITLE": "Les données suivantes sont présentement disponibles dans Opal (veuillez noter que ce ne seront pas tous les patients qui auront toutes ces données).",
+      "LANGUAGE": "Votre choix de langue",
+      "LANGUAGEDROPDOWNDEAFULT": "--- Sélectionnez une langue ---",
+      "AUTHORIZETRANSMISSION": "Autorisation",
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "J’autorise la transmission sécurisée des données médicales que j’ai sélectionnées ci-dessus à l’application Opal."
+    },
+    "FIELDERRORMESSAGES": {
+      "LANGUAGEREQUIRED": "Veuillez sélectionner une langue.",
+      "ACCESSLEVELREQUIRED": "Veuillez sélectionner un niveau d’accès aux données.",
+      "AUTHORIZETRANSMISSIONREQUIRED": "Votre autorisation est requise afin de procéder."
+    }
+  },
+  "AGREEMENT": {
+    "STEPS": "Étape 4 de 5: ",
+    "TITLE": "Conditions d’utilisation",
+    "INSTRUCTION": "Afin de compléter le processus d'inscription, veuillez lire les documents ci-dessous et accepter les conditions d’utilisation.",
+    "FIELDNAMES": {
+      "PRINTANDDOWNLOADDOCUEMNT": "Pour télécharger ou imprimer ce document",
+      "ACCEPTCHECKBOX": "J’ai lu et accepté les termes de cet accord.",
+      "DOUCMENTLINK": "documents/ContratdutilisationduLogiciel.html",
+      "PDFLINK": "documents/Contratd'utilisationduLogiciel.pdf"
+    },
+    "FIELDERRORMESSAGES": {
+      "ACCEPTCHECKBOXREQUIRED": "Veuillez accepter les conditions d’utilisation ci-dessus afin de procéder."
+    }
+  },
+  "SUCCESS": {
+    "STEPS": "Étape 5 de 5: ",
+    "TITLE": "Inscription terminée",
+    "INSTRUCTION": "Votre compte Opal est maintenant prêt. Vous recevrez un courriel de confirmation sous peu.",
+    "THANKYOUMESSAGE": "Merci d'avoir créé un compte Opal!",
+    "DOWNLOADAPP": "Si ce n’est pas déjà fait, veuillez télécharger l’application Opal à partir de l'iOS App Store ou du Google Play Store, et connectez-vous pour avoir accès à vos données médicales.",
+    "PROCESS": "Si vous êtes sur une tablette ou sur un téléphone intelligent, vous pouvez télécharger Opal immédiatement en utilisant les liens ci-dessous. Sinon, vous pouvez suivre les liens fournis dans votre courriel de confirmation à partir de votre appareil mobile.",
+    "APPSTORELOGO": "images/logos/AppStore_FR.svg",
+    "PLAYSTORELOGO": "images/logos/PlayStore_FR.png"
+  },
+  "TOOLTIP": {
+    "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
+    "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 8 caractères dont au moins un chiffre, une lettre majuscule, et une lettre spéciale.",
+    "REGISTRATIONCODE": "Votre code d’inscription est un code de 10 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants."
+  },
+  "ERRORMODAL": {
+    "PATIENTNOTFOUNDERROR": {
+      "TITLE": "Dossier patient non trouvé",
+      "DESCRIPTION": "Nous n'avons pas trouvé de dossier patient correspondant à l’information fournie. Veuillez vérifier vos données et essayer de nouveau."
+    },
+    "CONTACTUSERRROR": {
+      "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, s’il vous plaît, contactez nous à ",
+      "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
+    },
+    "REGISTRATIONERROR": {
+      "DESCRIPTION": "Nous ne pouvons pas enregistrer votre information. Veuillez réessayer plus tard."
+    },
+    "SOMETHINGWENTWRONGERROR": {
+      "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, veuillez réessayer après 24 heures."
+    },
+    "SHARED": {
+      "MODALTITLE": "Une erreur s’est produite",
+      "BUTTONDISMISS": "Fermer"
+    }
+  }
+}
