@@ -1,0 +1,272 @@
+﻿/*Navigation styles*/
+
+/*.header-menu {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}*/
+
+.header-logo {
+    height: 75px;
+    margin-top: -28px;
+}
+
+.header-brand {
+    height: 40px;
+}
+
+/*Search Patient Page Style*/
+.bg-opal {
+    background-color: #6EAC42;
+    border-color: #6EAC42;
+    color: #6EAC42;
+}
+
+@media(max-width:576px) {
+    .page-title {
+        height: 175px;
+    }
+}
+
+.fa-icon-cursor {
+    cursor: pointer;
+}
+
+.display-popover {
+    display: none;
+}
+
+
+/*Tooltip style*/
+tooltip tip {
+    background: #fff !important;
+    padding: 3px 3px !important;
+    border: 1px solid #6c757d !important;
+    min-width: 210px !important;
+}
+
+tooltip._top:not(._left):not(._right) tip tip-arrow {
+    border-top: 6px solid #6c757d !important;
+}
+
+tooltip .img-size {
+    height: 120px;
+    width: 200px;
+}
+
+/*Password strength meter styles*/
+.password-count {
+    float: right;
+    position: relative;
+    bottom: 28px;
+    right: 40px;
+}
+
+.strength-meter {
+    position: relative;
+    height: 3px;
+    background: #DDD;
+}
+
+.strength-meter:before, .strength-meter:after {
+     content: '';
+     height: inherit;
+     background: transparent;
+     display: block;
+     border-color: #FFF;
+     border-style: none;
+     border-width: 0 5px 0 5px;
+     position: absolute;
+     width: 138px;
+     z-index: 10;
+}
+
+ .strength-meter:before {
+     left: 70px;
+ }
+
+.strength-meter:after {
+    right: 70px;
+}
+
+.strength-meter-fill {
+    background: transparent;
+    height: inherit;
+    position: absolute;
+    width: 0;
+    border-radius: inherit;
+    transition: width 0.5s ease-in-out, background 0.25s;
+}
+
+ .strength-meter-fill[data-strength='0'] {
+     background: darkred;
+     width: 20%;
+ }
+
+ .strength-meter-fill[data-strength='1'] {
+     background: orangered;
+     width: 40%;
+ }
+
+ .strength-meter-fill[data-strength='2'] {
+     background: orange;
+     width: 60%;
+ }
+
+ .strength-meter-fill[data-strength='3'] {
+     background: yellowgreen;
+     width: 80%;
+ }
+
+ .strength-meter-fill[data-strength='4'] {
+     background: green;
+     width: 100%;
+ }
+ .strength-meter-fill[data-strength='5'] {
+     background: blue;
+     width: 20%;
+ }
+
+.label {
+    font-size: 75%;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: .25em;
+}
+
+/*Steps wizard*/
+.list-style {
+    list-style:none !important;
+}
+
+.flex-style {
+    flex:1;
+}
+.icon {
+    font-size: 29px;
+}
+
+a.active .tab {
+    background: #6EAC42;
+    box-shadow: 0 16px 26px -10px #28a745c9, 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px #28a7453d;
+}
+
+
+.tab {
+    background: #adadad;
+    /*border-radius: 5px;*/
+    align-items: center;
+    flex-direction: column;
+    width: 90px;
+    height: 90px;
+    color: #fff;
+    cursor:not-allowed;
+}
+
+.list-style, .tab {
+    display: flex;
+    padding: 0;
+}
+
+@media (max-width: 575.98px) {
+    .tab {
+        margin-bottom: 20px;
+    }
+
+    .steps ul {
+        /*flex-direction: column;*/
+        display:none;
+    }
+    .liner {
+        height: 0px !important;
+        background: none !important;
+    }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .tab {
+        margin-bottom: 20px;
+    }
+
+    .steps ul {
+        /*flex-direction: column;*/
+        display: none;
+    }
+    .liner {
+        height: 0px !important;
+        background: none !important;
+    }
+}
+   
+
+.liner {
+    height: 3px;
+    background: #ddd;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+li, .mx-3 {
+    z-index:2;
+}
+
+/*Datepicker*/
+._720kb-datepicker-calendar-day._720kb-datepicker-today {
+    background: #138efa;
+    color: white;
+}
+._720kb-datepicker-calendar-day._720kb-datepicker-active, ._720kb-datepicker-calendar-day:hover {
+    background: #138efa !important;
+    color: white;
+}
+._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
+    color: white !important;
+}
+._720kb-datepicker-calendar-month span {
+    color: white !important;
+}
+._720kb-datepicker-calendar {
+    width: 56% !important;
+    margin-top: 39px !important;
+}
+
+/*Opal preference page level of access layout*/
+.heighlight {
+    background: #6EAC42;
+    color: #494040 !important;
+    box-shadow: 0 16px 26px -10px #28a745c9, 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px #28a7453d;
+}
+
+/*Aggrement page document layout*/
+.document-layout {
+    padding: 0 !important;
+}
+
+.c5 {
+    max-width: 500pt !important;
+    padding: 0 !important;
+}
+
+/*Error modal box*/
+.modal-content {
+    border: 0px !important;
+}
+
+/*Spinner*/
+.spinner {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /*background-color: rgba(255,255,255,0.7);*/
+    background-color: rgba(255, 255, 255, 0.96);
+    z-index: 9999;
+    /*display: none;*/
+}
+
+/*Appstore icon width*/
+.iconWidth {
+    width:40%;
+}

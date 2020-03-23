@@ -1,0 +1,242 @@
+﻿<!--Secure form to enter email password and security questions-->
+<form name="secureForm" class="p-4 mb-2 bg-light rounded" ng-submit="vm.secureFormSubmit()" novalidate>
+
+    <!--Page title-->
+    <div class="d-flex justify-content-between text-muted">
+        <div><h4 class="font-weight-bold">{{'SECURE.STEPS' | translate}}{{'SECURE.TITLE' | translate}} </h4></div>
+        <div> <h4 class="font-weight-bold">{{vm.formData.firstName}} {{vm.formData.lastName}}</h4></div>
+    </div>
+
+    <!--Instruction to follow-->
+    <div class="d-flex justify-content-between text-muted ">
+        <div class="mr-2"><label>{{'SECURE.INSTRUCTION' | translate}}</label></div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Form section-->
+    <div class="form-row mb-2 mt-4">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="email" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.EMAIL' | translate}}</label>
+            <!--<input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email" ng-change="vm.validateEmail()"-->
+            <input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email" ng-change="vm.validateEmail()" ng-blur="vm.compareEmail()"
+                   ng-class="{
+            'is-invalid':(vm.formData.emailFormat.status == 'invalid'),
+            'is-valid':(vm.formData.emailFormat.status == 'valid')}"
+                   tabindex="1" required>
+
+            <!--Display error if email format or length is inappropriate-->
+            <div class="mb-1" ng-show="vm.formData.emailFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold">{{vm.formData.emailFormat.message}}</small>
+            </div>
+
+            <!--Message-->
+            <div><label class="text-muted">{{'TOOLTIP.EMAILINSTRUCTION' | translate}}</label></div>
+        </div>
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="confirmEmail" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMEMAIL' | translate}}</label>
+            <input type="text" class="form-control" name="confirmEmail" ng-model="vm.formData.confirmEmail" ng-change="vm.validateConfirmEmail()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.confirmEmailFormat.status == 'invalid'),
+                           'is-valid':(vm.formData.confirmEmailFormat.status == 'valid')}"
+                   tabindex="2" required>
+
+            <!--Display error if email format is inappropriate-->
+            <div ng-show="vm.formData.confirmEmailFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold">{{vm.formData.confirmEmailFormat.message}}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="password" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
+            <!--<input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()"-->
+            <input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()" ng-blur="vm.comparePassword()"
+                   ng-class="{
+                           'is-invalid' :(vm.formData.passwordFormat.status == 'invalid'),
+                           'is-valid': (vm.formData.passwordFormat.status == 'valid')}"
+                   tabindex="3" required>
+            <div ng-show="password.length >= 0">
+                <div class="label d-inline px-2 py-1 text-justify align-baseline text-white font-weight-bold password-count" ng-class="vm.formData.passwordFormat.status == 'valid' ? 'bg-success' : 'bg-danger'" ng-cloak>{{ password | passwordCount:20 }}</div>
+            </div>
+
+            <!--Display error if password format and length is inappropriate-->
+            <div ng-show="vm.formData.passwordFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.passwordFormat.message}}</small>
+            </div>
+
+            <!--Password length strength meter-->
+            <div class="strength-meter mt-3 mb-1">
+                <div class="strength-meter-fill" data-strength="{{passwordStrength}}"></div>
+            </div>
+
+            <!--Password format message-->
+            <div><label class="text-muted">{{'TOOLTIP.PASSWORDFORMAT' | translate}}</label></div>
+        </div>
+
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="confirmPassword" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMPASSWORD' | translate}}</label>
+            <input type="password" class="form-control" name="confirmPassword" ng-model="vm.formData.confirmPassword" ng-change="vm.validateConfirmPassword()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.confirmPasswordFormat.status == 'invalid'),
+                           'is-valid':(vm.formData.confirmPasswordFormat.status == 'valid')}"
+                   tabindex="4" required>
+
+            <!--Display error if confirm password format is inappropriate-->
+            <div ng-show="vm.formData.confirmPasswordFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.confirmPasswordFormat.message}}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-12">
+
+            <label for="securityquestion1" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION1' | translate}}</label>
+
+            <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion1"
+                    ng-class="{
+                           'is-invalid':(vm.formData.securityQuestion1Format.status == 'invalid'),
+                           'is-valid':(vm.formData.securityQuestion1Format.status == 'valid')}"
+                    ng-change="vm.validateSecurityQuestion1(vm.formData.formFieldsData.securityQuestion1)" tabindex="5">
+
+                <option value="">{{'SECURE.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion2|filter:vm.securityQuestion3" value="{{questions.id}}">{{questions.value}}</option>
+            </select>
+
+            <!--Display error if security question1 field has not been selected -->
+            <div ng-show="vm.formData.securityQuestion1Format.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion1Format.message}}</small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="answer1" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER1' | translate}}</label>
+            <input type="text" class="form-control" name="answer1" ng-model="vm.formData.formFieldsData.answer1" ng-change="vm.validateAnswer1()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.answer1Format.status == 'invalid'),
+                           'is-valid':(vm.formData.answer1Format.status == 'valid')}"
+                   tabindex="6" required>
+
+            <!--Display error if security answer1 field has blank value -->
+            <div ng-show="vm.formData.answer1Format.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer1Format.message}}</small>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-12">
+            <label for="securityquestion2" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION2' | translate}}</label>
+            <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion2"
+                    ng-class="{
+                           'is-invalid':(vm.formData.securityQuestion2Format.status == 'invalid'),
+                           'is-valid':(vm.formData.securityQuestion2Format.status == 'valid')}"
+                    ng-change="vm.validateSecurityQuestion2(vm.formData.formFieldsData.securityQuestion2)" tabindex="7">
+                <option value="">{{'SECURE.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion1|filter:vm.securityQuestion3" value="{{questions.id}}">{{questions.value}}</option>
+            </select>
+            <!--Display error if security question2 field has not been selected -->
+            <div ng-show="vm.formData.securityQuestion2Format.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion2Format.message}}</small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="answer2" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER2' | translate}}</label>
+            <input type="text" class="form-control" name="answer2" ng-model="vm.formData.formFieldsData.answer2" ng-change="vm.validateAnswer2()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.answer2Format.status == 'invalid'),
+                           'is-valid':(vm.formData.answer2Format.status == 'valid')}"
+                   tabindex="8" required>
+
+            <!--Display error if security answer2 field has blank value -->
+            <div ng-show="vm.formData.answer2Format.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer2Format.message}}</small>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-12">
+            <label for="securityquestion3" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION3' | translate}}</label>
+            <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion3"
+                    ng-class="{
+                           'is-invalid':(vm.formData.securityQuestion3Format.status == 'invalid'),
+                           'is-valid':(vm.formData.securityQuestion3Format.status == 'valid')}"
+                    ng-change="vm.validateSecurityQuestion3(vm.formData.formFieldsData.securityQuestion3)" tabindex="9">
+                <option value="">{{'SECURE.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion1|filter:vm.securityQuestion2" value="{{questions.id}}">{{questions.value}}</option>
+            </select>
+
+            <!--Display error if security question3 field has not been selected -->
+            <div ng-show="vm.formData.securityQuestion3Format.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion3Format.message}}</small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-row mb-5">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="answer3" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER3' | translate}}</label>
+            <input type="text" class="form-control" name="answer3" ng-model="vm.formData.formFieldsData.answer3" ng-change="vm.validateAnswer3()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.answer3Format.status == 'invalid'),
+                           'is-valid':(vm.formData.answer3Format.status == 'valid')}"
+                   tabindex="10" required>
+
+            <!--Display error if security answer3 field has blank value -->
+            <div ng-show="vm.formData.answer3Format.status == 'invalid'">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer3Format.message}}</small>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <!--Display error if any fields has a blank value-->
+    <div ng-hide="vm.sharedErrorMessage">
+        <div class="form-row mt-4">
+            <div class="form-group col-md-12 col-sm-12">
+                <small class="text-danger font-weight-bold">{{'SHARED.ERRORMESSAGE' | translate}}</small>
+            </div>
+        </div>
+    </div>
+
+    <!--Navigation buttons-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.search" tabindex="11">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="vm.secureFormValid">
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+
+<!--Password tooltip example-->
+<!--<i class="fas fa-info-circle fa-icon-cursor text-muted mx-1" tooltips tooltip-speed="slow" tooltip-size="large" tooltip-template-url="{{vm.passwordTooltip.templateUrl}}"></i>-->
+<script type="text/ng-template" id="passwordTooltipTemplate.html">
+    <div class="text-muted p-1"><small>{{vm.passwordTooltip.content}}</small></div>
+</script>
+
+
