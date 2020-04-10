@@ -43,18 +43,12 @@
                     .then(version => {
                         let request_object = {
                             'Request': requestType,
-                            'Token': userAuthorizationService.getToken(),
-                            'UserID': userAuthorizationService.getUsername(),
-                            'BranchName': userAuthorizationService.getFirebaseBranchName(),
+                            'BranchName': userAuthorizationService.getUserBranchName(),
                             'Parameters': requestParameters,
-                            'Timestamp': firebase.database.ServerValue.TIMESTAMP,
-                            'UserEmail': userAuthorizationService.getEmail(),
-                            'AppVersion': version
+                            'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
                         debugger;
                         let reference = referenceField || 'requests';
-                        // Get firebase request url
-                        //const request_url = firebase_url.child(firebaseFactory.getFirebaseRequestUrl(request_object.BranchName));
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve(pushID.key);
                     });
@@ -66,27 +60,16 @@
             sendRequestWithResponse: function (typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
                 return new Promise((resolve, reject) => {
                     debugger;
-
-                    //const response_url = firebase_url.child(firebaseFactory.getFirebaseResponsetUrl(userAuthorizationService.getFirebaseBranchName()));
-
+                    
                     //Sends request and gets random key for request
                     sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
                         .then(key => {
-                            debugger;
-
-                            //Sets the reference to fetch data for that request
-                            //let refRequestResponse = (!referenceField) ?
-                            //    response_url.child(userAuthorizationService.getUsername() + '/' + key) :
-                            //    firebase_url.child(responseField).child(key);
-
+                            
                             debugger;
                             let refRequestResponse = (!referenceField) ?
                                 response_url.child(key) :
                                 firebase_url.child(responseField).child(key);
-
-                            debugger;
-                            console.log('********** refRequestResponse' + refRequestResponse);
-
+                            
                             //Waits to obtain the request data.
                             refRequestResponse.on('value', snapshot => {
                                 if (snapshot.exists()) {

@@ -14,7 +14,6 @@
         fetch("./php/config.json").then((response) => {
             return response.text()
         }).then((data) => {
-            console.log("********" + data);
             console.log("********" + JSON.parse(data));
 
             debugger;

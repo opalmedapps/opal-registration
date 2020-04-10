@@ -30,9 +30,6 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                 debugger;
                 // Assign branch structure.
                 firebaseBranch = results.data;
-
-                // Fetch parent branch value.
-               // firebaseUrl = firebaseBranch.parentBranch;
                 
                 return 1;
             }, function (error) {
@@ -42,27 +39,7 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
         };
 
         return {
-            /**
-                @ngdoc method
-                @name getAuthentication
-                @methodOf myApp.service:firebaseFactory
-                @description Returns reference to firebase authentication Angular Fire object, $firebaseAuth
-            `   @returns {Object} Reference to firebase authentication service
-             **/
-            getAuthentication: function () {
-                return $firebaseAuth();
-            },
-
-            /**
-                @ngdoc method
-                @name getAuthenticationCredentials
-                @methodOf myApp.service:firebaseFactory
-                @returns {Object} Returns firebase authentication credentials
-              **/
-            getAuthenticationCredentials: function () {
-                return $firebaseAuth().$getAuth();
-            },
-
+           
             /**
                 @ngdoc method
                 @name getFirebaseUrl
@@ -108,49 +85,7 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                         return '';
                 }
             },
-
-            // Get firebase request branch URL
-            //getFirebaseRequestUrl: function (branchName) {
-            //    debugger;
-            //    return branchName + '/';
-            //},
-
-            //// Get firebase response branch URL
-            //getFirebaseResponsetUrl: function (branchName) {
-            //    debugger;
-            //    return branchName + '/' + firebaseBranch.responseChildBranch + '/';
-            //},
-
-            getDBRef: function (ref) {
-                var global = firebase.database().ref(firebaseUrl);
-
-                if (ref) {
-                    return global.child(ref);
-                } else {
-                    return global
-                }
-            },
-
-            // Sign in with the unique created token
-            signInWithToken: function (token) {
-                debugger;
-
-                // Method to signIn in firebase with custom token .
-                return firebase.auth().signInWithCustomToken(token).then(function (userData) {
-                    debugger;
-                    console.log(userData);
-                    return userData;
-                    //authHandler(userData, vm.token);
-
-                }, function (error) {
-                    // Get error response and display it.
-                    return error;
-                });
-
-                console.log(firebase.auth.Auth.Persistence);
-                debugger;
-            },
-
+            
             // Create firebase account with user email and password
             createFirebaseAccount: function (email, password) {
                 debugger;
@@ -166,30 +101,7 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                     return error;
                 });
             },
-
-            // Check firebase branch is exist into the firebase or not
-            checkFirebaseBranch: function () {
-                debugger;
-
-                var parentBranch = firebase.database().ref(firebaseBranch.parentBranch + "/" + firebaseBranch.requestChildBranch);
-                
-               return parentBranch.once("value", function (snapshot) {
-                    debugger;
-                    if (snapshot.exists()) {
-                        console.log("branch exists");
-                        debugger;
-                        firebaseUrl = firebaseBranch.parentBranch;
-
-                        console.log("firebaseUrl" + firebaseUrl);
-
-                        return firebaseUrl;
-                    }
-                    else {
-                        console.log("not exists");
-                    }
-                });
-            },
-
+            
             // Delete firebase branch
             deleteFirebaseBranch: function (branchName) {
                 debugger;
@@ -226,7 +138,26 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                         });
                         return result;
                     });
-            }
+            },
+            // Sign in with the unique created token
+            signInWithEmailAndPassword: function (email, password) {
+                debugger;
+
+                // Method to signIn in firebase with custom token .
+                return firebase.auth().signInWithEmailAndPassword(email, password).then(function (userData) {
+                    debugger;
+                    console.log(userData);
+                    return userData;
+                    //authHandler(userData, vm.token);
+
+                }, function (error) {
+                    // Get error response and display it.
+                    return error;
+                });
+
+                console.log(firebase.auth.Auth.Persistence);
+                debugger;
+            },
         };
     }]);
 
