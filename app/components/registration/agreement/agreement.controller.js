@@ -89,6 +89,12 @@
                 vm.sharedErrorMessage = false;
             }
             if (vm.formData.termsandAggreementSignFormat.status == 'valid') {
+                
+                debugger;
+                vm.sharedErrorMessage = true;
+
+                // Display display spinner before calling service
+                vm.formData.displaySpinner = false;
 
                 // Encrypt important information before makeing service call.
                 vm.formData.formFieldsData.password = encryptionService.hash(vm.formData.formFieldsData.password);
@@ -97,53 +103,14 @@
                 vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
 
                 debugger;
+                vm.formData.formFieldsData.termsandAggreementSign = 1;
+                vm.formData.formFieldsData.accessLevelSign = 1;
 
-                vm.sharedErrorMessage = true;
-
-                // Display display spinner before calling service
-                vm.formData.displaySpinner = false;
-
-                // Call function to delete temporary firebase account.
-                vm.deleteFirebaseAccount();
+                // Call function to register patient
+                vm.registerPatient();
             }
         }
         
-        var deleteAccount = function () {
-            firebase.auth().currentUser.delete().catch(function (error) {
-                if (error.code == 'auth/requires-recent-login') {
-                    // The user's credential is too old. She needs to sign in again.
-                    firebase.auth().signOut().then(function () {
-                        // The timeout allows the message to be displayed after the UI has
-                        // changed to the signed out state.
-                        setTimeout(function () {
-                            alert('Please sign in again to delete your account.');
-                        }, 1);
-                    });
-                }
-            });
-        };
-
-        // Function to delete temporary user before creating account in firebase with correct details.
-        // Did not use the parent delete firebase account funtion becuse after deleteting a temporary account below function create real firebase account.
-        vm.deleteFirebaseAccount = function () {
-            debugger;
-            var user = firebase.auth().currentUser;
-
-            user.delete().then(function () {
-                debugger
-                // Create firebase account.
-                vm.createFirebaseAccount();
-
-            }, function (error) {
-                debugger;
-                // An error happened.
-                // Call shared function to check the error and display appropriate message.
-                vm.parent.deleteFirebaseAccountError(error);
-                console.log(error);
-            });
-            
-        }
-
         // Function to create firebase account
         vm.createFirebaseAccount = function () {
             debugger;
@@ -178,8 +145,13 @@
                     debugger;
                     vm.formData.formFieldsData.uniqueId = data.uid;
 
+                    // Encrypt important information before makeing service call.
+                    vm.formData.formFieldsData.password = encryptionService.hash(vm.formData.formFieldsData.password);
+                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
+                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
+                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
+
                     debugger;
-                    userAuthorizationService.setUserData(encryptionService.hash(vm.formData.formFieldsData.uniqueId), vm.formData.formFieldsData.password, vm.formData.formFieldsData.email);
                     vm.formData.formFieldsData.termsandAggreementSign = 1;
                     vm.formData.formFieldsData.accessLevelSign = 1;
 
@@ -226,8 +198,11 @@
                             // Call function to send email.
                             vm.sendEmail(email, language);
 
-                            // Call function to delete firebase branch
-                            vm.deleteFirebaseBranch(vm.formData.branchName);
+                            // Call function to reset the fields value
+                            vm.parent.resetFields();
+
+                            // Call function to user authorized value
+                            userAuthorizationService.clearuserAuthorizationInfomation();
 
                             // Redirect to last successful page
                             $rootScope.$apply(function () {

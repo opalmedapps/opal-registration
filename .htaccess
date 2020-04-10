@@ -9,6 +9,3 @@ RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
 # <files "config.json">
 # require all denied
 # </files>
-# <files "service-account.json">
-# require all denied
-# </files>

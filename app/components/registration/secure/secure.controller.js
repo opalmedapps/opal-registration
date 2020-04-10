@@ -102,7 +102,7 @@
         // Secure page controller
         .controller('secureController', secureController);
 
-    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope','$timeout' , 'requestToListener'];
+    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener'];
 
     function secureController($rootScope, $location, $filter, $scope, $timeout, requestToListener) {
         var vm = this;
@@ -569,6 +569,10 @@
                 vm.sharedErrorMessage = true;
 
                 //vm.checkFirebaseEmail();
+                
+                vm.formData.formFieldsData.answer1 = vm.formData.formFieldsData.answer1.toUpperCase();
+                vm.formData.formFieldsData.answer2 = vm.formData.formFieldsData.answer2.toUpperCase();
+                vm.formData.formFieldsData.answer3 = vm.formData.formFieldsData.answer3.toUpperCase();
 
                 // Call function ot language list
                 vm.languageList();
