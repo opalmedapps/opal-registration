@@ -18,7 +18,7 @@
     function formController($location, $uibModal, formDataModel, firebaseFactory) {
         var vm = this;
         vm.token = null;
-        
+
         // Store all of our form data in this object
         vm.formData = new formDataModel();
 
@@ -26,8 +26,6 @@
         vm.getData = getData;
         vm.displayError = displayError;
         vm.resetFields = resetFields;
-        vm.deleteFirebaseAccount = deleteFirebaseAccount;
-        vm.deleteFirebaseAccountError = deleteFirebaseAccountError;
 
         // Display alert on page refresh
         window.onbeforeunload = function (event) {
@@ -48,7 +46,7 @@
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-         //   vm.formData.displaySpinner = true;    
+            //   vm.formData.displaySpinner = true;    
         }
 
         // Shared function to return form data from every pages
@@ -83,15 +81,6 @@
                             //    $location.path('/form/search');
                             //});
                             $location.path('/form/search');
-                        }
-
-                        else {
-                            // Check the flag value if it's 1 no need to delete firebase account because it's not created yet but if it's not 1 it means need to delete firebase account
-                            if (flag != 1) {
-
-                                // Call function to delete firebase account
-                                deleteFirebaseAccount();
-                            }
                         }
                     };
                 }
@@ -150,97 +139,7 @@
             }
 
         }
-
-        // Shared function to delete temporary user before creating account in firebase with correct details.
-        function deleteFirebaseAccount() {
-            debugger;
-            firebase.auth().currentUser.delete().catch(function (error) {
-
-                debugger;
-
-                // Assign token value to local variable
-                var token = vm.formData.formFieldsData.token;
-
-                // Call function to reset fields value
-                resetFields();
-
-                // Call function to check the error while deleting fire base account and display the error.
-                deleteFirebaseAccountError(error, token);
-            });
-
-        }
-
-        // Shared function to check the error while deleting firebase account.
-        function deleteFirebaseAccountError(error, token) {
-            debugger;
-            if (token == undefined || token == "" || token == null) {
-                // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                displayError(errorModalPage);
-            }
-            else {
-                if (error.code == 'auth/requires-recent-login') {
-                    debugger;
-                    firebaseFactory.signInWithToken(token).then(function (userData) {
-                        debugger;
-
-                        if (userData == 'auth/invalid-custom-token') {
-                            // Call function to display error modal box.
-                            var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                            displayError(errorModalPage);
-                        }
-
-                        // check if service is getting right response.
-                        else {
-                            deleteFirebaseAccount();
-                        }
-
-                    }).catch(function (error) {
-                        debugger;
-                        console.log('error' + error);
-                        // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        displayError(errorModalPage);
-                    });
-                }
-                else if (error.code == 'auth/user-token-expired') {
-                    debugger;
-                    firebaseFactory.signInWithToken(token).then(function (userData) {
-                        debugger;
-
-                        if (userData == 'auth/invalid-custom-token') {
-                            // Call function to display error modal box.
-                            var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                            displayError(errorModalPage);
-                        }
-
-                        // check if service is getting right response.
-                        else {
-                            deleteFirebaseAccount();
-                        }
-
-                    }).catch(function (error) {
-                        debugger;
-                        console.log('error' + error);
-                        // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        displayError(errorModalPage);
-                    });
-                }
-                else if (error.code == 'auth/argument-error') {
-                    debugger;
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    displayError(errorModalPage);
-                }
-                else {
-                    debugger;
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    displayError(errorModalPage);
-                }
-            }
-        }
+        
     }
 
 })();

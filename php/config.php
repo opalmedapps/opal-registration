@@ -23,10 +23,7 @@ $json = file_get_contents(dirname(__DIR__).DIRECTORY_SEPARATOR."php".DIRECTORY_S
 // Decode json to variable
 $config = json_decode($json, true);
 
-define( "FRONTEND_ABS_PATH", str_replace("/", DIRECTORY_SEPARATOR, $config['pathConfig']['abs_path'] ));
-
 include_once( dirname(__DIR__) . DIRECTORY_SEPARATOR . "php". DIRECTORY_SEPARATOR . "classes". DIRECTORY_SEPARATOR . "HelpSetup.php" );
-include_once( dirname(__DIR__) . DIRECTORY_SEPARATOR . "php". DIRECTORY_SEPARATOR . "classes". DIRECTORY_SEPARATOR . "Validation.php" );
 
 define("ANY_NUMBERS", "/[^0-9]+/");
 define("ANY_LETTERS", "/[^a-zA-Z]+/");

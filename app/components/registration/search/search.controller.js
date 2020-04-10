@@ -11,7 +11,7 @@
     angular.module('myApp')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$filter', '$location', '$rootScope', '$uibModal', '$timeout' , 'requestToListener', 'searchService', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
+    searchController.$inject = ['$filter', '$location', '$rootScope', '$uibModal', '$timeout', 'requestToListener', 'searchService', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
 
     function searchController($filter, $location, $rootScope, $uibModal, $timeout, requestToListener, searchService, firebaseFactory, userAuthorizationService, encryptionService) {
         var vm = this;
@@ -29,9 +29,7 @@
                 vm.validateRAMQ();
             });
         });
-        
-        // Declare global variable to store branch name.
-        //var branchName = '';
+
 
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
@@ -43,7 +41,8 @@
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
-            vm.formData.selectedLanguage = ((window.navigator.language || window.navigator.userLanguage).slice(0, 2)).toLowerCase();
+            if (vm.formData.secureForm.flag != 1)
+                vm.formData.selectedLanguage = ((window.navigator.language || window.navigator.userLanguage).slice(0, 2)).toLowerCase();
 
             // Call function to set current form class as active.
             vm.setFormStatus();
@@ -83,8 +82,6 @@
                 vm.formData.formFieldsData.registrationCode = $location.search()['code'];
 
                 vm.validateRegistrationCode();
-                //vm.formData.codeFormat.status = 'valid';
-                //vm.formData.codeFormat.message = null;
             }
         }
 
@@ -104,9 +101,6 @@
 
         // Validate to registration code format and length.
         vm.validateRegistrationCode = function () {
-
-            //Disable Confirm button.
-            //vm.searchFormValid = true;
 
             if (vm.formData.formFieldsData.registrationCode == undefined || vm.formData.formFieldsData.registrationCode == null || vm.formData.formFieldsData.registrationCode == "") {
                 vm.formData.codeFormat.status = 'invalid';
@@ -165,16 +159,10 @@
             if (vm.formData.codeFormat.status == 'valid' && vm.formData.ramqFormat.status == 'valid') {
                 // Display shared error message
                 vm.sharedErrorMessage = true;
-
-                // Enable form confirm button
-                //vm.searchFormValid = false;
             }
             else {
                 // Display shared error message
                 vm.sharedErrorMessage = false;
-
-                // Enable form confirm button
-                //vm.searchFormValid = true;
             }
         }
 
@@ -201,181 +189,31 @@
                 // Display shared error message
                 vm.sharedErrorMessage = true;
 
-                // Enable form confirm button
-                //vm.searchFormValid = false;
-                var ramq = vm.formData.formFieldsData.ramq;
-                vm.formData.formFieldsData.ramq = ramq.toUpperCase();
+                vm.formData.formFieldsData.ramq = vm.formData.formFieldsData.ramq.toUpperCase();
 
-
-
-                // Call function load config
-                vm.createToken();
+                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq);
+                vm.createBranchName();
             }
 
         };
 
-
-        // Function to create firebase token and sign in with same token.
-        vm.createToken = function () {
-            debugger;
-
-            // Display display spinner before calling service
-            vm.formData.displaySpinner = false;
-
-            // Call form service
-            searchService.createToken().then(function (results) {
-                debugger;
-                // Get the value from result response and store into token variable which is globally access for this file
-                vm.formData.formFieldsData.token = results.data.result;
-
-                // Call function to signIn in firebase.
-                debugger;
-                vm.firebaseSignIn(vm.formData.formFieldsData.token);
-
-            }).catch(function (error) {
-                debugger;
-                // Get error response and display it.
-                vm.data = error;
-                // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
-            });
-
-        }
-
-        // Function to signin in firebase with recently created token.
-        vm.firebaseSignIn = function (token) {
-            debugger;
-            firebaseFactory.signInWithToken(token).then(function (userData) {
-                debugger;
-
-                // check if service is getting right response.
-                if (userData != undefined) {
-
-                    vm.formData.formFieldsData.uniqueId = userData.uid;
-
-                    //Set the authorized user once we get unique Id from firebase
-                    userAuthorizationService.setFirebaseUser(encryptionService.hash(userData.uid), vm.formData.formFieldsData.registrationCode, token, vm.formData.formFieldsData.ramq);
-
-                    // Check user input in backend.
-                    vm.createBranchName();
-                }
-
-            }).catch(function (error) {
-                debugger;
-                console.log('error' + error);
-
-                var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                var flag = 1;
-                // Call function to display error modal box.
-                vm.parent.displayError(errorModalPage, flag);
-
-            });
-        }
-
         // Call service to check valid branch.
         vm.createBranchName = function () {
             debugger;
-            //$.ajax({
-            //    type: "POST",
-            //    data:
-            //    {
-            //        "code": vm.formData.formFieldsData.registrationCode,
-            //        "ramq": vm.formData.formFieldsData.ramq
-            //    },
-            //    url: 'php/validation/create.branch.name.php',
-            //    success: function (response) {
-            //        debugger;
-            //        console.log('success');
-            //    },
-            //    error: function (response) {
-            //        debugger;
-            //    }
-            //});
-
-            vm.formData.branchName = encryptionService.hash(vm.formData.formFieldsData.registrationCode);
 
             //Set the firebase branch name
-            userAuthorizationService.setFirebaseBranchName(vm.formData.branchName);
+            userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
             // Call function to get an IP address of user.
             vm.getIP();
-
-          
-            // Service call
-            //searchService.createBranchName(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq).then(function (response) {
-            //    debugger;
-
-            //    // Check the response status and perform action accordingly
-            //    if (response.status == 200) {
-            //        console.log(" valid input response : " + JSON.stringify(response));
-            //        vm.formData.branchName = response.data.result;
-            //        debugger;
-            //        //vm.validateFirebaseBranch(vm.formData.branchName);
-
-            //        //Set the firebase branch name
-            //        userAuthorizationService.setFirebaseBranchName(vm.formData.branchName);
-
-            //        // Call function to get an IP address of user.
-            //        vm.getIP();
-            //    }
-            //    else {
-
-            //        // Call function to display error modal box.
-            //        var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-            //        var flag = 1;
-            //        // Call function to display error modal box.
-            //        vm.parent.displayError(errorModalPage, flag);
-            //    }
-            //}).catch(function (error) {
-            //    debugger;
-            //    console.log(error);
-
-            //    // Call function to display error modal box.
-            //    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-            //    var flag = 1;
-            //    // Call function to display error modal box.
-            //    vm.parent.displayError(errorModalPage, flag);
-            //});
-
         }
 
-        // Call service to check valid branch.
-        vm.validateFirebaseBranch = function (branchName) {
-            debugger;
-            firebaseFactory.checkFirebaseBranch().then(function (response) {
-                debugger;
-            }).catch(function (error) {
-                console.log(error);
-            });
-
-            firebaseFactory.validateFirebaseBranch(branchName).then(function (response) {
-                debugger;
-                if (response == "TimeStamp") {
-
-                    //Set the firebase branch name
-                    userAuthorizationService.setFirebaseBranchName(branchName);
-
-                    // Call function to get an IP address of user.
-                    vm.getIP();
-                }
-                else {
-                    debugger;
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
-                }
-            }).catch(function (error) {
-                debugger;
-                // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
-            });
-        }
 
         // Call service to get IP address of user.
         vm.getIP = function () {
 
+            // Display display spinner before calling service
+            vm.formData.displaySpinner = false;
 
             // Service call
             searchService.getIP().then(function (response) {
@@ -410,10 +248,6 @@
             var parameters = {
                 'IPAddress': IPAddress
             };
-            //var parameters = {
-            //    'IPAddress': IPAddress,
-            //    'FirebaseBranchName': vm.formData.branchName
-            //};
             debugger;
             // Listener service call.
             requestToListener.sendRequestWithResponse('InsertIPLog', { Fields: parameters })
@@ -461,7 +295,7 @@
                     if (response.Data[0].Result == 'SUCCESS') {
                         debugger;
                         // Call function to get user name.
-                        vm.validInputs(vm.formData.branchName);
+                        vm.validInputs(userAuthorizationService.getUserBranchName());
                     }
                     else {
                         debugger;
@@ -640,42 +474,6 @@
                 });
         }
 
-        // Common method to display error.
-        //vm.displayError = function (errorModalPage) {
-        //    // Hide display spinner if service get error.
-        //    vm.formData.displaySpinner = true;
-
-        //    $uibModal.open({
-        //        animation: true,
-        //        templateUrl: errorModalPage,
-        //        windowClass: 'show',
-        //        backdropClass: 'show',
-        //        controller: function ($scope, $uibModalInstance) {
-        //            $scope.close = function () {
-        //                debugger;
-        //                $uibModalInstance.close(false);
-
-        //                // Parent controller function to reset the fields value.
-        //                vm.parent.resetFields();
-        //            };
-        //        }
-        //    });
-
-        //    // Call function to reset value of every text fields.
-        //    //vm.resetFields();
-        //}
-
-        //// Method to reset value of each text boxes.
-        //vm.resetFields = function () {
-
-        //    // Delete value of text box.
-        //    vm.formData.formFieldsData.registrationCode = "";
-        //    vm.formData.formFieldsData.ramq = "";
-
-        //    // Reset status and message of all fields.
-        //    vm.formData.codeFormat = { status: null, message: null };
-        //    vm.formData.ramqFormat = { status: null, message: null };
-        //}
     };
 
 })();

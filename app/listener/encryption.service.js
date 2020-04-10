@@ -6,14 +6,12 @@
     encryptionService.$inject = ['userAuthorizationService'];
 
     function encryptionService(userAuthorizationService) {
-        var securityAnswerHash = '';
         var encryptionHash = '';
-        var tempEncryptionHash = '';
-
-        const main_fields = ['UserID', 'Timestamp', 'Code', 'DeviceId'];
+        const main_fields = ['BranchName', 'Timestamp', 'Code'];
 
 
         function decryptObject(object, secret) {
+
             if (typeof object === 'string') {
                 //grab the nonce
                 var pair = splitValue(object);
@@ -25,9 +23,11 @@
                         decryptObject(object[key], secret);
                     } else {
                         if (main_fields.includes(key)) {
+                            debugger;
                             object[key] = object[key];
                         }
                         else {
+                            debugger;
                             //grab the nonce
                             pair = splitValue(object[key]);
 
@@ -114,19 +114,7 @@
                 return decryptObject(object, nacl.util.decodeUTF8(encryptionHash.substring(0, nacl.secretbox.keyLength)));
                 debugger;
             },
-
-            /**
-                @ngdoc method
-                @name decryptDataWithKey
-                @methodOf myApp.service:encryptionService
-                @params {Object} object Object to be decrypted, {String} key fo
-                @description Uses the given key as the decryption hash
-                @return {Object} Returns decrypted object
-             **/
-            decryptDataWithKey: function (object, key) {
-                //Decrypt
-                return decryptObject(object, nacl.util.decodeUTF8(key.substring(0, nacl.secretbox.keyLength)));
-            },
+            
             /**
                 @ngdoc method
                 @name encryptData
@@ -156,31 +144,7 @@
                 var nonce = this.generateNonce();
                 return encryptObject(object, nacl.util.decodeUTF8(secret.substring(0, nacl.secretbox.keyLength)), nonce);
             },
-
-            /**
-                @ngdoc method
-                @name setSecurityAns
-                @methodOf myApp.service:encryptionService
-                @params {String} answer Security answer
-                @description Sets the security answer to be used as the encryption key for all future communication.
-             **/
-            setSecurityAns: function (answer) {
-                debugger;
-                securityAnswerHash = answer;
-            },
-
-            /**
-                @ngdoc method
-                @name getSecurityAns
-                @methodOf myApp.service:encryptionService
-                @description Uses the secret parameter as key to encrypt object parameter
-                @return {String} Returns hashed security answer
-             **/
-            getSecurityAns: function () {
-                debugger;
-                return securityAnswerHash;
-            },
-
+            
             /**
                 @ngdoc method
                 @name encryptPassword
@@ -192,31 +156,7 @@
                 debugger;
                 return CryptoJS.SHA512(incoming).toString();
             },
-
-            /**
-                @ngdoc method
-                @name generateTempEncryptionHash
-                @methodOf myApp.service:encryptionService
-                @description returns a one-time encryption hash based on inputted parameters
-                @return {String} Returns temporary encryption hash
-             **/
-            generateTempEncryptionHash: function (ssn, answer) {
-                debugger;
-                tempEncryptionHash = CryptoJS.PBKDF2(ssn, answer, { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
-
-            },
-
-            /**
-                @ngdoc method
-                @name removeTempEncryptionHash
-                @methodOf myApp.service:encryptionService
-                @description deletes existing Temporary Encryption Hash
-             **/
-            removeTempEncryptionHash: function () {
-                tempEncryptionHash = "";
-
-            },
-
+            
             /**
                 @ngdoc method
                 @name setEncryptionHash
@@ -228,18 +168,13 @@
              **/
             generateEncryptionHash: function () {
                 debugger;
-                encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuniqueCode(), userAuthorizationService.getUserRAMQ(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
+                encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuserCode(), userAuthorizationService.getUserRAMQ(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
 
             },
 
             generateNonce: function () {
                 return nacl.randomBytes(nacl.secretbox.nonceLength)
-            },
-
-            getTempEncryptionHash: function () {
-                return tempEncryptionHash;
             }
-
         };
     }
 })();
