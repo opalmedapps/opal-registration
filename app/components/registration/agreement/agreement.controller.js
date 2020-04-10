@@ -228,21 +228,7 @@
                     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                 });
         }
-
-        // Function to delete firebase branch refrence
-        vm.deleteFirebaseBranch = function () {
-            debugger;
-            // Call firebase factory function
-            firebaseFactory.deleteFirebaseBranch(vm.formData.branchName).then(function (response) {
-                debugger;
-                console.log('Delete branch');
-                console.log(response);
-            }).catch(function (error) {
-                debugger;
-                console.log('Error while deleting firebase branch: ' + error);
-            });
-        }
-
+        
         // Function to send email
         vm.sendEmail = function (email, language) {
             agreementService.sendEmail(vm.formData.firstName, vm.formData.lastName, email, language).then(function (response) {
