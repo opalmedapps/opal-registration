@@ -34,7 +34,7 @@
             // get data from the parent component
             debugger;
             vm.formData = vm.parent.getData();
-            
+
             // Call function to set current form class as active.
             vm.setFormStatus();
 
@@ -46,7 +46,7 @@
         //window.onbeforeunload = function () {
         //    return "";
         //};
-        
+
         //Function to validate aggrementSign checkbox
         vm.validateAgreementSign = function () {
             debugger;
@@ -89,7 +89,7 @@
                 vm.sharedErrorMessage = false;
             }
             if (vm.formData.termsandAggreementSignFormat.status == 'valid') {
-                
+
                 debugger;
                 vm.sharedErrorMessage = true;
 
@@ -97,11 +97,16 @@
                 vm.formData.displaySpinner = false;
 
                 // Encrypt important information before makeing service call.
-                vm.formData.formFieldsData.password = encryptionService.hash(vm.formData.formFieldsData.password);
+               // vm.formData.formFieldsData.password = encryptionService.hash(vm.formData.formFieldsData.password);
                 vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
                 vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
                 vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
 
+                console.log("encryptionService.hash(vm.formData.formFieldsData.password)", encryptionService.hash(vm.formData.formFieldsData.password));
+                console.log("vm.formData.formFieldsData.password", vm.formData.formFieldsData.password);
+                console.log("vm.formData.formFieldsData.answer1", vm.formData.formFieldsData.answer1);
+                console.log("vm.formData.formFieldsData.answer2", vm.formData.formFieldsData.answer2);
+                console.log("vm.formData.formFieldsData.answer3", vm.formData.formFieldsData.answer3);
                 debugger;
                 vm.formData.formFieldsData.termsandAggreementSign = 1;
                 vm.formData.formFieldsData.accessLevelSign = 1;
@@ -109,63 +114,6 @@
                 // Call function to register patient
                 vm.registerPatient();
             }
-        }
-        
-        // Function to create firebase account
-        vm.createFirebaseAccount = function () {
-            debugger;
-
-            // Before registering user create account in firebase to get unique ID. Call firebase method
-            firebaseFactory.createFirebaseAccount(vm.formData.formFieldsData.email, vm.formData.formFieldsData.password).then(function (data) {
-                debugger;
-
-                // check if service is getting right response.
-                if (data.code == "auth/email-already-in-use") {
-
-                    // Hide display spinner if service get error.
-                    vm.formData.displaySpinner = true;
-
-                    console.log('The email address is already in use by another account.');
-
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
-
-                }
-                else if (data.code == "auth/invalid-email") {
-                    // Hide display spinner if service get error.
-                    vm.formData.displaySpinner = true;
-
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
-                }
-                // Store uniqueId and allow to register patient.
-                else {
-                    debugger;
-                    vm.formData.formFieldsData.uniqueId = data.uid;
-
-                    // Encrypt important information before makeing service call.
-                    vm.formData.formFieldsData.password = encryptionService.hash(vm.formData.formFieldsData.password);
-                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
-                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
-                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
-
-                    debugger;
-                    vm.formData.formFieldsData.termsandAggreementSign = 1;
-                    vm.formData.formFieldsData.accessLevelSign = 1;
-
-                    // Call function to register patient
-                    vm.registerPatient();
-                }
-            }).catch(function (error) {
-                debugger;
-                console.log('error' + error);
-
-                // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                vm.parent.displayError(errorModalPage);
-            });
         }
 
         // Function to call service for register patient
@@ -175,7 +123,7 @@
             var parameters = vm.formData.formFieldsData;
             var email = vm.formData.formFieldsData.email;
             var language = vm.formData.formFieldsData.language;
-           
+
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
                 .then(function (response) {
@@ -228,7 +176,7 @@
                     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                 });
         }
-        
+
         // Function to send email
         vm.sendEmail = function (email, language) {
             agreementService.sendEmail(vm.formData.firstName, vm.formData.lastName, email, language).then(function (response) {
