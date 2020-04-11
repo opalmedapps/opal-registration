@@ -34,11 +34,7 @@
             termsandAggreementId: '',
             termsandAggreement: '',
             termsandAggreementPDF:'',
-            termsandAggreementSign: '',
-
-            // Variable to save user firebase unique id.
-            uniqueId: '',
-            token: ''
+            termsandAggreementSign: ''
         }
         
         // Below variables which are no need to pass to the listner It's used only for validations.
