@@ -22,7 +22,7 @@
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            debugger;
+            
             // get data from the parent component
             vm.formData = vm.parent.getData();
 

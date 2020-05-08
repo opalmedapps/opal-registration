@@ -21,7 +21,7 @@
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
-            debugger;
+            
             $timeout(function () {
 
                 // Call functions to check the both field error values            
@@ -36,7 +36,7 @@
 
         // Call function on page load to fetch the data.
         function activate() {
-            debugger;
+            
 
             // get data from the parent component
             vm.formData = vm.parent.getData();
@@ -47,7 +47,7 @@
             // Call function to set current form class as active.
             vm.setFormStatus();
 
-            debugger;
+            
             // Hide display spinner on load
             vm.formData.displaySpinner = true;
 
@@ -76,7 +76,7 @@
 
         // Method to fetch URL query parameter to autofill Registration code.
         vm.fetchURL = function () {
-            debugger;
+            
             if ($location.search().hasOwnProperty('code')) {
 
                 vm.formData.formFieldsData.registrationCode = $location.search()['code'];
@@ -87,7 +87,7 @@
 
         // Method to to set current form class as active and set flag for translation.
         vm.setFormStatus = function () {
-            debugger;
+            
             vm.formData.searchForm = "active";
             vm.formData.secureForm.status = "";
             vm.formData.secureForm.flag = null;
@@ -155,7 +155,7 @@
 
         // Function to display shared error message and enable next button on all fields valid status.
         vm.checkAllFieldsValidStatus = function () {
-            debugger;
+            
             if (vm.formData.codeFormat.status == 'valid' && vm.formData.ramqFormat.status == 'valid') {
                 // Display shared error message
                 vm.sharedErrorMessage = true;
@@ -169,7 +169,7 @@
         // Form onsubmit method
         vm.searchFormSubmit = function () {
 
-            debugger;
+            
             //Validate all fields as required fields on form submit
             if (vm.formData.formFieldsData.registrationCode == undefined || vm.formData.formFieldsData.registrationCode == null || vm.formData.formFieldsData.registrationCode == "") {
                 vm.formData.codeFormat.status = 'invalid';
@@ -199,7 +199,7 @@
 
         // Call service to check valid branch.
         vm.createBranchName = function () {
-            debugger;
+            
 
             //Set the firebase branch name
             userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
@@ -217,7 +217,7 @@
 
             // Service call
             searchService.getIP().then(function (response) {
-                debugger;
+                
 
                 // Check the response status and perform action accordingly
                 if (response.status == 200) {
@@ -232,7 +232,7 @@
                     vm.parent.displayError(errorModalPage);
                 }
             }).catch(function (error) {
-                debugger;
+                
                 console.log(error);
 
                 // Call function to display error modal box.
@@ -244,20 +244,20 @@
 
         // Method to call service to insert Ip address.
         vm.insertIPLog = function (IPAddress) {
-            debugger;
+            
             var parameters = {
                 'IPAddress': IPAddress
             };
-            debugger;
+            
             // Listener service call.
             requestToListener.sendRequestWithResponse('InsertIPLog', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data);
 
-                    debugger;
+                    
                     if (response.Data[0].Result == 'SUCCESS') {
-                        debugger;
+                        
                         // Call function to validate IPAddress.
                         vm.validateIP(IPAddress);
                     }
@@ -270,7 +270,7 @@
 
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.
@@ -285,20 +285,20 @@
 
             var parameters = IPAddress;
 
-            debugger;
+            
             // Listener service call.
             requestToListener.sendRequestWithResponse('ValidateIP', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data);
                     // Check length of the variable
                     if (response.Data[0].Result == 'SUCCESS') {
-                        debugger;
+                        
                         // Call function to get user name.
                         vm.validInputs(userAuthorizationService.getUserBranchName());
                     }
                     else {
-                        debugger;
+                        
 
                         // Call function to display error modal box.
                         var errorModalPage = 'app/components/registration/shared/modalBox/somethingWentWrongError.html';
@@ -306,7 +306,7 @@
                     }
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.
@@ -317,7 +317,7 @@
 
         // Method to call service to check valid input.
         vm.validInputs = function (requestObject) {
-            debugger;
+            
 
             // Parameter object
             var parameters = {
@@ -325,20 +325,20 @@
                 'RegistrationCode': vm.formData.formFieldsData.registrationCode,
                 'RAMQ': vm.formData.formFieldsData.ramq
             };
-            debugger;
+            
             // Listener service call.
             requestToListener.sendRequestWithResponse('ValidateInputs', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data);
-                    debugger;
+                    
                     if (response.Data[0].Result == 'SUCCESS') {
-                        debugger;
+                        
                         // Call function to get user name.
                         vm.getUserName();
                     }
                     else {
-                        debugger;
+                        
 
                         // Call function to display error modal box.
                         var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
@@ -347,7 +347,7 @@
 
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
                     // Hide display spinner if service get error.
                     vm.formData.displaySpinner = true;
@@ -367,15 +367,15 @@
             // Parameter
             var parameters = vm.formData.formFieldsData.ramq;
 
-            debugger;
+            
             // Listener service call.
             requestToListener.sendRequestWithResponse('GetUserName', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data);
                     // Check length of the variable
                     if (response.Data[0].length == 1) {
-                        debugger;
+                        
                         vm.formData.firstName = response.Data[0][0].FirstName;
                         vm.formData.lastName = response.Data[0][0].LastName;
 
@@ -383,7 +383,7 @@
                         vm.getSecurityQuestionList();
                     }
                     else {
-                        debugger;
+                        
                         // Call function to display error modal box.
                         var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                         vm.parent.displayError(errorModalPage);
@@ -391,7 +391,7 @@
                 })
                 .catch(function (error) {
 
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.
@@ -406,11 +406,11 @@
             // Parameter
             var parameters = vm.formData.formFieldsData.ramq;
 
-            debugger;
+            
             // Listener service call.
             requestToListener.sendRequestWithResponse('SecurityQuestionsList', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data);
 
                     // assing response to temporary variable.
@@ -418,11 +418,11 @@
 
                     // Check length of the variable
                     if (SecurityQuestionsList.length > 1) {
-                        debugger;
+                        
 
                         // Define loop for passing the value of securityquestions.
                         for (var i = 0; i < SecurityQuestionsList.length; i++) {
-                            debugger;
+                            
 
                             // Assing in JSON format
                             vm.formData.securityQuestionList_EN[i] = {
@@ -442,21 +442,21 @@
                         else
                             vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
 
-                        debugger;
+                        
                         console.log('securityQuestionList' + vm.formData.securityQuestionList);
 
                         // Hide display spinner after all request get response.
                         vm.formData.displaySpinner = true;
 
                         $rootScope.$apply(function () {
-                            debugger;
+                            
                             $location.path('/form/secureInformation');
                             console.log($location.path());
                         });
 
                     }
                     else {
-                        debugger;
+                        
 
                         // Call function to display error modal box.
                         var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
@@ -464,7 +464,7 @@
                     }
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.
