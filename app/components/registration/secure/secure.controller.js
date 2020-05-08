@@ -112,7 +112,7 @@
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
-            debugger;
+            
             $timeout(function () {
 
                 // Call functions to check the both field error values            
@@ -134,14 +134,14 @@
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            debugger;
+            
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
             // Call function to set current form class as active.
             vm.setFormStatus();
 
-            debugger;
+            
             // Hide display spinner on load
             vm.formData.displaySpinner = true;
 
@@ -155,7 +155,7 @@
 
         //// Display alert on page refresh
         //window.onbeforeunload = function () {
-        //    debugger;
+        //    
         //    return "";
         //};
 
@@ -180,7 +180,7 @@
 
         // Function to validate email
         vm.validateEmail = function () {
-            debugger;
+            
 
 
             //Email pattern
@@ -200,7 +200,7 @@
                     vm.formData.emailFormat.status = 'valid';
                     vm.formData.emailFormat.message = null;
 
-                    debugger;
+                    
                     if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
                         // Display shared error message
                         vm.sharedErrorMessage = true;
@@ -212,7 +212,7 @@
 
         // Function to validate password
         vm.validatePassword = function () {
-            debugger;
+            
 
             //Variable to set field status and message.
             vm.passwordFormat = { status: null, message: null };
@@ -256,7 +256,7 @@
 
         // Function to compare email and confirm email fields.
         vm.validateConfirmEmail = function () {
-            debugger;
+            
             if (vm.formData.confirmEmail == undefined || vm.formData.confirmEmail == null || vm.formData.confirmEmail == "") {
                 vm.formData.confirmEmailFormat.status = 'invalid';
                 vm.formData.confirmEmailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.CONFIRMEMAILREQUIRED');
@@ -280,7 +280,7 @@
 
         // Function to compare email and confirm email on blur event of email textbox.
         vm.compareEmail = function () {
-            debugger;
+            
             if (vm.formData.formFieldsData.email == undefined || vm.formData.formFieldsData.email == null || vm.formData.formFieldsData.email == "") {
             }
             else {
@@ -293,7 +293,7 @@
                     vm.formData.confirmEmailFormat.status = 'valid';
                     vm.formData.confirmEmailFormat.message = null;
 
-                    debugger;
+                    
                     if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
                         // Display shared error message
                         vm.sharedErrorMessage = true;
@@ -305,7 +305,7 @@
 
         // Function to compare password and confirm password fields.
         vm.validateConfirmPassword = function () {
-            debugger;
+            
 
             if (vm.formData.confirmPassword == undefined || vm.formData.confirmPassword == null || vm.formData.confirmPassword == "") {
                 vm.formData.confirmPasswordFormat.status = 'invalid';
@@ -331,7 +331,7 @@
 
         // Function to compare password and confirm password on blur event of password textbox.
         vm.comparePassword = function () {
-            debugger;
+            
             if (vm.formData.formFieldsData.password == undefined || vm.formData.formFieldsData.password == null || vm.formData.formFieldsData.password == "") {
             }
             else {
@@ -344,7 +344,7 @@
                     vm.formData.confirmPasswordFormat.status = 'valid';
                     vm.formData.confirmPasswordFormat.message = null;
 
-                    debugger;
+                    
                     if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
                         // Display shared error message
                         vm.sharedErrorMessage = true;
@@ -367,7 +367,7 @@
 
         // Function to validate security question1.
         vm.validateSecurityQuestion1 = function () {
-            debugger;
+            
 
             if (vm.formData.formFieldsData.securityQuestion1 == undefined || vm.formData.formFieldsData.securityQuestion1 == null || vm.formData.formFieldsData.securityQuestion1 == "") {
                 vm.formData.securityQuestion1Format.status = 'invalid';
@@ -386,7 +386,7 @@
 
         // Function to validate answer1.
         vm.validateAnswer1 = function () {
-            debugger;
+            
             if (vm.formData.formFieldsData.answer1 == undefined || vm.formData.formFieldsData.answer1 == null || vm.formData.formFieldsData.answer1 == "") {
                 vm.formData.answer1Format.status = 'invalid';
                 vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
@@ -408,7 +408,7 @@
 
         // Function to validate security question2.
         vm.validateSecurityQuestion2 = function () {
-            debugger;
+            
 
             if (vm.formData.formFieldsData.securityQuestion2 == undefined || vm.formData.formFieldsData.securityQuestion2 == null || vm.formData.formFieldsData.securityQuestion2 == "") {
                 vm.formData.securityQuestion2Format.status = 'invalid';
@@ -427,7 +427,7 @@
 
         // Function to validate answer2.
         vm.validateAnswer2 = function () {
-            debugger;
+            
             if (vm.formData.formFieldsData.answer2 == undefined || vm.formData.formFieldsData.answer2 == null || vm.formData.formFieldsData.answer2 == "") {
                 vm.formData.answer2Format.status = 'invalid';
                 vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
@@ -449,7 +449,7 @@
 
         // Function to validate security question3.
         vm.validateSecurityQuestion3 = function () {
-            debugger;
+            
 
             if (vm.formData.formFieldsData.securityQuestion3 == undefined || vm.formData.formFieldsData.securityQuestion3 == null || vm.formData.formFieldsData.securityQuestion3 == "") {
                 vm.formData.securityQuestion3Format.status = 'invalid';
@@ -468,7 +468,7 @@
 
         // Function to validate answer3.
         vm.validateAnswer3 = function () {
-            debugger;
+            
             if (vm.formData.formFieldsData.answer3 == undefined || vm.formData.formFieldsData.answer3 == null || vm.formData.formFieldsData.answer3 == "") {
                 vm.formData.answer3Format.status = 'invalid',
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
@@ -489,7 +489,7 @@
 
         // Secure form onsubmit method
         vm.secureFormSubmit = function () {
-            debugger;
+            
 
             //Validate all fields as required fields
             if (vm.formData.formFieldsData.email == undefined || vm.formData.formFieldsData.email == null || vm.formData.formFieldsData.email == "") {
@@ -563,7 +563,7 @@
                 vm.sharedErrorMessage = false;
             }
             if (vm.formData.emailFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
-                debugger;
+                
 
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
@@ -588,26 +588,26 @@
             // Method to get security questions list from database
             var parameters = vm.formData.formFieldsData.email;
 
-            debugger;
+            
             requestToListener.sendRequestWithResponse('CheckFirebaseEmail', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     // console.log(response.Data[0]);
 
                     if (response.Data == "auth/email-already-in-use") {
-                        debugger;
+                        
                         vm.formData.emailFormat.status = 'invalid',
                             //vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILINUSE');
                             vm.formData.emailFormat.message = 'test';
                     }
 
                     else if (response.Data == "ERROR") {
-                        debugger;
+                        
                         // Call function to get accesslevel list.
                         vm.accessLevelList();
                     }
                     else {
-                        debugger;
+                        
                         // Call function to display error modal box.
                         var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                         vm.parent.displayError(errorModalPage);
@@ -616,7 +616,7 @@
 
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.
@@ -634,10 +634,10 @@
             // Method to get security questions list from database
             var parameters = vm.formData.formFieldsData.ramq;
 
-            debugger;
+            
             requestToListener.sendRequestWithResponse('AccessLevelList', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data[0]);
 
                     // Get the value from result response and bind values into dropdown
@@ -645,11 +645,11 @@
 
                     // Check length of the variable
                     if (accessLevelList.length > 1) {
-                        debugger;
+                        
 
                         // Define loop for passing the value of language option.
                         for (var i = 0; i < accessLevelList.length; i++) {
-                            debugger;
+                            
 
                             // Assing in JSON format
                             vm.formData.accessLevelList_EN[i] = {
@@ -679,7 +679,7 @@
 
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.
@@ -695,10 +695,10 @@
             // Method to get security questions list from database
             var parameters = vm.formData.formFieldsData.ramq;
 
-            debugger;
+            
             requestToListener.sendRequestWithResponse('LanguageList', { Fields: parameters })
                 .then(function (response) {
-                    debugger;
+                    
                     console.log(response.Data[0]);
 
                     // Get the value from result response and bind values into dropdown
@@ -706,11 +706,11 @@
 
                     // Check length of the variable
                     if (languageList.length > 1) {
-                        debugger;
+                        
 
                         // Define loop for passing the value of language option.
                         for (var i = 0; i < languageList.length; i++) {
-                            debugger;
+                            
 
                             // Assing in JSON format
                             vm.formData.languageList_EN[i] = {
@@ -730,20 +730,20 @@
                         else
                             vm.formData.languageList = vm.formData.languageList_FR;
 
-                        debugger;
+                        
                         // Hide display spinner if service get error.
                         vm.formData.displaySpinner = true;
 
-                        debugger;
+                        
                         $rootScope.$apply(function () {
-                            debugger;
+                            
                             $location.path('/form/opalPreference');
                             console.log($location.path());
                         });
                     }
 
                     else {
-                        debugger;
+                        
 
                         // Call function to display error modal box.
                         var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
@@ -753,7 +753,7 @@
 
                 })
                 .catch(function (error) {
-                    debugger;
+                    
                     console.log(error);
 
                     // Call function to display error modal box.

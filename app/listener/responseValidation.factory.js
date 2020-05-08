@@ -18,7 +18,7 @@
 
     /* @ngInject */
     function responseValidatorFactory(firebaseFactory, $window, securityFactory, encryptionService) {
-        debugger;
+        
         /**
           ERROR CODES
          **/
@@ -49,7 +49,7 @@
 
         function validate(response, encryptionKey, timeOut) {
             let timestamp = response.Timestamp;
-            debugger;
+            
             // TODO: it seems that encryption errors are no longer being handled properly by the app. This could be due to fact that response code is sometimes being returned encrypted
             if (response.Code === ENCRYPTION_ERROR) {
                 return {error: {Code: 'ENCRYPTION_ERROR'}}
@@ -58,9 +58,9 @@
                 clearTimeout(timeOut);
 
                 if (response.Code === SUCCESS) {
-                    debugger;
+                    
                     if (!encryptionKey) response = encryptionService.decryptData(response);
-                    debugger;
+                    
                     return {success: response};
                 } else {
                     return handleResponseError(response)
