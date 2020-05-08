@@ -14,7 +14,7 @@
             
             // PHP service call to get user IP address.
             searchAPI.getIP = function () {
-                
+                debugger;
                 return $http.post(
                     "php/validation/get.ip.address.php",
                     {
