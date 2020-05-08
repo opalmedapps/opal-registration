@@ -22,7 +22,7 @@
         
         // Change language function.
         vm.changeLanguage = function (language) {
-            
+            debugger;
             // Slice first two charcters and convert it into lowercase.
             vm.lan_key = (language.slice(0, 2)).toLowerCase();
 
