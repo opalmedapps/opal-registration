@@ -13,13 +13,11 @@
             var agreementAPI = {};
 
             // PHP service to send email on successfull registration
-            agreementAPI.sendEmail = function (firstName, lastName,email,language) {
-                debugger;
+            agreementAPI.sendEmail = function (userName,email,language) {
                 return $http.post(
                     "php/validation/send.email.php",
                     $.param({
-                        FirstName: firstName,
-                        LastName: lastName,
+                        UserName: userName,
                         Email: email,
                         Language: language
                     }),

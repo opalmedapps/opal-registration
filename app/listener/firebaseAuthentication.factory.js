@@ -14,26 +14,23 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
     function ($firebaseAuth, $http) {
 
         var firebaseBranch = "";
-
-        debugger;
+        
         // Call function to load firebase configuration on page load.
         getFirebaseConfig();
 
         // Function to load firebase configration
         function getFirebaseConfig() {
-            debugger;
+            
             return $http({
                 method: 'GET',
                 url: './firebaseBranch.json'
             }).then(function (results) {
-
-                debugger;
+                
                 // Assign branch structure.
                 firebaseBranch = results.data;
                 
                 return 1;
             }, function (error) {
-                debugger;
                 return (error);
             });
         };
@@ -48,8 +45,6 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
              **/
 
             getFirebaseUrl: function (extension) {
-                debugger;
-                debugger;
                 switch (extension) {
                     case null:
                         //return firebaseUrl;
@@ -73,7 +68,6 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                @returns {String} Returns firebase url string
             **/
             getFirebaseChild: function (child) {
-                debugger;
                 switch (child) {
                     case null:
                         return firebaseBranch.responseChildBranch + "/";
@@ -88,12 +82,10 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
             
             // Create firebase account with user email and password
             createFirebaseAccount: function (email, password) {
-                debugger;
-
+                
                 // Method to create firebase account with user email and password
                 return firebase.auth().createUserWithEmailAndPassword(email, password).then(function (userData) {
-                    debugger;
-                    console.log(userData);
+                    
                     return userData;
 
                 }, function (error) {
@@ -104,36 +96,29 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
             
             // Delete firebase branch
             deleteFirebaseBranch: function (branchName) {
-                debugger;
-
                 var firebaseBranchName = firebase.database().ref(firebaseBranch.parentBranch + "/" + firebaseBranch.firebaseChildBranch + '/' + branchName);
                 var result = "";
 
 
                 return firebaseBranchName.once("value", function (snapshot) {
-                    debugger;
                     if (snapshot.exists()) {
-                        console.log("Branch deleted");
-                        debugger;
+                        
                         firebaseBranchName.remove();
                         result = "Branch deleted";
                     }
                     else {
-                        console.log("Branch not deleted");
                         result = "Branch not deleted";
                     }
                     return result;
                 });
             },
             validateFirebaseBranch: function (branchName) {
-                debugger;
 
                 var firebaseBranchReference = firebase.database().ref(config.firebaseBranch.parentBranch + '/' + config.firebaseBranch.firebaseChildBranch + '/' + branchName);
                 var result = null;
                 return firebaseBranchReference.once("value")
                     .then(function (snapshot) {
                         snapshot.forEach(function (snapShot) {
-                            debugger;
                             result = snapShot.key;
                         });
                         return result;
@@ -141,12 +126,10 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
             },
             // Sign in with the unique created token
             signInWithEmailAndPassword: function (email, password) {
-                debugger;
-
+                
                 // Method to signIn in firebase with custom token .
                 return firebase.auth().signInWithEmailAndPassword(email, password).then(function (userData) {
-                    debugger;
-                    console.log(userData);
+                    
                     return userData;
                     //authHandler(userData, vm.token);
 
@@ -154,9 +137,7 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                     // Get error response and display it.
                     return error;
                 });
-
-                console.log(firebase.auth.Auth.Persistence);
-                debugger;
+                
             },
         };
     }]);

@@ -6,8 +6,7 @@
     requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'responseValidatorFactory'];
 
     function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, responseValidatorFactory) {
-
-        debugger;
+        
         // Get firebase request user
         var firebase_url = null;
 
@@ -26,19 +25,15 @@
             return new Promise((resolve) => {
                 let requestType;
                 let requestParameters;
-
-
-                debugger;
+                
                 if (encryptionKey) {
                     requestType = typeOfRequest;
                     requestParameters = encryptionService.encryptWithKey(parameters, encryptionKey);
                 } else {
-                    debugger;
                     encryptionService.generateEncryptionHash();
                     requestType = encryptionService.encryptData(typeOfRequest);
                     requestParameters = encryptionService.encryptData(parameters);
                 }
-                debugger;
                 constants.version()
                     .then(version => {
                         let request_object = {
@@ -47,7 +42,6 @@
                             'Parameters': requestParameters,
                             'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
-                        debugger;
                         let reference = referenceField || 'requests';
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve(pushID.key);
@@ -59,13 +53,11 @@
 
             sendRequestWithResponse: function (typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
                 return new Promise((resolve, reject) => {
-                    debugger;
                     
                     //Sends request and gets random key for request
                     sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
                         .then(key => {
                             
-                            debugger;
                             let refRequestResponse = (!referenceField) ?
                                 response_url.child(key) :
                                 firebase_url.child(responseField).child(key);
@@ -73,36 +65,30 @@
                             //Waits to obtain the request data.
                             refRequestResponse.on('value', snapshot => {
                                 if (snapshot.exists()) {
-                                    debugger;
-                                    let data = snapshot.val();
                                     
+                                    let data = snapshot.val();
+
+                                    console.log(data);
+
                                     refRequestResponse.set(null);
                                     refRequestResponse.off();
 
                                     data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
-
-                                    debugger;
+                                    
                                     if (data.success) {
-                                        console.log(typeOfRequest);
-                                        console.log(data.success);
-
                                         resolve(data.success);
                                     } else {
-                                        console.log(typeOfRequest);
-                                        console.log(data.error);
-
                                         reject(data.error);
                                     }
                                 }
                             }, error => {
                                 console.log('sendRequestWithResponse error' + error);
-                                debugger;
+                                
                                 refRequestResponse.set(null);
                                 refRequestResponse.off();
                                 reject(error);
                             });
                         });
-                    debugger;
                     //If request takes longer than 30000 to come back with timeout request, delete reference
                     const timeOut = setTimeout(function () {
                         response_url.set(null);
