@@ -31,16 +31,14 @@
             language: '',
             accessLevel: '',
             accessLevelSign: '',
-            termsandAggreementId: '',
-            termsandAggreement: '',
-            termsandAggreementPDF:'',
-            termsandAggreementSign: ''
+            termsandAggreementSign: '',
         }
         
         // Below variables which are no need to pass to the listner It's used only for validations.
         this.confirmEmail = '';
         this.confirmPassword = '';
         this.branchName = '';
+        this.passwordMeter = '';
 
         // Variables to set field status and message.
         this.codeFormat = { status: null, message: null };
@@ -88,8 +86,7 @@
 
         this.termsandAggreementDocuments = [{}];
         
-        this.firstName = '';
-        this.lastName = '';
+        this.userName = '';
 
         // Variable to set form active class.
         this.searchForm = '';
