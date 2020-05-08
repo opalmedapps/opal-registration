@@ -40,7 +40,6 @@
                 @description Sets all the user authorization.
             **/
             setUserData: function (code, ramq) {
-                debugger;
                 userCode = code;      // Registration code
                 userRAMQ = ramq;    //RAMQ
             },
@@ -53,7 +52,6 @@
                 @description Sets all the user authorization.
             **/
             setUserBranchName: function (branchName) {
-                debugger;
                 userBranchName = branchName;    // Firebase branch name
             },
 
@@ -64,7 +62,6 @@
                @returns {string} Returns Firebase branch name.
            **/
             getUserBranchName: function () {
-                debugger;
                 return userBranchName;
 
             },
@@ -76,7 +73,6 @@
                @returns {string} Returns Firebase branch name.
            **/
             getUserRAMQ: function () {
-                debugger;
                 return userRAMQ;
 
             },
@@ -88,7 +84,6 @@
                 @returns {string} Returns unique ID.
             **/
             getuserCode: function () {
-                debugger;
                 return userCode;
             },
             

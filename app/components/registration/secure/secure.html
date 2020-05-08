@@ -4,7 +4,7 @@
     <!--Page title-->
     <div class="d-flex justify-content-between text-muted">
         <div><h4 class="font-weight-bold">{{'SECURE.STEPS' | translate}}{{'SECURE.TITLE' | translate}} </h4></div>
-        <div> <h4 class="font-weight-bold">{{vm.formData.firstName}} {{vm.formData.lastName}}</h4></div>
+        <div> <h4 class="font-weight-bold">{{vm.formData.userName}}</h4></div>
     </div>
 
     <!--Instruction to follow-->
@@ -53,13 +53,13 @@
         <div class="form-group col-md-6 col-sm-12">
             <label for="password" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
             <!--<input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()"-->
-            <input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()" ng-blur="vm.comparePassword()"
+            <input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-keyup="vm.validatePassword()" ng-blur="vm.comparePassword()"
                    ng-class="{
                            'is-invalid' :(vm.formData.passwordFormat.status == 'invalid'),
                            'is-valid': (vm.formData.passwordFormat.status == 'valid')}"
                    tabindex="3" required>
-            <div ng-show="password.length >= 0">
-                <div class="label d-inline px-2 py-1 text-justify align-baseline text-white font-weight-bold password-count" ng-class="vm.formData.passwordFormat.status == 'valid' ? 'bg-success' : 'bg-danger'" ng-cloak>{{ password | passwordCount:20 }}</div>
+            <div ng-show="vm.formData.formFieldsData.password.length >= 1">
+                <div class="label d-inline px-2 py-1 text-justify align-baseline text-white font-weight-bold password-count" ng-class="vm.formData.passwordFormat.status == 'valid' ? 'bg-success' : 'bg-danger'" ng-cloak>{{vm.formData.formFieldsData.password.length}}</div>
             </div>
 
             <!--Display error if password format and length is inappropriate-->
@@ -69,9 +69,9 @@
 
             <!--Password length strength meter-->
             <div class="strength-meter mt-3 mb-1">
-                <div class="strength-meter-fill" data-strength="{{passwordStrength}}"></div>
+                <div class="strength-meter-fill" data-strength="{{vm.formData.passwordMeter}}"></div>
             </div>
-
+            
             <!--Password format message-->
             <div><label class="text-muted">{{'TOOLTIP.PASSWORDFORMAT' | translate}}</label></div>
         </div>

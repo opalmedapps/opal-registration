@@ -23,11 +23,9 @@
                         decryptObject(object[key], secret);
                     } else {
                         if (main_fields.includes(key)) {
-                            debugger;
                             object[key] = object[key];
                         }
                         else {
-                            debugger;
                             //grab the nonce
                             pair = splitValue(object[key]);
 
@@ -110,9 +108,7 @@
             **/
             decryptData: function (object) {
                 //Decrypt
-                debugger;
                 return decryptObject(object, nacl.util.decodeUTF8(encryptionHash.substring(0, nacl.secretbox.keyLength)));
-                debugger;
             },
             
             /**
@@ -125,9 +121,7 @@
             **/
             encryptData: function (object) {
                 var nonce = this.generateNonce();
-                debugger;
-                console.log(object);
-
+                
                 return encryptObject(object, nacl.util.decodeUTF8(encryptionHash.substring(0, nacl.secretbox.keyLength)), nonce);
             },
 
@@ -153,7 +147,6 @@
                 @return {String} Returns hashed password
              **/
             hash: function (incoming) {
-                debugger;
                 return CryptoJS.SHA512(incoming).toString();
             },
             
@@ -167,7 +160,6 @@
                 Salt: RAMQ
              **/
             generateEncryptionHash: function () {
-                debugger;
                 encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuserCode(), userAuthorizationService.getUserRAMQ(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
 
             },

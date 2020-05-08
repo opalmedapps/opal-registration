@@ -121,11 +121,7 @@ tooltip .img-size {
      background: green;
      width: 100%;
  }
- .strength-meter-fill[data-strength='5'] {
-     background: blue;
-     width: 20%;
- }
-
+ 
 .label {
     font-size: 75%;
     line-height: 1;
