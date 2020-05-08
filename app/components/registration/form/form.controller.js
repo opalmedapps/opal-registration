@@ -29,7 +29,7 @@
 
         // Display alert on page refresh
         window.onbeforeunload = function (event) {
-            debugger;
+            
             if (vm.formData.successForm.flag == 1) {
                 // Not display any alert message if user refresh the browser on success form page.
             }
@@ -56,7 +56,7 @@
 
         // Shared function to display error
         function displayError(errorModalPage, error) {
-            debugger;
+            
             // Hide display spinner if service get error.
             vm.formData.displaySpinner = true;
 
@@ -67,7 +67,7 @@
                 backdropClass: 'show',
                 controller: function ($scope, $uibModalInstance) {
                     $scope.close = function () {
-                        debugger;
+                        
                         $uibModalInstance.close(false);
 
                         if (vm.formData.secureForm.flag == 1 || vm.formData.agreementForm.flag == 1) {
@@ -77,7 +77,7 @@
 
                             // Redirect to first page 
                             //$rootScope.$apply(function () {
-                            //    debugger;
+                            //    
                             //    $location.path('/form/search');
                             //});
                             $location.path('/form/search');
