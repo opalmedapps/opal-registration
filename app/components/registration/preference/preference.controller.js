@@ -20,7 +20,7 @@
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
-            
+            debugger;
             $timeout(function () {
 
                 // Call functions to check the both field error values            
@@ -33,7 +33,7 @@
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            
+            debugger;
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
@@ -47,7 +47,7 @@
             vm.sharedErrorMessage = true;
         }
 
-        
+        debugger;
 
         // Display alert on page refresh
         //window.onbeforeunload = function () {
@@ -75,7 +75,7 @@
 
         // Validate to language preference field.
         vm.validateLanguage = function () {
-            
+            debugger;
             if (vm.formData.formFieldsData.language == undefined || vm.formData.formFieldsData.language == null || vm.formData.formFieldsData.language == "") {
                 vm.formData.languageFormat.status = 'invalid';
                 vm.formData.languageFormat.message = $filter('translate')('PREFERENCE.FIELDERRORMESSAGES.LANGUAGEREQUIRED');
@@ -94,18 +94,18 @@
         // Function to get level of access .
         vm.getAccessLevel = function () {
             preferenceService.allAccess().then(function (results) {
-                
+                debugger;
 
                 // Get the value from result response and bind values into dropdown
                 var allAccess = results.data.all;
 
                 // Check length of the variable
                 if (allAccess.length > 1) {
-                    
+                    debugger;
 
                     // Define loop for passing the value of language option.
                     for (var i = 0; i < allAccess.length; i++) {
-                        
+                        debugger;
 
                         // Assing in JSON format
                         vm.formData.allAccessLevelList_EN[i] = {
@@ -136,25 +136,25 @@
 
 
             }).catch(function (error) {
-                
+                debugger;
                 // Call function to display error modal box.
                 var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                 vm.parent.displayError(errorModalPage);
             });
 
             preferenceService.needToKnowAccess().then(function (results) {
-                
+                debugger;
                 
                 // Get the value from result response and bind values into dropdown
                 var needToKnowAccess = results.data.needToKnow;
 
                 // Check length of the variable
                 if (needToKnowAccess.length > 1) {
-                    
+                    debugger;
 
                     // Define loop for passing the value of language option.
                     for (var i = 0; i < needToKnowAccess.length; i++) {
-                        
+                        debugger;
 
                         // Assing in JSON format
                         vm.formData.needToKnowAccessLevelList_EN[i] = {
@@ -183,7 +183,7 @@
                 }
 
             }).catch(function (error) {
-                
+                debugger;
                 // Call function to display error modal box.
                 var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                 vm.parent.displayError(errorModalPage);
@@ -193,7 +193,7 @@
 
         // Validate to level of access field.
         vm.validateAccessLevel = function () {
-            
+            debugger;
             if (vm.formData.formFieldsData.accessLevel == undefined || vm.formData.formFieldsData.accessLevel == null || vm.formData.formFieldsData.accessLevel == "") {
                 vm.formData.accessLevelFormat.status = 'invalid';
                 vm.formData.accessLevelFormat.message = $filter('translate')('PREFERENCE.FIELDERRORMESSAGES.ACCESSLEVELREQUIRED');
@@ -229,7 +229,7 @@
 
         //Function to validate aggrementSign checkbox
         vm.validateaccessLevelSign = function () {
-            
+            debugger;
             if (vm.formData.formFieldsData.accessLevelSign == undefined || vm.formData.formFieldsData.accessLevelSign == null || vm.formData.formFieldsData.accessLevelSign == "" || vm.formData.formFieldsData.accessLevelSign == false) {
                 vm.formData.accessLevelSignFormat.status = 'invalid';
                 vm.formData.accessLevelSignFormat.message = $filter('translate')('PREFERENCE.FIELDERRORMESSAGES.AUTHORIZETRANSMISSIONREQUIRED');
@@ -247,7 +247,7 @@
 
         // Form onsubmit method
         vm.preferenceFormSubmit = function () {
-            
+            debugger;
 
             // Validate all fields as required fields
             if (vm.formData.formFieldsData.language == undefined || vm.formData.formFieldsData.language == null || vm.formData.formFieldsData.language == "") {

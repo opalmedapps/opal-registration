@@ -28,14 +28,14 @@
         vm.$onInit = activate;
         function activate() {
             
-            
+            debugger;
             // get data from the parent component
             vm.formData = vm.parent.getData();
         }
 
         // Change language function.
         vm.changeLanguage = function (language) {
-            
+            debugger;
             // Slice first two charcters and convert it into lowercase.
             vm.lan_key = (language.slice(0, 2)).toLowerCase();
 
@@ -61,17 +61,17 @@
                 vm.changeDataLanguage();
             }
 
-            
+            debugger;
             $rootScope.$broadcast("changeErrorLanguage");
             
         };
 
         // Common function to the change languages of data in child forms
         vm.changeDataLanguage = function () {
-            
+            debugger;
             // If global variable selectedlanguage is set to french
             if (vm.formData.selectedLanguage == 'fr') {
-                
+                debugger;
                 // Check if secure form is loaded. If yes assign french questions to dropdown modal
                 if (vm.formData.secureForm.flag == 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
@@ -114,7 +114,7 @@
             // If global variable selectedlanguage is set to english
             if (vm.formData.selectedLanguage == 'en') {
 
-                
+                debugger;
                 // Check if secure form is loaded. If yes assign english questions to dropdown modal
                 if (vm.formData.secureForm.flag == 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_EN;

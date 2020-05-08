@@ -20,7 +20,7 @@
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
-            
+            debugger;
             $timeout(function () {
 
                 // Call functions to check the both field error values            
@@ -32,7 +32,7 @@
         vm.$onInit = activate;
         function activate() {
             // get data from the parent component
-            
+            debugger;
             vm.formData = vm.parent.getData();
 
             // Call function to set current form class as active.
@@ -49,7 +49,7 @@
 
         //Function to validate aggrementSign checkbox
         vm.validateAgreementSign = function () {
-            
+            debugger;
             if (vm.formData.formFieldsData.termsandAggreementSign == undefined || vm.formData.formFieldsData.termsandAggreementSign == null || vm.formData.formFieldsData.termsandAggreementSign == "" || vm.formData.formFieldsData.termsandAggreementSign == false) {
                 vm.formData.termsandAggreementSignFormat.status = 'invalid';
                 vm.formData.termsandAggreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
@@ -66,7 +66,7 @@
 
         // Method to to set current form class as active.
         vm.setFormStatus = function () {
-            
+            debugger;
 
             vm.formData.searchForm = "";
             vm.formData.secureForm.status = "";
@@ -81,7 +81,7 @@
 
         //Form on submit method
         vm.agreementFormSubmit = function () {
-            
+            debugger;
             if (vm.formData.formFieldsData.termsandAggreementSign == undefined || vm.formData.formFieldsData.termsandAggreementSign == null || vm.formData.formFieldsData.termsandAggreementSign == "" || vm.formData.formFieldsData.termsandAggreementSign == false) {
                 vm.formData.termsandAggreementSignFormat.status = 'invalid';
                 vm.formData.termsandAggreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
@@ -90,7 +90,7 @@
             }
             if (vm.formData.termsandAggreementSignFormat.status == 'valid') {
 
-                
+                debugger;
                 vm.sharedErrorMessage = true;
 
                 // Display display spinner before calling service
@@ -107,7 +107,7 @@
                 console.log("vm.formData.formFieldsData.answer1", vm.formData.formFieldsData.answer1);
                 console.log("vm.formData.formFieldsData.answer2", vm.formData.formFieldsData.answer2);
                 console.log("vm.formData.formFieldsData.answer3", vm.formData.formFieldsData.answer3);
-                
+                debugger;
                 vm.formData.formFieldsData.termsandAggreementSign = 1;
                 vm.formData.formFieldsData.accessLevelSign = 1;
 
@@ -119,7 +119,7 @@
         // Function to call service for register patient
         vm.registerPatient = function () {
 
-            
+            debugger;
             var parameters = vm.formData.formFieldsData;
             var email = vm.formData.formFieldsData.email;
             var language = vm.formData.formFieldsData.language;
@@ -127,7 +127,7 @@
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
                 .then(function (response) {
-                    
+                    debugger;
 
                     if (response == undefined || response == null || response == "") {
 
@@ -139,7 +139,7 @@
                         if (response.Data[0].Result == "Successfully Update") {
                             console.log('response: ' + response.Data);
 
-                            
+                            debugger;
                             // Hide display spinner after all request get response.
                             vm.formData.displaySpinner = true;
 
@@ -154,7 +154,7 @@
 
                             // Redirect to last successful page
                             $rootScope.$apply(function () {
-                                
+                                debugger;
                                 $location.path('/form/registrationSuccessful');
                                 console.log($location.path());
                             });
@@ -168,7 +168,7 @@
                     }
                 })
                 .catch(function (error) {
-                    
+                    debugger;
                     console.log(error);
 
                     // Call function to display error modal box.
@@ -180,7 +180,7 @@
         // Function to send email
         vm.sendEmail = function (email, language) {
             agreementService.sendEmail(vm.formData.firstName, vm.formData.lastName, email, language).then(function (response) {
-                
+                debugger;
                 if (response.status == 200) {
                     console.log('Email sent');
 
@@ -190,7 +190,7 @@
                 }
             })
                 .catch(function (error) {
-                    
+                    debugger;
                 });
         }
     }

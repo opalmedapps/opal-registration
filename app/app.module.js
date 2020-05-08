@@ -9,24 +9,16 @@
     'use strict';
     
     angular.element(document).ready(function () {
-        // 
+        debugger;
         
         fetch("./php/config.json").then((response) => {
             return response.text()
         }).then((data) => {
-            // console.log("********" + JSON.parse(data));
-            const firebaseConfig = {
-                apiKey: "AIzaSyDRpjWU1I4n5NnLi9533lbmmsc8wGiWoYI",
-                authDomain: "opal-nami.firebaseapp.com",
-                databaseURL: "https://opal-nami.firebaseio.com",
-                projectId: "opal-nami",
-                storageBucket: "opal-nami.appspot.com",
-                messagingSenderId: "351556931681",
-                appId: "1:351556931681:web:8c8aa9448f198e07af5a20"
-              };
-            // 
+            console.log("********" + JSON.parse(data));
+
+            debugger;
             // Before calling firebase function It's compulsory to intializeapp with config.json file.
-            firebase.initializeApp(firebaseConfig);
+            firebase.initializeApp(JSON.parse(data));
 
             // Intialize angularjs app using bootstraping
             angular.bootstrap(document, ['myApp']);
@@ -42,7 +34,7 @@
 
         function ($stateProvider, $urlRouterProvider, $translateProvider) {
 
-            
+            debugger;
             // Load language entries from json files
             $translateProvider.useStaticFilesLoader({
                 prefix: 'translate/',     //relative path of json file
