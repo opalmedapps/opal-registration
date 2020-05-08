@@ -14,7 +14,7 @@
 
             // PHP service to send email on successfull registration
             agreementAPI.sendEmail = function (firstName, lastName,email,language) {
-                
+                debugger;
                 return $http.post(
                     "php/validation/send.email.php",
                     $.param({

@@ -105,7 +105,7 @@
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            
+            debugger;
             // get data from the parent component
             vm.formData = vm.parent.getData();
             console.log(vm.formData);
@@ -120,7 +120,7 @@
 
         // Form onsubmit method
         vm.personalFormSubmit = function (personalForm) {
-            
+            debugger;
 
             //Validate all fields as required fields
             if (personalForm.firstName == undefined) {
@@ -146,7 +146,7 @@
 
         // Validate to first name field with text only.
         vm.validateFirstName = function (firstName) {
-            
+            debugger;
             if (firstName == undefined) {
                 vm.firstNameFormat.status = 'invalid',
                     vm.firstNameFormat.message = 'Please Enter Your Date of Birth Number.'
