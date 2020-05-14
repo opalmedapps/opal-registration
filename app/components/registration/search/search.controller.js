@@ -101,12 +101,12 @@
                 vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.CODEREQUIRED');
             }
             else {
-                if (vm.formData.formFieldsData.registrationCode.length < 10) {
+                if (vm.formData.formFieldsData.registrationCode.length < 12) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTCODELENGTH');
                 }
 
-                else if (vm.formData.formFieldsData.registrationCode.length > 10) {
+                else if (vm.formData.formFieldsData.registrationCode.length > 12) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGCODELENGTH');
                 }
