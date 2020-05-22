@@ -79,7 +79,8 @@
       "COMPAREPASSWORD": "Password and password confirmation should match.",
       "DUPLICATESECURITYQUESTION": "Please select a different security question.",
       "DUPLICATESECURITYANSWER": "Please select a different security answer.",
-      "EMAILINUSE": "This email address is already in use."
+      "EMAILINUSE": "This email address is already in use.",
+      "SECURITYANSWERLENGTH": "Your security answer should be at least 3 characters long"
     }
   },
   "PREFERENCE": {
