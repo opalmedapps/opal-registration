@@ -48,7 +48,7 @@
 
                             // resolve password strength score using zxcvbn service
                             $scope.passwordStrength = pwd ? ((pwd.length > 6 && pwd.length < 21) && zxcvbn.score(pwd) || 0) : null;
-                            
+
                             // define the validity criterion for okPassword constraint
                             ngModelCtrl.$setValidity('okPassword', ($scope.passwordStrength > 6 && $scope.passwordStrength < 21));
                         });
@@ -216,12 +216,11 @@
 
             debugger;
             vm.formData.passwordMeter = $scope.passwordStrength;
-            
+
 
             // Password must contain at least one capital letter, one number and one special character
-            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,20})");
-            //var strongRegex = new RegExp("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,20}$");
-
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~`?!@#\$%\^?&\*\-\_\=])(?=.{8,20})");
+            
             if (vm.formData.formFieldsData.password == undefined || vm.formData.formFieldsData.password == null || vm.formData.formFieldsData.password == "") {
                 vm.formData.passwordFormat.status = 'invalid';
                 //vm.formData.passwordFormat.message = null;
@@ -377,6 +376,7 @@
                 vm.formData.securityQuestion1Format.status = 'valid';
                 vm.formData.securityQuestion1Format.message = null;
 
+                // Trim the space in security answers
                 if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
                     // Display shared error message
                     vm.sharedErrorMessage = true;
@@ -391,17 +391,23 @@
                 vm.formData.answer1Format.status = 'invalid';
                 vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             }
-            else if ((vm.formData.formFieldsData.answer1 == vm.formData.formFieldsData.answer2) || (vm.formData.formFieldsData.answer1 == vm.formData.formFieldsData.answer3)) {
-                vm.formData.answer1Format.status = 'invalid',
-                    vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
-            }
             else {
-                vm.formData.answer1Format.status = 'valid';
-                vm.formData.answer1Format.message = null;
+                if ((vm.formData.formFieldsData.answer1 == vm.formData.formFieldsData.answer2) || (vm.formData.formFieldsData.answer1 == vm.formData.formFieldsData.answer3)) {
+                    vm.formData.answer1Format.status = 'invalid';
+                    vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
+                }
+                else if (vm.formData.formFieldsData.answer1.length < 3) {
+                    vm.formData.answer1Format.status = 'invalid';
+                    vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SECURITYANSWERLENGTH');
+                }
+                else {
+                    vm.formData.answer1Format.status = 'valid';
+                    vm.formData.answer1Format.message = null;
 
-                if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
-                    // Display shared error message
-                    vm.sharedErrorMessage = true;
+                    if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
+                        // Display shared error message
+                        vm.sharedErrorMessage = true;
+                    }
                 }
             }
         }
@@ -430,17 +436,24 @@
             if (vm.formData.formFieldsData.answer2 == undefined || vm.formData.formFieldsData.answer2 == null || vm.formData.formFieldsData.answer2 == "") {
                 vm.formData.answer2Format.status = 'invalid';
                 vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
-            } else if ((vm.formData.formFieldsData.answer2 == vm.formData.formFieldsData.answer1) || (vm.formData.formFieldsData.answer2 == vm.formData.formFieldsData.answer3)) {
-                vm.formData.answer2Format.status = 'invalid';
-                vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
             }
             else {
-                vm.formData.answer2Format.status = 'valid';
-                vm.formData.answer2Format.message = null;
+                if ((vm.formData.formFieldsData.answer2 == vm.formData.formFieldsData.answer1) || (vm.formData.formFieldsData.answer2 == vm.formData.formFieldsData.answer3)) {
+                    vm.formData.answer2Format.status = 'invalid';
+                    vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
+                }
+                else if (vm.formData.formFieldsData.answer2.length < 3) {
+                    vm.formData.answer2Format.status = 'invalid';
+                    vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SECURITYANSWERLENGTH');
+                }
+                else {
+                    vm.formData.answer2Format.status = 'valid';
+                    vm.formData.answer2Format.message = null;
 
-                if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
-                    // Display shared error message
-                    vm.sharedErrorMessage = true;
+                    if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
+                        // Display shared error message
+                        vm.sharedErrorMessage = true;
+                    }
                 }
             }
         }
@@ -470,17 +483,24 @@
             if (vm.formData.formFieldsData.answer3 == undefined || vm.formData.formFieldsData.answer3 == null || vm.formData.formFieldsData.answer3 == "") {
                 vm.formData.answer3Format.status = 'invalid',
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
-            } else if ((vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer1) || (vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer2)) {
-                vm.formData.answer3Format.status = 'invalid',
-                    vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
             }
             else {
-                vm.formData.answer3Format.status = 'valid';
-                vm.formData.answer3Format.message = null;
+                if ((vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer1) || (vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer2)) {
+                    vm.formData.answer3Format.status = 'invalid',
+                        vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
+                }
+                else if (vm.formData.formFieldsData.answer3.length < 3) {
+                    vm.formData.answer3Format.status = 'invalid';
+                    vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SECURITYANSWERLENGTH');
+                }
+                else {
+                    vm.formData.answer3Format.status = 'valid';
+                    vm.formData.answer3Format.message = null;
 
-                if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
-                    // Display shared error message
-                    vm.sharedErrorMessage = true;
+                    if (vm.formData.emailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
+                        // Display shared error message
+                        vm.sharedErrorMessage = true;
+                    }
                 }
             }
         }
@@ -560,7 +580,7 @@
                 vm.sharedErrorMessage = false;
             }
             if (vm.formData.emailFormat.status == 'valid' && vm.formData.confirmEmailFormat.status == 'valid' && vm.formData.passwordFormat.status == 'valid' && vm.formData.confirmPasswordFormat.status == 'valid' && vm.formData.securityQuestion1Format.status == 'valid' && vm.formData.answer1Format.status == 'valid' && vm.formData.securityQuestion2Format.status == 'valid' && vm.formData.answer2Format.status == 'valid' && vm.formData.securityQuestion3Format.status == 'valid' && vm.formData.answer3Format.status == 'valid') {
-
+                
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
 
