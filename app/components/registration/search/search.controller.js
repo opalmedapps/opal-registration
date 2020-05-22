@@ -49,11 +49,7 @@
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
-
-            // Call common function to check valid status of all the fields.
-            // vm.checkAllFieldsValidStatus();
-            vm.sharedErrorMessage = true;
-
+            
             // Call functio to fetch URL query parameters.
             vm.fetchURL();
         }
@@ -72,10 +68,11 @@
 
         // Method to fetch URL query parameter to autofill Registration code.
         vm.fetchURL = function () {
-            if ($location.search().hasOwnProperty('code')) {
-
+            debugger;
+          if ($location.search().hasOwnProperty('code')) {
+          
                 vm.formData.formFieldsData.registrationCode = $location.search()['code'];
-
+              
                 vm.validateRegistrationCode();
             }
         }
@@ -101,7 +98,7 @@
                 vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.CODEREQUIRED');
             }
             else {
-                if (vm.formData.formFieldsData.registrationCode.length < 12) {
+                if (vm.formData.formFieldsData.registrationCode.length < 10) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTCODELENGTH');
                 }
