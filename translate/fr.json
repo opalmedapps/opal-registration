@@ -79,7 +79,8 @@
       "COMPAREPASSWORD": "Votre mot de passe et votre mot de passe de confirmation devraient être les mêmes.",
       "DUPLICATESECURITYQUESTION": "Veuillez choisir une question de sécurité différente.",
       "DUPLICATESECURITYANSWER": "Veuillez choisir une réponse différente.",
-      "EMAILINUSE": "Votre adresse courriel est déjà utilisée."
+      "EMAILINUSE": "Votre adresse courriel est déjà utilisée.",
+      "SECURITYANSWERLENGTH": "Your security answer should be at least 3 characters long"
     }
   },
   "PREFERENCE": {
