@@ -90,7 +90,6 @@
                 vm.formData.displaySpinner = false;
 
                 // Encrypt important information before makeing service call.
-               // vm.formData.formFieldsData.password = encryptionService.hash(vm.formData.formFieldsData.password);
                 vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
                 vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
                 vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
