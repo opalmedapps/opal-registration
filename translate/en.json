@@ -136,7 +136,7 @@
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {
       "TITLE": "Patient Record Not Found",
-      "DESCRIPTION": "We couldn't find a patient record matching the information you have entered. Please check your input and try again."
+      "DESCRIPTION": "We couldn't find an active patient record matching the information you have entered. Please make sure that your registration code hasn't expired, check your input and try again."
     },
     "CONTACTUSERRROR": {
       "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact us at",
