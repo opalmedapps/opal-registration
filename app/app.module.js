@@ -101,18 +101,7 @@
 
                 })
 
-                // User personal information page.
-                .state('form.personal', {
-                    url: '/personalInformation',
-                    views: {
-                        header: header,
-                        content: {
-                            component: 'personalComponent'
-                        },
-                        footer: footer
-                    }
-                })
-
+               
                 // User secure information page.
                 .state('form.secure', {
                     url: '/secureInformation',
