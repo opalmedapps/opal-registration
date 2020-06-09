@@ -136,7 +136,7 @@
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {
       "TITLE": "Dossier patient non trouvé",
-      "DESCRIPTION": "Nous n'avons pas trouvé de dossier patient correspondant à l’information fournie. Veuillez vérifier vos données et essayer de nouveau."
+      "DESCRIPTION": "Nous n'avons pas trouvé de dossier patient actif correspondant à l’information fournie. Veuillez vous assurer que votre code d’inscription n'est pas expiré, puis vérifiez vos données et essayez de nouveau."
     },
     "CONTACTUSERRROR": {
       "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, s’il vous plaît, contactez nous à ",
