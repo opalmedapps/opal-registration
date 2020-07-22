@@ -216,10 +216,6 @@
 
             debugger;
             vm.formData.passwordMeter = $scope.passwordStrength;
-
-
-            // Password must contain at least one capital letter, one number and one special character
-            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~`?!@#\$%\^?&\*\-\_\=])(?=.{8,20})");
             
             if (vm.formData.formFieldsData.password == undefined || vm.formData.formFieldsData.password == null || vm.formData.formFieldsData.password == "") {
                 vm.formData.passwordFormat.status = 'invalid';
@@ -237,7 +233,7 @@
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.LONGPASSWORDLENGTH');
                     return;
                 }
-                else if (!strongRegex.test(vm.formData.formFieldsData.password)) {
+                else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) <= -1 || vm.formData.formFieldsData.password.search(/[A-Z]/) === -1 || vm.formData.formFieldsData.password.search(/\d/) === -1) {
                     vm.formData.passwordFormat.status = 'invalid';
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDFORMAT');
                     return;
