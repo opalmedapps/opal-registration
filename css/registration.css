@@ -67,26 +67,26 @@ tooltip .img-size {
     background: #DDD;
 }
 
-.strength-meter:before, .strength-meter:after {
-     content: '';
-     height: inherit;
-     background: transparent;
-     display: block;
-     border-color: #FFF;
-     border-style: none;
-     border-width: 0 5px 0 5px;
-     position: absolute;
-     width: 138px;
-     z-index: 10;
-}
+    .strength-meter:before, .strength-meter:after {
+        content: '';
+        height: inherit;
+        background: transparent;
+        display: block;
+        border-color: #FFF;
+        border-style: none;
+        border-width: 0 5px 0 5px;
+        position: absolute;
+        width: 138px;
+        z-index: 10;
+    }
 
- .strength-meter:before {
-     left: 70px;
- }
+    .strength-meter:before {
+        left: 70px;
+    }
 
-.strength-meter:after {
-    right: 70px;
-}
+    .strength-meter:after {
+        right: 70px;
+    }
 
 .strength-meter-fill {
     background: transparent;
@@ -103,25 +103,25 @@ tooltip .img-size {
  }
 
  .strength-meter-fill[data-strength='1'] {
-     background: orangered;
+     background: orange;
      width: 40%;
  }
 
  .strength-meter-fill[data-strength='2'] {
-     background: orange;
+     background: yellowgreen;
      width: 60%;
  }
 
  .strength-meter-fill[data-strength='3'] {
-     background: yellowgreen;
+     background: green;
      width: 80%;
  }
 
  .strength-meter-fill[data-strength='4'] {
-     background: green;
+     background: darkgreen;
      width: 100%;
  }
- 
+
 .label {
     font-size: 75%;
     line-height: 1;
@@ -131,12 +131,13 @@ tooltip .img-size {
 
 /*Steps wizard*/
 .list-style {
-    list-style:none !important;
+    list-style: none !important;
 }
 
 .flex-style {
-    flex:1;
+    flex: 1;
 }
+
 .icon {
     font-size: 29px;
 }
@@ -155,7 +156,7 @@ a.active .tab {
     width: 90px;
     height: 90px;
     color: #fff;
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
 
 .list-style, .tab {
@@ -170,13 +171,15 @@ a.active .tab {
 
     .steps ul {
         /*flex-direction: column;*/
-        display:none;
+        display: none;
     }
+
     .liner {
         height: 0px !important;
         background: none !important;
     }
 }
+
 @media (min-width: 576px) and (max-width: 767.98px) {
     .tab {
         margin-bottom: 20px;
@@ -186,12 +189,13 @@ a.active .tab {
         /*flex-direction: column;*/
         display: none;
     }
+
     .liner {
         height: 0px !important;
         background: none !important;
     }
 }
-   
+
 
 .liner {
     height: 3px;
@@ -203,7 +207,7 @@ a.active .tab {
 }
 
 li, .mx-3 {
-    z-index:2;
+    z-index: 2;
 }
 
 /*Datepicker*/
@@ -211,16 +215,20 @@ li, .mx-3 {
     background: #138efa;
     color: white;
 }
+
 ._720kb-datepicker-calendar-day._720kb-datepicker-active, ._720kb-datepicker-calendar-day:hover {
     background: #138efa !important;
     color: white;
 }
+
 ._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
     color: white !important;
 }
+
 ._720kb-datepicker-calendar-month span {
     color: white !important;
 }
+
 ._720kb-datepicker-calendar {
     width: 56% !important;
     margin-top: 39px !important;
@@ -264,5 +272,5 @@ li, .mx-3 {
 
 /*Appstore icon width*/
 .iconWidth {
-    width:42%;
+    width: 42%;
 }
