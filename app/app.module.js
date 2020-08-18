@@ -39,9 +39,11 @@
 
             //Check browser default language and base on that assign value to preferred and fallback Language. 
             var lang = window.navigator.language || window.navigator.userLanguage;
+            var defaultLanguage = lang.split("-")[0];
 
             // Default language
-            $translateProvider.preferredLanguage('en');
+            $translateProvider.preferredLanguage(defaultLanguage);
+
 
             // Fallback language if entry is not found in current language
             $translateProvider.fallbackLanguage('fr');
