@@ -34,34 +34,19 @@
 
         // Change language function.
         vm.changeLanguage = function (language) {
-            
+
             // Slice first two charcters and convert it into lowercase.
             vm.lan_key = (language.slice(0, 2)).toLowerCase();
 
-            // If lan_key has fr(french) value, website will converts its language in to french. 
-            if (vm.lan_key == 'fr') {
-                // vm.opalLogo = 'images/logos/navbar-logo-fr.png';
-                $translate.use(vm.lan_key);
+            $translate.use(vm.lan_key)
+                .then(function (languageId) {
+                    vm.formData.selectedLanguage = languageId;
 
-                vm.formData.selectedLanguage = vm.lan_key;
+                    // Call function to change language of data in child forms
+                    vm.changeDataLanguage();
 
-                // Call function to change language of data in child forms
-                vm.changeDataLanguage();
-            }
-
-            // If lan_key has en(english) value, website will converts its language in to english. This is default the language.
-            if (vm.lan_key == 'en') {
-                //vm.opalLogo = 'images/logos/navbar-logo.png';
-                $translate.use(vm.lan_key);
-
-                vm.formData.selectedLanguage = vm.lan_key;
-
-                // Call function to change language of data in child forms
-                vm.changeDataLanguage();
-            }
-            
-            $rootScope.$broadcast("changeErrorLanguage");
-            
+                    $rootScope.$broadcast("changeErrorLanguage");
+                });
         };
 
         // Common function to the change languages of data in child forms
