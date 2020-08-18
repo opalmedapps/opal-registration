@@ -709,12 +709,14 @@
 
                             // Assing in JSON format
                             vm.formData.languageList_EN[i] = {
-                                "PREFIX": languageList[i].Id,
+                                "ID": languageList[i].Id,
+                                "PREFIX": languageList[i].Prefix,
                                 "VALUE": languageList[i].LanguageName_EN
                             }
 
                             vm.formData.languageList_FR[i] = {
-                                "PREFIX": languageList[i].Id,
+                                "ID": languageList[i].Id,
+                                "PREFIX": languageList[i].Prefix,
                                 "VALUE": languageList[i].LanguageName_FR
                             }
                         }
