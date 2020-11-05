@@ -39,6 +39,7 @@
         this.confirmPassword = '';
         this.branchName = '';
         this.passwordMeter = '';
+        this.hospitalCode = '';
 
         // Variables to set field status and message.
         this.codeFormat = { status: null, message: null };

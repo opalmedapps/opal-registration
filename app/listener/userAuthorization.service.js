@@ -31,6 +31,14 @@
         **/
         var userRAMQ = '';
 
+        /**
+         @ngdoc property
+         @name  MUHCApp.service.#hospitalCode
+         @propertyOf MUHCApp.service:userAuthorizationService
+         @description code property
+         **/
+        var hospitalCode = '';
+
         return {
             
             /**
@@ -39,9 +47,10 @@
                 @methodOf MUHCApp.service:userAuthorizationService
                 @description Sets all the user authorization.
             **/
-            setUserData: function (code, ramq) {
+            setUserData: function (code, ramq, hospitalcode) {
                 userCode = code;      // Registration code
                 userRAMQ = ramq;    //RAMQ
+                hospitalCode = hospitalcode;    //hospitalcode
             },
 
             /**
@@ -53,6 +62,17 @@
             **/
             setUserBranchName: function (branchName) {
                 userBranchName = branchName;    // Firebase branch name
+            },
+
+            /**
+             @ngdoc method
+             @name getHospitalCode
+             @methodOf MUHCApp.service:userAuthorizationService
+             @returns {string} Returns hospital code.
+             **/
+            getHospitalCode: function () {
+                return hospitalCode;
+
             },
 
             /**

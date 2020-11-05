@@ -178,9 +178,11 @@
                 // Display shared error message
                 vm.sharedErrorMessage = true;
 
+                vm.formData.hospitalCode = vm.formData.formFieldsData.registrationCode.substring(0,2);
                 vm.formData.formFieldsData.ramq = vm.formData.formFieldsData.ramq.toUpperCase();
 
-                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq);
+
+                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq, vm.formData.hospitalCode);
                 vm.createBranchName();
             }
 

@@ -1,7 +1,33 @@
 {
    "_comment": "Firebase branch declaration file",
-    "parentBranch": "registration",
     "firebaseChildBranch": "branch",
     "requestChildBranch": "requests",
-    "responseChildBranch": "users"
+    "responseChildBranch": "users",
+    "hospitalCodes": [
+      {
+        "fullName": "MUHC_FULL",
+        "uniqueHospitalCode": "A0",
+        "parentBranch": "dev3/A0/registration"
+      },
+      {
+        "fullName": "CHUM_FULL",
+        "uniqueHospitalCode": "A2",
+        "parentBranch": "dev3/A2/registration"
+      },
+      {
+        "fullName": "HMR_FULL",
+        "uniqueHospitalCode": "A3",
+        "parentBranch": "dev3/A3/registration"
+      },
+      {
+        "fullName": "SMHC_FULL",
+        "uniqueHospitalCode": "A1",
+        "parentBranch": "dev3/A1/registration"
+      },
+      {
+        "fullName": "CHU_SJ_FULL",
+        "uniqueHospitalCode": "A4",
+        "parentBranch": "dev3/A4/registration"
+      }
+    ]
 }

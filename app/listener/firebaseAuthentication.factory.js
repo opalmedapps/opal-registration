@@ -14,7 +14,7 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
     function ($firebaseAuth, $http) {
 
         var firebaseBranch = "";
-        
+        var hospitalCodeArray = [];
         // Call function to load firebase configuration on page load.
         getFirebaseConfig();
 
@@ -28,7 +28,8 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                 
                 // Assign branch structure.
                 firebaseBranch = results.data;
-                
+                hospitalCodeArray = firebaseBranch.hospitalCodes;
+
                 return 1;
             }, function (error) {
                 return (error);
@@ -45,19 +46,21 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
              **/
 
             getFirebaseUrl: function (extension) {
-                switch (extension) {
-                    case null:
-                        //return firebaseUrl;
-                        return firebaseBranch.parentBranch + '/' ;
-                    case 'users':
-                        return firebaseBranch.parentBranch + firebaseBranch.responseChildBranch + "/";
-                    case 'requests':
-                        return firebaseBranch.parentBranch + firebaseBranch.requestChildBranch + "/";
-                    //case 'response':
-                    //    return 'response/';
-                    default:
-                        return firebaseUrl;
+                for(var i =0; i<hospitalCodeArray.length; i++){
+                    if(hospitalCodeArray[i].uniqueHospitalCode == extension){
+                        return hospitalCodeArray[i].parentBranch + '/';
+                    }
                 }
+                // switch (extension) {
+                //     case null:
+                //         return firebaseBranch.parentBranch + '/' ;
+                //     case 'users':
+                //         return firebaseBranch.parentBranch + firebaseBranch.responseChildBranch + "/";
+                //     case 'requests':
+                //         return firebaseBranch.parentBranch + firebaseBranch.requestChildBranch + "/";
+                //     default:
+                //         return firebaseUrl;
+                // }
 
             },
 
