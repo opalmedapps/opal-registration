@@ -13,11 +13,17 @@
         // Get firebase response url
         var response_url = null;
 
+        // Get firebase parent branch
+        var firebase_parentBranch = null;
+
         // Function to send request to listener
         function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
 
+            // Get firebase parent branch
+            firebase_parentBranch = userAuthorizationService.getHospitalCode();
+
             // Get firebase request user
-            firebase_url = firebase.database().ref(firebaseFactory.getFirebaseUrl(null));
+            firebase_url = firebase.database().ref(firebaseFactory.getFirebaseUrl(firebase_parentBranch));
 
             // Get firebase response url
             response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
