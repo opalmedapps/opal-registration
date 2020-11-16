@@ -74,8 +74,6 @@
                                     
                                     let data = snapshot.val();
 
-                                    console.log(data);
-
                                     refRequestResponse.set(null);
                                     refRequestResponse.off();
 
