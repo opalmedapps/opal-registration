@@ -44,8 +44,6 @@
                             // update the $scope.password with the element's value
                             var pwd = $scope.password = $element.val();
 
-                            debugger;
-
                             // resolve password strength score using zxcvbn service
                             $scope.passwordStrength = pwd ? ((pwd.length > 6 && pwd.length < 21) && zxcvbn.score(pwd) || 0) : null;
 
@@ -214,7 +212,6 @@
             //Variable to set field status and message.
             vm.passwordFormat = { status: null, message: null };
 
-            debugger;
             vm.formData.passwordMeter = $scope.passwordStrength;
             
             if (vm.formData.formFieldsData.password == undefined || vm.formData.formFieldsData.password == null || vm.formData.formFieldsData.password == "") {

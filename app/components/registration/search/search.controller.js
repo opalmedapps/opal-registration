@@ -68,7 +68,6 @@
 
         // Method to fetch URL query parameter to autofill Registration code.
         vm.fetchURL = function () {
-            debugger;
           if ($location.search().hasOwnProperty('code')) {
           
                 vm.formData.formFieldsData.registrationCode = $location.search()['code'];
@@ -238,8 +237,6 @@
             requestToListener.sendRequestWithResponse('InsertIPLog', { Fields: parameters })
                 .then(function (response) {
 
-                    console.log(response);
-
                     if (response.Data[0].Result == 'SUCCESS') {
                         // Call function to validate IPAddress.
                         vm.validateIP(IPAddress);
@@ -269,7 +266,7 @@
             // Listener service call.
             requestToListener.sendRequestWithResponse('ValidateIP', { Fields: parameters })
                 .then(function (response) {
-                    console.log(response);
+
                     // Check length of the variable
                     if (response.Data[0].Result == 'SUCCESS') {
                      
@@ -343,7 +340,7 @@
             // Listener service call.
             requestToListener.sendRequestWithResponse('SecurityQuestionsList', { Fields: parameters })
                 .then(function (response) {
-                    console.log(response);
+
                     // assing response to temporary variable.
                     var SecurityQuestionsList = response.Data[0];
 
