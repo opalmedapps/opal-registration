@@ -1,0 +1,11 @@
+*.swp
+.DS_Store
+.idea/
+.vs/
+.vscode/
+logs/*.log
+bower_components
+node_modules
+php/config.json
+package-lock.json
+service-account.json
