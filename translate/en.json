@@ -90,9 +90,11 @@
     "FIELDNAMES": {
       "ACCESSLEVEL": "Data Access Level",
       "ACCESSLEVELINSTRUCTION": "Please choose the level of access to your personal medical data that you would like to have in Opal. Each access level is explained below:",
+      "ALLACCESSLEVELTITLE": "Full Access: ",
+      "NEEDTOKNOWACCESSLEVELTITLE": "Partial Access: ",
       "ALLACCESSLEVEL": "I want to receive all of my medical data that are accessible using Opal. ",
       "NEEDTOKNOWACCESSLEVEL": "I want to receive only my need-to-know medical data using Opal.",
-      "ACCESSLECELINCLUDESTITLE": "Currently, the following data are available (note: not all patients will have all of these)",
+      "ACCESSLECELINCLUDESTITLE": "Currently, the following data are available (note: not all hospitals or patients will have all of these)",
       "LANGUAGE": "Your Language Preference",
       "LANGUAGEDROPDOWNDEAFULT": "--- Select a language ---",
       "AUTHORIZETRANSMISSION": "Authorization",
