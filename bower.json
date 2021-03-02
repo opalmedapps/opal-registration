@@ -1,11 +1,11 @@
 {
-  "name": "opal-landing-page",
-  "description": "opal application heighlights",
+  "name": "registration-web-page",
+  "description": "patient registration website",
   "main": "bower.json",
   "authors": [
     "Jinal Vyas"
   ],
-  "gitmasterbranch": "https://github.com/Sable/opal-landing-page.git",
+  "gitmasterbranch": "https://gitlab.com/yickmo/registration-web-page.git",
   "dependencies": {
     "angular": "^1.7.6",
     "angular-ui-router": "1.0.22",
@@ -21,6 +21,7 @@
     "crypto-js": "^3.1.6",
     "tweetnacl-util": "^0.15.0",
     "tweetnacl": "^1.0.0",
-    "angularfire": "^2.1.0"
+    "angularfire": "^2.1.0",
+    "angular-bootstrap": "^2.5.0"
   }
 }
