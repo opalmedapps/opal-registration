@@ -10,9 +10,9 @@
     angular.module('myApp')
         .controller('agreementController', agreementController);
 
-    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'agreementService', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
+    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
 
-    function agreementController($location, $filter, $rootScope, $timeout, agreementService, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
+    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -123,9 +123,6 @@
                             // Hide display spinner after all request get response.
                             vm.formData.displaySpinner = true;
 
-                            // Call function to send email.
-                            vm.sendEmail(email, language);
-
                             // Call function to reset the fields value
                             vm.parent.resetFields();
 
@@ -150,20 +147,6 @@
                     // Call function to display error modal box.
                     var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                });
-        }
-
-        // Function to send email
-        vm.sendEmail = function (email, language) {
-            agreementService.sendEmail(vm.formData.userName, email, language).then(function (response) {
-                if (response.status == 200) {
-                    // Call function to reset value of every text fields.
-                    vm.parent.resetFields();
-
-                }
-            })
-                .catch(function (error) {
-                    console.log("Error while sending the email", error);
                 });
         }
     }
