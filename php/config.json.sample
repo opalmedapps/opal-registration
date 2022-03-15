@@ -1,0 +1,11 @@
+{
+   "_comment":"Configuration file",
+
+   "apiKey": "xxxxxxx",
+   "authDomain": "xxxxxxx",
+   "databaseURL": "xxxxxxx",
+   "projectId": "xxxxxxx",
+   "storageBucket": "xxxxxxx",
+   "messagingSenderId": "xxxxxxx",
+   "appId": "xxxxxxx"
+}
