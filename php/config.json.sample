@@ -1,5 +1,5 @@
 {
-   "_comment":"Configuration file",
+   "_comment":"API/database configs found in firebase",
 
    "apiKey": "xxxxxxx",
    "authDomain": "xxxxxxx",
