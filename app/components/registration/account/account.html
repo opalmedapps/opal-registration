@@ -1,0 +1,72 @@
+﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
+
+<div class="p-4 mb-2 bg-light rounded" name="accountForm" novalidate>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="text-muted"><h4 class="font-weight-bold">{{'ACCOUNT.STEPS' | translate}}{{'ACCOUNT.TITLE' | translate}}</h4></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2">
+                    <label>{{'ACCOUNT.INSTRUCTION.EXISTS' | translate}}<span style="font-weight: bold;">Patient Name</span></label>
+                    <label>{{'ACCOUNT.INSTRUCTION.CREATE' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <div class="row-sm-1"><label>{{'PATIENT.HOSPITAL' | translate}}<span>Hospital Name</span></label></div>
+                <div class="row-sm-1"><label>{{'PATIENT.PATIENT' | translate}}<span>Patient Name</span></label></div>
+            </div>
+        </div>
+    </div>
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Option buttons-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="button" class="btn btn-light border-dark text-dark mr-4 px-5" ng-click="vm.openAccount()">
+                {{'ACCOUNT.OPTION.EXISTS' | translate}}
+            </button>
+            <button type="button" class="btn btn-light border-dark text-dark ml-4 px-5" ng-click="vm.createAccount()">
+                {{'ACCOUNT.OPTION.CREATE' | translate}}
+            </button>
+        </div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Navigation button-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.search" tabindex="11">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="true">
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+
+</div>
+
+
+<!--Registration code tooltip image example-->
+<script type="text/ng-template" id="registrationcodeTooltipTemplate.html">
+    <div class="text-muted p-1">
+        <!--<label>{{vm.registrationcodeTooltip.content}}</label>-->
+        <label>{{'TOOLTIP.REGISTRATIONCODE' | translate}}</label>
+    </div>
+</script>
+
+<!--Ramq tooltip image example-->
+<script type="text/ng-template" id="ramqTooltipTemplate.html">
+    <img ng-src="{{vm.ramqTooltip.image}}" class="img-responsive img-size" />
+</script>
+
+
+
+
