@@ -47,6 +47,20 @@
       "LONGRAMQLENGTH": "RAMQ number is too long."
     }
   },
+  "LOGIN": {
+    "STEPS": "Step 2b of 5: ",
+    "TITLE": "Log In",
+    "INSTRUCTION": "To continue, please log in to your existing Opal account",
+    "INPUT": {
+      "EMAIL": "Email",
+      "PASSWORD": "Password"
+    },
+    "ERROR": {
+      "INPUT": "Invalid email",
+      "REQUIRED": "Email is required",
+      "INVALID": "Email or password is invalid"
+    }
+  },
   "SECURE": {
     "STEPS": "Step 2 of 5: ",
     "TITLE": "Create Your Opal Account",

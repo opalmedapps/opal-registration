@@ -47,6 +47,20 @@
       "LONGRAMQLENGTH": "Numéro d'assurance maladie trop long."
     }
   },
+  "LOGIN": {
+    "STEPS": "Étape 2b of 5: ",
+    "TITLE": "connexion",
+    "INSTRUCTION": "Pour continuer, veuillez vous connecter à votre compte Opal existant",
+    "INPUT": {
+      "EMAIL": "Email",
+      "PASSWORD": "Mot de passe"
+    },
+    "ERROR": {
+      "INPUT": "Email invalide",
+      "REQUIRED": "L'e-mail est requis",
+      "INVALID": "L'e-mail ou le mot de passe est invalide"
+    }
+  },
   "SECURE": {
     "STEPS": "Étape 2 de 5: ",
     "TITLE": "Créez votre compte Opal",

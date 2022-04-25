@@ -1,0 +1,59 @@
+/**
+     Filename     :   login.controller.js
+     Description  :   Control the login.html data(modal values, event, etc.) and to function to make service call.
+     Created by   :   LL
+     Date         :   2022-04-07
+ **/
+
+(function () {
+    'use strict';
+
+    angular.module('myApp')
+        .controller('loginController', loginController);
+
+    loginController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$state', '$timeout', 'firebaseFactory'];
+
+    function loginController($rootScope, $location, $filter, $scope, $state, $timeout, firebaseFactory) {
+        let vm = this;
+        vm.submitError = undefined;
+
+        // Call function on page load to fetch the data.
+        vm.$onInit = function() {
+            // get data from the parent component
+            vm.formData = vm.parent.getData();
+
+            // Call function to set current form class as active.
+            //vm.setFormStatus();
+
+            // Hide display spinner on load
+            vm.formData.displaySpinner = true;
+
+            // Hide shared error message
+            vm.sharedErrorMessage = true;
+        }
+
+        vm.loginFormSubmit = function() {
+            // Get the authentication state
+            firebaseFactory.signInWithEmailAndPassword(vm.email, vm.password).then(function(data) {
+                if (data.code == undefined) {
+                    vm.formData.formFieldsData.email = vm.email;
+                    vm.formData.formFieldsData.password = vm.password;
+                    $state.go('form.questions');
+                } else {
+                    $timeout(function () {
+                        vm.submitError = data.message;
+                    });
+                }
+
+            }, function(error) {
+                vm.submitError = 'The Email or password is invalid';
+            });
+
+        }
+
+        vm.inputChange = function() {
+            vm.submitError = undefined;
+        }
+    };
+
+})();

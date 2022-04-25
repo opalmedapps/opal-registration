@@ -116,6 +116,19 @@
                     }
                 })
 
+                // User account login page.
+                .state('form.login', {
+                    url: '/login',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'loginComponent'
+                        },
+                        footer: footer
+                    }
+
+                })
+
                 // User opal preference page.
                 .state('form.preference', {
                     url: '/opalPreference',
