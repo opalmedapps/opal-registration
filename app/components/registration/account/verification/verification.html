@@ -1,0 +1,124 @@
+﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
+
+<form class="p-4 mb-2 bg-light rounded" name="verificationForm" ng-submit="vm.verificationFormSubmit()" novalidate>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="text-muted"><h4 class="font-weight-bold">{{'VERIFICATION.STEPS' | translate}}{{'VERIFICATION.TITLE' | translate}}</h4></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2">
+                    <label>{{'VERIFICATION.INSTRUCTION' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <div class="row-sm-1"><label>{{'PATIENT.HOSPITAL' | translate}}<span>Hospital Name</span></label></div>
+                <div class="row-sm-1"><label>{{'PATIENT.PATIENT' | translate}}<span>Patient Name</span></label></div>
+            </div>
+        </div>
+    </div>
+    <!--Horizontal line----------------------------------->
+    <hr class="bg-opal mb-2">
+
+    <!--Send verification code-->
+    <div ng-if="!vm.sendCode">
+        <div class="text-muted col-md-7"><h4>{{'VERIFICATION.SEND.TITLE' | translate}}</h4></div>
+        <div class="d-flex justify-content-between col-md-7">
+            <div class="text-muted mr-2">
+                <label>{{'VERIFICATION.SEND.INSTRUCTION' | translate}}</label>
+            </div>
+        </div>
+        <div class="text-muted col-md-7"><h6>{{'VERIFICATION.SEND.EMAIL' | translate}}</h6></div>
+        <div class="text-muted col-md-7">
+            <input type="email" name="email" ng-model="vm.email" class="btn border-dark text-dark mr-3 px-3"
+                   style="margin-right: 15px;width: 50%;" required>
+            <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
+                    ng-click="vm.sendVerificationCode()"
+                    ng-disabled="verificationForm.email.$dirty && verificationForm.email.$invalid || verificationForm.email.$error.required">
+                {{'VERIFICATION.SEND.SENDCODE' | translate}}
+            </button>
+        </div>
+        <div class="text-muted col-md-7">
+            <span style="color:red;font-size: 12px;" ng-show="verificationForm.email.$dirty && verificationForm.email.$invalid">
+                <span ng-show="verificationForm.email.$error.email">Invalid email</span>
+            </span>
+        </div>
+    </div>
+
+    <!--Verify Email Address-->
+    <div ng-if="vm.sendCode">
+        <div class="text-muted col-md-7"><h4>{{'VERIFICATION.VERIFY.TITLE' | translate}}</h4></div>
+        <div class="d-flex justify-content-between col-md-7">
+            <div class="text-muted mr-2">
+                <label>
+                    {{'VERIFICATION.VERIFY.INSTRUCTION_START' | translate}}
+                    <span class="font-weight-bold">{{vm.email}}</span>
+                    {{'VERIFICATION.VERIFY.INSTRUCTION_END' | translate}}
+                </label>
+            </div>
+        </div>
+        <div class="text-muted col-md-7"><h6>{{'VERIFICATION.VERIFY.CODE' | translate}}</h6></div>
+        <div class="text-muted col-md-10">
+            <input type="number" name="code" ng-model="vm.code" class="btn border-dark text-dark mr-3 px-3"
+                   style="margin-right: 15px;width: 30%;" required>
+            <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
+                    ng-click="vm.verifyCode()">
+                {{'VERIFICATION.VERIFY.VERIFY' | translate}}
+            </button>
+            <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
+                    ng-click="vm.resendCode()">
+                {{'VERIFICATION.VERIFY.RESEND' | translate}}
+            </button>
+        </div>
+    </div>
+    <div class="text-muted col-md-12 alert alert-success" style="margin-top: 15px;"
+         ng-if="vm.sendCode && !vm.isEmailValid">{{'VERIFICATION.SEND.MESSAGE' | translate}}</div>
+    <div class="text-muted col-md-12 alert alert-success" style="margin-top: 15px;"
+         ng-if="vm.isEmailValid">{{'VERIFICATION.VERIFY.MESSAGE' | translate}}</div>
+
+    <!--Horizontal line----------------------------------------------->
+    <hr class="bg-opal mb-2">
+
+    <!--Navigation button-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="!vm.isEmailValid">
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<style>
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
+    }
+</style>
+
+<!--Registration code tooltip image example-->
+<script type="text/ng-template" id="registrationcodeTooltipTemplate.html">
+    <div class="text-muted p-1">
+        <!--<label>{{vm.registrationcodeTooltip.content}}</label>-->
+        <label>{{'TOOLTIP.REGISTRATIONCODE' | translate}}</label>
+    </div>
+</script>
+
+<!--Ramq tooltip image example-->
+<script type="text/ng-template" id="ramqTooltipTemplate.html">
+    <img ng-src="{{vm.ramqTooltip.image}}" class="img-responsive img-size" />
+</script>
+
+
+
+
