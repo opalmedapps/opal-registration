@@ -5,9 +5,6 @@
     "url": "gitlab+https://gitlab.com/yickmo/registration-web-page"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "firebase": "^3.7.6",
-    "firebase-admin": "^4.2.0"
   },
   "author": "Jinal Vyas",
   "description": "Repository for registration website"
