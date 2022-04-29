@@ -16,8 +16,10 @@
     function verificationController($rootScope, $location, $filter, $scope, $timeout, requestToListener, userAuthorizationService, encryptionService) {
         let vm = this;
         vm.verificationCode = undefined;
+        vm.inputCode = undefined;
         vm.sendCode = false;
-        vm.isEmailValid = false;
+        vm.verifyCode = false;
+        vm.isCodeValid = false;
 
         // Call function on page load to fetch the data.
         vm.$onInit = function() {
@@ -68,35 +70,41 @@
             userAuthorizationService.setUserBranchName(encryptionService.hash(code));
 
             // Listener service call.
-            requestToListener.sendRequestWithResponse('SendVerificationCode', parameters)
-            .then(function (response) {
-
-                console.log(response);
-                if (response.Data[0].Result == 'SUCCESS') {
-                    // Call function to validate IPAddress.
-
-                }
-                else {
-
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
-                }
-
-            })
-            .catch(function (error) {
-
-                // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
-            });
+            // requestToListener.sendRequestWithResponse('SendVerificationCode', parameters)
+            // .then(function (response) {
+            //
+            //     console.log(response);
+            //     if (response.Data[0].Result == 'SUCCESS') {
+            //         // Call function to validate IPAddress.
+            //
+            //     }
+            //     else {
+            //
+            //         // Call function to display error modal box.
+            //         var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+            //         vm.parent.displayError(errorModalPage);
+            //     }
+            //
+            // })
+            // .catch(function (error) {
+            //
+            //     // Call function to display error modal box.
+            //     var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+            //     vm.parent.displayError(errorModalPage);
+            // });
         }
-        vm.verifyCode = function() {
-            vm.isEmailValid = true;
+        vm.checkVerificationCode = function() {
+            vm.verifyCode = true;
+            if (vm.inputCode != '123456') {
+                vm.isCodeValid = false;
+            } else {
+                vm.isCodeValid = true;
+            }
         }
-        vm.resendCode = function() {
-            vm.isEmailValid = false;
+        vm.resendVerificationCode = function() {
+            vm.isCodeValid = false;
             vm.sendCode = false;
+            vm.verifyCode = false;
 
             let code = 'A0127Q0T50hk';
             let ramq = 'TESC53511613';

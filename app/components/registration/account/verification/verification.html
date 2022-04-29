@@ -15,8 +15,7 @@
         </div>
         <div class="col-sm-3">
             <div class="column">
-                <div class="row-sm-1"><label><span style="font-weight: bold;">{{'PATIENT.HOSPITAL' | translate}}</span>{{vm.formData.hospitalName}}</label></div>
-                <div class="row-sm-1"><label><span style="font-weight: bold;">{{'PATIENT.PATIENT' | translate}}</span>{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</label></div>
+                <patient-info form-data="vm.formData"></patient-info>
             </div>
         </div>
     </div>
@@ -62,22 +61,24 @@
         </div>
         <div class="text-muted col-md-7"><h6>{{'VERIFICATION.VERIFY.CODE' | translate}}</h6></div>
         <div class="text-muted col-md-10">
-            <input type="number" name="code" ng-model="vm.code" class="btn border-dark text-dark mr-3 px-3"
+            <input type="number" name="code" ng-model="vm.inputCode" class="btn border-dark text-dark mr-3 px-3"
                    style="margin-right: 15px;width: 30%;" required>
             <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
-                    ng-click="vm.verifyCode()">
+                    ng-click="vm.checkVerificationCode()">
                 {{'VERIFICATION.VERIFY.VERIFY' | translate}}
             </button>
             <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
-                    ng-click="vm.resendCode()">
+                    ng-click="vm.resendVerificationCode()">
                 {{'VERIFICATION.VERIFY.RESEND' | translate}}
             </button>
         </div>
     </div>
     <div class="text-muted col-md-12 alert alert-success" style="margin-top: 15px;"
-         ng-if="vm.sendCode && !vm.isEmailValid">{{'VERIFICATION.SEND.MESSAGE' | translate}}</div>
+         ng-if="vm.sendCode && !vm.verifyCode">{{'VERIFICATION.SEND.MESSAGE' | translate}}</div>
     <div class="text-muted col-md-12 alert alert-success" style="margin-top: 15px;"
-         ng-if="vm.isEmailValid">{{'VERIFICATION.VERIFY.MESSAGE' | translate}}</div>
+         ng-if="vm.verifyCode && vm.isCodeValid">{{'VERIFICATION.VERIFY.VALID' | translate}}</div>
+    <div class="text-muted col-md-12 alert alert-danger" style="margin-top: 15px;"
+         ng-if="vm.verifyCode && !vm.isCodeValid">{{'VERIFICATION.VERIFY.INVALID' | translate}}</div>
 
     <!--Horizontal line----------------------------------------------->
     <hr class="bg-opal mb-2">
@@ -88,7 +89,7 @@
             <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="!vm.isEmailValid">
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="!vm.isCodeValid">
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button>
         </div>
