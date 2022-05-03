@@ -7,6 +7,11 @@
 # RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
 # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
 
+# Additional security to lock down files and folders
+<FilesMatch "package\.json|package-lock\.json|bower\.json|composer\.json|composer\.lock|\.md">
+  Require all denied
+</FilesMatch>
+
 Header ADD  X-FRAME-OPTIONS: DENY
 Header set X-Content-Type-Options nosniff
 
