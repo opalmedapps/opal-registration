@@ -133,7 +133,7 @@
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
     "PASSWORDFORMAT": "Your password should be at least 8 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
-    "REGISTRATIONCODE": "Your registration code is a 10-digit code provided by your clinical team at a participating Quebec healthcare institution."
+    "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution."
   },
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {
