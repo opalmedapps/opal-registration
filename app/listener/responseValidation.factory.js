@@ -37,7 +37,8 @@
          * Expose API to consumers
          */
         return {
-            validate: validate
+            validate: validate,
+            validateApiResponse: validateApiResponse
         };
         
         /**
@@ -60,6 +61,29 @@
                 if (response.Code === SUCCESS) {
                     if (!encryptionKey) response = encryptionService.decryptData(response);
                     
+                    return {success: response};
+                } else {
+                    return handleResponseError(response)
+                }
+            }
+        }
+
+        /**
+         validates incoming response from listener
+         @param response
+         @param encryptionKey
+         @param timeOut
+         **/
+
+        function validateApiResponse(response, encryptionKey, timeOut) {
+            if (!response.status_code) {
+                return {error: {Code: 'ENCRYPTION_ERROR'}}
+            } else {
+                clearTimeout(timeOut);
+
+                if (!encryptionKey) response = encryptionService.decryptData(response);
+
+                if (response.status_code === '200') {
                     return {success: response};
                 } else {
                     return handleResponseError(response)
