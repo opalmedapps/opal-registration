@@ -3,30 +3,28 @@
     angular.module('myApp')
         .service('requestToListener', requestToListener);
 
-    requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'responseValidatorFactory'];
+    requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'apiConstants', 'responseValidatorFactory'];
 
-    function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, responseValidatorFactory) {
-        
-        // Get firebase request user
-        var firebase_url = null;
+    function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, apiConstants, responseValidatorFactory) {
 
-        // Get firebase response url
-        var response_url = null;
-
-        // Get firebase parent branch
-        var firebase_parentBranch = null;
+        return {
+            sendRequestWithResponse: sendRequestWithResponse,
+            apiRequest: apiRequest
+        };
 
         // Function to send request to listener
         function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
 
             // Get firebase parent branch
-            firebase_parentBranch = userAuthorizationService.getHospitalCode();
+            const firebase_parentBranch = userAuthorizationService.getHospitalCode();
+
+            let branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
+                ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
+                : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+
 
             // Get firebase request user
-            firebase_url = firebase.database().ref(firebaseFactory.getFirebaseUrl(firebase_parentBranch));
-
-            // Get firebase response url
-            response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
+            const firebase_url = firebase.database().ref(branch_name);
 
             return new Promise((resolve) => {
                 let requestType;
@@ -50,62 +48,98 @@
                         };
                         let reference = referenceField || 'requests';
                         let pushID = firebase_url.child(reference).push(request_object);
-                        resolve(pushID.key);
+                        resolve({key: pushID.key, url: firebase_url});
                     });
             });
         }
 
-        return {
+        function sendRequestWithResponse(typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
+            return new Promise((resolve, reject) => {
 
-            sendRequestWithResponse: function (typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
-                return new Promise((resolve, reject) => {
-                    
-                    //Sends request and gets random key for request
-                    sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
-                        .then(key => {
-                            
-                            let refRequestResponse = (!referenceField) ?
-                                response_url.child(key) :
-                                firebase_url.child(responseField).child(key);
-                            
-                            //Waits to obtain the request data.
-                            refRequestResponse.on('value', snapshot => {
-                                if (snapshot.exists()) {
-                                    
-                                    let data = snapshot.val();
+                //Sends request and gets random key for request
+                sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
+                    .then(response => {
+                        const key = response.key;
+                        const firebase_url = response.url;
 
-                                    refRequestResponse.set(null);
-                                    refRequestResponse.off();
+                        // Get firebase response url
+                        const response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
 
-                                    data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
-                                    
-                                    if (data.success) {
-                                        resolve(data.success);
-                                    } else {
-                                        reject(data.error);
-                                    }
-                                }
-                            }, error => {
-                                console.log('sendRequestWithResponse error' + error);
-                                
+                        let refRequestResponse = (!referenceField) ?
+                            response_url.child(key) :
+                            firebase_url.child(responseField).child(key);
+
+                        //Waits to obtain the request data.
+                        refRequestResponse.on('value', snapshot => {
+                            if (snapshot.exists()) {
+
+                                let data = snapshot.val();
+
                                 refRequestResponse.set(null);
                                 refRequestResponse.off();
-                                reject(error);
-                            });
+
+                                data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
+                                (data.success) ? resolve(data.success) : reject(data.error);
+                            }
+                        }, error => {
+                            console.log('sendRequestWithResponse error' + error);
+
+                            refRequestResponse.set(null);
+                            refRequestResponse.off();
+                            reject(error);
                         });
-                    //If request takes longer than 30000 to come back with timeout request, delete reference
-                    const timeOut = setTimeout(function () {
+                    });
+                //If request takes longer than 30000 to come back with timeout request, delete reference
+                const timeOut = setTimeout(function () {
+                    response_url.set(null);
+                    response_url.off();
+                    reject({ Response: 'timeout' });
+                }, 90000);
+
+            }).catch(err => console.log(err));
+        }
+
+        /**
+         * @description Call the new listener structure that relays the request to Django backend
+         * @param {object} parameters Required fields to process request
+         * @param {string} language Required field to request header, 'en' or 'fr'
+         * @param {object | null} data that is needed to be passed to the request.
+         * @returns Promise that contains the response data
+         */
+        function apiRequest(parameters, language, data = null) {
+            return new Promise(async (resolve, reject) => {
+                const formatedParams = formatParams(parameters, language, data);
+                const requestType = firebaseFactory.getApiParentBranch();
+                const {key, url} = await sendRequest(requestType, formatedParams);
+                const firebasePath = `responses/${key}`;
+                const response_url = url.child(firebasePath);
+
+                response_url.on('value', snapshot => {
+                    if (snapshot.exists()) {
+
+                        let data = snapshot.val();
+
                         response_url.set(null);
                         response_url.off();
-                        reject({ Response: 'timeout' });
-                    }, 90000);
 
-                }).catch(err => console.log(err));
-            },
+                        data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
+                        (data.success) ? resolve(data.success) : reject(data.error);
+                    }
+                });
+                const timeOut = setTimeout(function () {
+                    response_url.set(null);
+                    response_url.off();
+                    reject({ Response: 'timeout' });
+                }, 90000);
+            });
+        }
 
-            sendRequest: function (typeOfRequest, content, key) {
-                sendRequest(typeOfRequest, content, key);
+        function formatParams(parameters, language, data){
+            if (data) parameters.data = data;
+            return {
+                ...parameters,
+                headers: {...apiConstants.REQUEST_HEADERS, 'Accept-Language': language},
             }
-        };
+        }
     }
 })();
