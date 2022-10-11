@@ -15,8 +15,13 @@
     function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
         var vm = this;
 
+        vm.loading = true;  // This is for loading the terms of use
+
         // Create variable formData to store the values of parent data.
         vm.formData = {};
+
+        // Base64 encoded PDF of terms of use
+        vm.termsOfUsePDF = undefined;
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
@@ -36,8 +41,13 @@
             // Call function to set current form class as active.
             vm.setFormStatus();
 
+            // Show the loading icon (throbber)
+            vm.loading = true;
+
             // Hide shared error message
             vm.sharedErrorMessage = true;
+
+            retrieveTermsOfUsePDF();
         }
 
         // Display alert on page refresh
@@ -148,6 +158,62 @@
                     var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                 });
+        }
+
+        /**
+         * @name retrieveTermsOfUsePDF
+         * @desc This function loads base64 encoded terms of use that is set in the new backend
+         */
+        function retrieveTermsOfUsePDF() {
+            try {
+                // api/institutions/1/terms-of-use/
+                // const endpoint = Params.API.ROUTES.HOSPITAL_SETTINGS.SITES;
+                const endpointParams = {
+                    method: 'get',
+                    url: 'api/institutions/1/terms-of-use/',
+                };
+
+                const terms = requestToListener.apiRequest(
+                    endpointParams,
+                    vm.formData.selectedLanguage
+                ).then(function (response) {
+                    debugger
+                    if (response == undefined || response == null || response == "") {
+                        // Call function to display error modal box.
+                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                    }
+                    else {
+                        console.log(terms);
+                        console.log(terms.data);
+                    }
+                })
+                .catch(function (error) {
+                    // Call function to display error modal box.
+                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                });
+
+                $timeout(() => {
+                    // if (vm.termsOfUsePDF === undefined || vm.termsOfUsePDF === '')
+
+                    vm.loading = false;
+                });
+            } catch (error) {
+                $timeout(() => {
+                    console.error(
+                        'Unable to retrieve the terms of use from the api-backend:',
+                        error
+                    );
+
+                    vm.loading = false;
+
+                    // vm.alert = {
+                    //     type: Params.alertTypeDanger,
+                    //     content: "PAGE_ACCESS_ERROR"
+                    // };
+                });
+            }
         }
     }
 })();
