@@ -164,7 +164,7 @@
          * @name retrieveTermsOfUsePDF
          * @desc This function loads base64 encoded terms of use that is set in the new backend
          */
-        function retrieveTermsOfUsePDF() {
+        async function retrieveTermsOfUsePDF() {
             try {
                 // api/institutions/1/terms-of-use/
                 // const endpoint = Params.API.ROUTES.HOSPITAL_SETTINGS.SITES;
@@ -173,31 +173,43 @@
                     url: 'api/institutions/1/terms-of-use/',
                 };
 
-                const terms = requestToListener.apiRequest(
+                const terms = await requestToListener.apiRequest(
                     endpointParams,
                     vm.formData.selectedLanguage
-                ).then(function (response) {
-                    debugger
-                    if (response == undefined || response == null || response == "") {
-                        // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                    }
-                    else {
-                        console.log(terms);
-                        console.log(terms.data);
-                    }
-                })
-                .catch(function (error) {
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                });
+                );
+                
+                // const terms = requestToListener.apiRequest(
+                //     endpointParams,
+                //     vm.formData.selectedLanguage
+                // ).then(function (response) {
+                //     debugger
+                //     if (response == undefined || response == null || response == "") {
+                //         // Call function to display error modal box.
+                //         var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                //         vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                //     }
+                //     else {
+                //         console.log(response.Data);
+                //         console.log(response.Data);
+                //         vm.termsOfUsePDF = response.Data;
+                //     }
+                // })
+                // .catch(function (error) {
+                //     // Call function to display error modal box.
+                //     var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                //     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                // });
 
                 $timeout(() => {
-                    // if (vm.termsOfUsePDF === undefined || vm.termsOfUsePDF === '')
+                    vm.termsOfUsePDF = terms.Data;
+                    if (vm.termsOfUsePDF === undefined || vm.termsOfUsePDF === '') {
+                        console.error(
+                            'Unable to retrieve the terms of use from the api-backend:'
+                        );
+                    }
 
-                    vm.loading = false;
+                    console.log(vm.termsOfUsePDF);
+                    // vm.loading = false;
                 });
             } catch (error) {
                 $timeout(() => {
