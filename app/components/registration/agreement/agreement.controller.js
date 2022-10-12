@@ -10,18 +10,18 @@
     angular.module('myApp')
         .controller('agreementController', agreementController);
 
-    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
+    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService', 'apiConstants'];
 
-    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
+    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService, apiConstants) {
         var vm = this;
 
-        vm.loading = true;  // This is for loading the terms of use
+        vm.isTermsLoaded = false;  // This is for showing the terms of use
 
         // Create variable formData to store the values of parent data.
         vm.formData = {};
 
         // Base64 encoded PDF of terms of use
-        vm.termsOfUsePDF = undefined;
+        vm.termsOfUsePDFData = undefined;
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
@@ -38,11 +38,11 @@
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
+            // Display display spinner before calling service
+            vm.formData.displaySpinner = false;
+
             // Call function to set current form class as active.
             vm.setFormStatus();
-
-            // Show the loading icon (throbber)
-            vm.loading = true;
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
@@ -99,7 +99,7 @@
                 // Display display spinner before calling service
                 vm.formData.displaySpinner = false;
 
-                // Encrypt important information before makeing service call.
+                // Encrypt important information before making service call.
                 vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
                 vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
                 vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
@@ -166,50 +166,30 @@
          */
         async function retrieveTermsOfUsePDF() {
             try {
-                // api/institutions/1/terms-of-use/
-                // const endpoint = Params.API.ROUTES.HOSPITAL_SETTINGS.SITES;
-                const endpointParams = {
-                    method: 'get',
-                    url: 'api/institutions/1/terms-of-use/',
-                };
-
-                const terms = await requestToListener.apiRequest(
-                    endpointParams,
+                const terms_response = await requestToListener.apiRequest(
+                    apiConstants.ROUTES.TERMS_OF_USE,
                     vm.formData.selectedLanguage
                 );
-                
-                // const terms = requestToListener.apiRequest(
-                //     endpointParams,
-                //     vm.formData.selectedLanguage
-                // ).then(function (response) {
-                //     debugger
-                //     if (response == undefined || response == null || response == "") {
-                //         // Call function to display error modal box.
-                //         var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                //         vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                //     }
-                //     else {
-                //         console.log(response.Data);
-                //         console.log(response.Data);
-                //         vm.termsOfUsePDF = response.Data;
-                //     }
-                // })
-                // .catch(function (error) {
-                //     // Call function to display error modal box.
-                //     var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                //     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                // });
 
                 $timeout(() => {
-                    vm.termsOfUsePDF = terms.Data;
-                    if (vm.termsOfUsePDF === undefined || vm.termsOfUsePDF === '') {
+                    const termsOfUsePDF = terms_response?.data?.terms_of_use;
+
+                    if (termsOfUsePDF === undefined || termsOfUsePDF === "") {
                         console.error(
-                            'Unable to retrieve the terms of use from the api-backend:'
+                            'Unable to retrieve the terms of use from the api-backend.'
                         );
+
+                        // Call function to display error modal box.
+                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                     }
 
-                    console.log(vm.termsOfUsePDF);
-                    // vm.loading = false;
+                    vm.termsOfUsePDFData = "data:application/pdf;base64," + termsOfUsePDF;
+
+                    vm.isTermsLoaded = true;
+
+                    // Hide display spinner after all request get response.
+                    vm.formData.displaySpinner = true;
                 });
             } catch (error) {
                 $timeout(() => {
@@ -218,12 +198,11 @@
                         error
                     );
 
-                    vm.loading = false;
+                    // Hide display spinner after all request get response.
+                    vm.formData.displaySpinner = true;
 
-                    // vm.alert = {
-                    //     type: Params.alertTypeDanger,
-                    //     content: "PAGE_ACCESS_ERROR"
-                    // };
+                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                 });
             }
         }
