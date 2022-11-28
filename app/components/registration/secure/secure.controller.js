@@ -103,9 +103,9 @@
         // Secure page controller
         .controller('secureController', secureController);
 
-    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener'];
+    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'apiConstants'];
 
-    function secureController($rootScope, $location, $filter, $scope, $timeout, requestToListener) {
+    function secureController($rootScope, $location, $filter, $scope, $timeout, requestToListener, apiConstants) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -605,27 +605,20 @@
                         vm.formData.emailFormat.status = 'invalid',
                             //vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILINUSE');
                             vm.formData.emailFormat.message = 'test';
-                    }
-
-                    else if (response.Data == "ERROR") {
+                    } else if (response.Data == "ERROR") {
 
                         // Call function to get accesslevel list.
                         vm.accessLevelList();
-                    }
-                    else {
+                    } else {
 
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
-
-
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
         }
 
@@ -636,19 +629,18 @@
             vm.formData.displaySpinner = false;
 
             // Method to get security questions list from database
-            var parameters = vm.formData.formFieldsData.ramq;
 
-            requestToListener.sendRequestWithResponse('AccessLevelList', { Fields: parameters })
+            requestToListener.sendRequestWithResponse('AccessLevelList', { Fields: vm.formData.formFieldsData.ramq })
                 .then(function (response) {
 
                     // Get the value from result response and bind values into dropdown
-                    var accessLevelList = response.Data[0];
+                    const accessLevelList = response.Data[0];
 
                     // Check length of the variable
                     if (accessLevelList.length > 1) {
 
                         // Define loop for passing the value of language option.
-                        for (var i = 0; i < accessLevelList.length; i++) {
+                        for (let i = 0; i < accessLevelList.length; i++) {
 
                             // Assing in JSON format
                             vm.formData.accessLevelList_EN[i] = {
@@ -667,85 +659,45 @@
                             vm.formData.accessLevelList = vm.formData.accessLevelList_EN;
                         else
                             vm.formData.accessLevelList = vm.formData.accessLevelList_FR;
-
-
                     }
                     else {
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
 
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
 
         }
 
         // Function to call service to get language list.
         vm.languageList = function () {
-
-            // Method to get security questions list from database
-            var parameters = vm.formData.formFieldsData.ramq;
-
-            requestToListener.sendRequestWithResponse('LanguageList', { Fields: parameters })
+            requestToListener.apiRequest(apiConstants.ROUTES.LANGUAGES, vm.formData.selectedLanguage)
                 .then(function (response) {
-
-                    // Get the value from result response and bind values into dropdown
-                    var languageList = response.Data[0];
-
-                    // Check length of the variable
-                    if (languageList.length > 1) {
-
-                        // Define loop for passing the value of language option.
-                        for (var i = 0; i < languageList.length; i++) {
-
-                            // Assing in JSON format
-                            vm.formData.languageList_EN[i] = {
-                                "ID": languageList[i].Id,
-                                "PREFIX": languageList[i].Prefix,
-                                "VALUE": languageList[i].LanguageName_EN
-                            }
-
-                            vm.formData.languageList_FR[i] = {
-                                "ID": languageList[i].Id,
-                                "PREFIX": languageList[i].Prefix,
-                                "VALUE": languageList[i].LanguageName_FR
-                            }
-                        }
-
-                        // Check the default selected language.
-                        if (vm.formData.selectedLanguage == 'en')
-                            vm.formData.languageList = vm.formData.languageList_EN;
-                        else
-                            vm.formData.languageList = vm.formData.languageList_FR;
-
-                        // Hide display spinner if service get error.
+                    if (response?.data) {
+                        vm.formData.languageList = response.data;
                         vm.formData.displaySpinner = true;
 
                         $rootScope.$apply(function () {
                             $location.path('/form/opalPreference');
                         });
+                    } else {
+                        vm.errorPopup();
                     }
-
-                    else {
-                        // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
-
-                    }
-
                 })
                 .catch(function (error) {
-
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
+        }
+
+        vm.errorPopup = function() {
+            const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+            vm.parent.displayError(errorModalPage);
         }
     }
 })();
