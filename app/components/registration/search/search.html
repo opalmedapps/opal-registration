@@ -16,17 +16,17 @@
     <!--Form section-->
     <div class="form-row mb-2 mt-4">
         <div class="form-group col-md-6 col-sm-12">
-            <label for="ramqnumber" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.RAMQ' | translate}}</label>
-            <i class="fas fa-info-circle fa-icon-cursor text-muted" tooltips tooltip-speed="slow" tooltip-template-url="{{vm.ramqTooltip.templateUrl}}"></i>
-            <input type="text" name="ramq" ng-model="vm.formData.formFieldsData.ramq" ng-change="vm.validateRAMQ()"
+            <label for="patientId" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.PATIENTID' | translate}}</label>
+            <i class="fas fa-info-circle fa-icon-cursor text-muted" tooltips tooltip-speed="slow" tooltip-template-url="{{vm.patientidTooltip.templateUrl}}"></i>
+            <input type="text" name="patientId" ng-model="vm.formData.patientId" ng-change="vm.validatePatientId()"
                    ng-class="{
-                           'is-invalid':(vm.formData.ramqFormat.status == 'invalid'),
-                           'is-valid': (vm.formData.ramqFormat.status == 'valid')}"
+                           'is-invalid':(vm.formData.patientIdFormat.status == 'invalid'),
+                           'is-valid': (vm.formData.patientIdFormat.status == 'valid')}"
                    class="form-control" tabindex="1" required>
             <!--<label class="text-muted">{{'SEARCH.FIELDNAMES.RAMQNUMBERHELPMESSAGE' | translate}} <a href="#" class="text-reset text-primary">{{'SHARED.CLICKHERE' | translate}}</a></label>-->
             <!--Display error if registration code format or length is inappropriate-->
-            <div ng-show="vm.formData.ramqFormat.status == 'invalid'">
-                <small class="text-danger font-weight-bold">{{vm.formData.ramqFormat.message}}</small>
+            <div ng-show="vm.formData.patientIdFormat.status == 'invalid'">
+                <small class="text-danger font-weight-bold">{{vm.formData.patientIdFormat.message}}</small>
             </div>
         </div>
 
@@ -70,15 +70,27 @@
 
 <!--Registration code tooltip image example-->
 <script type="text/ng-template" id="registrationcodeTooltipTemplate.html">
-    <div class="text-muted p-1">
+    <div class="text-muted p-1" style="width: 400px;text-align: left;">
         <!--<label>{{vm.registrationcodeTooltip.content}}</label>-->
         <label>{{'TOOLTIP.REGISTRATIONCODE' | translate}}</label>
     </div>
 </script>
 
 <!--Ramq tooltip image example-->
-<script type="text/ng-template" id="ramqTooltipTemplate.html">
-    <img ng-src="{{vm.ramqTooltip.image}}" class="img-responsive img-size" />
+<script type="text/ng-template" id="patientidTooltipTemplate.html">
+    <div class="text-muted p-1" style="width: 500px;text-align: left;">
+        <label>
+            {{'TOOLTIP.PATIENTID_TITLE1' | translate}}
+            <span class="font-weight-bold">MRN</span>
+            {{'TOOLTIP.PATIENTID_TITLE2' | translate}}
+            <span class="font-weight-bold">RAMQ</span>
+            {{'TOOLTIP.PATIENTID_TITLE3' | translate}}
+        </label>
+        <div class="col-sm-12">
+            <label><span class="font-weight-bold">&bull; MRN:</span>{{'TOOLTIP.PATIENTID_CONTENT_MRN' | translate}}</label>
+            <label><span class="font-weight-bold">&bull; RAMQ:</span>{{'TOOLTIP.PATIENTID_CONTENT_RAMQ' | translate}}</label>
+        </div>
+    </div>
 </script>
 
 
