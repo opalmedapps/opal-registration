@@ -46,6 +46,29 @@
       "INVALIDPATIENTID": "Un numéro RAMQ doit contenir 12 caractères, ou un numéro MRN doit contenir 7 chiffres."
     }
   },
+  "VERIFICATION": {
+    "STEPS": "Étape 2b de 5: ",
+    "TITLE": "vérification de l'addresse courriel",
+    "INSTRUCTION": "Afin de créer un nouveau compte Opal, vous devez d'abord vérifier votre adresse courriel.",
+    "SEND": {
+      "TITLE": "Entrer l'adresse courriel",
+      "INSTRUCTION": "Veuillez fournir votre adresse courriel. Nous vous enverrons ensuite un code de vérification à l’adresse fournie pour vérifier qu'elle vous appartient.",
+      "EMAIL": "Email",
+      "INVALID_EMAIL": "Addresse courriel invalide",
+      "SENDCODE": "Envoyer le code de vérification",
+      "MESSAGE": "Le code de vérification a été envoyé avec succès à votre adresse courriel."
+    },
+    "VERIFY": {
+      "TITLE": "Vérifier l'adresse courriel",
+      "INSTRUCTION_START": "Nous vous avons envoyé un code de vérification à ",
+      "INSTRUCTION_END": " pour vérifier que cette adresse vous appartient. Veuillez le saisir ci-dessous pour continuer la création de votre compte Opal.",
+      "CODE": "Code de vérification",
+      "VERIFY": "Vérifier l'adresse courriel",
+      "RESEND": "Renvoyer le code de vérification",
+      "VALID": "L'addresse courriel est valide",
+      "INVALID": "Le code n'est pas valide"
+    }
+  },
   "SECURE": {
     "STEPS": "Étape 2 de 5: ",
     "TITLE": "Créez votre compte Opal",
