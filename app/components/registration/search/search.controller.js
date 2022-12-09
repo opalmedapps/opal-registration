@@ -213,12 +213,12 @@
                 else {
 
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 }
             }).catch(function (error) {
 
                 // Call function to display error modal box.
-                vm.errorPopup();
+                vm.parent.errorPopup('contactUsError');
             });
 
         }
@@ -240,14 +240,14 @@
                     else {
 
                         // Call function to display error modal box.
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
 
                 })
                 .catch(function (error) {
                     
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 });
 
         }
@@ -270,13 +270,13 @@
                     else {
                      
                         // Call function to display error modal box.
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 });
         }
 
@@ -301,8 +301,7 @@
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
                         } else {
                             vm.formData.userName = `Not found`;
-                            var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                            vm.parent.displayError(errorModalPage);
+                            vm.parent.errorPopup('notFoundError');
                         }
 
                         vm.retrieveTermsOfUsePDF()
@@ -315,15 +314,14 @@
                             vm.formData.displaySpinner = true;
         
                             // Call function to display error modal box.
-                            var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                            vm.parent.displayError(errorModalPage);
+                            vm.parent.errorPopup('notFoundError');
         
                             // Call function to reset value of every text fields.
-                            vm.resetFields();
+                            vm.parent.resetFields();
                         });
                     } else {
                         // Call function to display error modal box.
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
 
                 })
@@ -333,10 +331,10 @@
                     vm.formData.displaySpinner = true;
 
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
 
                     // Call function to reset value of every text fields.
-                    vm.resetFields();
+                    vm.parent.resetFields();
                 });
         }
     
@@ -384,13 +382,13 @@
 
                     } else {
                         // Call function to display error modal box.
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
                 })
                 .catch(function (error) {
                     
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
 
                 });
         }
@@ -411,8 +409,7 @@
                         );
 
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                        vm.parent.errorPopup('contactUsError');
                     }
 
                     vm.formData.termsOfUseBase64 = $sce.trustAsResourceUrl(
@@ -434,14 +431,9 @@
                     // Hide display spinner after all request get response.
                     vm.formData.displaySpinner = true;
 
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 });
             }
-        }
-
-        vm.errorPopup = function() {
-            const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-            vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
         }
     };
 })();
