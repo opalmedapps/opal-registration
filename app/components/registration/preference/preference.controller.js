@@ -120,17 +120,12 @@
                 }
                 else {
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.parent.errorPopup('contactUsError');
                 }
-
-
-
             }).catch(function (error) {
 
                 // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                vm.parent.displayError(errorModalPage);
+                vm.parent.errorPopup('contactUsError');
             });
 
             preferenceService.needToKnowAccess().then(function (results) {
@@ -164,14 +159,12 @@
                 }
                 else {
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.parent.errorPopup('contactUsError');
                 }
 
             }).catch(function (error) {
                 // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                vm.parent.displayError(errorModalPage);
+                vm.parent.errorPopup('contactUsError');
             });
         }
 
