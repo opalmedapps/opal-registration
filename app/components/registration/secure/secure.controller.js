@@ -612,13 +612,13 @@
                     } else {
 
                         // Call function to display error modal box.
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 });
         }
 
@@ -662,14 +662,14 @@
                     }
                     else {
                         // Call function to display error modal box.
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
 
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 });
 
         }
@@ -686,18 +686,13 @@
                             $location.path('/form/opalPreference');
                         });
                     } else {
-                        vm.errorPopup();
+                        vm.parent.errorPopup('contactUsError');
                     }
                 })
                 .catch(function (error) {
                     // Call function to display error modal box.
-                    vm.errorPopup();
+                    vm.parent.errorPopup('contactUsError');
                 });
-        }
-
-        vm.errorPopup = function() {
-            const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-            vm.parent.displayError(errorModalPage);
         }
     }
 })();

@@ -274,3 +274,32 @@ li, .mx-3 {
 .iconWidth {
     width: 42%;
 }
+
+.verification-email {
+    margin-right: 15px;
+    width: 50%;
+}
+
+.verify-email-error {
+    color:red;
+    font-size: 12px;
+}
+
+.verification-code {
+    margin-right: 15px;
+    width: 30%;
+}
+
+.verify-code-error {
+    margin-top: 15px;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
