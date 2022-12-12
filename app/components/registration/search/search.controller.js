@@ -149,7 +149,6 @@
 
         // Form onsubmit method
         vm.searchFormSubmit = function () {
-            
             //Validate all fields as required fields on form submit
             if (vm.formData.formFieldsData.registrationCode == undefined || vm.formData.formFieldsData.registrationCode == null || vm.formData.formFieldsData.registrationCode == "") {
                 vm.formData.codeFormat.status = 'invalid';
@@ -174,7 +173,6 @@
 
                 //Set registration code info
                 userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.patientId, vm.formData.hospitalCode);
-
                 if (vm.formData.patientId.length == 12) {
                     vm.formData.formFieldsData.ramq = vm.formData.patientId;
 
@@ -377,7 +375,7 @@
                         vm.formData.displaySpinner = true;
 
                         $rootScope.$apply(function () {
-                            $location.path('/form/secureInformation');
+                            $location.path('/form/account');
                         });
 
                     } else {

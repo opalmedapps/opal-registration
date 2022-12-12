@@ -103,6 +103,19 @@
 
                 })
 
+                // User account page.
+                .state('form.account', {
+                    url: '/account',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'accountComponent'
+                        },
+                        footer: footer
+                    }
+
+                })
+
                 // User account verification page.
                 .state('form.verification', {
                     url: '/verification',
