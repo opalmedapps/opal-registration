@@ -46,6 +46,38 @@
       "INVALIDPATIENTID": "Un numéro RAMQ doit contenir 12 caractères, ou un numéro MRN doit contenir 7 chiffres."
     }
   },
+  "LOGIN": {
+    "STEPS": "Étape 2b sur 5: ",
+    "TITLE": "Connexion",
+    "INSTRUCTION": "Pour continuer, veuillez vous connecter à votre compte Opal existant",
+    "INPUT": {
+      "EMAIL": "Email",
+      "PASSWORD": "Mot de passe"
+    },
+    "ERROR": {
+      "INPUT": "Email invalide",
+      "REQUIRED": "L'e-mail est requis",
+      "INVALID": "L'e-mail ou le mot de passe est invalide"
+    }
+  },
+  "QUESTIONS": {
+    "STEPS": "Étape 2c sur 5: ",
+    "TITLE": "Créer des questions de sécurité",
+    "INSTRUCTION_START": "Veuillez noter que certaines données (telles que les réponses aux questions de sécurité) sont spécifiques à l'hôpital et ne sont stockées qu'au sein de l'hôpital. Pour accéder aux données de ",
+    "INSTRUCTION_END": " avec votre compte Opal existant, veuillez remplir le formulaire ci-dessous.",
+    "FIELDNAMES": {
+      "LOGINAS": "connecté en tant que ",
+      "PHONE": "Numéro de téléphone",
+      "QUESTION_TITLE": "Questions de sécurité",
+      "SECURITYQUESTION1": "Question de sécurité 1",
+      "ANSWER1": "Réponse 1",
+      "SECURITYQUESTION2": "Question de sécurité 2",
+      "ANSWER2": "Réponse 2",
+      "SECURITYQUESTION3": "Question de sécurité 3",
+      "ANSWER3": "Réponse 3",
+      "SECUREDROPDOWNDEAFULT": "--- Sélectionnez une question de sécurité ---"
+    }
+  },
   "VERIFICATION": {
     "STEPS": "Étape 2b de 5: ",
     "TITLE": "vérification de l'addresse courriel",
