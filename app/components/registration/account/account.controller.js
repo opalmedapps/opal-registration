@@ -51,7 +51,7 @@
 
         vm.createAccount = function() {
             vm.formData.formFieldsData.accountExists = false;
-            $location.path('/form/secureInformation');
+            $location.path('/form/verification');
         }
 
     };
