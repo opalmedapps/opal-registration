@@ -181,7 +181,6 @@
                 }
                 vm.createBranchName();
             }
-
         };
 
         // Call service to check valid branch.

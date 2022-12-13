@@ -1,0 +1,82 @@
+﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
+
+<form class="p-4 mb-2 bg-light rounded" name="loginForm" ng-submit="vm.loginFormSubmit()" novalidate>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="text-muted"><h4 class="font-weight-bold">{{'LOGIN.STEPS' | translate}}{{'LOGIN.TITLE' | translate}}</h4></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2">
+                    <label>{{'LOGIN.INSTRUCTION' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <patient-info form-data="vm.formData"></patient-info>
+            </div>
+        </div>
+    </div>
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Option buttons-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <label style="margin-right: 15px;">{{'LOGIN.INPUT.EMAIL' | translate}}</label>
+            <div class="col-md-3">
+                <div class="row"><input type="email" name="email" ng-model="vm.email" ng-keydown="vm.inputChange()" required></div>
+                <div class="row">
+                    <span style="color:red;font-size: 12px;" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+                        <span ng-show="loginForm.email.$error.required">{{'LOGIN.ERROR.REQUIRED' | translate}}</span>
+                        <span ng-show="loginForm.email.$error.email">{{'LOGIN.ERROR.INPUT' | translate}}</span>
+                    </span>
+                </div>
+            </div>
+
+            <label>{{'LOGIN.INPUT.PASSWORD' | translate}}</label>
+            <div class="col-md-3"><input type="password" name="password" ng-model="vm.password" ng-keydown="vm.inputChange()"></div>
+        </div>
+    </div>
+    <div class="row" ng-show="vm.loginError">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4 alert alert-danger">
+            {{'LOGIN.ERROR.INVALID' | translate}}
+        </div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Navigation button-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12"
+                    ng-disabled="loginForm.email.$dirty && loginForm.email.$invalid || loginForm.email.$error.required">
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+
+</form>
+
+
+<!--Registration code tooltip image example-->
+<script type="text/ng-template" id="registrationcodeTooltipTemplate.html">
+    <div class="text-muted p-1">
+        <label>{{'TOOLTIP.REGISTRATIONCODE' | translate}}</label>
+    </div>
+</script>
+
+<!--Ramq tooltip image example-->
+<script type="text/ng-template" id="ramqTooltipTemplate.html">
+    <img ng-src="{{vm.ramqTooltip.image}}" class="img-responsive img-size" />
+</script>
+
+
+
+

@@ -27,6 +27,10 @@
         vm.displayError = displayError;
         vm.resetFields = resetFields;
         vm.errorPopup = errorPopup;
+        vm.isEmpty = isEmpty;
+
+        vm.STATUS_VALID = 'valid',
+        vm.STATUS_INVALID = 'invalid',
 
         // Display alert on page refresh
         window.onbeforeunload = function (event) {
@@ -145,6 +149,11 @@
                     vm.parent.displayError(errorModalPage);
                     break;
             }
+        }
+
+        // Check empty string, null, undefined
+        function isEmpty(value) {
+            return value == undefined || value == null || value == "";
         }
     }
 

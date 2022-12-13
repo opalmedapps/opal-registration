@@ -1,0 +1,186 @@
+﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
+
+<form class="p-4 mb-2 bg-light rounded" name="questionsForm" ng-submit="vm.questionsFormSubmit()" novalidate>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="text-muted"><h4 class="font-weight-bold">{{'QUESTIONS.STEPS' | translate}}{{'QUESTIONS.TITLE' | translate}}</h4></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2">
+                    <label>{{'QUESTIONS.INSTRUCTION_START' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <patient-info form-data="vm.formData"></patient-info>
+            </div>
+        </div>
+    </div>
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <div class="form-row mb-2">
+        <div class="form-group col-12">
+
+            <div class="text-muted"><h5 class="font-weight-bold">{{'QUESTIONS.FIELDNAMES.LOGINAS' | translate}}{{vm.formData.formFieldsData.email}}</h5></div>
+
+            <div class="form-row mb-2">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.PHONE' | translate}}</label>
+                    <input type="number" class="form-control" name="phone" ng-model="phone"> (123 456 7890)
+                    <!--Display error if security answer1 field has blank value -->
+                </div>
+                <div class="form-group col-md-6">
+                </div>
+            </div>
+
+            <div class="text-muted"><h5 class="font-weight-bold">{{'QUESTIONS.FIELDNAMES.QUESTION_TITLE' | translate}}</h5></div>
+
+            <label for="securityquestion1" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.SECURITYQUESTION1' | translate}}</label>
+
+            <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion1"
+                    ng-class="{
+                           'is-invalid':(vm.formData.securityQuestion1Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID)}"
+                    ng-change="vm.validateSecurityQuestion1(vm.formData.formFieldsData.securityQuestion1)" tabindex="5">
+
+                <option value="">{{'QUESTIONS.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion2|filter:vm.securityQuestion3" value="{{questions.id}}">{{questions.value}}</option>
+            </select>
+
+            <!--Display error if security question1 field has not been selected -->
+            <div ng-show="vm.formData.securityQuestion1Format.status == vm.parent.STATUS_INVALID">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion1Format.message}}</small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="answer1" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.ANSWER1' | translate}}</label>
+            <input type="text" class="form-control" name="answer1" ng-model="vm.formData.formFieldsData.answer1" ng-change="vm.validateAnswer1()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.answer1Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.answer1Format.status == vm.parent.STATUS_VALID)}"
+                   tabindex="6">
+
+            <!--Display error if security answer1 field has blank value -->
+            <div ng-show="vm.formData.answer1Format.status == vm.parent.STATUS_INVALID">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer1Format.message}}</small>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-12">
+            <label for="securityquestion2" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.SECURITYQUESTION2' | translate}}</label>
+            <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion2"
+                    ng-class="{
+                           'is-invalid':(vm.formData.securityQuestion2Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID)}"
+                    ng-change="vm.validateSecurityQuestion2(vm.formData.formFieldsData.securityQuestion2)" tabindex="7">
+                <option value="">{{'QUESTIONS.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion1|filter:vm.securityQuestion3" value="{{questions.id}}">{{questions.value}}</option>
+            </select>
+            <!--Display error if security question2 field has not been selected -->
+            <div ng-show="vm.formData.securityQuestion2Format.status == vm.parent.STATUS_INVALID">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion2Format.message}}</small>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="answer2" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.ANSWER2' | translate}}</label>
+            <input type="text" class="form-control" name="answer2" ng-model="vm.formData.formFieldsData.answer2" ng-change="vm.validateAnswer2()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.answer2Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.answer2Format.status == vm.parent.STATUS_VALID)}"
+                   tabindex="8">
+
+            <!--Display error if security answer2 field has blank value -->
+            <div ng-show="vm.formData.answer2Format.status == vm.parent.STATUS_INVALID">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer2Format.message}}</small>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-12">
+            <label for="securityquestion3" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.SECURITYQUESTION3' | translate}}</label>
+            <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion3"
+                    ng-class="{
+                           'is-invalid':(vm.formData.securityQuestion3Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.securityQuestion3Format.status == vm.parent.STATUS_VALID)}"
+                    ng-change="vm.validateSecurityQuestion3(vm.formData.formFieldsData.securityQuestion3)" tabindex="9">
+                <option value="">{{'QUESTIONS.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
+                <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion1|filter:vm.securityQuestion2" value="{{questions.id}}">{{questions.value}}</option>
+            </select>
+
+            <!--Display error if security question3 field has not been selected -->
+            <div ng-show="vm.formData.securityQuestion3Format.status == vm.parent.STATUS_INVALID">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion3Format.message}}</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-5">
+        <div class="form-group col-md-6 col-sm-12">
+            <label for="answer3" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.ANSWER3' | translate}}</label>
+            <input type="text" class="form-control" name="answer3" ng-model="vm.formData.formFieldsData.answer3" ng-change="vm.validateAnswer3()"
+                   ng-class="{
+                           'is-invalid':(vm.formData.answer3Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.answer3Format.status == vm.parent.STATUS_VALID)}"
+                   tabindex="10">
+
+            <!--Display error if security answer3 field has blank value -->
+            <div ng-show="vm.formData.answer3Format.status == vm.parent.STATUS_INVALID">
+                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer3Format.message}}</small>
+            </div>
+
+        </div>
+        <div class="form-group col-md-6">
+        </div>
+    </div>
+
+    <!--Display error if any fields has a blank value-->
+    <div ng-hide="vm.sharedErrorMessage">
+        <div class="form-row mt-4">
+            <div class="form-group col-md-12 col-sm-12">
+                <small class="text-danger font-weight-bold">{{'SHARED.ERRORMESSAGE' | translate}}</small>
+            </div>
+        </div>
+    </div>
+
+    <!--Horizontal line-->
+    <hr class="bg-opal mb-2">
+
+    <!--Navigation button-->
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
+                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+            </button>
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12"
+                    ng-disabled="questionsForm.email.$dirty && questionsForm.email.$invalid || questionsForm.email.$error.required">
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+            </button>
+        </div>
+    </div>
+
+</form>
+
+
+
+
