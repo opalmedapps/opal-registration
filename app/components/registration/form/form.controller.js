@@ -13,9 +13,9 @@
 
         .controller('formController', formController);
 
-    formController.$inject = ['$location', '$uibModal', 'formDataModel', 'firebaseFactory'];
+    formController.$inject = ['$rootScope', '$location', '$uibModal', 'formDataModel', 'firebaseFactory', 'requestToListener', 'apiConstants'];
 
-    function formController($location, $uibModal, formDataModel, firebaseFactory) {
+    function formController($rootScope, $location, $uibModal, formDataModel, firebaseFactory, requestToListener, apiConstants) {
         var vm = this;
         vm.token = null;
 
@@ -28,6 +28,7 @@
         vm.resetFields = resetFields;
         vm.errorPopup = errorPopup;
         vm.isEmpty = isEmpty;
+        vm.languageListForPreference = languageListForPreference;
 
         vm.STATUS_VALID = 'valid',
         vm.STATUS_INVALID = 'invalid',
@@ -120,10 +121,6 @@
             vm.formData.securityQuestion3Format = { status: null, message: null };
             vm.formData.answer3Format = { status: null, message: null };
             vm.formData.languageFormat = { status: null, message: null };
-            vm.formData.accessLevelFormat = { status: null, message: null };
-            vm.formData.allAccessLevelFormat = { status: null, message: null };
-            vm.formData.needToKnowAccessLevelFormat = { status: null, message: null };
-            vm.formData.accessLevelSignFormat = { status: null, message: null };
             vm.formData.termsandAggreementSignFormat = { status: null, message: null };
 
             // If success form is loaded or error while registering the patient than delete all the field values
@@ -146,7 +143,7 @@
                     break;
                 case 'notFoundError':
                     errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.displayError(errorModalPage);
                     break;
             }
         }
@@ -154,6 +151,39 @@
         // Check empty string, null, undefined
         function isEmpty(value) {
             return value == undefined || value == null || value == "";
+        }
+
+        // Function to call service to get language list.
+        function languageListForPreference() {
+            requestToListener.apiRequest(apiConstants.ROUTES.LANGUAGES, 'en')
+                .then(function (response) {
+                    if (response?.data) {
+                        vm.formData.languageList['en'] = response.data;
+                        requestToListener.apiRequest(apiConstants.ROUTES.LANGUAGES, 'fr')
+                            .then(function (response) {
+                                if (response?.data) {
+                                    vm.formData.languageList['fr'] = response.data;
+                                    vm.formData.displaySpinner = true;
+
+                                    $rootScope.$apply(function () {
+                                        $location.path('/form/opalPreference');
+                                    });
+                                } else {
+                                    vm.errorPopup('contactUsError');
+                                }
+                            })
+                            .catch(function (error) {
+                                // Call function to display error modal box.
+                                vm.errorPopup('contactUsError');
+                            });
+                    } else {
+                        vm.errorPopup('contactUsError');
+                    }
+                })
+                .catch(function (error) {
+                    // Call function to display error modal box.
+                    vm.errorPopup('contactUsError');
+                });
         }
     }
 

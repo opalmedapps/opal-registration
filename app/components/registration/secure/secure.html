@@ -1,17 +1,24 @@
 ﻿<!--Secure form to enter email password and security questions-->
 <form name="secureForm" class="p-4 mb-2 bg-light rounded" ng-submit="vm.secureFormSubmit()" novalidate>
 
-    <!--Page title-->
-    <div class="d-flex justify-content-between text-muted">
-        <div><h4 class="font-weight-bold">{{'SECURE.STEPS' | translate}}{{'SECURE.TITLE' | translate}} </h4></div>
-        <div> <h4 class="font-weight-bold">{{vm.formData.userName}}</h4></div>
-    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="d-flex justify-content-between text-muted">
+                <div><h4 class="font-weight-bold">{{'SECURE.STEPS' | translate}}{{'SECURE.TITLE' | translate}} </h4></div>
+            </div>
 
-    <!--Instruction to follow-->
-    <div class="d-flex justify-content-between text-muted ">
-        <div class="mr-2"><label>{{'SECURE.INSTRUCTION' | translate}}</label></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between text-muted ">
+                <div class="mr-2"><label>{{'SECURE.INSTRUCTION' | translate}}</label></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <patient-info form-data="vm.formData"></patient-info>
+            </div>
+        </div>
     </div>
-
     <!--Horizontal line-->
     <hr class="bg-opal mb-2">
 
@@ -20,32 +27,11 @@
         <div class="form-group col-md-6 col-sm-12">
             <label for="email" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.EMAIL' | translate}}</label>
             <!--<input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email" ng-change="vm.validateEmail()"-->
-            <input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email" ng-change="vm.validateEmail()" ng-blur="vm.compareEmail()"
+            <input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email" ng-change="vm.validateEmail()"
                    ng-class="{
             'is-invalid':(vm.formData.emailFormat.status == vm.parent.STATUS_INVALID),
             'is-valid':(vm.formData.emailFormat.status == vm.parent.STATUS_VALID)}"
-                   tabindex="1" required>
-
-            <!--Display error if email format or length is inappropriate-->
-            <div class="mb-1" ng-show="vm.formData.emailFormat.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold">{{vm.formData.emailFormat.message}}</small>
-            </div>
-
-            <!--Message-->
-            <div><label class="text-muted">{{'TOOLTIP.EMAILINSTRUCTION' | translate}}</label></div>
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            <label for="confirmEmail" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMEMAIL' | translate}}</label>
-            <input type="text" class="form-control" name="confirmEmail" ng-model="vm.formData.confirmEmail" ng-change="vm.validateConfirmEmail()"
-                   ng-class="{
-                           'is-invalid':(vm.formData.confirmEmailFormat.status == vm.parent.STATUS_INVALID),
-                           'is-valid':(vm.formData.confirmEmailFormat.status == vm.parent.STATUS_VALID)}"
-                   tabindex="2" required>
-
-            <!--Display error if email format is inappropriate-->
-            <div ng-show="vm.formData.confirmEmailFormat.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold">{{vm.formData.confirmEmailFormat.message}}</small>
-            </div>
+                   tabindex="1" ng-disabled="true">
         </div>
     </div>
 
@@ -88,6 +74,28 @@
             <div ng-show="vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.confirmPasswordFormat.message}}</small>
             </div>
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6">
+            <label class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.FIRSTNAME' | translate}}</label>
+            <input type="text" class="form-control" name="phone" ng-model="vm.formData.firstName" disabled="disabled">
+            <!--Display error if security answer1 field has blank value -->
+        </div>
+        <div class="form-group col-md-6">
+            <label class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.LASTNAME' | translate}}</label>
+            <input type="text" class="form-control" name="phone" ng-model="vm.formData.lastName" disabled="disabled">
+        </div>
+    </div>
+
+    <div class="form-row mb-2">
+        <div class="form-group col-md-6 col-sm-12">
+            <label class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PHONE' | translate}}</label>
+            <input type="number" class="form-control" name="phone" ng-model="vm.phone" required> (123 456 7890)
+            <!--Display error if security answer1 field has blank value -->
+        </div>
+        <div class="form-group col-md-6">
         </div>
     </div>
 
@@ -222,7 +230,7 @@
     <!--Navigation buttons-->
     <div class="row">
         <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.search" tabindex="11">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
             <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="vm.secureFormValid">
