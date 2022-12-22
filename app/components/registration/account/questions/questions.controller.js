@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('questionsController', questionsController);
 
-    questionsController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener'];
+    questionsController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'apiConstants'];
 
-    function questionsController($rootScope, $location, $filter, $scope, $timeout, requestToListener) {
+    function questionsController($rootScope, $location, $filter, $scope, $timeout, requestToListener, apiConstants) {
         let vm = this;
         vm.submitError = undefined;
         $scope.email = undefined;
@@ -48,8 +48,7 @@
 
         //
         vm.allStatusValid = function() {
-            return 
-                vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
+            return vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer2Format.status == vm.parent.STATUS_VALID &&
@@ -242,66 +241,8 @@
                 vm.formData.formFieldsData.answer3 = vm.formData.formFieldsData.answer3.toUpperCase();
 
                 // Call function ot language list
-                vm.languageList();
+                vm.parent.languageListForPreference();
             }
-        }
-
-        // Function to call service to get language list.
-        vm.languageList = function () {
-
-            // Method to get security questions list from database
-            let parameters = vm.formData.formFieldsData.ramq;
-
-            requestToListener.sendRequestWithResponse('LanguageList', { Fields: parameters })
-                .then(function (response) {
-
-                    // Get the value from result response and bind values into dropdown
-                    let languageList = response.Data[0];
-
-                    // Check length of the variable
-                    if (languageList.length > 1) {
-
-                        // Define loop for passing the value of language option.
-                        for (let i = 0; i < languageList.length; i++) {
-
-                            // Assing in JSON format
-                            vm.formData.languageList_EN[i] = {
-                                "ID": languageList[i].Id,
-                                "PREFIX": languageList[i].Prefix,
-                                "VALUE": languageList[i].LanguageName_EN
-                            }
-
-                            vm.formData.languageList_FR[i] = {
-                                "ID": languageList[i].Id,
-                                "PREFIX": languageList[i].Prefix,
-                                "VALUE": languageList[i].LanguageName_FR
-                            }
-                        }
-
-                        // Check the default selected language.
-                        if (vm.formData.selectedLanguage == 'en')
-                            vm.formData.languageList = vm.formData.languageList_EN;
-                        else
-                            vm.formData.languageList = vm.formData.languageList_FR;
-
-                        // Hide display spinner if service get error.
-                        vm.formData.displaySpinner = true;
-
-                        $rootScope.$apply(function () {
-                            $location.path('/form/opalPreference');
-                        });
-                    } else {
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-
-                    }
-
-                })
-                .catch(function (error) {
-
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                });
         }
     };
 

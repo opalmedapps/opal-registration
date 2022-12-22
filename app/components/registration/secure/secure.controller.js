@@ -118,8 +118,6 @@
                 // Call functions to check the both field error values            
                 vm.validateEmail();
                 vm.validatePassword();
-                vm.validateConfirmEmail();
-                vm.compareEmail();
                 vm.validateConfirmPassword();
                 vm.comparePassword();
                 vm.validateSecurityQuestion1();
@@ -155,7 +153,6 @@
         vm.allStatusValid = function() {
             return vm.formData.emailFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.passwordFormat.status == vm.parent.STATUS_VALID &&
-                vm.formData.confirmEmailFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
@@ -254,52 +251,6 @@
                     }
                 }
             }
-        }
-
-        // Function to compare email and confirm email fields.
-        vm.validateConfirmEmail = function () {
-            if (vm.parent.isEmpty(vm.formData.confirmEmail)) {
-                vm.formData.confirmEmailFormat.status = vm.parent.STATUS_INVALID;
-                vm.formData.confirmEmailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.CONFIRMEMAILREQUIRED');
-            } else {
-                if (vm.formData.formFieldsData.email != vm.formData.confirmEmail) {
-                    vm.formData.confirmEmailFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.confirmEmailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREEMAIL');
-                }
-                else {
-                    vm.formData.confirmEmailFormat.status = vm.parent.STATUS_VALID;
-                    vm.formData.confirmEmailFormat.message = null;
-
-                    if (vm.allStatusValid()) {
-                        // Display shared error message
-                        vm.sharedErrorMessage = true;
-                    }
-                }
-            }
-        }
-
-        // Function to compare email and confirm email on blur event of email textbox.
-        vm.compareEmail = function () {
-            if (vm.parent.isEmpty(vm.formData.formFieldsData.email)) {
-                vm.formData.confirmEmailFormat.status = vm.parent.STATUS_INVALID;
-                vm.formData.confirmEmailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREEMAIL');
-            } else {
-                if (vm.formData.formFieldsData.email != vm.formData.confirmEmail) {
-                    vm.formData.confirmEmailFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.confirmEmailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREEMAIL');
-                }
-
-                else {
-                    vm.formData.confirmEmailFormat.status = vm.parent.STATUS_VALID;
-                    vm.formData.confirmEmailFormat.message = null;
-
-                    if (vm.allStatusValid()) {
-                        // Display shared error message
-                        vm.sharedErrorMessage = true;
-                    }
-                }
-            }
-
         }
 
         // Function to compare password and confirm password fields.
@@ -572,7 +523,7 @@
                 vm.formData.formFieldsData.answer3 = vm.formData.formFieldsData.answer3.toUpperCase();
 
                 // Call function ot language list
-                vm.languageList();
+                vm.parent.languageListForPreference();
             }
         }
 
@@ -609,78 +560,5 @@
                     vm.parent.errorPopup('contactUsError');
                 });
         }
-
-        // Function to call service to get access level list.
-        vm.accessLevelList = function () {
-
-            // Display display spinner before calling service
-            vm.formData.displaySpinner = false;
-
-            // Method to get security questions list from database
-
-            requestToListener.sendRequestWithResponse('AccessLevelList', { Fields: vm.formData.formFieldsData.ramq })
-                .then(function (response) {
-
-                    // Get the value from result response and bind values into dropdown
-                    const accessLevelList = response.Data[0];
-
-                    // Check length of the variable
-                    if (accessLevelList.length > 1) {
-
-                        // Define loop for passing the value of language option.
-                        for (let i = 0; i < accessLevelList.length; i++) {
-
-                            // Assing in JSON format
-                            vm.formData.accessLevelList_EN[i] = {
-                                "ID": accessLevelList[i].Id,
-                                "VALUE": accessLevelList[i].AccessLevelName_EN
-                            }
-
-                            vm.formData.accessLevelList_FR[i] = {
-                                "ID": accessLevelList[i].Id,
-                                "VALUE": accessLevelList[i].AccessLevelName_FR
-                            }
-                        }
-
-                        // Check the default selected language.
-                        if (vm.formData.selectedLanguage == 'en')
-                            vm.formData.accessLevelList = vm.formData.accessLevelList_EN;
-                        else
-                            vm.formData.accessLevelList = vm.formData.accessLevelList_FR;
-                    }
-                    else {
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-                    }
-
-                })
-                .catch(function (error) {
-
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                });
-
-        }
-
-        // Function to call service to get language list.
-        vm.languageList = function () {
-            requestToListener.apiRequest(apiConstants.ROUTES.LANGUAGES, vm.formData.selectedLanguage)
-                .then(function (response) {
-                    if (response?.data) {
-                        vm.formData.languageList = response.data;
-                        vm.formData.displaySpinner = true;
-
-                        $rootScope.$apply(function () {
-                            $location.path('/form/opalPreference');
-                        });
-                    } else {
-                        vm.parent.errorPopup('contactUsError');
-                    }
-                })
-                .catch(function (error) {
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                });
-        }
-    }
+    };
 })();

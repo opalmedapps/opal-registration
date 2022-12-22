@@ -73,15 +73,7 @@
 
                 // Check if preference form is loaded. If yes assign french value to language and levelofaccess dropdown modal
                 if (vm.formData.preferenceForm.flag == 1) {
-                    vm.formData.languageList = vm.formData.languageList_FR;
-                    for (var i = 0; i < vm.formData.languageList.length; i++) {
-                        if (vm.formData.languageList[i].PREFIX == vm.formData.formFieldsData.language.PREFIX) {
-                            vm.formData.formFieldsData.language = vm.formData.languageList[i];
-                        }
-                    }
-                    vm.formData.accessLevelList = vm.formData.accessLevelList_FR;
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_FR;
-                    vm.formData.needToKnowAccessLevelList = vm.formData.needToKnowAccessLevelList_FR;
                 }
 
                 
@@ -115,15 +107,7 @@
 
                 // Check if preference form is loaded. If yes assign english value to language and levelofaccess dropdown modal
                 if (vm.formData.preferenceForm.flag == 1) {
-                    vm.formData.languageList = vm.formData.languageList_EN;
-                    for (var i = 0; i < vm.formData.languageList.length; i++) {
-                        if (vm.formData.languageList[i].PREFIX == vm.formData.formFieldsData.language.PREFIX) {
-                            vm.formData.formFieldsData.language = vm.formData.languageList[i];
-                        }
-                    }
-                    vm.formData.accessLevelList = vm.formData.accessLevelList_EN;
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_EN;
-                    vm.formData.needToKnowAccessLevelList = vm.formData.needToKnowAccessLevelList_EN;
                 }
 
                 // Check if aggreement form is loaded. If yes assign french french document
