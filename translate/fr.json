@@ -156,19 +156,20 @@
   "PREFERENCE": {
     "STEPS": "Étape 3 de 5: ",
     "TITLE": "Accès aux données",
-    "INSTRUCTION": "Afin d’avoir accès à vos données médicales via Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
+    "INSTRUCTION1": "Afin d’avoir accès aux données médicales de ",
+    "INSTRUCTION2": " à ",
+    "INSTRUCTION3": " utilisant Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
     "FIELDNAMES": {
       "ACCESSLEVEL": "Niveau d’accès aux données",
       "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d’accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d’accès est expliqué ci-dessous:",
-      "ALLACCESSLEVEL": "J’aimerais recevoir toutes mes données médicales qui sont accessibles avec Opal. ",
-      "ALLACCESSLEVELTITLE": "Accès total: ",
-      "NEEDTOKNOWACCESSLEVELTITLE": "Accès partiel: ",
-      "NEEDTOKNOWACCESSLEVEL": "J’aimerais recevoir seulement les données médicales essentielles avec Opal.",
-      "ACCESSLECELINCLUDESTITLE": "Les données suivantes sont présentement disponibles dans Opal (veuillez noter que ce ne seront pas tous les hôpitaux ou patients qui auront toutes ces données).",
+      "ACCESSLEVELINSTRUCTION1": "Les données suivantes sont généralement disponibles (sous réserve de disponibilité à ",
+      "ACCESSLEVELINSTRUCTION2": "):",
       "LANGUAGE": "Votre choix de langue",
       "LANGUAGEDROPDOWNDEAFULT": "--- Sélectionnez une langue ---",
       "AUTHORIZETRANSMISSION": "Autorisation",
-      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "J’autorise la transmission sécurisée des données médicales que j’ai sélectionnées ci-dessus à l’application Opal."
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "J’autorise la transmission sécurisée des données médicales que j’ai sélectionnées ci-dessus à l’application Opal.",
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT_START": "J'autorise la transmission sécurisée des données médicales de ",
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT_END": " à mon application Opal."
     },
     "FIELDERRORMESSAGES": {
       "LANGUAGEREQUIRED": "Veuillez sélectionner une langue.",
@@ -181,10 +182,10 @@
     "TITLE": "Conditions d’utilisation",
     "INSTRUCTION": "Afin de compléter le processus d'inscription, veuillez lire les documents ci-dessous et accepter les conditions d’utilisation.",
     "FIELDNAMES": {
-      "PRINTANDDOWNLOADDOCUEMNT": "Pour télécharger ou imprimer ce document",
+      "PRINTANDDOWNLOADDOCUEMNT": "Télécharger ce document",
       "ACCEPTCHECKBOX": "J’ai lu et accepté les termes de cet accord.",
       "DOUCMENTLINK": "documents/ContratdutilisationduLogiciel.html",
-      "PDFLINK": "documents/Contratd'utilisationduLogiciel.pdf"
+      "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {
       "ACCEPTCHECKBOXREQUIRED": "Veuillez accepter les conditions d’utilisation ci-dessus afin de procéder."
@@ -198,7 +199,10 @@
     "DOWNLOADAPP": "Si ce n’est pas déjà fait, veuillez télécharger l’application Opal à partir de l'iOS App Store ou du Google Play Store, et connectez-vous pour avoir accès à vos données médicales.",
     "PROCESS": "Si vous êtes sur une tablette ou sur un téléphone intelligent, vous pouvez télécharger Opal immédiatement en utilisant les liens ci-dessous. Sinon, vous pouvez suivre les liens fournis dans votre courriel de confirmation à partir de votre appareil mobile.",
     "APPSTORELOGO": "images/logos/AppStore_FR.svg",
-    "PLAYSTORELOGO": "images/logos/PlayStore_FR.png"
+    "PLAYSTORELOGO": "images/logos/PlayStore_FR.png",
+    "NOTIFICATION1": "Accéder aux données de ",
+    "NOTIFICATION2": " est sujet à confirmation par Medical Records.",
+    "NOTIFICATION3": "Vous aller recevoir une notification une fois votre relation est confirmé."
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",

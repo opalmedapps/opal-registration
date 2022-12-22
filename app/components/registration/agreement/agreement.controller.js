@@ -109,8 +109,6 @@
         vm.registerPatient = function () {
             
             var parameters = vm.formData.formFieldsData;
-            var email = vm.formData.formFieldsData.email;
-            var language = vm.formData.formFieldsData.language;
 
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
@@ -144,7 +142,6 @@
                     }
                 })
                 .catch(function (error) {
-                   
                     // Call function to display error modal box.
                     vm.parent.errorPopup('contactUsError');
                 });
