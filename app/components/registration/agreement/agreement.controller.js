@@ -108,7 +108,7 @@
         // Function to call service for register patient
         vm.registerPatient = function () {
             
-            var parameters = vm.formData.formFieldsData;
+            const parameters = vm.formData.formFieldsData;
 
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
@@ -119,7 +119,7 @@
                         vm.parent.errorPopup('contactUsError');
                     }
                     else {
-                        if (response.Data[0].Result == "Successfully Update") {     
+                        if (response.Data[0].Result == "Successfully Update") {
                             // Hide display spinner after all request get response.
                             vm.formData.displaySpinner = true;
 
