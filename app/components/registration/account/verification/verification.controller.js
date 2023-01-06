@@ -69,7 +69,7 @@
 
             const request = {
                 method: 'post',
-                url: '/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email/',
+                url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email/`,
             };
             try {
                 await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email});
@@ -82,7 +82,7 @@
             // Listener service call.
             const request = {
                 method: 'post',
-                url: '/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email-code/',
+                url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email-code/`,
             };
             try {
                 const response = await requestToListener.apiRequest(
