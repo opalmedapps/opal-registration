@@ -16,7 +16,6 @@
     function questionsController($rootScope, $location, $filter, $scope, $timeout, requestToListener, apiConstants) {
         let vm = this;
         vm.submitError = undefined;
-        $scope.email = undefined;
 
         // Call function on page load to fetch the data.
         vm.$onInit = function() {

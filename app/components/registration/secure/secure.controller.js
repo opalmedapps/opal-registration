@@ -151,8 +151,7 @@
         });
 
         vm.allStatusValid = function() {
-            return vm.formData.emailFormat.status == vm.parent.STATUS_VALID &&
-                vm.formData.passwordFormat.status == vm.parent.STATUS_VALID &&
+            return vm.formData.passwordFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
@@ -185,33 +184,6 @@
             vm.formData.agreementForm.flag = null;
             vm.formData.successForm.status = "";
             vm.formData.successForm.flag = null;
-        }
-
-        // Function to validate email
-        vm.validateEmail = function () {
-
-            //Email pattern
-            let strongRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-            if (vm.parent.isEmpty(vm.formData.formFieldsData.email)) {
-                vm.formData.emailFormat.status = vm.parent.STATUS_INVALID;
-                //vm.formData.emailFormat.message = null;
-                vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILREQUIRED');
-            } else {
-                if (!strongRegex.test(vm.formData.formFieldsData.email)) {
-                    vm.formData.emailFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILFORMAT');
-                } else {
-                    vm.formData.emailFormat.status = vm.parent.STATUS_VALID;
-                    vm.formData.emailFormat.message = null;
-
-                    if (vm.allStatusValid()) {
-                        // Display shared error message
-                        vm.sharedErrorMessage = true;
-
-                    }
-                }
-            }
         }
 
         // Function to validate password
@@ -416,7 +388,7 @@
         // Function to validate answer3.
         vm.validateAnswer3 = function () {
 
-            if (vvm.parent.isEmpty(vm.formData.formFieldsData.answer3)) {
+            if (vm.parent.isEmpty(vm.formData.formFieldsData.answer3)) {
                 vm.formData.answer3Format.status = vm.parent.STATUS_INVALID,
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             } else {
@@ -525,6 +497,9 @@
                 // Call function ot language list
                 vm.parent.languageListForPreference();
             }
+
+            console.log(vm.formData.formFieldsData);
+            console.log(vm.allStatusValid());
         }
 
         // Function to check if email is already in use.

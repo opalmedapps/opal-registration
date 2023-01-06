@@ -117,8 +117,7 @@
 
                         // Call function to display error modal box.
                         vm.parent.errorPopup('contactUsError');
-                    }
-                    else {
+                    } else {
                         if (response.Data[0].Result == "Successfully Update") {
                             // Hide display spinner after all request get response.
                             vm.formData.displaySpinner = true;
@@ -127,15 +126,13 @@
                             vm.parent.resetFields();
 
                             // Call function to user authorized value
-                            userAuthorizationService.clearuserAuthorizationInfomation();
+                            userAuthorizationService.clearUserAuthorizationInfomation();
 
                             // Redirect to last successful page
                             $rootScope.$apply(function () {
                                 $location.path('/form/registrationSuccessful');
                             });
-                        }
-                        else {
-
+                        } else {
                             // Call function to display error modal box.
                             vm.parent.errorPopup('contactUsError');
                         }
