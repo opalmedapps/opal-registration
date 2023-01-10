@@ -136,9 +136,10 @@
     },
     "FIELDERRORMESSAGES": {
       "EMAILREQUIRED": "Please enter your email address.",
-      "CONFIRMEMAILREQUIRED": "Please enter your email address again.",
       "PASSWORDREQUIRED": "Please enter your password.",
       "CONFIRMPASSWORDREQUIRED": "Please enter your password again.",
+      "PHONEREQUIRED": "Please enter your phone number.",
+      "PHONEINVALID": "Phone number is invalid.",
       "SECURITYQUESTIONREQUIRED": "Please select a security question.",
       "ANSWERREQUIRED": "Please provide an answer to the security question above.",
       "EMAILFORMAT": "Please enter a valid email address.",

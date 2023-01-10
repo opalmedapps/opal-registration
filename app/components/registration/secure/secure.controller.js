@@ -115,11 +115,11 @@
         $rootScope.$on("changeErrorLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values            
-                vm.validateEmail();
+                // Call functions to check the both field error values
                 vm.validatePassword();
                 vm.validateConfirmPassword();
                 vm.comparePassword();
+                vm.validatePhone();
                 vm.validateSecurityQuestion1();
                 vm.validateAnswer1();
                 vm.validateSecurityQuestion2();
@@ -151,9 +151,9 @@
         });
 
         vm.allStatusValid = function() {
-            return vm.formData.emailFormat.status == vm.parent.STATUS_VALID &&
-                vm.formData.passwordFormat.status == vm.parent.STATUS_VALID &&
+            return vm.formData.passwordFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID &&
+                vm.formData.phoneFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID &&
@@ -185,33 +185,6 @@
             vm.formData.agreementForm.flag = null;
             vm.formData.successForm.status = "";
             vm.formData.successForm.flag = null;
-        }
-
-        // Function to validate email
-        vm.validateEmail = function () {
-
-            //Email pattern
-            let strongRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-            if (vm.parent.isEmpty(vm.formData.formFieldsData.email)) {
-                vm.formData.emailFormat.status = vm.parent.STATUS_INVALID;
-                //vm.formData.emailFormat.message = null;
-                vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILREQUIRED');
-            } else {
-                if (!strongRegex.test(vm.formData.formFieldsData.email)) {
-                    vm.formData.emailFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILFORMAT');
-                } else {
-                    vm.formData.emailFormat.status = vm.parent.STATUS_VALID;
-                    vm.formData.emailFormat.message = null;
-
-                    if (vm.allStatusValid()) {
-                        // Display shared error message
-                        vm.sharedErrorMessage = true;
-
-                    }
-                }
-            }
         }
 
         // Function to validate password
@@ -294,6 +267,38 @@
                     if (vm.allStatusValid()) {
                         // Display shared error message
                         vm.sharedErrorMessage = true;
+                    }
+                }
+            }
+        }
+
+        // Function to validate phone
+        vm.validatePhone = function () {
+
+            //Variable to set field status and message.
+            const phone = vm.formData.formFieldsData.phone;
+
+            if (vm.parent.isEmpty(phone)) {
+                vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                //vm.formData.passwordFormat.message = null;
+                vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEREQUIRED');
+            } else {
+                if (phone.toString().length < 12) {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
+                    return;
+                } else if (phone.toString().length > 12) {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
+                    return;
+                } else {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_VALID;
+                    vm.formData.phoneFormat.message = null;
+
+                    if (vm.allStatusValid()) {
+                        // Display shared error message
+                        vm.sharedErrorMessage = true;
+
                     }
                 }
             }
@@ -416,7 +421,7 @@
         // Function to validate answer3.
         vm.validateAnswer3 = function () {
 
-            if (vvm.parent.isEmpty(vm.formData.formFieldsData.answer3)) {
+            if (vm.parent.isEmpty(vm.formData.formFieldsData.answer3)) {
                 vm.formData.answer3Format.status = vm.parent.STATUS_INVALID,
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             } else {
@@ -465,6 +470,13 @@
             if (vm.parent.isEmpty(vm.formData.confirmPassword)) {
                 vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_INVALID;
                 vm.formData.confirmPasswordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.CONFIRMPASSWORDREQUIRED');
+
+                // Display shared error message
+                vm.sharedErrorMessage = false;
+            }
+            if (vm.parent.isEmpty(vm.formData.formFieldsData.phone)) {
+                vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEREQUIRED');
 
                 // Display shared error message
                 vm.sharedErrorMessage = false;

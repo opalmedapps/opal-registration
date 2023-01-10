@@ -58,12 +58,14 @@
 
             let countDown = vm.countdownSeconds;
             let time = setInterval(function() {
-                document.getElementById('count_down').textContent = countDown + textContent;
-                countDown--;
-                if (countDown < 0) {
-                    clearInterval(time);
-                    document.getElementById('count_down').textContent = '';
-                    document.getElementById('resend_btn').removeAttribute('disabled');
+                if (document.getElementById('count_down')) {
+                    document.getElementById('count_down').textContent = countDown + textContent;
+                    countDown--;
+                    if (countDown < 0) {
+                        clearInterval(time);
+                        document.getElementById('count_down').textContent = '';
+                        document.getElementById('resend_btn').removeAttribute('disabled');
+                    }
                 }
             }, 1000);
 
@@ -92,7 +94,7 @@
                 );
                 $timeout(() => {
                     vm.verifyCode = true;
-                    vm.isCodeValid = response?.status_code === 200;
+                    vm.isCodeValid = response?.status_code === "200";
                 })
             } catch (error) {
                 vm.parent.errorPopup('contactUsError');

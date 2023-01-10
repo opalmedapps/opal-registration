@@ -49,6 +49,7 @@
         this.confirmEmailFormat = { status: null, message: null };
         this.passwordFormat = { status: null, message: null };
         this.confirmPasswordFormat = { status: null, message: null };
+        this.phoneFormat = { status: null, message: null };
         this.securityQuestion1Format = { status: null, message: null };
         this.answer1Format = { status: null, message: null };
         this.securityQuestion2Format = { status: null, message: null };
