@@ -295,7 +295,9 @@
                         const institution = response.data?.institution;
 
                         if (patient &&  institution) {
-                            vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
+                            vm.formData.hospitalName = institution.name;
+                            vm.formData.firstName = patient.first_name;
+                            vm.formData.lastName = patient.last_name;
                         } else {
                             vm.formData.userName = `Not found`;
                             vm.parent.errorPopup('notFoundError');
