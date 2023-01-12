@@ -23,21 +23,21 @@
     <hr class="bg-opal mb-2">
 
     <!--Option buttons-->
-    <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+    <div class="row justify-content-center">
+        <div class="form-group col-md-3 col-sm-12">
             <label style="margin-right: 15px;">{{'LOGIN.INPUT.EMAIL' | translate}}</label>
-            <div class="col-md-3">
-                <div class="row"><input type="email" name="email" ng-model="vm.email" ng-keydown="vm.inputChange()" required></div>
-                <div class="row">
-                    <span style="color:red;font-size: 12px;" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
-                        <span ng-show="loginForm.email.$error.required">{{'LOGIN.ERROR.REQUIRED' | translate}}</span>
-                        <span ng-show="loginForm.email.$error.email">{{'LOGIN.ERROR.INPUT' | translate}}</span>
-                    </span>
-                </div>
-            </div>
+            <input type="email" name="email" ng-model="vm.email" ng-keydown="vm.inputChange()"
+                   class="form-control" tabindex="1" required>
+            <span style="color:red;font-size: 12px;" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
+                <span ng-show="loginForm.email.$error.required">{{'LOGIN.ERROR.REQUIRED' | translate}}</span>
+                <span ng-show="loginForm.email.$error.email">{{'LOGIN.ERROR.INPUT' | translate}}</span>
+            </span>
+        </div>
 
+        <div class="form-group col-md-3 col-sm-12">
             <label>{{'LOGIN.INPUT.PASSWORD' | translate}}</label>
-            <div class="col-md-3"><input type="password" name="password" ng-model="vm.password" ng-keydown="vm.inputChange()"></div>
+            <input type="password" name="password" ng-model="vm.password" ng-keydown="vm.inputChange()"
+                    class="form-control" tabindex="1" >
         </div>
     </div>
     <div class="row" ng-show="vm.loginError">
