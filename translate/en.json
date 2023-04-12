@@ -64,6 +64,7 @@
     "STEPS": "Step 2c of 5: ",
     "TITLE": "Create Security Questions",
     "INSTRUCTION_START": "Please note that certain data (such as answers to security questions) are specific to the hospital and only stored within the hospital. To access the data of ",
+    "INSTRUCTION_MID": " at ",
     "INSTRUCTION_END": " with your existing Opal account, please fill out the form below.",
     "FIELDNAMES": {
       "LOGINAS": "Logged in as ",
