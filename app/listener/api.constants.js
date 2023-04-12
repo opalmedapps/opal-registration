@@ -29,10 +29,6 @@
                 QUESTIONS: {
                     method: 'get',
                     url: '/api/security-questions/',
-                },
-                TERMS_OF_USE: {
-                    method: 'get',
-                    url: '/api/institutions/1/terms-of-use/',
                 }
             }
         });
