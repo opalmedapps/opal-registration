@@ -9,7 +9,12 @@
             <!--Instruction to follow-->
             <div class="d-flex justify-content-between ">
                 <div class="text-muted mr-2">
-                    <label>{{'QUESTIONS.INSTRUCTION_START' | translate}}</label>
+                    <label>{{'QUESTIONS.INSTRUCTION_START' | translate}}
+                        <span style="font-weight: bold;">{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</span>
+                        {{'QUESTIONS.INSTRUCTION_MID' | translate}}
+                        <span style="font-weight: bold;">{{vm.formData.hospitalName}}</span>
+                        {{'QUESTIONS.INSTRUCTION_END' | translate}}
+                    </label>
                 </div>
             </div>
         </div>
