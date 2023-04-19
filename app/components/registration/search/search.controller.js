@@ -407,8 +407,6 @@
                     request,
                     vm.formData.selectedLanguage
                 );
-
-                console.log(terms_response);
                 
                 $timeout(() => {
                     const termsOfUsePDF = terms_response?.data?.terms_of_use;
