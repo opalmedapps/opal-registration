@@ -33,7 +33,7 @@
   "SEARCH": {
     "STEPS": "Étape 1 de 5: ",
     "TITLE": "Confirmez votre identité",
-    "INSTRUCTION": "Pour créer un compte Opal, vous devez obtenir un code d’inscription à l’un de nos hôpitaux participants. Si vous avez un code d’inscription, veuillez entrer ce code ainsi que votre numéro d'assurance maladie (RAMQ) ci-dessous pour confirmer votre identité.",
+    "INSTRUCTION": "Pour créer un compte Opal, vous devez obtenir un code d’inscription à l’un de nos hôpitaux participants. Si vous avez un code d’inscription, veuillez entrer ce code ainsi que votre numéro d'assurance maladie (RAMQ) ou votre numéro de dossier médical (MRN) ci-dessous pour confirmer votre identité.",
     "FIELDNAMES": {
       "PATIENTID": "Numéro d'identification du patient",
       "REGISTRATIONCODE": "Votre code d’inscription"
