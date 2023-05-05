@@ -1,4 +1,4 @@
-FROM node:16.14.0-alpine3.14 as dependencies
+FROM node:16.20.0-alpine3.17 as dependencies
 
 # Install dependencies for bower
 RUN apk add --no-cache git
@@ -14,7 +14,7 @@ COPY bower.json ./
 RUN bower --allow-root install
 
 
-FROM php:8.0.16-apache-bullseye
+FROM php:8.0.28-apache-bullseye
 
 # Install dependencies
 RUN apt-get update \
