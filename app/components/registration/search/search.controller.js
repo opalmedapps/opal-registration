@@ -188,93 +188,11 @@
             //Set the firebase branch name
             userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
-            // Call function to get an IP address of user.
-            vm.getIP();
-        }
-
-
-        // Call service to get IP address of user.
-        vm.getIP = function () {
-
             // Display display spinner before calling service
             vm.formData.displaySpinner = false;
 
-            // Service call
-            searchService.getIP().then(function (response) {
-                
-                // Check the response status and perform action accordingly
-                if (response.status == 200) {
-                    var IPAddress = response.data.result;
-                    vm.insertIPLog(IPAddress);
-                }
-                else {
-
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                }
-            }).catch(function (error) {
-
-                // Call function to display error modal box.
-                vm.parent.errorPopup('contactUsError');
-            });
-
-        }
-
-        // Method to call service to insert Ip address.
-        vm.insertIPLog = function (IPAddress) {
-            var parameters = {
-                'IPAddress': IPAddress
-            };
-
-            // Listener service call.
-            requestToListener.sendRequestWithResponse('InsertIPLog', { Fields: parameters })
-                .then(function (response) {
-
-                    if (response.Data[0].Result == 'SUCCESS') {
-                        // Call function to validate IPAddress.
-                        vm.validateIP(IPAddress);
-                    }
-                    else {
-
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-                    }
-
-                })
-                .catch(function (error) {
-                    
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                });
-
-        }
-
-        // Method to check IP.
-        vm.validateIP = function (IPAddress) {
-
-            var parameters = IPAddress;
-            
-            // Listener service call.
-            requestToListener.sendRequestWithResponse('ValidateIP', { Fields: parameters })
-                .then(function (response) {
-
-                    // Check length of the variable
-                    if (response.Data[0].Result == 'SUCCESS') {
-                     
-                        // Call function to get user name.
-                        vm.validInputs(userAuthorizationService.getUserBranchName());
-                    }
-                    else {
-                     
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-                    }
-                })
-                .catch(function (error) {
-
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                });
+            // Call function to get an IP address of user.
+            vm.validInputs(userAuthorizationService.getUserBranchName());
         }
 
         // Method to call service to check valid input.
