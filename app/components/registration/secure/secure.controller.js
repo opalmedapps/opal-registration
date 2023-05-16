@@ -528,8 +528,6 @@
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
 
-                //vm.checkFirebaseEmail();
-
                 vm.formData.formFieldsData.answer1 = vm.formData.formFieldsData.answer1.toUpperCase();
                 vm.formData.formFieldsData.answer2 = vm.formData.formFieldsData.answer2.toUpperCase();
                 vm.formData.formFieldsData.answer3 = vm.formData.formFieldsData.answer3.toUpperCase();
@@ -537,40 +535,6 @@
                 // Call function ot language list
                 vm.parent.languageListForPreference();
             }
-        }
-
-        // Function to check if email is already in use.
-        vm.checkFirebaseEmail = function () {
-
-            // Display display spinner before calling service
-            vm.formData.displaySpinner = false;
-
-            // Method to get security questions list from database
-            var parameters = vm.formData.formFieldsData.email;
-
-            requestToListener.sendRequestWithResponse('CheckFirebaseEmail', { Fields: parameters })
-                .then(function (response) {
-
-                    if (response.Data == "auth/email-already-in-use") {
-
-                        vm.formData.emailFormat.status = vm.parent.STATUS_INVALID,
-                            //vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILINUSE');
-                            vm.formData.emailFormat.message = 'test';
-                    } else if (response.Data == "ERROR") {
-
-                        // Call function to get accesslevel list.
-                        vm.accessLevelList();
-                    } else {
-
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-                    }
-                })
-                .catch(function (error) {
-
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-                });
         }
     };
 })();
