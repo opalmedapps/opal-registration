@@ -7,21 +7,13 @@
   ],
   "gitmasterbranch": "https://gitlab.com/yickmo/registration-web-page.git",
   "dependencies": {
-    "angular": "1.8.2",
-    "angular-ui-router": "1.0.30",
     "bootstrap": "4.6.1",
     "jquery": "3.6.0",
     "font-awesome": "^5.15.4",
-    "angular-tooltips": "^1.2.2",
     "zxcvbn": "4.4.2",
-    "angular-translate": "2.19.0",
-    "angular-translate-loader-static-files": "2.19.0",
-    "angularjs-datepicker": "2.1.23",
     "firebase": "^3.9.0",
     "crypto-js": "^4.1.1",
     "tweetnacl-util": "0.15.1",
-    "tweetnacl": "^1.0.3",
-    "angularfire": "^2.3.0",
-    "angular-bootstrap": "^2.5.0"
+    "tweetnacl": "^1.0.3"
   }
 }
