@@ -13,6 +13,11 @@ WORKDIR /app
 COPY bower.json ./
 RUN bower --allow-root install
 
+COPY package.json ./
+COPY package-lock.json ./
+COPY .npmrc ./
+RUN npm ci
+
 
 FROM php:8.0.28-apache-bullseye
 
@@ -34,5 +39,6 @@ USER www-data
 # Parent needs to be owned by www-data to satisfy npm
 # RUN chown -R www-data:www-data /var/www/
 COPY --from=dependencies --chown=www-data:www-data /app/bower_components ./bower_components
+COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
 
 COPY --chown=www-data:www-data . .
