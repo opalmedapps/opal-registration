@@ -28,15 +28,16 @@
 
             return new Promise((resolve) => {
                 let requestType;
-                let requestParameters;
-                
+                // Clone the parameters to prevent re-encrypting when using them in several requests
+                let requestParameters = JSON.parse(JSON.stringify(parameters));
+
                 if (encryptionKey) {
                     requestType = typeOfRequest;
-                    requestParameters = encryptionService.encryptWithKey(parameters, encryptionKey);
+                    requestParameters = encryptionService.encryptWithKey(requestParameters, encryptionKey);
                 } else {
                     encryptionService.generateEncryptionHash();
                     requestType = encryptionService.encryptData(typeOfRequest);
-                    requestParameters = encryptionService.encryptData(parameters);
+                    requestParameters = encryptionService.encryptData(requestParameters);
                 }
                 constants.version()
                     .then(version => {
