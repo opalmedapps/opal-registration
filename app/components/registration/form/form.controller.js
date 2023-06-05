@@ -88,7 +88,6 @@
         function resetFields(error) {
             // Delete value of text box.
 
-            vm.formData.formFieldsData.dateofBirth = "";
             vm.formData.formFieldsData.email = "";
             vm.formData.confirmEmail = "";
             vm.formData.formFieldsData.password = "";
@@ -107,9 +106,9 @@
             vm.formData.formFieldsData.accessLevelSign = 0;
             vm.formData.formFieldsData.token = "";
             vm.formData.formFieldsData.uniqueId = "";
+            vm.formData.formFieldsData.phone = "";
 
             // Reset status and message of all fields.
-            vm.formData.dateofBirthFormat = { status: null, message: null };
             vm.formData.emailFormat = { status: null, message: null };
             vm.formData.phoneFormat = { status: null, message: null };
             vm.formData.passwordFormat = { status: null, message: null };
