@@ -58,13 +58,10 @@
                 response.Timestamp = timestamp;
                 clearTimeout(timeOut);
 
-                if (response.Code === SUCCESS) {
-                    if (!encryptionKey) response = encryptionService.decryptData(response);
-                    
-                    return {success: response};
-                } else {
-                    return handleResponseError(response)
-                }
+                if (!encryptionKey) response = encryptionService.decryptData(response);
+
+                if (response.Code === SUCCESS) return {success: response};
+                else return handleResponseError(response);
             }
         }
 

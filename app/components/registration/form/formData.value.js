@@ -18,8 +18,8 @@
         // Variables to pass the values to the listener
         this.formFieldsData = {
             registrationCode: '',
+            mrn: '',
             ramq: '',
-            dateofBirth: '',
             email: '',
             password: '',
             securityQuestion1: '',
@@ -44,7 +44,6 @@
         // Variables to set field status and message.
         this.codeFormat = { status: null, message: null };
         this.ramqFormat = { status: null, message: null };
-        this.dateofBirthFormat = { status: null, message: null };
         this.emailFormat = { status: null, message: null };
         this.confirmEmailFormat = { status: null, message: null };
         this.passwordFormat = { status: null, message: null };
