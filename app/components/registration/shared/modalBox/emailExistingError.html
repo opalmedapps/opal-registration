@@ -1,0 +1,30 @@
+﻿<!--Page to display contact us error modal box-->
+<div class="modal  in show d-block" tabindex="-1" role="dialog" aria-labelledby="contactUsModal" id="contactUs" aria-modal="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-danger border-danger">
+            <div class="modal-header text-white pb-0 border-bottom-0">
+                <img class="pr-2" src="images/icon/icons8-alert.png">
+                <h5 class="modal-title mt-1" id="exampleModalLabel">{{'ERRORMODAL.SHARED.MODALTITLE' | translate}}</h5>
+                <i class="fas fa-times-circle close text-white fa-icon-cursor" ng-click="close()"></i>
+            </div>
+            <div class="modal-body bg-white m-2 rounded">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-center text-muted">
+                                {{'ERRORMODAL.EXISTINGEMAILERROR.DESCRIPTION' | translate}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary text-white" ng-click="close()">
+                                {{'ERRORMODAL.SHARED.BUTTONDISMISS' | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
