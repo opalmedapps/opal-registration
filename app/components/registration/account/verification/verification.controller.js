@@ -53,33 +53,57 @@
             vm.formData.successForm.flag = null;
         }
 
-        vm.sendVerificationCode = async function() {
-            vm.sendCode = true;
-
-            let countDown = vm.countdownSeconds;
-            let time = setInterval(function() {
-                if (document.getElementById('count_down')) {
-                    document.getElementById('count_down').textContent = countDown + textContent;
-                    countDown--;
-                    if (countDown < 0) {
-                        clearInterval(time);
-                        document.getElementById('count_down').textContent = '';
-                        document.getElementById('resend_btn').removeAttribute('disabled');
+        vm.checkEmailAndSendVerificationCode = function() {
+            requestToListener.sendRequestWithResponse('CheckEmailExistsInFirebase', { Fields: {'email': vm.email} })
+                .then(function (response) {
+                    if (response?.Data?.errorInfo?.code == 'auth/user-not-found') {
+                        vm.sendVerificationCode();
+                    } else if (response?.Data?.uid) {
+                        vm.parent.errorPopup('emailExistingError');
+                        $timeout(() => {
+                            $location.path('/form/login');
+                        });
+                    } else {
+                        vm.parent.errorPopup('contactUsError');
                     }
-                }
-            }, 1000);
+                })
+                .catch(function (error) {
+                    // Call function to display error modal box.
+                    vm.parent.errorPopup('contactUsError');
+                });
+        }
 
+        vm.sendVerificationCode = async function() {
             const request = {
                 method: 'post',
                 url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email/`,
             };
             try {
                 await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email});
+
+                $timeout(() => {
+                    vm.sendCode = true;
+
+                    let countDown = vm.countdownSeconds;
+                    let time = setInterval(function () {
+                        if (document.getElementById('count_down')) {
+                            document.getElementById('count_down').textContent = countDown + textContent;
+                            countDown--;
+                            if (countDown < 0) {
+                                clearInterval(time);
+                                document.getElementById('count_down').textContent = '';
+                                document.getElementById('resend_btn').removeAttribute('disabled');
+                            }
+                        }
+                    }, 1000);
+                });
+
             } catch(error) {
                 console.log(error);
                 vm.parent.errorPopup('contactUsError');
             }
         }
+
         vm.checkVerificationCode = async function() {
             // Listener service call.
             const request = {
@@ -95,17 +119,19 @@
                 $timeout(() => {
                     vm.verifyCode = true;
                     vm.isCodeValid = response?.status_code === "200";
-                })
+                });
             } catch (error) {
                 vm.parent.errorPopup('contactUsError');
             }
         }
+
         vm.resendVerificationCode = function() {
             vm.isCodeValid = false;
             vm.sendCode = false;
             vm.verifyCode = false;
             vm.sendCode = false;
         }
+
         vm.verificationFormSubmit = function() {
             vm.formData.formFieldsData.email = vm.email;
             $location.path('/form/secureInformation');
