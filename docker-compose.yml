@@ -1,9 +1,7 @@
-version: '3'
-
 services:
   app:
-    build: .
-    image: opalmedapps/registration
+    build:
+      context: .
     ports:
       - 8083:80
     volumes:
