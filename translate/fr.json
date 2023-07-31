@@ -160,7 +160,7 @@
     "TITLE": "Accès aux données",
     "INSTRUCTION1": "Afin d’avoir accès aux données médicales de ",
     "INSTRUCTION2": " à ",
-    "INSTRUCTION3": " utilisant Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
+    "INSTRUCTION3": " dans Opal, et aux données médicales de tout patient auquel vous demanderez l'accès plus tard dans cette institution, vous devrez donner votre consentement par moyen du formulaire ci-dessous.",
     "FIELDNAMES": {
       "ACCESSLEVEL": "Niveau d’accès aux données",
       "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d’accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d’accès est expliqué ci-dessous:",
