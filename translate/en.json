@@ -160,7 +160,7 @@
     "TITLE": "Your Data Access",
     "INSTRUCTION1": "In order to access the medical data of ",
     "INSTRUCTION2": " at ",
-    "INSTRUCTION3": " using Opal, you must give your consent using the form below.",
+    "INSTRUCTION3": " using Opal, and the medical data of any patient(s) you request access to in the future, at this institution, you must give your consent using the form below.",
     "FIELDNAMES": {
       "ACCESSLEVEL": "Data Access Level",
       "ACCESSLEVELINSTRUCTION1": "The following data are generally available (pending availability at ",
