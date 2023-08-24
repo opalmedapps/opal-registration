@@ -13,7 +13,7 @@
         };
 
         // Function to send request to listener
-        function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
+        function sendRequest(typeOfRequest, parameters) {
 
             // Get firebase parent branch
             const firebase_parentBranch = userAuthorizationService.getHospitalCode();
@@ -31,14 +31,10 @@
                 // Clone the parameters to prevent re-encrypting when using them in several requests
                 let requestParameters = JSON.parse(JSON.stringify(parameters));
 
-                if (encryptionKey) {
-                    requestType = typeOfRequest;
-                    requestParameters = encryptionService.encryptWithKey(requestParameters, encryptionKey);
-                } else {
-                    encryptionService.generateEncryptionHash();
-                    requestType = encryptionService.encryptData(typeOfRequest);
-                    requestParameters = encryptionService.encryptData(requestParameters);
-                }
+                encryptionService.generateEncryptionHash();
+                requestType = encryptionService.encryptData(typeOfRequest);
+                requestParameters = encryptionService.encryptData(requestParameters);
+
                 constants.version()
                     .then(version => {
                         let request_object = {
@@ -47,18 +43,18 @@
                             'Parameters': requestParameters,
                             'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
-                        let reference = referenceField || 'requests';
+                        let reference = 'requests';
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve({key: pushID.key, url: firebase_url});
                     });
             });
         }
 
-        function sendRequestWithResponse(typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
+        function sendRequestWithResponse(typeOfRequest, parameters) {
             return new Promise((resolve, reject) => {
 
                 //Sends request and gets random key for request
-                sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
+                sendRequest(typeOfRequest, parameters)
                     .then(response => {
                         const key = response.key;
                         const firebase_url = response.url;
@@ -66,9 +62,7 @@
                         // Get firebase response url
                         const response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
 
-                        let refRequestResponse = (!referenceField) ?
-                            response_url.child(key) :
-                            firebase_url.child(responseField).child(key);
+                        let refRequestResponse = response_url.child(key);
 
                         //Waits to obtain the request data.
                         refRequestResponse.on('value', snapshot => {
@@ -79,7 +73,7 @@
                                 refRequestResponse.set(null);
                                 refRequestResponse.off();
 
-                                data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
+                                data = responseValidatorFactory.validate(data, timeOut);
                                 (data.success) ? resolve(data.success) : reject(data.error);
                             }
                         }, error => {
