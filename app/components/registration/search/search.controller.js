@@ -47,7 +47,7 @@
             vm.setFormStatus();
             
             // Hide display spinner on load
-            vm.formData.displaySpinner = true;
+            vm.formData.displaySpinner = false;
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
@@ -189,7 +189,7 @@
             userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
             // Display display spinner before calling service
-            vm.formData.displaySpinner = false;
+            vm.formData.displaySpinner = true;
 
             // Call function to get an IP address of user.
             vm.validInputs(userAuthorizationService.getUserBranchName());
@@ -233,7 +233,7 @@
                         .catch(function (error) {
 
                             // Hide display spinner if service get error.
-                            vm.formData.displaySpinner = true;
+                            vm.formData.displaySpinner = false;
         
                             // Call function to display error modal box.
                             vm.parent.errorPopup('notFoundError');
@@ -250,7 +250,7 @@
                 .catch(function (error) {
 
                     // Hide display spinner if service get error.
-                    vm.formData.displaySpinner = true;
+                    vm.formData.displaySpinner = false;
 
                     // Call function to display error modal box.
                     vm.parent.errorPopup('contactUsError');
@@ -296,7 +296,7 @@
                             vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
                         
                         // Hide display spinner after all request get response.
-                        vm.formData.displaySpinner = true;
+                        vm.formData.displaySpinner = false;
 
                         $rootScope.$apply(function () {
                             $location.path('/form/account');
@@ -345,7 +345,7 @@
                     vm.isTermsLoaded = true;
 
                     // Hide display spinner after all request get response.
-                    vm.formData.displaySpinner = true;
+                    vm.formData.displaySpinner = false;
                 });
             } catch (error) {
                 $timeout(() => {
@@ -355,7 +355,7 @@
                     );
 
                     // Hide display spinner after all request get response.
-                    vm.formData.displaySpinner = true;
+                    vm.formData.displaySpinner = false;
 
                     vm.parent.errorPopup('contactUsError');
                 });
