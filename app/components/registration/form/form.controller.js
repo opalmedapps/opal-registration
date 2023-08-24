@@ -144,10 +144,6 @@
                     errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
                     vm.displayError(errorModalPage);
                     break;
-                case 'forbiddenError':
-                    errorModalPage = 'app/components/registration/shared/modalBox/forbiddenError.html';
-                    vm.displayError(errorModalPage);
-                    break;
                 case 'emailExistingError':
                     errorModalPage = 'app/components/registration/shared/modalBox/emailExistingError.html';
                     vm.displayError(errorModalPage);

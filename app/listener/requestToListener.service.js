@@ -122,7 +122,7 @@
                         response_url.set(null);
                         response_url.off();
 
-                        data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
+                        data = responseValidatorFactory.validateApiResponse(data, timeOut);
                         (data.success) ? resolve(data.success) : reject(data.error);
                     }
                 });

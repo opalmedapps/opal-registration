@@ -68,18 +68,15 @@
         /**
          validates incoming response from listener
          @param response
-         @param encryptionKey
          @param timeOut
          **/
 
-        function validateApiResponse(response, encryptionKey, timeOut) {
+        function validateApiResponse(response, timeOut) {
             if (!response.status_code) {
                 return {error: {Code: 'ENCRYPTION_ERROR'}}
             } else {
                 clearTimeout(timeOut);
-
-                if (!encryptionKey) response = encryptionService.decryptData(response);
-
+                response = (typeof response.status_code === 'number') ? response : encryptionService.decryptData(response);
                 return (response.status_code === '200') ? {success: response} : handleResponseError(response);
             }
         }
@@ -97,6 +94,8 @@
                 case INVALID_VERSION_ERROR:
                     handleInvalidVersionError();
                     return {error: {Code: 'INVALID_VERSION_ERROR'}}
+                default:
+                    return {error: response};
             }
         }
 
