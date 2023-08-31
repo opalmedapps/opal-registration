@@ -52,7 +52,8 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
              **/
 
             getFirebaseUrl: function (extension) {
-                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode == extension);
+                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode === extension);
+                if (!hospital_code) throw 'INVALID_HOSPITAL_CODE';
                 const unique_code = hospital_code ? hospital_code.uniqueHospitalCode + '/' : '';
                 return devBranch + '/' + unique_code + parentBranch + '/';
             },
@@ -65,7 +66,8 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
              **/
 
             getFirebaseApiUrl: function (extension) {
-                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode == extension);
+                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode === extension);
+                if (!hospital_code) throw 'INVALID_HOSPITAL_CODE';
                 const unique_code = hospital_code ? hospital_code.uniqueHospitalCode + '/' : '';
                 return devBranch + '/' + unique_code + apiParentBranch + '/';
             },

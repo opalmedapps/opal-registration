@@ -44,11 +44,9 @@
         /**
              validates incoming response from listener
              @param response
-             @param encryptionKey
              @param timeOut
          **/
-
-        function validate(response, encryptionKey, timeOut) {
+        function validate(response, timeOut) {
             let timestamp = response.Timestamp;
 
             // TODO: it seems that encryption errors are no longer being handled properly by the app. This could be due to fact that response code is sometimes being returned encrypted
@@ -58,7 +56,7 @@
                 response.Timestamp = timestamp;
                 clearTimeout(timeOut);
 
-                if (!encryptionKey) response = encryptionService.decryptData(response);
+                response = encryptionService.decryptData(response);
 
                 if (response.Code === SUCCESS) return {success: response};
                 else return handleResponseError(response);
@@ -68,18 +66,14 @@
         /**
          validates incoming response from listener
          @param response
-         @param encryptionKey
          @param timeOut
          **/
-
-        function validateApiResponse(response, encryptionKey, timeOut) {
+        function validateApiResponse(response, timeOut) {
             if (!response.status_code) {
                 return {error: {Code: 'ENCRYPTION_ERROR'}}
             } else {
                 clearTimeout(timeOut);
-
-                if (!encryptionKey) response = encryptionService.decryptData(response);
-
+                response = (typeof response.status_code === 'number') ? response : encryptionService.decryptData(response);
                 return (response.status_code === '200') ? {success: response} : handleResponseError(response);
             }
         }
@@ -101,7 +95,7 @@
                     error = {error: {Code: 'INVALID_VERSION_ERROR'}};
                     break;
                 default:
-                    error = {error: {Code: response.data?.errorMessage}};
+                    error = {error: response};
             }
 
             return error;

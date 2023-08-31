@@ -13,32 +13,34 @@
         };
 
         // Function to send request to listener
-        function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
+        function sendRequest(typeOfRequest, parameters) {
 
-            // Get firebase parent branch
-            const firebase_parentBranch = userAuthorizationService.getHospitalCode();
+            return new Promise((resolve, reject) => {
+                // Get firebase parent branch
+                const firebase_parentBranch = userAuthorizationService.getHospitalCode();
 
-            let branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
-                ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
-                : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+                let branch_name;
+                try {
+                    branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
+                        ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
+                        : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+                }
+                catch(error) {
+                    reject(error);
+                    return;
+                }
 
+                // Get firebase request user
+                const firebase_url = firebase.database().ref(branch_name);
 
-            // Get firebase request user
-            const firebase_url = firebase.database().ref(branch_name);
-
-            return new Promise((resolve) => {
                 let requestType;
                 // Clone the parameters to prevent re-encrypting when using them in several requests
                 let requestParameters = JSON.parse(JSON.stringify(parameters));
 
-                if (encryptionKey) {
-                    requestType = typeOfRequest;
-                    requestParameters = encryptionService.encryptWithKey(requestParameters, encryptionKey);
-                } else {
-                    encryptionService.generateEncryptionHash();
-                    requestType = encryptionService.encryptData(typeOfRequest);
-                    requestParameters = encryptionService.encryptData(requestParameters);
-                }
+                encryptionService.generateEncryptionHash();
+                requestType = encryptionService.encryptData(typeOfRequest);
+                requestParameters = encryptionService.encryptData(requestParameters);
+
                 constants.version()
                     .then(version => {
                         let request_object = {
@@ -47,18 +49,18 @@
                             'Parameters': requestParameters,
                             'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
-                        let reference = referenceField || 'requests';
+                        let reference = 'requests';
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve({key: pushID.key, url: firebase_url});
                     });
             });
         }
 
-        function sendRequestWithResponse(typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
+        function sendRequestWithResponse(typeOfRequest, parameters) {
             return new Promise((resolve, reject) => {
 
                 //Sends request and gets random key for request
-                sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
+                sendRequest(typeOfRequest, parameters)
                     .then(response => {
                         const key = response.key;
                         const firebase_url = response.url;
@@ -66,9 +68,7 @@
                         // Get firebase response url
                         const response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
 
-                        let refRequestResponse = (!referenceField) ?
-                            response_url.child(key) :
-                            firebase_url.child(responseField).child(key);
+                        let refRequestResponse = response_url.child(key);
 
                         //Waits to obtain the request data.
                         refRequestResponse.on('value', snapshot => {
@@ -80,7 +80,7 @@
                                 refRequestResponse.off();
 
                                 try {
-                                    data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
+                                    data = responseValidatorFactory.validate(data, timeOut);
                                     (data.success) ? resolve(data.success) : reject(data.error);
                                 } catch (error) {
                                     const originalResponse = JSON.parse(JSON.stringify(data));
@@ -102,8 +102,9 @@
                             response_url.off();
                             reject({ Response: 'timeout' });
                         }, 30000);
-                    });
-            }).catch(err => console.log(err));
+                    })
+                .catch(reject);
+            });
         }
 
         /**
@@ -117,9 +118,17 @@
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, language, data);
                 const requestType = firebaseFactory.getApiParentBranch();
-                const {key, url} = await sendRequest(requestType, formatedParams);
-                const firebasePath = `responses/${key}`;
-                const response_url = url.child(firebasePath);
+
+                let response_url;
+                try {
+                    const {key, url} = await sendRequest(requestType, formatedParams);
+                    const firebasePath = `responses/${key}`;
+                    response_url = url.child(firebasePath);
+                }
+                catch(error) {
+                    reject(error);
+                    return;
+                }
 
                 response_url.on('value', snapshot => {
                     if (snapshot.exists()) {
@@ -129,7 +138,7 @@
                         response_url.set(null);
                         response_url.off();
 
-                        data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
+                        data = responseValidatorFactory.validateApiResponse(data, timeOut);
                         (data.success) ? resolve(data.success) : reject(data.error);
                     }
                 });
