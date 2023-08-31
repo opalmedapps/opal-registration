@@ -47,7 +47,7 @@
             vm.setFormStatus();
             
             // Hide display spinner on load
-            vm.formData.displaySpinner = true;
+            vm.formData.displaySpinner = false;
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
@@ -189,77 +189,53 @@
             userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
             // Display display spinner before calling service
-            vm.formData.displaySpinner = false;
+            vm.formData.displaySpinner = true;
 
-            // Call function to get an IP address of user.
-            vm.validInputs(userAuthorizationService.getUserBranchName());
+            // Call the backend to validate the user's inputs and proceed with data initialization
+            vm.validateInputs();
         }
 
-        // Method to call service to check valid input.
-        vm.validInputs = function (requestObject) {
+        /**
+         * @description Calls the listener to validate the input data and receive patient and institution information.
+         *              Then, proceeds with some basic data initialization.
+         * @returns {Promise<void>} Resolves upon success; errors are caught and handled.
+         */
+        vm.validateInputs = async function() {
+            try {
+                const request = {
+                    method: 'get',
+                    url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
+                };
 
-            // Listener service call.
-            const request = {
-                method: 'get',
-                url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
-            };
+                let response = await requestToListener.apiRequest(request, vm.formData.selectedLanguage);
 
-            requestToListener.apiRequest(request, vm.formData.selectedLanguage)
-                .then(function (response) {
+                // Read the patient and institution information sent in the response
+                const patient = response.data?.patient;
+                const institution = response.data?.institution;
+                if (!patient || !institution) throw response;
 
-                    if (response?.status_code == 200) {
-                        // Call function to get user name.
-                        const patient = response.data?.patient;
-                        const institution = response.data?.institution;
+                vm.formData.hospitalName = institution.name;
+                vm.formData.institutionId = institution.id;
+                vm.formData.firstName = patient.first_name;
+                vm.formData.lastName = patient.last_name;
+                vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
 
-                        if (patient &&  institution) {
-                            vm.formData.hospitalName = institution.name;
-                            vm.formData.institutionId = institution.id;
-                            vm.formData.firstName = patient.first_name;
-                            vm.formData.lastName = patient.last_name;
-                            vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
-                        } else if (response?.status_code == 403) {
-                            vm.formData.userName = `Forbidden`;
-                            vm.parent.errorPopup('forbiddenError');
-                        } else {
-                            vm.formData.userName = `Not found`;
-                            vm.parent.errorPopup('notFoundError');
-                        }
+                await vm.retrieveTermsOfUsePDF();
+                await vm.getSecurityQuestionList();
+            }
+            catch (error) {
+                // Hide the display spinner upon error
+                vm.formData.displaySpinner = false;
 
-                        vm.retrieveTermsOfUsePDF()
-                            .then(function () {
-                                vm.getSecurityQuestionList();
-                        })
-                        .catch(function (error) {
+                // Display an error in a modal box
+                if (error === 'INVALID_HOSPITAL_CODE' || error.status_code === 404) vm.parent.errorPopup('notFoundError');
+                else vm.parent.errorPopup('contactUsError');
 
-                            // Hide display spinner if service get error.
-                            vm.formData.displaySpinner = true;
-        
-                            // Call function to display error modal box.
-                            vm.parent.errorPopup('notFoundError');
-        
-                            // Call function to reset value of every text fields.
-                            vm.parent.resetFields();
-                        });
-                    } else {
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-                    }
-
-                })
-                .catch(function (error) {
-
-                    // Hide display spinner if service get error.
-                    vm.formData.displaySpinner = true;
-
-                    // Call function to display error modal box.
-                    vm.parent.errorPopup('contactUsError');
-
-                    // Call function to reset value of every text fields.
-                    vm.parent.resetFields();
-                });
+                // Clear the form data
+                vm.parent.resetFields();
+            }
         }
-    
+
         // Function to load security questions list on service call.
         vm.getSecurityQuestionList = function () {
             
@@ -296,7 +272,7 @@
                             vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
                         
                         // Hide display spinner after all request get response.
-                        vm.formData.displaySpinner = true;
+                        vm.formData.displaySpinner = false;
 
                         $rootScope.$apply(function () {
                             $location.path('/form/account');
@@ -316,50 +292,28 @@
         }
 
         vm.retrieveTermsOfUsePDF = async function () {
-            try {
-                const request = {
-                    method: 'get',
-                    url: `/api/institutions/${vm.formData.institutionId}/terms-of-use/`,
-                };
-                const terms_response = await requestToListener.apiRequest(
-                    request,
-                    vm.formData.selectedLanguage
+            const request = {
+                method: 'get',
+                url: `/api/institutions/${vm.formData.institutionId}/terms-of-use/`,
+            };
+            const terms_response = await requestToListener.apiRequest(
+                request,
+                vm.formData.selectedLanguage
+            );
+
+            $timeout(() => {
+                const termsOfUsePDF = terms_response?.data?.terms_of_use;
+                if (termsOfUsePDF === undefined || termsOfUsePDF === "") throw terms_response;
+
+                vm.formData.termsOfUseBase64 = $sce.trustAsResourceUrl(
+                    `data:application/pdf;base64,${termsOfUsePDF}`
                 );
-                
-                $timeout(() => {
-                    const termsOfUsePDF = terms_response?.data?.terms_of_use;
 
-                    if (termsOfUsePDF === undefined || termsOfUsePDF === "") {
-                        console.error(
-                            'Unable to retrieve the terms of use from the api-backend.'
-                        );
+                vm.isTermsLoaded = true;
 
-                        // Call function to display error modal box.
-                        vm.parent.errorPopup('contactUsError');
-                    }
-
-                    vm.formData.termsOfUseBase64 = $sce.trustAsResourceUrl(
-                        `data:application/pdf;base64,${termsOfUsePDF}`
-                    );
-
-                    vm.isTermsLoaded = true;
-
-                    // Hide display spinner after all request get response.
-                    vm.formData.displaySpinner = true;
-                });
-            } catch (error) {
-                $timeout(() => {
-                    console.error(
-                        'Unable to retrieve the terms of use from the api-backend:',
-                        error
-                    );
-
-                    // Hide display spinner after all request get response.
-                    vm.formData.displaySpinner = true;
-
-                    vm.parent.errorPopup('contactUsError');
-                });
-            }
+                // Hide display spinner after all request get response.
+                vm.formData.displaySpinner = false;
+            });
         }
-    };
+    }
 })();

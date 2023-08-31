@@ -34,7 +34,7 @@
             vm.formData = vm.parent.getData();
 
             // Hide display spinner
-            vm.formData.displaySpinner = true;
+            vm.formData.displaySpinner = false;
 
             // Call function to set current form class as active.
             vm.setFormStatus();
@@ -90,7 +90,7 @@
                 vm.sharedErrorMessage = true;
 
                 // Display display spinner before calling service
-                vm.formData.displaySpinner = false;
+                vm.formData.displaySpinner = true;
 
                 // Add question strings to the form, to be saved in the backend
                 for (let i = 1; i <= 3; i++) {
@@ -128,7 +128,7 @@
                     } else {
                         if (response.Data[0].Result == "Successfully Update") {
                             // Hide display spinner after all request get response.
-                            vm.formData.displaySpinner = true;
+                            vm.formData.displaySpinner = false;
 
                             // Call function to reset the fields value
                             vm.parent.resetFields();

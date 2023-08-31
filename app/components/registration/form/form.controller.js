@@ -62,7 +62,7 @@
         // Shared function to display error
         function displayError(errorModalPage, error) {
             // Hide display spinner if service get error.
-            vm.formData.displaySpinner = true;
+            vm.formData.displaySpinner = false;
 
             $uibModal.open({
                 animation: true,
@@ -144,10 +144,6 @@
                     errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
                     vm.displayError(errorModalPage);
                     break;
-                case 'forbiddenError':
-                    errorModalPage = 'app/components/registration/shared/modalBox/forbiddenError.html';
-                    vm.displayError(errorModalPage);
-                    break;
                 case 'emailExistingError':
                     errorModalPage = 'app/components/registration/shared/modalBox/emailExistingError.html';
                     vm.displayError(errorModalPage);
@@ -170,7 +166,7 @@
                             .then(function (response) {
                                 if (response?.data) {
                                     vm.formData.languageList['fr'] = response.data;
-                                    vm.formData.displaySpinner = true;
+                                    vm.formData.displaySpinner = false;
 
                                     $rootScope.$apply(function () {
                                         $location.path('/form/opalPreference');

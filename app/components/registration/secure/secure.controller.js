@@ -139,7 +139,7 @@
             vm.setFormStatus();
 
             // Hide display spinner on load
-            vm.formData.displaySpinner = true;
+            vm.formData.displaySpinner = false;
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
