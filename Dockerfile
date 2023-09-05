@@ -1,9 +1,13 @@
 FROM node:16.20.2-alpine3.18 as dependencies
 
+ARG NODE_ENV="production"
+ENV NODE_ENV="${NODE_ENV}"
+
+
 # Install dependencies for bower
 RUN apk add --no-cache git
 
-RUN npm install -g bower@1.8.14
+RUN npm install -g bower
 
 WORKDIR /app
 
@@ -16,6 +20,9 @@ RUN bower --allow-root install
 COPY package.json ./
 COPY package-lock.json ./
 COPY .npmrc ./
+
+# Installs only production dependencies when NODE_ENV is set to "production"
+# see: https://docs.npmjs.com/cli/v9/commands/npm-ci#omit
 RUN npm ci
 
 
