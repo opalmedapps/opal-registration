@@ -244,7 +244,7 @@
                 .then(function (response) {
 
                     // assing response to temporary variable.
-                    let securityQuestions = response?.data?.results;
+                    let securityQuestions = response?.data;
 
                     vm.formData.securityQuestionList_EN = [];
                     vm.formData.securityQuestionList_FR = [];
