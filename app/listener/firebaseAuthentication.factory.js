@@ -6,12 +6,11 @@ var myModule = angular.module('myApp');
 /**
       @ngdoc service
       @name myApp.service:firebaseFactory
-      @requires $firebaseAuth
       @requires myApp.service:userAuthorizationService
       @description Allows the app controllers or services obtain the authentication state and credentials, it also returns the urls inside for the firebase connection
 **/
-myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject', 'userAuthorizationService',
-    function ($firebaseAuth, $http) {
+myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
+    function ($http) {
 
         var firebaseBranch = '';
         var hospitalCodeArray = [];
