@@ -121,8 +121,10 @@
                     vm.isCodeValid = response?.status_code === "200";
                 });
             } catch (error) {
-                console.error(error);
-                vm.verifyCode = true;
+                $timeout(() => {
+                    console.error(error);
+                    vm.verifyCode = true;
+                });
             }
         }
 
