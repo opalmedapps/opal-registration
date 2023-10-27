@@ -57,7 +57,9 @@
             vm.formData.formFieldsData.accessLevel = 3;
             vm.formData.accessLevelFormat.status = 'valid';
 
-            vm.formData.formFieldsData.language = vm.formData.selectedLanguage;
+            if (vm.formData.formFieldsData.language == undefined || vm.formData.formFieldsData.language == null || vm.formData.formFieldsData.language == "") {
+                vm.formData.formFieldsData.language = vm.formData.selectedLanguage;
+            }
             vm.formData.languageFormat.status = 'valid';
 
             // Call function to set current form class as active.
