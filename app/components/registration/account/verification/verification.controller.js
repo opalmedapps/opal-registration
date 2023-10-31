@@ -100,7 +100,7 @@
 
             } catch(error) {
                 console.log(error);
-                vm.parent.errorPopup('contactUsError');
+                vm.parent.errorPopup('emailExistingError');
             }
         }
 
