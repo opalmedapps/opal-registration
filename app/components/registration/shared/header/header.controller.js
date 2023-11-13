@@ -76,14 +76,10 @@
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_FR;
                 }
 
-                
-
-
-                // Check if aggreement form is loaded. If yes assign french french document
-               // if (vm.formData.agreementForm.flag == 1) { 
-                    //vm.formData.formFieldsData.termsandAggreement = $sce.trustAsResourceUrl(vm.formData.termsandAggreementDocuments.DocumentLink_FR);
-                    //vm.formData.formFieldsData.termsandAggreementPDF = $sce.trustAsResourceUrl(vm.formData.termsandAggreementDocuments.PDFLink_FR);
-                //}
+                // Check if aggreement form is loaded. If yes assign french document
+                if (vm.formData.agreementForm.flag == 1) { 
+                    vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_FR;
+                }
             }
 
             // If global variable selectedlanguage is set to english
@@ -110,11 +106,10 @@
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_EN;
                 }
 
-                // Check if aggreement form is loaded. If yes assign french french document
-                //if (vm.formData.agreementForm.flag == 1) { 
-                    //vm.formData.formFieldsData.termsandAggreement = $sce.trustAsResourceUrl(vm.formData.termsandAggreementDocuments.DocumentLink_EN);
-                    //vm.formData.formFieldsData.termsandAggreementPDF = $sce.trustAsResourceUrl(vm.formData.termsandAggreementDocuments.PDFLink_EN);
-                //}
+                // Check if aggreement form is loaded. If yes assign english document
+                if (vm.formData.agreementForm.flag == 1) { 
+                    vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_EN;
+                }
             }
         }
     }

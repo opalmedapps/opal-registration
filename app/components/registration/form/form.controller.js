@@ -100,8 +100,6 @@
             vm.formData.formFieldsData.answer3 = "";
             vm.formData.formFieldsData.language = "";
             vm.formData.formFieldsData.accessLevel = "";
-            //vm.formData.formFieldsData.termsandAggreement = "";
-            //vm.formData.formFieldsData.termsandAggreementPDF = "";
             vm.formData.formFieldsData.termsandAggreementSign = 0;
             vm.formData.formFieldsData.accessLevelSign = 0;
             vm.formData.formFieldsData.token = "";
