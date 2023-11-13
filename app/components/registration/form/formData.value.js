@@ -88,7 +88,9 @@
         this.termsandAggreementDocuments = [{}];
 
         // terms of use PDF file in base64 format 
-        this.termsOfUseBase64 = undefined;
+        this.termsOfUseBase64_EN = undefined;
+        this.termsOfUseBase64_FR = undefined;
+        this.termsOfUseDisplayed = undefined;
         
         this.userName = '';
 
