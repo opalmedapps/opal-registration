@@ -33,8 +33,7 @@
         // Method to to set current form class as active and set flag for translation.
         vm.setFormStatus = function() {
             vm.formData.searchForm = "";
-            vm.formData.accountForm = 'active';
-            vm.formData.secureForm.status = "";
+            vm.formData.secureForm.status = "active";
             vm.formData.secureForm.flag = null;
             vm.formData.preferenceForm.status = "";
             vm.formData.preferenceForm.flag = null;
