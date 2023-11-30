@@ -42,8 +42,6 @@
 
         vm.setFormStatus = function() {
             vm.formData.searchForm = "";
-            vm.formData.accountForm = 'active';
-            vm.formData.secureForm.status = "";
             vm.formData.secureForm.flag = null;
             vm.formData.preferenceForm.status = "";
             vm.formData.preferenceForm.flag = null;
