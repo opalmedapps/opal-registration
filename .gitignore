@@ -6,6 +6,6 @@
 logs/*.log
 bower_components
 node_modules
-php/config.json
+config.json
 package-lock.json
 service-account.json

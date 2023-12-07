@@ -6,9 +6,9 @@ This project contains a `Dockerfile` as well as a `docker-compose.yml` to run it
 
 ### Step 1 | Create configuration file
 
-In the `php` directory, copy the content or rename `config.json.sample` to a file called `config.json`. Then we need to modify the firebase connection info to match your personal firebase app:
+In the root directory, copy the content or rename `config.json.sample` to a file called `config.json`. Then we need to modify the firebase connection info to match your personal firebase app:
 
-``` json
+```json
 {
      "_comment":"API/database configs found in firebase",
 
