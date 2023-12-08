@@ -1,0 +1,5 @@
+{
+   "_comment":"API/database configs found in firebase",
+   "apiKey": "xxxxxxx",
+   "databaseURL": "xxxxxxx",
+}
