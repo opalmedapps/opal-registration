@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-csp>
 <head>
     <meta charset="UTF-8" />
     <!-- Meta data -->
@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="css/registration.css" />
-
+    
     <!--Angularjs dependent style links-->
+    <!-- See: https://docs.angularjs.org/api/ng/directive/ngCsp -->
+    <link rel="stylesheet" href="node_modules/angular/angular-csp.css" />
     <link rel="stylesheet" href="node_modules/angular-tooltips/dist/angular-tooltips.css" />
     <link rel="stylesheet" href="node_modules/angularjs-datepicker/dist/angular-datepicker.min.css" />
 
