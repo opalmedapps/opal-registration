@@ -24,9 +24,10 @@ Header set X-Content-Type-Options nosniff
 
 # Disable deprecated X-XSS-Protection
 # https://infosec.mozilla.org/guidelines/web_security#x-xss-protection
-Header set X-XSS-Protection 0
+Header set X-XSS-Protection "1; mode=block"
 
 # add Content-Security-Policy headers
 # https://infosec.mozilla.org/guidelines/web_security#content-security-policy
 # generated with https://www.validbot.com/tools/csp-wizard.php
-Header add Content-Security-Policy "base-uri 'self'; default-src 'none' https://*.firebaseio.com; font-src 'self'; img-src 'self'; connect-src 'self' wss://*.firebaseio.com https://*.firebaseio.com https://www.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.firebaseio.com; style-src 'self' 'unsafe-inline'; require-trusted-types-for 'script';"
+# test with https://observatory.mozilla.org/
+Header add Content-Security-Policy "base-uri 'self'; default-src 'none' https://*.firebaseio.com; font-src 'self'; img-src 'self'; connect-src 'self' wss://*.firebaseio.com https://*.firebaseio.com https://www.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.firebaseio.com; style-src 'self' 'unsafe-inline'; require-trusted-types-for 'script'; form-action 'none'; frame-ancestors 'none';"
