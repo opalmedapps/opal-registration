@@ -10,14 +10,14 @@
     
     angular.element(document).ready(function () {
         
-        fetch("./php/config.json").then((response) => {
+        fetch("./config.json").then((response) => {
             return response.text()
         }).then((data) => {
             
-            // Before calling firebase function It's compulsory to intializeapp with config.json file.
+            // Before calling firebase function It's compulsory to initialize app with config.json file.
             firebase.initializeApp(JSON.parse(data));
 
-            // Intialize angularjs app using bootstraping
+            // Initialize angularjs app using bootstrapping
             angular.bootstrap(document, ['myApp']);
             
         });

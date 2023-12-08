@@ -187,7 +187,6 @@
     "FIELDNAMES": {
       "PRINTANDDOWNLOADDOCUEMNT": "Download this document",
       "ACCEPTCHECKBOX": "I have read and accept the Terms of Use Agreement.",
-      "DOUCMENTLINK": "documents/TermsofUseAgreement.html",
       "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {
