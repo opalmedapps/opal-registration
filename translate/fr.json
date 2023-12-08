@@ -189,7 +189,6 @@
     "FIELDNAMES": {
       "PRINTANDDOWNLOADDOCUEMNT": "Télécharger ce document",
       "ACCEPTCHECKBOX": "J’ai lu et accepté les termes de cet accord.",
-      "DOUCMENTLINK": "documents/ContratdutilisationduLogiciel.html",
       "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {
