@@ -14,7 +14,9 @@
     "angularjs-datepicker": "2.1.23",
     "angularfire": "1.2.0",
     "@zxcvbn-ts/core": "3.0.4",
-    "@zxcvbn-ts/language-common": "3.0.4"
+    "@zxcvbn-ts/language-common": "3.0.4",
+    "@zxcvbn-ts/language-en": "3.0.2",
+    "@zxcvbn-ts/language-fr": "3.0.2"
   },
   "author": "Jinal Vyas",
   "description": "Repository for registration website"

@@ -9,27 +9,7 @@
     'use strict';
     angular.module('myApp')
 
-
-        // Chaecking password pattern and length and based on that display strength meter and password length on view side
-        .filter('passwordCount', [function () {
-            return function (value, peak) {
-                value = angular.isString(value) ? value : '';
-                peak = isFinite(peak) ? peak : 20;
-
-                return value && (value.length > peak ? peak + '+' : value.length);
-            };
-        }])
-
-        .factory('zxcvbn', [function () {
-            return {
-                score: function () {
-                    var compute = zxcvbn.apply(null, arguments);
-                    return compute && compute.score;
-                }
-            };
-        }])
-
-        .directive('okPassword', ['zxcvbn', function (zxcvbn) {
+        .directive('passwordChecker', [function() {
             return {
                 // restrict to only attribute and class
                 restrict: 'AC',
@@ -42,63 +22,24 @@
                     $element.on('blur change keydown', function (evt) {
                         $scope.$evalAsync(function ($scope) {
                             // update the $scope.password with the element's value
-                            var pwd = $scope.password = $element.val();
+                            $scope.password = $element.val();
 
+                            // Extract user's email address and username
+                            const email = angular.element('input[name="email"]').val();
+                            const username = email.substring(0, email.indexOf("@"));
                             // resolve password strength score using zxcvbn service
-                            $scope.passwordStrength = pwd ? ((pwd.length > 6 && pwd.length < 21) && zxcvbn.score(pwd) || 0) : null;
+                            if ($scope.password.length >= 8 && $scope.password.length < 21)
+                                $scope.passwordStrength = zxcvbnts.core.zxcvbn($scope.password, [email, username]).score;
+                            else
+                                $scope.passwordStrength = null;
 
-                            // define the validity criterion for okPassword constraint
-                            ngModelCtrl.$setValidity('okPassword', ($scope.passwordStrength > 6 && $scope.passwordStrength < 21));
+                            // define the validity criterion for passwordChecker constraint
+                            ngModelCtrl.$setValidity('passwordChecker', ($scope.passwordStrength >= 8 && $scope.passwordStrength < 21));
                         });
                     });
                 }
             };
         }])
-
-    // Creating directive to compare email/confirm email values
-    var compareTo = function () {
-        return {
-            require: "ngModel",
-            scope: {
-                otherModelValue: "=compareToEmail"
-            },
-            link: function (scope, element, attributes, ngModel) {
-
-                ngModel.$validators.compareTo = function (modelValue) {
-                    return modelValue == scope.otherModelValue;
-                };
-
-                scope.$watch("otherModelValue", function () {
-                    ngModel.$validate();
-                });
-            }
-        };
-    }
-
-    angular.module('myApp').directive("compareToEmail", compareTo)
-
-    // Creating directive to compare password/confirm password values
-    var compareTo = function () {
-        return {
-            require: "ngModel",
-            scope: {
-                otherModelValue: "=compareToPassword"
-            },
-            link: function (scope, element, attributes, ngModel) {
-
-                ngModel.$validators.compareTo = function (modelValue) {
-                    return modelValue == scope.otherModelValue;
-                };
-
-                scope.$watch("otherModelValue", function () {
-                    ngModel.$validate();
-                });
-            }
-        };
-    }
-
-    angular.module('myApp').directive("compareToPassword", compareTo)
-
 
         // Secure page controller
         .controller('secureController', secureController);
@@ -137,6 +78,17 @@
 
             // Call function to set current form class as active.
             vm.setFormStatus();
+
+            // Setup zxcvbn password strength estimator
+            const options = {
+                graphs: zxcvbnts["language-common"].adjacencyGraphs,
+                dictionary: {
+                    ...zxcvbnts["language-common"].dictionary,
+                    ...zxcvbnts["language-en"].dictionary,
+                    ...zxcvbnts["language-fr"].dictionary,
+                },
+            }
+            zxcvbnts.core.zxcvbnOptions.setOptions(options);
 
             // Hide display spinner on load
             vm.formData.displaySpinner = false;
@@ -207,9 +159,16 @@
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.LONGPASSWORDLENGTH');
                     return;
-                } else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) <= -1 ||
+                } else if (
+                    vm.formData.formFieldsData.password.search(/\W|_{1}/) <= -1 ||
                     vm.formData.formFieldsData.password.search(/[A-Z]/) === -1 ||
-                    vm.formData.formFieldsData.password.search(/\d/) === -1) {
+                    vm.formData.formFieldsData.password.search(/\d/) === -1
+                ) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDFORMAT');
+                    vm.formData.passwordMeter = null;
+                    return;
+                } else if ($scope.passwordStrength < 3) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDFORMAT');
                     return;
