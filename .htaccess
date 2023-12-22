@@ -30,4 +30,4 @@ Header set X-XSS-Protection "1; mode=block"
 # https://infosec.mozilla.org/guidelines/web_security#content-security-policy
 # generated with https://www.validbot.com/tools/csp-wizard.php
 # test with https://observatory.mozilla.org/
-Header add Content-Security-Policy "base-uri 'self'; default-src 'none'; font-src 'self'; img-src 'self' data:; connect-src 'self' wss://*.firebaseio.com https://*.firebaseio.com https://www.googleapis.com; script-src 'self' https://*.firebaseio.com; style-src 'self' 'unsafe-inline'; form-action 'none'; frame-ancestors 'none';"
+Header add Content-Security-Policy "base-uri 'self'; default-src 'none'; font-src 'self'; img-src 'self' data:; connect-src 'self' wss://*.firebaseio.com https://*.firebaseio.com https://www.googleapis.com https://securetoken.googleapis.com; script-src 'self' https://*.firebaseio.com; style-src 'self' 'unsafe-inline'; form-action 'none'; frame-ancestors 'none';"
