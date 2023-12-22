@@ -37,8 +37,8 @@
     <div class="form-row mb-2">
         <div class="form-group col-md-6 col-sm-12">
             <label for="password" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
-            <!--<input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()"-->
-            <input type="password" class="form-control ok-password" name="password" ng-model="vm.formData.formFieldsData.password" ng-keyup="vm.validatePassword()" ng-blur="vm.comparePassword()"
+            <!--<input type="password" class="form-control password-checker" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()"-->
+            <input type="password" class="form-control password-checker" name="password" ng-model="vm.formData.formFieldsData.password" ng-keyup="vm.validatePassword()" ng-blur="vm.comparePassword()"
                    ng-class="{
                            'is-invalid' :(vm.formData.passwordFormat.status == vm.parent.STATUS_INVALID),
                            'is-valid': (vm.formData.passwordFormat.status == vm.parent.STATUS_VALID)}"

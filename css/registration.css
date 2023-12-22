@@ -103,12 +103,12 @@ tooltip .img-size {
  }
 
  .strength-meter-fill[data-strength='1'] {
-     background: orange;
+     background: red;
      width: 40%;
  }
 
  .strength-meter-fill[data-strength='2'] {
-     background: yellowgreen;
+     background: orange;
      width: 60%;
  }
 
@@ -121,6 +121,7 @@ tooltip .img-size {
      background: darkgreen;
      width: 100%;
  }
+
 
 .label {
     font-size: 75%;
