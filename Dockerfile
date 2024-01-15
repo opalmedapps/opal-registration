@@ -1,4 +1,4 @@
-FROM node:20.10.0-alpine3.18 as dependencies
+FROM node:20.11.0-alpine3.18 as dependencies
 
 ARG NODE_ENV="production"
 ENV NODE_ENV="${NODE_ENV}"
