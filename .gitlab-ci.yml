@@ -1,16 +1,8 @@
-# You can override the included template(s) by including variable overrides
-# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
-# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
-# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
-# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
-# Note that environment variables can be set in several places
-# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
 default:
   image: node:20.11.0-alpine3.19
   before_script:
   - uname -a
-  - node --version || true
-  - npm --version || true
+
 setup:
   stage: build
   script:
@@ -31,6 +23,7 @@ setup:
     paths:
     - node_modules
     - bower_components
+
 deploy_development:
   stage: deploy
   environment: development
@@ -42,14 +35,20 @@ deploy_development:
   - echo "listing working directory..."
   - ls -la
   - echo "transferring files and listing remote directory..."
-  - "lftp -e \"\n  set cmd:fail-exit yes; \n  open $FTP_HOST; \n  user $FTP_USER $FTP_PASSWORD;
-    \n  mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile'
-    --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json'
-    --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md'
-    --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10
-    --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;\n  ls -la registration/${CI_ENVIRONMENT_NAME};
-    \n  bye\n\"\n"
+  - >
+    lftp -e "
+      set cmd:fail-exit yes; 
+      open $FTP_HOST; 
+      user $FTP_USER $FTP_PASSWORD; 
+      mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
+      ls -la registration/${CI_ENVIRONMENT_NAME}; 
+      bye
+    "
+
   rules:
   - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+
 include:
-- template: Security/Secret-Detection.gitlab-ci.yml
+# Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
+# Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+- template: Jobs/Secret-Detection.gitlab-ci.yml
