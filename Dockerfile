@@ -1,21 +1,13 @@
-FROM node:20.11.0-alpine3.18 as dependencies
+FROM node:20.11.0-alpine3.19 as dependencies
 
 ARG NODE_ENV="production"
 ENV NODE_ENV="${NODE_ENV}"
-
-
-# Install dependencies for bower
-RUN apk add --no-cache git
-
-RUN npm install -g bower
 
 WORKDIR /app
 
 # install modules
 # allow to cache by not copying the whole application code in (yet)
 # see: https://stackoverflow.com/questions/35774714/how-to-cache-the-run-npm-install-instruction-when-docker-build-a-dockerfile
-COPY bower.json ./
-RUN bower --allow-root install
 
 COPY package.json ./
 COPY package-lock.json ./
@@ -37,15 +29,15 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 # Enable mod_headers
-RUN a2enmod headers
-# Enable mod_rewrite
-RUN a2enmod rewrite
+RUN a2enmod headers \
+  # Enable mod_rewrite
+  && a2enmod rewrite
 
 USER www-data
+WORKDIR /var/www/html
 
 # Parent needs to be owned by www-data to satisfy npm
 # RUN chown -R www-data:www-data /var/www/
-COPY --from=dependencies --chown=www-data:www-data /app/bower_components ./bower_components
 COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
 
 COPY --chown=www-data:www-data . .
