@@ -4,7 +4,6 @@
 .vs/
 .vscode/
 logs/*.log
-bower_components
 node_modules
 config.json
 package-lock.json
