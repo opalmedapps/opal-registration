@@ -25,11 +25,6 @@
     "LOADINGPLEASEWAIT": "Veuillez patienter.",
     "LOADINGMESSAGE": "Nous traitons votre demande. Veuillez ne pas actualiser cette page."
   },
-  "WELCOME": {
-    "TITLE": "",
-    "INSTRUCTION": "Opal est actuellement disponible pour les patients du Centre du cancer des Cèdres au Centre universitaire de santé McGill.",
-    "STAPES": "Si vous êtes un patient du Centre du cancer des Cèdres, veuillez procéder au kiosque du Centre de la Fondation du Cancer des Cèdres au niveau S1 du Centre. Il nous fera plaisir de vous créer un compte Opal. "
-  },
   "SEARCH": {
     "STEPS": "Étape 1 de 5: ",
     "TITLE": "Confirmez votre identité",
@@ -217,7 +212,7 @@
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
     "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et un caractère spécial.",
     "REGISTRATIONCODE": "Votre code d’inscription est un code de 12 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants.",
-    "PATIENTID_TITLE1": "Enter le numéro ",
+    "PATIENTID_TITLE1": "Entrez le numéro ",
     "PATIENTID_TITLE2": " ou ",
     "PATIENTID_TITLE3": " du patient",
     "PATIENTID_CONTENT_MRN": " Ce numéro se trouve sur la carte de l'hôpital.",

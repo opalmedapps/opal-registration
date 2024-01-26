@@ -25,11 +25,6 @@
     "LOADINGPLEASEWAIT": "Please wait.",
     "LOADINGMESSAGE": "We are processing your request. Please do not refresh this page."
   },
-  "WELCOME": {
-    "TITLE": "",
-    "INSTRUCTION": "Opal is currently available for patients at the Cedars Cancer Centre of the McGill University Health Centre in Montreal.",
-    "STAPES": "If you are a patient at the Cedars Cancer Centre, please proceed to the Cedars Cancer Foundation kiosk at the S1 level of the Cancer Centre. The staff there will be happy to register you for an Opal account."
-  },
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
     "TITLE": "Confirm Your Identity",
@@ -215,7 +210,7 @@
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
     "PASSWORDFORMAT": "Your password should be at least 10 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
     "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution.",
-    "PATIENTID_TITLE1": "Enter patient's ",
+    "PATIENTID_TITLE1": "Enter the patient's MRN or RAMQ number. The MRN is found on the hospital card. The RAMQ number is found on the provincial health care card.",
     "PATIENTID_TITLE2": " or ",
     "PATIENTID_TITLE3": " number",
     "PATIENTID_CONTENT_MRN": " This number is found on the hospital card.",

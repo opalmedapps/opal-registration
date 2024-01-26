@@ -66,17 +66,7 @@
 
             
             $stateProvider
-
-                // Welcome page.
-                .state('welcomePage', {
-                    url: '/welcomePage',
-                    views: {
-                        content: {
-                            component: 'welcomePageComponent'
-                        }
-                    }
-                })
-                
+              
                 // PARENT STATE: form state
                 .state('form', {
                     abstract: true,
