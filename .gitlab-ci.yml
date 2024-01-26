@@ -3,6 +3,11 @@ default:
   before_script:
     - uname -a
 
+stages:
+  - build
+  - test
+  - deploy
+
 setup:
   stage: build
   script:
@@ -17,11 +22,11 @@ setup:
       files:
         - package-lock.json
     paths:
-      - .npm/
+      - ".npm/"
   artifacts:
     # pin artifacts to the branch
     # see: https://docs.gitlab.com/ee/ci/jobs/job_artifacts.html#with-a-dynamically-defined-name
-    name: $CI_COMMIT_REF_SLUG
+    name: "$CI_COMMIT_REF_SLUG"
     expire_in: 1 week
     paths:
       - node_modules
@@ -48,6 +53,15 @@ deploy_development:
         ls -la registration/${CI_ENVIRONMENT_NAME}; 
         bye
       "
-  rules:
-    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+
+include:
+  # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
+
+# Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+secret_detection:
+  variables:
+    SECRET_DETECTION_HISTORIC_SCAN: "true"
