@@ -29,6 +29,20 @@ section.page-title h1 {
     color: #6EAC42;
 }
 
+/* Customize Bootstrap tooltips */
+.tooltip-inner {
+    background-color: #ccc;
+    color: #000;
+}
+
+.bs-tooltip-top .arrow:before {
+    border-top-color: #ccc;
+}
+
+.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: #ccc;
+}
+
 @media(max-width:576px) {
     .page-title {
         height: auto;

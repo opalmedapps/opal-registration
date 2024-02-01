@@ -20,11 +20,11 @@
         </div>
     </div>
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mb-3">
 
     <!--Option buttons-->
     <div class="row justify-content-center">
-        <div class="form-group col-md-3 col-sm-12">
+        <div class="form-group col-md-3 col-sm-12 mb-3">
             <label style="margin-right: 15px;">{{'LOGIN.INPUT.EMAIL' | translate}}</label>
             <input type="email" name="email" ng-model="vm.email" ng-keydown="vm.inputChange()"
                    class="form-control" tabindex="1" required>
@@ -47,15 +47,15 @@
     </div>
 
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mt-3 mt-md-0 mb-3 mb-md-2">
 
     <!--Navigation button-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12"
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-3 px-md-5" tabindex="12"
                     ng-disabled="loginForm.email.$dirty && loginForm.email.$invalid || loginForm.email.$error.required">
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button>
