@@ -25,7 +25,7 @@
     <!--Option buttons-->
     <div class="row justify-content-center">
         <div class="form-group col-md-3 col-sm-12 mb-3">
-            <label style="margin-right: 15px;">{{'LOGIN.INPUT.EMAIL' | translate}}</label>
+            <label for="email" class="font-weight-bold text-muted" style="margin-right: 15px;">{{'LOGIN.INPUT.EMAIL' | translate}}</label>
             <input type="email" name="email" ng-model="vm.email" ng-keydown="vm.inputChange()"
                    class="form-control" tabindex="1" required>
             <span style="color:red;font-size: 12px;" ng-show="loginForm.email.$dirty && loginForm.email.$invalid">
@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group col-md-3 col-sm-12">
-            <label>{{'LOGIN.INPUT.PASSWORD' | translate}}</label>
+            <label for="password" class="font-weight-bold text-muted">{{'LOGIN.INPUT.PASSWORD' | translate}}</label>
             <input type="password" name="password" ng-model="vm.password" ng-keydown="vm.inputChange()"
                     class="form-control" tabindex="1" >
         </div>

@@ -27,10 +27,10 @@
         <div class="text-muted col-md-7"><h4>{{'VERIFICATION.SEND.TITLE' | translate}}</h4></div>
         <div class="d-flex justify-content-between col-md-7">
             <div class="text-muted mr-2">
-                <label>{{'VERIFICATION.SEND.INSTRUCTION' | translate}}</label>
+                <label >{{'VERIFICATION.SEND.INSTRUCTION' | translate}}</label>
             </div>
         </div>
-        <div class="text-muted col-md-7"><label>{{'VERIFICATION.SEND.EMAIL' | translate}}</label></div>
+        <div class="text-muted col-md-7"><label for="email" class="font-weight-bold text-muted">{{'VERIFICATION.SEND.EMAIL' | translate}}</label></div>
         <div class="text-muted col-md-7">
             <input type="email" name="email" ng-model="vm.email" class="form-control"
                     ng-class="{
@@ -50,9 +50,9 @@
     </div>
 
     <!--Verify Email Address-->
-    <div ng-show="vm.sendCode">
-        <div class="text-muted col-md-7"><h4>{{'VERIFICATION.VERIFY.TITLE' | translate}}</h4></div>
-        <div class="d-flex justify-content-between col-md-7">
+    <div ng-show="vm.sendCode" class="mt-md-4">
+        <div class="text-muted col-md-7 px-0"><h4>{{'VERIFICATION.VERIFY.TITLE' | translate}}</h4></div>
+        <div class="d-flex justify-content-between col-md-7 px-0">
             <div class="text-muted mr-2">
                 <label>
                     {{'VERIFICATION.VERIFY.INSTRUCTION_START' | translate}}
@@ -61,15 +61,15 @@
                 </label>
             </div>
         </div>
-        <div class="text-muted col-md-7"><h6>{{'VERIFICATION.VERIFY.CODE' | translate}}</h6></div>
-        <div class="text-muted col-md-10">
-            <input type="number" maxlength="6" pattern="\d*" numeric-format name="code" ng-model="vm.inputCode" class="btn border-dark text-dark mr-3 px-3"
+        <div class="text-muted col-md-7 px-0"><label for="code" class="font-weight-bold text-muted">{{'VERIFICATION.VERIFY.CODE' | translate}}</label></div>
+        <div class="text-muted col-md-10 px-0">
+            <input type="number" name="code" maxlength="6" pattern="\d*" numeric-format name="code" ng-model="vm.inputCode" class="form-control mr-3 px-3"
                    class="verification-code">
-            <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
+            <button type="button" class="btn btn-secondary mt-3 mr-3 px-3"
                     ng-click="vm.checkVerificationCode()">
                 {{'VERIFICATION.VERIFY.VERIFY' | translate}}
             </button>
-            <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
+            <button type="button" class="btn btn-secondary mt-3 mr-3 px-3"
                     ng-click="vm.resendVerificationCode()" id="resend_btn">
                 <span id="count_down"></span> &nbsp {{'VERIFICATION.VERIFY.RESEND' | translate}}
             </button>
