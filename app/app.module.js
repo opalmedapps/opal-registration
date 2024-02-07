@@ -187,20 +187,6 @@
                         footer: footer
                     }
                 })
-                
-
-            // Patient registration page. Backup for the routing different method.
-            //.state('form.registration', {
-            //    //parent: 'form',
-            //    url: '/registration',
-            //    views: {
-            //        content: {
-            //            templateUrl: 'app/components/registration/registration/registration.html',
-            //            controller: 'registrationController',
-            //            controllerAs: 'vm'
-            //        }
-            //    }
-            //})
         }
     ]);
 
