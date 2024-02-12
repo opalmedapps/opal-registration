@@ -24,7 +24,7 @@
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', '720kb.tooltips', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
 
     // Configuring our states 
     app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',

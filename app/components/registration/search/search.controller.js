@@ -55,16 +55,6 @@
             vm.fetchURL();
         }
 
-        // Registration code tooltip template path
-        vm.registrationcodeTooltip = {
-            templateUrl: 'registrationcodeTooltipTemplate.html',
-        };
-
-        // Patient id tooltip template path
-        vm.patientidTooltip = {
-            templateUrl: 'patientidTooltipTemplate.html',
-        };
-
         // Method to fetch URL query parameter to autofill Registration code.
         vm.fetchURL = function () {
           if ($location.search().hasOwnProperty('code')) {
