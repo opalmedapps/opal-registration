@@ -206,7 +206,7 @@
     "PLAYSTORELOGO": "images/logos/PlayStore_FR.png",
     "NOTIFICATION1": "Accéder aux données de ",
     "NOTIFICATION2": " est sujet à confirmation par Medical Records.",
-    "NOTIFICATION3": "Vous aller recevoir une notification une fois votre relation est confirmé."
+    "NOTIFICATION3": "Vous y aurez accès dès que la relation sera confirmée."
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
