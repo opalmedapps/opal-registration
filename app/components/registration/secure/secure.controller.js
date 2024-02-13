@@ -5,6 +5,11 @@
      Date         :   June 2019
  **/
 
+import '@zxcvbn-ts/core/dist/zxcvbn-ts.min';
+import '@zxcvbn-ts/language-common/dist/zxcvbn-ts.min';
+import '@zxcvbn-ts/language-en/dist/zxcvbn-ts.min';
+import '@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min';
+
 (function () {
     'use strict';
     angular.module('myApp')

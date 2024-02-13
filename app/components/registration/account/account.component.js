@@ -5,6 +5,8 @@
      Date         :   2022-04-07
 **/
 
+import angular from 'angular';
+
 (function () {
     'use strict';
  

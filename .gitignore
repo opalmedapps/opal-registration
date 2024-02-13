@@ -8,3 +8,4 @@ node_modules
 config.json
 package-lock.json
 service-account.json
+/dist

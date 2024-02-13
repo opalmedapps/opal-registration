@@ -1,26 +1,44 @@
 /**
-     Filename     :   app.module.js
+     Filename     :   app.js
      Description  :   Contains all app configurations, routes and translation.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 
+import angular from 'angular';
+import 'angular-tooltips';
+import 'angular-translate';
+import 'angular-translate-loader-static-files';
+import 'angular-ui-bootstrap';
+import 'angular-ui-router';
+// See: https://docs.angularjs.org/api/ng/directive/ngCsp
+import 'angular/angular-csp.css';
+import 'angular-tooltips/dist/angular-tooltips.css';
+import 'angularjs-datepicker/dist/angular-datepicker.min.css';
+import 'angularfire';
+import 'angularjs-datepicker';
+import 'bootstrap';
+import 'crypto-js';
+import firebase from 'firebase';
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'jquery';
+import 'tweetnacl';
+import 'tweetnacl-util';
+
+// TODO https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
+import '../css/registration.css';
+
+import firebaseConfig from '../config.json';
+
 (function () {
     'use strict';
     
     angular.element(document).ready(function () {
-        
-        fetch("./config.json").then((response) => {
-            return response.text()
-        }).then((data) => {
-            
-            // Before calling firebase function It's compulsory to initialize app with config.json file.
-            firebase.initializeApp(JSON.parse(data));
+        // Initialize the Firebase app
+        firebase.initializeApp(firebaseConfig);
 
-            // Initialize angularjs app using bootstrapping
-            angular.bootstrap(document, ['myApp']);
-            
-        });
+        // Initialize angularjs app using bootstrapping
+        angular.bootstrap(document, ['myApp']);
     });
 
     // Creating our angular app and inject required module
