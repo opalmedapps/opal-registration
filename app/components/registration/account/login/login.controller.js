@@ -35,7 +35,12 @@
                 if (data.code == undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    $state.go('form.questions');
+                    if (vm.isCaregiver(vm.email)) {
+                        vm.parent.languageListForPreference();
+                    } else {
+                        $state.go('form.questions');
+                    }
+
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -45,7 +50,15 @@
             }, function(error) {
                 vm.loginError = true;
             });
+        }
 
+        vm.isCaregiver = async function(email) {
+            const request = {
+                method: 'get',
+                url: `/api/caregivers/caregiver/`,
+            };
+
+            return await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {email: email});
         }
 
         vm.inputChange = function() {
