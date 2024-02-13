@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('loginController', loginController);
 
-    loginController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$state', '$timeout', 'firebaseFactory'];
+    loginController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$state', '$timeout', 'firebaseFactory', 'requestToListener'];
 
-    function loginController($rootScope, $location, $filter, $scope, $state, $timeout, firebaseFactory) {
+    function loginController($rootScope, $location, $filter, $scope, $state, $timeout, firebaseFactory, requestToListener) {
         let vm = this;
         vm.loginError = false;
 
@@ -35,12 +35,7 @@
                 if (data.code == undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    if (vm.isCaregiver(vm.email)) {
-                        vm.parent.languageListForPreference();
-                    } else {
-                        $state.go('form.questions');
-                    }
-
+                    vm.isCaregiver(vm.email);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -52,13 +47,20 @@
             });
         }
 
-        vm.isCaregiver = async function(email) {
-            const request = {
-                method: 'get',
-                url: `/api/caregivers/caregiver/`,
-            };
-
-            return await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {email: email});
+        vm.isCaregiver = function(email) {
+            requestToListener.sendRequestWithResponse('IsCaregiver', { Fields: {'email': vm.email} })
+                .then(function (response) {
+                    if (response?.status == 200) {
+                        vm.parent.languageListForPreference();
+                    } else {
+                        $state.go('form.questions');
+                    }
+                })
+                .catch(function (error) {
+                    // Call function to display error modal box.
+                    vm.parent.errorPopup('contactUsError');
+                    return false;
+                });
         }
 
         vm.inputChange = function() {
