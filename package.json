@@ -30,8 +30,10 @@
     "tweetnacl-util": "0.15.1"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "12.0.2",
     "css-loader": "6.10.0",
     "html-webpack-plugin": "5.6.0",
+    "raw-loader": "4.0.2",
     "style-loader": "3.3.4",
     "webpack": "5.90.1",
     "webpack-cli": "5.1.4"

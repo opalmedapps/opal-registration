@@ -1,5 +1,6 @@
-const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 module.exports = {
     entry: [
@@ -11,6 +12,8 @@ module.exports = {
         './app/app.services.js',
         './app/app.values.js',
     ],
+    mode: 'development', // TODO
+    devtool: 'eval-cheap-source-map', // TODO
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -18,6 +21,10 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.html$/,
+                loader: 'raw-loader',
+            },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
@@ -33,6 +40,11 @@ module.exports = {
         ],
     },
     plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: './app/**/*.html', to: './' },
+            ],
+        }),
         new HtmlWebpackPlugin({
             template: './index.html',
             // title: 'Opal Registration',
