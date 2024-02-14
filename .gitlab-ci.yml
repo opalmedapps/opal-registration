@@ -65,10 +65,14 @@ deploy_development:
 deploy_qa:
   environment: qa
   extends: .deploy
+  needs:
+    - deploy_development
 
 deploy_staging:
   environment: staging
   extends: .deploy
+  needs:
+    - deploy_qa
 
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
