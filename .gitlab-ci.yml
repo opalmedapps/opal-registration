@@ -66,12 +66,14 @@ deploy_qa:
   environment: qa
   extends: .deploy
   needs:
+    - setup
     - deploy_development
 
 deploy_staging:
   environment: staging
   extends: .deploy
   needs:
+    - setup
     - deploy_qa
 
 include:
