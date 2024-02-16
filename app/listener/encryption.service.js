@@ -1,3 +1,5 @@
+import * as CryptoJS from "crypto-js";
+
 (function () {
     'use strict';
     angular.module('myApp')
