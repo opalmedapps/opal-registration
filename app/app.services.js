@@ -1,4 +1,3 @@
-import './components/registration/form/form.service.js';
 import './components/registration/preference/preference.service.js';
 import './listener/encryption.service.js';
 import './listener/firebaseAuthentication.factory.js';
