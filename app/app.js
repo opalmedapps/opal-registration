@@ -17,7 +17,7 @@ import 'angular-tooltips/dist/angular-tooltips.css';
 import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'angularfire';
 import 'angularjs-datepicker';
-import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.css';
 import 'crypto-js';
 import firebase from 'firebase';
 import '@fortawesome/fontawesome-free/css/all.min.css'
