@@ -43,6 +43,8 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: './app/**/*.html', to: './' },
+                { from: './images', to: './images' },
+                { from: './translate', to: './translate' },
             ],
         }),
         new HtmlWebpackPlugin({
