@@ -1,3 +1,4 @@
+import firebaseBranchConfig from '../../firebaseBranch.json';
 
 //Defines the module for the app services.
 var myModule = angular.module('myApp');
@@ -9,8 +10,8 @@ var myModule = angular.module('myApp');
       @requires myApp.service:userAuthorizationService
       @description Allows the app controllers or services obtain the authentication state and credentials, it also returns the urls inside for the firebase connection
 **/
-myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
-    function ($http) {
+myModule.factory("firebaseFactory", [
+    function () {
 
         var firebaseBranch = '';
         var hospitalCodeArray = [];
@@ -20,26 +21,14 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
         // Call function to load firebase configuration on page load.
         getFirebaseConfig();
 
-        // Function to load firebase configration
+        // Function to load firebase branch configurations
         function getFirebaseConfig() {
-            
-            return $http({
-                method: 'GET',
-                url: './firebaseBranch.json'
-            }).then(function (results) {
-                
-                // Assign branch structure.
-                firebaseBranch = results.data;
-                hospitalCodeArray = firebaseBranch.hospitalCodes;
-                devBranch = firebaseBranch.devBranch;
-                parentBranch = firebaseBranch.parentBranch;
-                apiParentBranch = firebaseBranch.apiParentBranch;
-
-                return 1;
-            }, function (error) {
-                return (error);
-            });
-        };
+            // Assign branch structure.
+            hospitalCodeArray = firebaseBranchConfig.hospitalCodes;
+            devBranch = firebaseBranchConfig.devBranch;
+            parentBranch = firebaseBranchConfig.parentBranch;
+            apiParentBranch = firebaseBranchConfig.apiParentBranch;
+        }
 
         return {
            
