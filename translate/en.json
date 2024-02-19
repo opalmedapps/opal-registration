@@ -25,6 +25,11 @@
     "LOADINGPLEASEWAIT": "Please wait.",
     "LOADINGMESSAGE": "We are processing your request. Please do not refresh this page."
   },
+  "WELCOME": {
+    "TITLE": "",
+    "INSTRUCTION": "Opal is currently available for patients at the Cedars Cancer Centre of the McGill University Health Centre in Montreal.",
+    "STAPES": "If you are a patient at the Cedars Cancer Centre, please proceed to the Cedars Cancer Foundation kiosk at the S1 level of the Cancer Centre. The staff there will be happy to register you for an Opal account."
+  },
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
     "TITLE": "Confirm Your Identity",
