@@ -47,13 +47,13 @@
 
         //
         vm.allStatusValid = function() {
-            return vm.formData.phoneFormat.status == vm.parent.STATUS_VALID &&
-                vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.answer2Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.securityQuestion3Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.answer3Format.status == vm.parent.STATUS_VALID;
+            return vm.formData.phoneFormat.status === vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion1Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.answer1Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion2Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.answer2Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion3Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.answer3Format.status === vm.parent.STATUS_VALID;
         }
 
         // Function to validate phone
@@ -113,8 +113,8 @@
                 vm.formData.answer1Format.status = vm.parent.STATUS_INVALID;
                 vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             } else {
-                if (vm.formData.formFieldsData.answer1 == vm.formData.formFieldsData.answer2 ||
-                    vm.formData.formFieldsData.answer1 == vm.formData.formFieldsData.answer3) {
+                if (vm.formData.formFieldsData.answer1 === vm.formData.formFieldsData.answer2 ||
+                    vm.formData.formFieldsData.answer1 === vm.formData.formFieldsData.answer3) {
                     vm.formData.answer1Format.status = vm.parent.STATUS_INVALID;
                     vm.formData.answer1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
                 } else if (vm.formData.formFieldsData.answer1.length < 3) {
@@ -156,8 +156,8 @@
                 vm.formData.answer2Format.status = vm.parent.STATUS_INVALID;
                 vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             } else {
-                if (vm.formData.formFieldsData.answer2 == vm.formData.formFieldsData.answer1 ||
-                    vm.formData.formFieldsData.answer2 == vm.formData.formFieldsData.answer3) {
+                if (vm.formData.formFieldsData.answer2 === vm.formData.formFieldsData.answer1 ||
+                    vm.formData.formFieldsData.answer2 === vm.formData.formFieldsData.answer3) {
                     vm.formData.answer2Format.status = vm.parent.STATUS_INVALID;
                     vm.formData.answer2Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
                 } else if (vm.formData.formFieldsData.answer2.length < 3) {
@@ -197,13 +197,13 @@
         vm.validateAnswer3 = function () {
 
             if (vm.parent.isEmpty(vm.formData.formFieldsData.answer3)) {
-                vm.formData.answer3Format.status = vm.parent.STATUS_INVALID,
-                    vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
+                vm.formData.answer3Format.status = vm.parent.STATUS_INVALID;
+                vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             } else {
-                if (vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer1 ||
-                    vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer2) {
-                    vm.formData.answer3Format.status = vm.parent.STATUS_INVALID,
-                        vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
+                if (vm.formData.formFieldsData.answer3 === vm.formData.formFieldsData.answer1 ||
+                    vm.formData.formFieldsData.answer3 === vm.formData.formFieldsData.answer2) {
+                    vm.formData.answer3Format.status = vm.parent.STATUS_INVALID;
+                    vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
                 } else if (vm.formData.formFieldsData.answer3.length < 3) {
                     vm.formData.answer3Format.status = vm.parent.STATUS_INVALID;
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SECURITYANSWERLENGTH');
@@ -283,6 +283,6 @@
                 vm.parent.languageListForPreference();
             }
         }
-    };
+    }
 
 })();

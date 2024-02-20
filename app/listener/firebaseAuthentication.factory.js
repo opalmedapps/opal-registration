@@ -39,7 +39,7 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
             }, function (error) {
                 return (error);
             });
-        };
+        }
 
         return {
            
@@ -158,7 +158,7 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
                     return error;
                 });
                 
-            },
+            }
         };
     }]);
 
