@@ -57,7 +57,7 @@
             vm.formData.formFieldsData.accessLevel = 3;
             vm.formData.accessLevelFormat.status = 'valid';
 
-            if (vm.formData.formFieldsData.language == undefined || vm.formData.formFieldsData.language == null || vm.formData.formFieldsData.language == "") {
+            if (vm.formData.formFieldsData.language === undefined || vm.formData.formFieldsData.language === null || vm.formData.formFieldsData.language === "") {
                 vm.formData.formFieldsData.language = vm.formData.selectedLanguage;
             }
             vm.formData.languageFormat.status = 'valid';
@@ -100,7 +100,7 @@
                 vm.formData.languageFormat.status = 'valid';
                 vm.formData.languageFormat.message = null;
 
-                if (vm.formData.languageFormat.status == 'valid') {
+                if (vm.formData.languageFormat.status === 'valid') {
                     // Display shared error message
                     vm.sharedErrorMessage = true;
                 }
@@ -125,7 +125,7 @@
                 });
             });
             // Check the default selected language.
-            if (vm.formData.selectedLanguage == 'en')
+            if (vm.formData.selectedLanguage === 'en')
                 vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_EN;
             else
                 vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_FR;
@@ -134,14 +134,14 @@
         // Form onsubmit method
         vm.preferenceFormSubmit = function () {
             // Validate all fields as required fields
-            if (vm.formData.formFieldsData.language == undefined || vm.formData.formFieldsData.language == null || vm.formData.formFieldsData.language == "") {
+            if (vm.formData.formFieldsData.language === undefined || vm.formData.formFieldsData.language === null || vm.formData.formFieldsData.language === "") {
                 vm.formData.languageFormat.status = 'invalid';
                 vm.formData.languageFormat.message = $filter('translate')('PREFERENCE.FIELDERRORMESSAGES.LANGUAGEREQUIRED');
 
                 // Display shared error message
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.languageFormat.status == 'valid') {
+            if (vm.formData.languageFormat.status === 'valid') {
 
                 // Hide shared error message
                 vm.sharedErrorMessage = true;

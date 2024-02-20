@@ -53,6 +53,6 @@
             $location.path('/form/verification');
         }
 
-    };
+    }
 
 })();
