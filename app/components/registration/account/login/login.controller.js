@@ -35,7 +35,7 @@
                 if (data.code == undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    vm.isCaregiver(vm.email);
+                    vm.caregiverIsAlreadyRegistered(vm.email);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -47,8 +47,8 @@
             });
         }
 
-        vm.isCaregiver = function(email) {
-            requestToListener.sendRequestWithResponse('IsCaregiver', { Fields: {'email': vm.email} })
+        vm.caregiverIsAlreadyRegistered = function(email) {
+            requestToListener.sendRequestWithResponse('CaregiverIsAlreadyRegistered', { Fields: {'email': vm.email} })
                 .then(function (response) {
                     if (response?.status == 200) {
                         vm.parent.languageListForPreference();
