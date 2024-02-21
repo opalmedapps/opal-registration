@@ -14,16 +14,55 @@
     height: 40px;
 }
 
-/*Search Patient Page Style*/
+section.page-title {
+    margin-top: 4rem;
+}
+
+section.page-title h1 {
+    margin: 1.5rem 0;
+}
+
+/* Search Patient Page Style */
 .bg-opal {
     background-color: #6EAC42;
     border-color: #6EAC42;
     color: #6EAC42;
 }
 
+/* Customize Bootstrap tooltips */
+.tooltip-inner {
+    background-color: #50565B;
+    color: #fff;
+}
+
+.bs-tooltip-top .arrow:before {
+    border-top-color: #50565B;
+}
+
+.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: #50565B;
+}
+
 @media(max-width:576px) {
     .page-title {
-        height: 175px;
+        height: auto;
+    }
+
+    section.page-title h1 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+    }
+
+    h4 {
+        font-size: 1.25rem;
+    }
+
+    hr.bg-opal {
+        margin-top: 0.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 0;
     }
 }
 
@@ -35,23 +74,6 @@
     display: none;
 }
 
-
-/*Tooltip style*/
-tooltip tip {
-    background: #fff !important;
-    padding: 3px 3px !important;
-    border: 1px solid #6c757d !important;
-    min-width: 210px !important;
-}
-
-tooltip._top:not(._left):not(._right) tip tip-arrow {
-    border-top: 6px solid #6c757d !important;
-}
-
-tooltip .img-size {
-    height: 120px;
-    width: 200px;
-}
 
 /*Password strength meter styles*/
 .password-count {
@@ -145,7 +167,7 @@ tooltip .img-size {
 
 a.active .tab {
     background: #6EAC42;
-    box-shadow: 0 16px 26px -10px #28a745c9, 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px #28a7453d;
+    box-shadow: 0 16px 26px -10px #28a745c9, 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px #28a7453d;
 }
 
 
@@ -176,7 +198,7 @@ a.active .tab {
     }
 
     .liner {
-        height: 0px !important;
+        height: 0 !important;
         background: none !important;
     }
 }
@@ -192,7 +214,7 @@ a.active .tab {
     }
 
     .liner {
-        height: 0px !important;
+        height: 0 !important;
         background: none !important;
     }
 }
@@ -239,7 +261,7 @@ li, .mx-3 {
 .heighlight {
     background: #6EAC42;
     color: #494040 !important;
-    box-shadow: 0 16px 26px -10px #28a745c9, 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px #28a7453d;
+    box-shadow: 0 16px 26px -10px #28a745c9, 0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px #28a7453d;
 }
 
 /*Aggrement page document layout*/
@@ -254,7 +276,7 @@ li, .mx-3 {
 
 /*Error modal box*/
 .modal-content {
-    border: 0px !important;
+    border: 0 !important;
 }
 
 /*Spinner*/

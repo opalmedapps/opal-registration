@@ -29,7 +29,6 @@
             });
         });
 
-
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
 
@@ -55,16 +54,6 @@
             // Call function to fetch URL query parameters.
             vm.fetchURL();
         }
-
-        // Registration code tooltip template path
-        vm.registrationcodeTooltip = {
-            templateUrl: 'registrationcodeTooltipTemplate.html',
-        };
-
-        // Patient id tooltip template path
-        vm.patientidTooltip = {
-            templateUrl: 'patientidTooltipTemplate.html',
-        };
 
         // Method to fetch URL query parameter to autofill Registration code.
         vm.fetchURL = function () {
