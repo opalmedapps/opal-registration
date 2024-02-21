@@ -35,7 +35,8 @@
                 if (data.code == undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    vm.caregiverIsAlreadyRegistered(data._lat);
+                    let loginToken = data._lat
+                    vm.caregiverIsAlreadyRegistered(loginToken);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -48,6 +49,7 @@
         }
 
         vm.caregiverIsAlreadyRegistered = function(token) {
+            // Verify user account using the login id token
             requestToListener.sendRequestWithResponse('CaregiverIsAlreadyRegistered', { Fields: {'token': token} })
                 .then(function (response) {
                     if (response?.status == 200) {
