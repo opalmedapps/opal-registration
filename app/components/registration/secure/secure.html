@@ -1,5 +1,5 @@
 ﻿<!--Secure form to enter email password and security questions-->
-<form name="secureForm" class="p-4 mb-2 bg-light rounded" ng-submit="vm.secureFormSubmit()" novalidate>
+<form name="secureForm" class="p-4 mb-0 mb-md-2 bg-light rounded" ng-submit="vm.secureFormSubmit()" novalidate>
 
     <div class="row">
         <div class="col-sm-9">
@@ -20,7 +20,7 @@
         </div>
     </div>
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Form section-->
     <div class="form-row mb-2 mt-4">
@@ -206,7 +206,7 @@
         </div>
     </div>
 
-    <div class="form-row mb-5">
+    <div class="form-row mb-2">
         <div class="form-group col-md-6 col-sm-12">
             <label for="answer3" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER3' | translate}}</label>
             <input type="text" class="form-control" name="answer3" ng-model="vm.formData.formFieldsData.answer3" ng-change="vm.validateAnswer3()"
@@ -236,22 +236,13 @@
 
     <!--Navigation buttons-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="vm.secureFormValid">
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-3 px-md-5" tabindex="12" ng-disabled="vm.secureFormValid">
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button>
         </div>
     </div>
 </form>
-
-
-<!--Password tooltip example-->
-<!--<i class="fas fa-info-circle fa-icon-cursor text-muted mx-1" tooltips tooltip-speed="slow" tooltip-size="large" tooltip-template-url="{{vm.passwordTooltip.templateUrl}}"></i>-->
-<script type="text/ng-template" id="passwordTooltipTemplate.html">
-    <div class="text-muted p-1"><small>{{vm.passwordTooltip.content}}</small></div>
-</script>
-
-

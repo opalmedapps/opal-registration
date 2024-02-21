@@ -24,7 +24,7 @@
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', '720kb.tooltips', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
 
     // Configuring our states 
     app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',
@@ -76,7 +76,7 @@
                         }
                     }
                 })
-                
+              
                 // PARENT STATE: form state
                 .state('form', {
                     abstract: true,
@@ -197,20 +197,6 @@
                         footer: footer
                     }
                 })
-                
-
-            // Patient registration page. Backup for the routing different method.
-            //.state('form.registration', {
-            //    //parent: 'form',
-            //    url: '/registration',
-            //    views: {
-            //        content: {
-            //            templateUrl: 'app/components/registration/registration/registration.html',
-            //            controller: 'registrationController',
-            //            controllerAs: 'vm'
-            //        }
-            //    }
-            //})
         }
     ]);
 
