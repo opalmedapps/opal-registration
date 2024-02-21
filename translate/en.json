@@ -33,7 +33,8 @@
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
     "TITLE": "Confirm Your Identity",
-    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number or your MRN number to confirm your identity.",
+    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number or your MRN to confirm your identity. Find out how to",
+    "INSTRUCTION_LINK": "obtain a registration code",
     "FIELDNAMES": {
       "PATIENTID": "Patient Identification Number",
       "REGISTRATIONCODE": "Your Registration Code"
@@ -215,7 +216,7 @@
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
     "PASSWORDFORMAT": "Your password should be at least 10 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
     "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution.",
-    "PATIENTID_TITLE1": "Enter patient's ",
+    "PATIENTID_TITLE1": "Enter the patient's MRN or RAMQ number. The MRN is found on the hospital card. The RAMQ number is found on the provincial health care card.",
     "PATIENTID_TITLE2": " or ",
     "PATIENTID_TITLE3": " number",
     "PATIENTID_CONTENT_MRN": " This number is found on the hospital card.",
