@@ -1,28 +1,33 @@
 ﻿<!--Aggrement form to aggre on terms and usage document-->
-<form class="p-4 mb-2 bg-light rounded" name="agreementForm" ng-submit="vm.agreementFormSubmit()" novalidate>
+<form class="p-4 mb-0 mb-md-2 bg-light rounded" name="agreementForm" ng-submit="vm.agreementFormSubmit()" novalidate>
 
-    <!--Page title-->
-    <div class="d-flex justify-content-between text-muted">
-        <div><h4 class="font-weight-bold">{{'AGREEMENT.STEPS' | translate}}{{'AGREEMENT.TITLE' | translate}}</h4></div>
-        <div> <h4 class="font-weight-bold">{{vm.formData.userName}}</h4></div>
-    </div>
-
-    <!--Instruction to follow-->
-    <div class="d-flex justify-content-between ">
-        <div class="text-muted mr-2"><label>{{'AGREEMENT.INSTRUCTION' | translate}}</label></div>
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="text-muted"><h4 class="font-weight-bold">{{'AGREEMENT.STEPS' | translate}}{{'AGREEMENT.TITLE' | translate}}</h4></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2">
+                    <label>{{'AGREEMENT.INSTRUCTION' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <patient-info form-data="vm.formData"></patient-info>
+            </div>
+        </div>
     </div>
 
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Form section-->
-    <div class="card text-center mt-5">
+    <div class="card text-center mt-0 mt-md-5">
         <div class="card-header text-muted">
             <h4 class="font-weight-bold text-center">{{'AGREEMENT.TITLE' | translate}}</h4>
-            <h5>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}}
-                <a ng-href="#" ng-click="vm.downloadTermsOfUse($event);">
-                    <span class="text-primary">{{'SHARED.CLICKHERE' | translate}}</span>
-                </a>
+            <h5>
+                <a ng-href="#" ng-click="vm.downloadTermsOfUse($event);">{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}}</a>
             </h5>
         </div>
         <div class="card-body document-layout">
@@ -61,11 +66,11 @@
 
     <!--Navigation buttons-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.preference" tabindex="2">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-3 mt-md-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.preference" tabindex="2">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="3">
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-3 px-md-5" tabindex="3">
                 {{'FORM.BUTTONS.FINISH' | translate}}  <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button>
         </div>
