@@ -36,7 +36,7 @@
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
                     let loginToken = data._lat
-                    vm.caregiverIsAlreadyRegistered(loginToken);
+                    vm.isCaregiverAlreadyRegistered(loginToken);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -48,9 +48,9 @@
             });
         }
 
-        vm.caregiverIsAlreadyRegistered = function(token) {
+        vm.isCaregiverAlreadyRegistered = function(token) {
             // Verify user account using the login id token
-            requestToListener.sendRequestWithResponse('CaregiverIsAlreadyRegistered', { Fields: {'token': token} })
+            requestToListener.sendRequestWithResponse('IsCaregiverAlreadyRegistered', { Fields: {'token': token} })
                 .then(function (response) {
                     if (response?.status == 200) {
                         vm.parent.languageListForPreference();
