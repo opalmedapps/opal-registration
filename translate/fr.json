@@ -25,10 +25,21 @@
     "LOADINGPLEASEWAIT": "Veuillez patienter.",
     "LOADINGMESSAGE": "Nous traitons votre demande. Veuillez ne pas actualiser cette page."
   },
+  "HOSPITALS": {
+    "RVH": "Hôpital Royal Victoria",
+    "CEDARS": "Centre du cancer des Cèdres",
+    "HIV": "Service des maladies virales chroniques (VIH)",
+    "MGH": "Hôpital général de Montréal",
+    "IBD": "Clinique des maladies intestinales inflammatoires (MII)",
+    "MCH": "Hôpital de Montréal pour enfants",
+    "NEPHRO": "Service de néphrologie",
+    "STJ": "CHU Sainte-Justine",
+    "HEMA": "Centre de jour d'hémato-oncologie"
+  },
   "WELCOME": {
     "TITLE": "",
-    "INSTRUCTION": "Opal est actuellement disponible pour les patients du Centre du cancer des Cèdres au Centre universitaire de santé McGill.",
-    "STAPES": "Si vous êtes un patient du Centre du cancer des Cèdres, veuillez procéder au kiosque du Centre de la Fondation du Cancer des Cèdres au niveau S1 du Centre. Il nous fera plaisir de vous créer un compte Opal. "
+    "INSTRUCTION": "Opal est actuellement disponible pour les patients fréquentant les hôpitaux suivants :",
+    "STEPS": "Si vous êtes patient(e) d'un de ces hôpitaux à l'une des cliniques indiquées, présentez-vous au comptoir de réception de l'hôpital, ou demandez à votre médecin ou clinicien comment procéder pour obtenir un code d'inscription Opal."
   },
   "SEARCH": {
     "STEPS": "Étape 1 de 5: ",
