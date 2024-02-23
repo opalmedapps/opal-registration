@@ -40,17 +40,38 @@
 <!--Page content main section-->
 <div class="container mt-0 mt-md-4 p-0 shadow-lg rounded">
     <form name="welcomeForm" class="p-4 pb-2 mb-0 mb-md-2 bg-light rounded">
-        <div class="form-row">
-            <p class="font-weight-bold text-muted">
-                {{'WELCOME.INSTRUCTION' | translate}}
-            </p>
-            <p class="font-weight-bold text-muted">
-                {{'WELCOME.STAPES' | translate}}
-            </p>
-            <p>
-                <a href="btn btn-secondary"></a>
-            </p>
-        </div>
+        <p class="font-weight-bold text-muted">
+            {{'WELCOME.INSTRUCTION' | translate}}
+        </p>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.RVH' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.CEDARS' | translate }}</li>
+            <li>{{ 'HOSPITALS.HIV' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.MGH' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.IBD' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.MCH' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.NEPHRO' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.STJ' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.HEMA' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{'WELCOME.STEPS' | translate}}
+        </p>
+
         <!--Navigation button-->
         <div class="row">
             <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center">
@@ -62,10 +83,3 @@
         </div>
     </form>
 </div>
-
-
-
-
-
-<!--Footer view injected here-->
-<!--<div ui-view="footer"></div>-->
