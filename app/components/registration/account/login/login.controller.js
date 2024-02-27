@@ -35,8 +35,8 @@
                 if (data.code == undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    let loginToken = data._lat
-                    vm.isCaregiverAlreadyRegistered(loginToken);
+                    vm.formData.alreadyRegistered = false;
+                    vm.isCaregiverAlreadyRegistered(data._lat);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -53,6 +53,7 @@
             requestToListener.sendRequestWithResponse('IsCaregiverAlreadyRegistered', { Fields: {'token': token} })
                 .then(function (response) {
                     if (response?.status == 200) {
+                        vm.formData.alreadyRegistered = true;
                         vm.parent.languageListForPreference();
                     } else {
                         $state.go('form.questions');
