@@ -15,6 +15,25 @@ module.exports = {
     ],
     mode: 'development', // TODO
     devtool: 'eval-cheap-source-map', // TODO
+    devServer: {
+        client: {
+            overlay: {
+                errors: false,
+                warnings: false,
+            },
+            progress: true,
+        },
+        compress: true,
+        host: 'localhost',
+        hot: false,
+        liveReload: true,
+        open: true,
+        port: 9100,
+        static: {
+            directory: './app',
+            watch: true,
+        },
+    },
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
