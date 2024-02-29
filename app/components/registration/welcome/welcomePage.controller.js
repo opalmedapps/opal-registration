@@ -27,13 +27,13 @@
             vm.lan_key = (language.slice(0, 2)).toLowerCase();
 
             // If lan_key has fr(french) value, website will converts its language in to french. 
-            if (vm.lan_key == 'fr') {
+            if (vm.lan_key === 'fr') {
                 // vm.opalLogo = 'images/logos/navbar-logo-fr.png';
                 $translate.use(vm.lan_key);
             }
 
             // If lan_key has en(english) value, website will converts its language in to english. This is default the language.
-            if (vm.lan_key == 'en') {
+            if (vm.lan_key === 'en') {
                 //vm.opalLogo = 'images/logos/navbar-logo.png';
                 $translate.use(vm.lan_key);
             }

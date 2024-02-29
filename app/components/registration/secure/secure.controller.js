@@ -122,12 +122,6 @@ import '@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min';
         //    return "";
         //};
 
-        // Password ToolTip Message
-        vm.passwordTooltip = {
-            templateUrl: 'passwordTooltipTemplate.html',
-            content: $filter('translate')('TOOLTIP.PASSWORDFORMAT')
-        }
-
         // Method to to set current form class as active.
         vm.setFormStatus = function () {
             vm.formData.searchForm = "";

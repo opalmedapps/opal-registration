@@ -32,7 +32,7 @@
         vm.loginFormSubmit = function() {
             // Get the authentication state
             firebaseFactory.signInWithEmailAndPassword(vm.email, vm.password).then(function(data) {
-                if (data.code == undefined) {
+                if (data.code === undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
                     $state.go('form.questions');
@@ -51,6 +51,6 @@
         vm.inputChange = function() {
             vm.loginError = false;
         }
-    };
+    }
 
 })();

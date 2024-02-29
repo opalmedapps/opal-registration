@@ -31,7 +31,7 @@ myModule.factory("firebaseFactory", [
         }
 
         return {
-           
+
             /**
                 @ngdoc method
                 @name getFirebaseUrl
@@ -88,13 +88,13 @@ myModule.factory("firebaseFactory", [
             getApiParentBranch: function () {
                 return apiParentBranch;
             },
-            
+
             // Create firebase account with user email and password
             createFirebaseAccount: function (email, password) {
-                
+
                 // Method to create firebase account with user email and password
                 return firebase.auth().createUserWithEmailAndPassword(email, password).then(function (userData) {
-                    
+
                     return userData;
 
                 }, function (error) {
@@ -102,7 +102,7 @@ myModule.factory("firebaseFactory", [
                     return error;
                 });
             },
-            
+
             // Delete firebase branch
             deleteFirebaseBranch: function (branchName) {
                 var firebaseBranchName = firebase.database().ref(firebaseBranch.parentBranch + "/" + firebaseBranch.firebaseChildBranch + '/' + branchName);
@@ -111,7 +111,7 @@ myModule.factory("firebaseFactory", [
 
                 return firebaseBranchName.once("value", function (snapshot) {
                     if (snapshot.exists()) {
-                        
+
                         firebaseBranchName.remove();
                         result = "Branch deleted";
                     }
@@ -135,10 +135,10 @@ myModule.factory("firebaseFactory", [
             },
             // Sign in with the unique created token
             signInWithEmailAndPassword: function (email, password) {
-                
+
                 // Method to signIn in firebase with custom token .
                 return firebase.auth().signInWithEmailAndPassword(email, password).then(function (userData) {
-                    
+
                     return userData;
                     //authHandler(userData, vm.token);
 
@@ -146,8 +146,8 @@ myModule.factory("firebaseFactory", [
                     // Get error response and display it.
                     return error;
                 });
-                
-            },
+
+            }
         };
     }]);
 

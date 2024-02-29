@@ -6,18 +6,16 @@
  **/
 
 import angular from 'angular';
-import 'angular-tooltips';
 import 'angular-translate';
 import 'angular-translate-loader-static-files';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
 // See: https://docs.angularjs.org/api/ng/directive/ngCsp
 import 'angular/angular-csp.css';
-import 'angular-tooltips/dist/angular-tooltips.css';
 import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'angularfire';
 import 'angularjs-datepicker';
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'crypto-js';
 import firebase from 'firebase';
 import '@fortawesome/fontawesome-free/css/all.min.css'
@@ -32,7 +30,7 @@ import firebaseConfig from '../config.json';
 
 (function () {
     'use strict';
-    
+
     angular.element(document).ready(function () {
         // Initialize the Firebase app
         firebase.initializeApp(firebaseConfig);
@@ -42,20 +40,20 @@ import firebaseConfig from '../config.json';
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', '720kb.tooltips', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
 
-    // Configuring our states 
+    // Configuring our states
     app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',
 
         function ($stateProvider, $urlRouterProvider, $translateProvider) {
-            
+
             // Load language entries from json files
             $translateProvider.useStaticFilesLoader({
                 prefix: 'translate/',     //relative path of json file
                 suffix: '.json'            //file extension
             });
 
-            //Check browser default language and base on that assign value to preferred and fallback Language. 
+            //Check browser default language and base on that assign value to preferred and fallback Language.
             var lang = window.navigator.language || window.navigator.userLanguage;
             var defaultLanguage = lang.split("-")[0];
 
@@ -68,12 +66,12 @@ import firebaseConfig from '../config.json';
 
             /* Header and Footer is shared to all pages. */
 
-            // This variable is used to bind header.html and assigning it's controller. 
+            // This variable is used to bind header.html and assigning it's controller.
             var header = {
                 component: 'headerComponent'
             }
 
-            // This variable is used to bind footer.html and assigning it's controller. 
+            // This variable is used to bind footer.html and assigning it's controller.
             var footer = {
                 component: 'footerComponent'
             }
@@ -82,7 +80,7 @@ import firebaseConfig from '../config.json';
             // For any unmatched url, redirect to search page
             $urlRouterProvider.otherwise('/form/search');
 
-            
+
             $stateProvider
 
                 // Welcome page.
@@ -94,7 +92,7 @@ import firebaseConfig from '../config.json';
                         }
                     }
                 })
-                
+
                 // PARENT STATE: form state
                 .state('form', {
                     abstract: true,
@@ -105,9 +103,9 @@ import firebaseConfig from '../config.json';
                         }
                     }
                 })
-                
-                // NESTED STATES: child states of 'form' state 
-                
+
+                // NESTED STATES: child states of 'form' state
+
                 // User search page.
                 .state('form.search', {
                     url: '/search',
@@ -167,7 +165,7 @@ import firebaseConfig from '../config.json';
                         footer: footer
                     }
                 })
-               
+
                 // User secure information page.
                 .state('form.secure', {
                     url: '/secureInformation',
@@ -215,20 +213,6 @@ import firebaseConfig from '../config.json';
                         footer: footer
                     }
                 })
-                
-
-            // Patient registration page. Backup for the routing different method.
-            //.state('form.registration', {
-            //    //parent: 'form',
-            //    url: '/registration',
-            //    views: {
-            //        content: {
-            //            templateUrl: 'app/components/registration/registration/registration.html',
-            //            controller: 'registrationController',
-            //            controllerAs: 'vm'
-            //        }
-            //    }
-            //})
         }
     ]);
 

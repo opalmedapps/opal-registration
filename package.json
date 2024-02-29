@@ -15,7 +15,6 @@
     "@zxcvbn-ts/language-en": "3.0.2",
     "@zxcvbn-ts/language-fr": "3.0.2",
     "angular": "npm:@xlts.dev/angular@1.9.3",
-    "angular-tooltips": "1.2.2",
     "angular-translate": "2.19.1",
     "angular-translate-loader-static-files": "2.19.1",
     "angular-ui-bootstrap": "2.5.6",
