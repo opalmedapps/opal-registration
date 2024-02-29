@@ -4,11 +4,10 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
-
-import '@zxcvbn-ts/core/dist/zxcvbn-ts.min';
-import '@zxcvbn-ts/language-common/dist/zxcvbn-ts.min';
-import '@zxcvbn-ts/language-en/dist/zxcvbn-ts.min';
-import '@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min';
+import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
+import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
+import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
+import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
 (function () {
     'use strict';
@@ -34,7 +33,7 @@ import '@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min';
                             const username = email.substring(0, email.indexOf("@"));
                             // resolve password strength score using zxcvbn service
                             if ($scope.password.length >= 1 && $scope.password.length <= 50)
-                                $scope.passwordStrength = zxcvbnts.core.zxcvbn($scope.password, [email, username]).score;
+                                $scope.passwordStrength = zxcvbn($scope.password, [email, username]).score;
                             else
                                 $scope.passwordStrength = null;
                         });
@@ -83,14 +82,14 @@ import '@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min';
 
             // Setup zxcvbn password strength estimator
             const options = {
-                graphs: zxcvbnts["language-common"].adjacencyGraphs,
+                graphs: zxcvbnCommonPackage.adjacencyGraphs,
                 dictionary: {
-                    ...zxcvbnts["language-common"].dictionary,
-                    ...zxcvbnts["language-en"].dictionary,
-                    ...zxcvbnts["language-fr"].dictionary,
+                    ...zxcvbnCommonPackage.dictionary,
+                    ...zxcvbnEnPackage.dictionary,
+                    ...zxcvbnFrPackage.dictionary,
                 },
             }
-            zxcvbnts.core.zxcvbnOptions.setOptions(options);
+            zxcvbnOptions.setOptions(options);
 
             // Hide display spinner on load
             vm.formData.displaySpinner = false;
@@ -501,7 +500,7 @@ import '@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min';
                 vm.sharedErrorMessage = false;
             }
             if (vm.allStatusValid()) {
-                
+
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
 
