@@ -10,9 +10,9 @@
     angular.module('myApp')
         .controller('preferenceController', preferenceController);
 
-    preferenceController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'preferenceService'];
+    preferenceController.$inject = ['$location', '$filter', '$rootScope', '$timeout'];
 
-    function preferenceController($location, $filter, $rootScope, $timeout, preferenceService) {
+    function preferenceController($location, $filter, $rootScope, $timeout) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
