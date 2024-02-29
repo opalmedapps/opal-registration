@@ -1,6 +1,7 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: [
@@ -46,6 +47,11 @@ module.exports = {
                 { from: './images', to: './images' },
                 { from: './translate', to: './translate' },
             ],
+        }),
+        new webpack.ProvidePlugin({
+            // Required for bootstrap tooltips to work
+            // See also: https://webpack.js.org/plugins/provide-plugin/#usage-jquery-with-angular-1
+            'window.jQuery': 'jquery',
         }),
         new HtmlWebpackPlugin({
             template: './index.html',

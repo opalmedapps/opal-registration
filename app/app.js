@@ -15,6 +15,7 @@ import 'angular/angular-csp.css';
 import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'angularfire';
 import 'angularjs-datepicker';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'crypto-js';
 import firebase from 'firebase';
