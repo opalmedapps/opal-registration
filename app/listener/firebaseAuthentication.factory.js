@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import firebaseBranchConfig from '../../firebaseBranch.json';
 
 //Defines the module for the app services.
