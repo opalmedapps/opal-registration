@@ -14,7 +14,6 @@ var myModule = angular.module('myApp');
 myModule.factory("firebaseFactory", [
     function () {
 
-        var firebaseBranch = '';
         var hospitalCodeArray = [];
         var devBranch = '';
         var parentBranch = '';
@@ -70,11 +69,9 @@ myModule.factory("firebaseFactory", [
             getFirebaseChild: function (child) {
                 switch (child) {
                     case null:
-                        return firebaseBranch.responseChildBranch + "/";
+                        return firebaseBranchConfig.responseChildBranch + "/";
                     case 'requests':
-                        return firebaseBranch.requestChildBranch + "/";
-                    //case 'response':
-                    //    return 'response/';
+                        return firebaseBranchConfig.requestChildBranch + "/";
                     default:
                         return '';
                 }
@@ -104,36 +101,6 @@ myModule.factory("firebaseFactory", [
                 });
             },
 
-            // Delete firebase branch
-            deleteFirebaseBranch: function (branchName) {
-                var firebaseBranchName = firebase.database().ref(firebaseBranch.parentBranch + "/" + firebaseBranch.firebaseChildBranch + '/' + branchName);
-                var result = "";
-
-
-                return firebaseBranchName.once("value", function (snapshot) {
-                    if (snapshot.exists()) {
-
-                        firebaseBranchName.remove();
-                        result = "Branch deleted";
-                    }
-                    else {
-                        result = "Branch not deleted";
-                    }
-                    return result;
-                });
-            },
-            validateFirebaseBranch: function (branchName) {
-
-                var firebaseBranchReference = firebase.database().ref(config.firebaseBranch.parentBranch + '/' + config.firebaseBranch.firebaseChildBranch + '/' + branchName);
-                var result = null;
-                return firebaseBranchReference.once("value")
-                    .then(function (snapshot) {
-                        snapshot.forEach(function (snapShot) {
-                            result = snapShot.key;
-                        });
-                        return result;
-                    });
-            },
             // Sign in with the unique created token
             signInWithEmailAndPassword: function (email, password) {
 
