@@ -18,6 +18,19 @@ COPY .npmrc ./
 RUN npm ci
 
 
+FROM node:20.11.1-alpine3.19 as website
+
+WORKDIR /app
+
+COPY . .
+
+# Install all dependencies to have access to webpack (from dev dependencies)
+RUN npm ci
+
+# Build the site using webpack
+RUN npm run build
+
+
 FROM php:8.3.3-apache-bookworm
 
 # Install dependencies
@@ -40,4 +53,5 @@ WORKDIR /var/www/html
 # RUN chown -R www-data:www-data /var/www/
 COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
 
-COPY --chown=www-data:www-data . .
+# Copy webpack output
+COPY --from=website --chown=www-data:www-data /app/dist .
