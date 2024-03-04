@@ -6,23 +6,19 @@
  **/
 
 import angular from 'angular';
+// See: https://docs.angularjs.org/api/ng/directive/ngCsp
+import 'angular/angular-csp.css';
 import 'angular-translate';
 import 'angular-translate-loader-static-files';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
-// See: https://docs.angularjs.org/api/ng/directive/ngCsp
-import 'angular/angular-csp.css';
-import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'angularfire';
 import 'angularjs-datepicker';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'crypto-js';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import firebase from 'firebase';
 import '@fortawesome/fontawesome-free/css/all.min.css'
-import 'jquery';
-import 'tweetnacl';
-import 'tweetnacl-util';
 
 // TODO https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
 import '../css/registration.css';
