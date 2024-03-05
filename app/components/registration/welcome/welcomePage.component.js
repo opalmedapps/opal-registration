@@ -4,6 +4,7 @@
      Created by   :   Jinal Vyas
      Date         :   Feb 2020
  **/
+import headerTemplate from '../shared/header/header.html';
 import welcomePageTemplate from './welcomePage.html';
 
 (function () {
@@ -12,7 +13,7 @@ import welcomePageTemplate from './welcomePage.html';
     angular
         .module('myApp')
         .component('welcomePageComponent', {
-            template: welcomePageTemplate,
+            template: headerTemplate + welcomePageTemplate,
             controller: 'welcomePageController',
             controllerAs: 'vm'
         })

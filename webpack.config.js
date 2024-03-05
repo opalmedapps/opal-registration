@@ -72,7 +72,6 @@ module.exports = {
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: './images', to: './images' },
                 { from: './translate', to: './translate' },
             ],
         }),
