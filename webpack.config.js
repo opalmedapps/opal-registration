@@ -44,7 +44,10 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/,
-                loader: 'raw-loader',
+                loader: "html-loader",
+                generator: {
+                    filename: '[name].[hash][ext][query]',
+                }
             },
             {
                 test: /\.css$/i,
@@ -53,17 +56,22 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
+                generator: {
+                    filename: 'assets/[hash][ext][query]',
+                }
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
+                generator: {
+                    filename: 'assets/[hash][ext][query]',
+                }
             },
         ],
     },
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: './app/**/*.html', to: './' },
                 { from: './images', to: './images' },
                 { from: './translate', to: './translate' },
             ],

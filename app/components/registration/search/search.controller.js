@@ -23,7 +23,7 @@
         $rootScope.$on("changeErrorLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values            
+                // Call functions to check the field error values
                 vm.validateRegistrationCode();
                 vm.validatePatientId();
             });
@@ -44,13 +44,13 @@
 
             // Call function to set current form class as active.
             vm.setFormStatus();
-            
+
             // Hide display spinner on load
             vm.formData.displaySpinner = false;
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
-            
+
             // Call function to fetch URL query parameters.
             vm.fetchURL();
         }
@@ -58,9 +58,9 @@
         // Method to fetch URL query parameter to autofill Registration code.
         vm.fetchURL = function () {
           if ($location.search().hasOwnProperty('code')) {
-          
+
                 vm.formData.formFieldsData.registrationCode = $location.search()['code'];
-              
+
                 vm.validateRegistrationCode();
             }
         }
@@ -231,7 +231,7 @@
 
         // Function to load security questions list on service call.
         vm.getSecurityQuestionList = function () {
-            
+
             // Listener service call.
             requestToListener.apiRequest(apiConstants.ROUTES.QUESTIONS, vm.formData.selectedLanguage)
                 .then(function (response) {
@@ -263,7 +263,7 @@
                             vm.formData.securityQuestionList = vm.formData.securityQuestionList_EN;
                         else
                             vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
-                        
+
                         // Hide display spinner after all request get response.
                         vm.formData.displaySpinner = false;
 
@@ -277,7 +277,7 @@
                     }
                 })
                 .catch(function (error) {
-                    
+
                     // Call function to display error modal box.
                     vm.parent.errorPopup('contactUsError');
 
@@ -297,7 +297,7 @@
             $timeout(() => {
                 const termsOfUsePDF_EN = terms_response?.data?.terms_of_use_en;
                 const termsOfUsePDF_FR = terms_response?.data?.terms_of_use_fr;
-                if (termsOfUsePDF_EN === undefined || termsOfUsePDF_EN === "" || 
+                if (termsOfUsePDF_EN === undefined || termsOfUsePDF_EN === "" ||
                     termsOfUsePDF_FR === undefined || termsOfUsePDF_FR === "") throw terms_response;
 
                 vm.formData.termsOfUseBase64_EN = $sce.trustAsResourceUrl(
@@ -315,7 +315,7 @@
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_EN;
                 else
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_FR;
-                
+
                 // Hide display spinner after all request get response.
                 vm.formData.displaySpinner = false;
             });

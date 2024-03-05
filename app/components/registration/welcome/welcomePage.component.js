@@ -4,14 +4,15 @@
      Created by   :   Jinal Vyas
      Date         :   Feb 2020
  **/
+import welcomePageTemplate from './welcomePage.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('welcomePageComponent', {
-            templateUrl: 'app/components/registration/welcome/welcomePage.html',
+            template: welcomePageTemplate,
             controller: 'welcomePageController',
             controllerAs: 'vm'
         })
