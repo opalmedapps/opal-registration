@@ -46,12 +46,15 @@ module.exports = {
                 test: /\.html$/,
                 loader: "html-loader",
                 generator: {
-                    filename: '[name].[hash][ext][query]',
+                    filename: '[hash][ext][query]',
                 }
             },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
+                generator: {
+                    filename: '[hash][ext][query]',
+                }
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,

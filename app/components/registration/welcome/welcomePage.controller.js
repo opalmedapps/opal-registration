@@ -1,4 +1,3 @@
-
 /**
      Filename     :   welcomePage.controller.js
      Created by   :   Jinal Vyas
@@ -33,5 +32,3 @@
         };
     }
 })();
-
-
