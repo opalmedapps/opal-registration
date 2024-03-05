@@ -244,12 +244,6 @@
       "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, s’il vous plaît, contactez nous à ",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
-    "REGISTRATIONERROR": {
-      "DESCRIPTION": "Nous ne pouvons pas enregistrer votre information. Veuillez réessayer plus tard."
-    },
-    "SOMETHINGWENTWRONGERROR": {
-      "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, veuillez réessayer après 24 heures."
-    },
     "EXISTINGEMAILERROR": {
       "DESCRIPTION": "Cette adresse courriel est déjà enregistrée pour un compte Opal. Pour utiliser ce compte afin de poursuivre votre inscription, veuillez entrer votre adresse courriel ainsi que votre mot de passe Opal existant. Si vous rencontrez des difficultés durant la saisie de votre mot de passe, vous pouvez le réinitialiser dans l'application Opal en vous rendant à « Se connecter » et en sélectionnant « Mot de passe oublié »."
     },
