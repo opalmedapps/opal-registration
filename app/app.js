@@ -24,6 +24,8 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 import '../css/registration.css';
 
 import firebaseConfig from '../config.json';
+import translationsEn from '../translate/en.json';
+import translationsFr from '../translate/fr.json';
 
 (function () {
     'use strict';
@@ -44,11 +46,8 @@ import firebaseConfig from '../config.json';
 
         function ($stateProvider, $urlRouterProvider, $translateProvider) {
 
-            // Load language entries from json files
-            $translateProvider.useStaticFilesLoader({
-                prefix: 'translate/',     //relative path of json file
-                suffix: '.json'            //file extension
-            });
+            $translateProvider.translations('en', translationsEn);
+            $translateProvider.translations('fr', translationsFr);
 
             //Check browser default language and base on that assign value to preferred and fallback Language.
             var lang = window.navigator.language || window.navigator.userLanguage;
@@ -56,7 +55,6 @@ import firebaseConfig from '../config.json';
 
             // Default language
             $translateProvider.preferredLanguage(defaultLanguage);
-
 
             // Fallback language if entry is not found in current language
             $translateProvider.fallbackLanguage('fr');

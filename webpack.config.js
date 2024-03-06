@@ -1,4 +1,3 @@
-const CopyPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
@@ -73,11 +72,6 @@ module.exports = {
         ],
     },
     plugins: [
-        new CopyPlugin({
-            patterns: [
-                { from: './translate', to: './translate' },
-            ],
-        }),
         new webpack.ProvidePlugin({
             // Required for bootstrap tooltips to work
             // See also: https://webpack.js.org/plugins/provide-plugin/#usage-jquery-with-angular-1
