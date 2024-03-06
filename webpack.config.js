@@ -34,10 +34,12 @@ module.exports = {
             watch: true,
         },
     },
+    // The value of [contenthash] changes when a file's content changes. We use this for cache busting of various files.
     output: {
-        filename: '[name].[hash].bundle.js',
+        filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
+        assetModuleFilename: 'assets/[contenthash][ext][query]'
     },
     module: {
         rules: [
@@ -45,29 +47,23 @@ module.exports = {
                 test: /\.html$/,
                 loader: "html-loader",
                 generator: {
-                    filename: '[hash][ext][query]',
+                    filename: '[contenthash][ext][query]',
                 }
             },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
                 generator: {
-                    filename: '[hash][ext][query]',
+                    filename: '[contenthash][ext][query]',
                 }
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
-                generator: {
-                    filename: 'assets/[hash][ext][query]',
-                }
             },
             {
                 test: /\.(woff|woff2|eot|ttf|otf)$/i,
                 type: 'asset/resource',
-                generator: {
-                    filename: 'assets/[hash][ext][query]',
-                }
             },
         ],
     },

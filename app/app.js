@@ -9,7 +9,6 @@ import angular from 'angular';
 // See: https://docs.angularjs.org/api/ng/directive/ngCsp
 import 'angular/angular-csp.css';
 import 'angular-translate';
-import 'angular-translate-loader-static-files';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
 import 'angularfire';
