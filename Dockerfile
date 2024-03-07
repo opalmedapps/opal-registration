@@ -17,8 +17,16 @@ RUN npm ci
 FROM node:20.11.1-alpine3.19
 
 # Parent needs to be owned by www-data to satisfy npm
-# RUN chown -R www-data:www-data /var/www/
 COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
 
-# Copy source code
-COPY --chown=www-data:www-data . .
+# Copy all code sources
+COPY ./app ./app
+COPY ./css ./css
+COPY ./images ./images
+COPY ./translate ./translate
+COPY ./.htaccess ./.htaccess
+COPY ./config.json ./config.json
+COPY ./firebaseBranch.json ./firebaseBranch.json
+COPY ./index.html ./index.html
+COPY ./package.json ./package.json
+COPY ./webpack.config.js ./webpack.config.js

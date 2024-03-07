@@ -22,16 +22,22 @@ module.exports = {
                 warnings: false,
             },
             progress: true,
+            // https://stackoverflow.com/questions/69719003/webpack-devserver-hmr-not-working-with-ngrok-docker
+            webSocketURL: "auto://0.0.0.0:0/ws",
         },
         compress: true,
-        host: 'localhost',
+        // Docker setting, see: https://www.okteto.com/docs/1.4/tutorials/webpack/
+        host: '0.0.0.0',
         hot: false,
         liveReload: true,
         open: true,
-        port: 9100,
+        port: 80,
         static: {
             directory: './app',
-            watch: true,
+            watch: {
+                // ignored: /node_modules/,
+                usePolling: true,
+            }
         },
     },
     // The value of [contenthash] changes when a file's content changes. We use this for cache busting of various files.
