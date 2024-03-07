@@ -1,10 +1,11 @@
-
 /**
      Filename     :   Header.controller.js
      Description  :   Change the dropdown fields language
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import enLogo from '../../../../../images/logos/navbar-logo-en.png';
+import frLogo from '../../../../../images/logos/navbar-logo-fr.png';
 
 (function () {
     'use strict';
@@ -27,6 +28,23 @@
 
             // get data from the parent component
             vm.formData = vm.parent.getData();
+
+            bindEvents();
+        }
+
+        function bindEvents() {
+            // Initialize the logo's language
+            $translate.onReady(() => {
+                translateLogo($translate.proposedLanguage());
+            })
+        }
+
+        /**
+         * @description Sets the header's logo to its English or French version.
+         * @param {string} language The 2-character language key used to determine the language.
+         */
+        function translateLogo(language) {
+            vm.logo = language.toUpperCase() === 'EN' ? enLogo : frLogo;
         }
 
         // Change language function.
@@ -41,6 +59,7 @@
 
                     // Call function to change language of data in child forms
                     vm.changeDataLanguage();
+                    translateLogo(languageId);
 
                     $rootScope.$broadcast("changeErrorLanguage");
                 });
