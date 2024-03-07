@@ -4,7 +4,8 @@ services:
       context: .
     ports:
       - 8083:80
-    # volumes:
-      # - .:/var/www/html/
+    volumes:
+      - .:/var/www/html/
       # don't overwrite existing content in these directories
-      # - /var/www/html/node_modules
+      - /var/www/html/node_modules
+    command: npm run start

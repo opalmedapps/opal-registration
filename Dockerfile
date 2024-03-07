@@ -1,7 +1,5 @@
+# Note: this file is set up for development use. For production builds and deployment, see .gitlab-ci.yml
 FROM node:20.11.1-alpine3.19 as dependencies
-
-ARG NODE_ENV="production"
-ENV NODE_ENV="${NODE_ENV}"
 
 WORKDIR /app
 
@@ -13,45 +11,14 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY .npmrc ./
 
-# Installs only production dependencies when NODE_ENV is set to "production"
-# see: https://docs.npmjs.com/cli/v9/commands/npm-ci#omit
 RUN npm ci
 
 
-FROM node:20.11.1-alpine3.19 as website
-
-WORKDIR /app
-
-COPY . .
-
-# Install all dependencies to have access to webpack (from dev dependencies)
-RUN npm ci
-
-# Build the site using webpack
-RUN npm run build
-
-
-FROM php:8.3.3-apache-bookworm
-
-# Install dependencies
-RUN apt-get update \
-  # libxml for php-soap
-  && apt-get install -y libxml2-dev \
-  # cleaning up unused files
-  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
-  && rm -rf /var/lib/apt/lists/*
-
-# Enable mod_headers
-RUN a2enmod headers \
-  # Enable mod_rewrite
-  && a2enmod rewrite
-
-USER www-data
-WORKDIR /var/www/html
+FROM node:20.11.1-alpine3.19
 
 # Parent needs to be owned by www-data to satisfy npm
 # RUN chown -R www-data:www-data /var/www/
 COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
 
-# Copy webpack output
-COPY --from=website --chown=www-data:www-data /app/dist .
+# Copy source code
+COPY --chown=www-data:www-data . .
