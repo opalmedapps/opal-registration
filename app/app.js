@@ -22,7 +22,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 // TODO https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
 import '../css/registration.css';
 
-import firebaseConfig from '../config.json';
 import translationsEn from '../translate/en.json';
 import translationsFr from '../translate/fr.json';
 
@@ -31,10 +30,19 @@ import translationsFr from '../translate/fr.json';
 
     angular.element(document).ready(function () {
         // Initialize the Firebase app
-        firebase.initializeApp(firebaseConfig);
+        let configPath = './config.json';
+        fetch(configPath).then(response => {
+            if (response.statusCode !== 200) {
+                console.error(`Failed to load Firebase connection file: ${configPath}`);
+                return Promise.reject(response);
+            }
+            return response.text();
+        }).then((firebaseConfig) => {
+            firebase.initializeApp(JSON.parse(firebaseConfig));
 
-        // Initialize angularjs app using bootstrapping
-        angular.bootstrap(document, ['myApp']);
+            // Initialize angularjs app using bootstrapping
+            angular.bootstrap(document, ['myApp']);
+        });
     });
 
     // Creating our angular app and inject required module
