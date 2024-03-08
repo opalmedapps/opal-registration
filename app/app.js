@@ -30,9 +30,9 @@ import translationsFr from '../translate/fr.json';
 
     angular.element(document).ready(function () {
         // Initialize the Firebase app
-        let configPath = './config.json';
+        let configPath = '../config.json';
         fetch(configPath).then(response => {
-            if (response.statusCode !== 200) {
+            if (response.status !== 200) {
                 console.error(`Failed to load Firebase connection file: ${configPath}`);
                 return Promise.reject(response);
             }
