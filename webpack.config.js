@@ -22,7 +22,7 @@ module.exports = {
                 warnings: false,
             },
             progress: true,
-            // https://stackoverflow.com/questions/69719003/webpack-devserver-hmr-not-working-with-ngrok-docker
+            // Docker setting, see: https://stackoverflow.com/questions/69719003/webpack-devserver-hmr-not-working-with-ngrok-docker
             webSocketURL: "auto://0.0.0.0:0/ws",
         },
         compress: true,

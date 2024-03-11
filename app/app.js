@@ -5,6 +5,7 @@
      Date         :   June 2019
  **/
 
+// Dependencies
 import angular from 'angular';
 // See: https://docs.angularjs.org/api/ng/directive/ngCsp
 import 'angular/angular-csp.css';
@@ -19,9 +20,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import firebase from 'firebase';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
-// TODO https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
+// Project CSS
 import '../css/registration.css';
 
+// Translations
 import translationsEn from '../translate/en.json';
 import translationsFr from '../translate/fr.json';
 
@@ -29,7 +31,7 @@ import translationsFr from '../translate/fr.json';
     'use strict';
 
     angular.element(document).ready(function () {
-        // Initialize the Firebase app
+        // Initialize connection to Firebase
         let configPath = '../config.json';
         fetch(configPath).then(response => {
             if (response.status !== 200) {
