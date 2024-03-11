@@ -20,10 +20,10 @@
         vm.formData = {};
 
         // Fetch broadcast event and change the field error message language.
-        $rootScope.$on("changeErrorLanguage", function () {
+        $rootScope.$on("changeLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the field error values
+                // Check the field error values
                 vm.validateRegistrationCode();
                 vm.validatePatientId();
             });

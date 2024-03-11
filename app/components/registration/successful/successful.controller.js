@@ -4,6 +4,10 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import appStoreLogoEn from "../../../../images/logos/AppStore_EN.svg";
+import appStoreLogoFr from "../../../../images/logos/AppStore_FR.svg";
+import playStoreLogoEn from "../../../../images/logos/PlayStore_EN.png";
+import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
 
 (function () {
     'use strict';
@@ -11,9 +15,9 @@
 
         .controller('successfulController', successfulController);
 
-    successfulController.$inject = [];
+    successfulController.$inject = ['$rootScope', '$scope', '$translate'];
 
-    function successfulController() {
+    function successfulController($rootScope, $scope, $translate) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -22,12 +26,29 @@
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            
+
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
             // Call function to set current form class as active.
             vm.setFormStatus();
+
+            translateLogos();
+            bindEvents();
+        }
+
+        function bindEvents() {
+            const changeLanguageOff = $rootScope.$on("changeLanguage", translateLogos);
+            $scope.$on('destroy', changeLanguageOff);
+        }
+
+        /**
+         * @description Sets the page's logos to their English or French versions.
+         */
+        function translateLogos() {
+            const language = $translate.proposedLanguage().toUpperCase();
+            vm.appStoreLogo = language === 'EN' ? appStoreLogoEn : appStoreLogoFr;
+            vm.playStoreLogo = language === 'EN' ? playStoreLogoEn : playStoreLogoFr;
         }
 
         // Method to to set current form class as active.
