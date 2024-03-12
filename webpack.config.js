@@ -13,8 +13,9 @@ module.exports = {
         './app/app.services.js',
         './app/app.values.js',
     ],
-    mode: 'development', // TODO
-    devtool: 'eval-cheap-source-map', // TODO
+    // TODO change mode and devtool based on local development vs deployment
+    mode: 'development',
+    devtool: 'eval-cheap-source-map',
     devServer: {
         client: {
             overlay: {
