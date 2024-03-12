@@ -3,6 +3,8 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import logoEn from '../../../../images/logos/navbar-logo-en.png';
+import logoFr from '../../../../images/logos/navbar-logo-fr.png';
 
 (function () {
     'use strict';
@@ -11,10 +13,13 @@
         .module('myApp')
         .controller('welcomePageController', welcomePageController);
 
-    welcomePageController.$inject = ['$translate'];
+    welcomePageController.$inject = ['$rootScope', '$translate'];
 
-    function welcomePageController($translate) {
+    function welcomePageController($rootScope, $translate) {
         var vm = this;
+
+        vm.logoEn = logoEn;
+        vm.logoFr = logoFr;
 
         // Change language function.
         vm.changeLanguage = function (language) {
@@ -29,6 +34,8 @@
             if (vm.lan_key === 'en') {
                 $translate.use(vm.lan_key);
             }
+
+            $rootScope.$broadcast("changeLanguage");
         };
     }
 })();

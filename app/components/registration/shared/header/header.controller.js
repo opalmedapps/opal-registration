@@ -22,29 +22,15 @@ import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
         // Create variable formData to store the values of parent data.
         vm.formData = {};
 
+        vm.logoEn = logoEn;
+        vm.logoFr = logoFr;
+
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
 
             // get data from the parent component
             vm.formData = vm.parent.getData();
-
-            bindEvents();
-        }
-
-        function bindEvents() {
-            // Initialize the logo's language
-            $translate.onReady(() => {
-                translateLogo($translate.proposedLanguage());
-            })
-        }
-
-        /**
-         * @description Sets the header's logo to its English or French version.
-         * @param {string} language The 2-character language key used to determine the language.
-         */
-        function translateLogo(language) {
-            vm.logo = language.toUpperCase() === 'EN' ? logoEn : logoFr;
         }
 
         // Change language function.
@@ -59,7 +45,6 @@ import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
 
                     // Call function to change language of data in child forms
                     vm.changeDataLanguage();
-                    translateLogo(languageId);
 
                     $rootScope.$broadcast("changeLanguage");
                 });
