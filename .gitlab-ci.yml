@@ -49,12 +49,13 @@ build:
     - echo "transferring files and listing remote directory..."
     - echo "deploying to ${CI_ENVIRONMENT_NAME}"
     # lftp mirror arguments: https://www.cyberciti.biz/faq/lftp-mirror-example/
+    # The file config.json is excluded to prevent it from being deleted on the server
     - >
       lftp -e "
         set cmd:fail-exit yes;
         open $FTP_HOST;
         user $FTP_USER $FTP_PASSWORD;
-        mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
+        mirror --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
         ls -la registration/${CI_ENVIRONMENT_NAME};
         bye
       "
