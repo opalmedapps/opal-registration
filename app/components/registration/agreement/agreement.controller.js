@@ -10,9 +10,9 @@
     angular.module('myApp')
         .controller('agreementController', agreementController);
 
-    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
+    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'userAuthorizationService', 'encryptionService'];
 
-    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
+    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, userAuthorizationService, encryptionService) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.

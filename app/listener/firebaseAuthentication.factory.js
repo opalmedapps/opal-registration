@@ -1,121 +1,65 @@
-import firebase from 'firebase';
+/**
+ * @description Service providing access to the Firebase Realtime Database.
+ * @author Various; refactored by Stacey Beard in March 2024.
+ */
+import { getApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { child, getDatabase, off, onValue, push, ref, serverTimestamp, set } from "firebase/database";
+
 import firebaseBranchConfig from '../../firebaseBranch.json';
 
-//Defines the module for the app services.
-var myModule = angular.module('myApp');
+(function() {
+    'use strict';
 
-//Factory service made to transport the firebase link as a dependency
-/**
-      @ngdoc service
-      @name myApp.service:firebaseFactory
-      @requires myApp.service:userAuthorizationService
-      @description Allows the app controllers or services obtain the authentication state and credentials, it also returns the urls inside for the firebase connection
-**/
-myModule.factory("firebaseFactory", [
-    function () {
+    angular
+        .module('myApp')
+        .factory('firebase', Firebase);
 
-        var hospitalCodeArray = [];
-        var devBranch = '';
-        var parentBranch = '';
-        var apiParentBranch = ''
-        // Call function to load firebase configuration on page load.
-        getFirebaseConfig();
+    Firebase.$inject = [];
 
-        // Function to load firebase branch configurations
-        function getFirebaseConfig() {
-            // Assign branch structure.
-            hospitalCodeArray = firebaseBranchConfig.hospitalCodes;
-            devBranch = firebaseBranchConfig.devBranch;
-            parentBranch = firebaseBranchConfig.parentBranch;
-            apiParentBranch = firebaseBranchConfig.apiParentBranch;
-        }
+    function Firebase() {
+        const app = getApp();
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        let firebaseDBRef = ref(database, firebaseBranchConfig.devBranch);
 
         return {
+            // Custom functions
+            getApiParentBranch: () => firebaseBranchConfig.apiParentBranch,
+            getApiPath: hospitalCode => getBasePath(hospitalCode, firebaseBranchConfig.apiParentBranch),
+            getDBRef: getDBRef,
+            getLegacyPath: hospitalCode => getBasePath(hospitalCode, firebaseBranchConfig.parentBranch),
+            getResponseChildBranch: () => firebaseBranchConfig.responseChildBranch,
 
-            /**
-                @ngdoc method
-                @name getFirebaseUrl
-                @methodOf myApp.service:firebaseFactory
-                @returns {String} Returns firebase url string
-             **/
+            // Direct access to Auth functions (where the auth parameter is managed by this service)
+            signInWithEmailAndPassword: (email, password) => signInWithEmailAndPassword(auth, email, password),
+            signOut: () => signOut(auth),
 
-            getFirebaseUrl: function (extension) {
-                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode === extension);
-                if (!hospital_code) throw 'INVALID_HOSPITAL_CODE';
-                const unique_code = hospital_code ? hospital_code.uniqueHospitalCode + '/' : '';
-                return devBranch + '/' + unique_code + parentBranch + '/';
-            },
-
-            /**
-             @ngdoc method
-             @name getFirebaseApiUrl
-             @methodOf myApp.service:firebaseFactory
-             @returns {String} Returns firebase api url string
-             **/
-
-            getFirebaseApiUrl: function (extension) {
-                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode === extension);
-                if (!hospital_code) throw 'INVALID_HOSPITAL_CODE';
-                const unique_code = hospital_code ? hospital_code.uniqueHospitalCode + '/' : '';
-                return devBranch + '/' + unique_code + apiParentBranch + '/';
-            },
-
-            /**
-               @ngdoc method
-               @name getFirebaseChild
-               @methodOf myApp.service:firebaseFactory
-               @returns {String} Returns firebase url string
-            **/
-            getFirebaseChild: function (child) {
-                switch (child) {
-                    case null:
-                        return firebaseBranchConfig.responseChildBranch + "/";
-                    case 'requests':
-                        return firebaseBranchConfig.requestChildBranch + "/";
-                    default:
-                        return '';
-                }
-            },
-
-            /**
-             @ngdoc method
-             @name getApiParentBranch
-             @methodOf myApp.service:firebaseFactory
-             @returns {String} Returns api parent branch string
-             **/
-            getApiParentBranch: function () {
-                return apiParentBranch;
-            },
-
-            // Create firebase account with user email and password
-            createFirebaseAccount: function (email, password) {
-
-                // Method to create firebase account with user email and password
-                return firebase.auth().createUserWithEmailAndPassword(email, password).then(function (userData) {
-
-                    return userData;
-
-                }, function (error) {
-                    // Get error response and display it.
-                    return error;
-                });
-            },
-
-            // Sign in with the unique created token
-            signInWithEmailAndPassword: function (email, password) {
-
-                // Method to signIn in firebase with custom token .
-                return firebase.auth().signInWithEmailAndPassword(email, password).then(function (userData) {
-
-                    return userData;
-                    //authHandler(userData, vm.token);
-
-                }, function (error) {
-                    // Get error response and display it.
-                    return error;
-                });
-
-            }
+            // Direct access to other built-in Firebase functions
+            off: off,
+            onValue: onValue,
+            push: push,
+            serverTimestamp: serverTimestamp,
+            set: set,
         };
-    }]);
 
+        /**
+         * @description Returns the path in Firebase under which all requests of a certain type are handled (legacy or API).
+         * @param {string} hospitalCode The hospital's unique code, which forms part of the path.
+         * @param {string} requestTypePath Part of the path which is specific to legacy or API requests, taken from the Firebase branch config file.
+         * @returns {string}
+         */
+        function getBasePath(hospitalCode, requestTypePath) {
+            // Validate the existence of the hospital code
+            const validHospital = firebaseBranchConfig.hospitalCodes.find(hospital => hospital.uniqueHospitalCode === hospitalCode);
+            if (!validHospital) throw 'INVALID_HOSPITAL_CODE';
+
+            return `/${hospitalCode}/${requestTypePath}/`;
+        }
+
+        function getDBRef(childRef) {
+            return childRef ? child(firebaseDBRef, childRef) : firebaseDBRef;
+        }
+    }
+})();

@@ -17,7 +17,7 @@ import 'angularjs-datepicker';
 import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import firebase from 'firebase';
+import { initializeApp } from 'firebase/app';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 // Project CSS
@@ -27,28 +27,20 @@ import '../css/registration.css';
 import translationsEn from '../translate/en.json';
 import translationsFr from '../translate/fr.json';
 
+import firebaseConfig from '../config.json';
+
 (function () {
     'use strict';
 
     angular.element(document).ready(function () {
-        // Initialize connection to Firebase
-        let configPath = '../config.json';
-        fetch(configPath).then(response => {
-            if (response.status !== 200) {
-                console.error(`Failed to load Firebase connection file: ${configPath}`);
-                return Promise.reject(response);
-            }
-            return response.text();
-        }).then((firebaseConfig) => {
-            firebase.initializeApp(JSON.parse(firebaseConfig));
+        initializeApp(firebaseConfig);
 
-            // Initialize angularjs app using bootstrapping
-            angular.bootstrap(document, ['myApp']);
-        });
+        // Initialize angularjs app using bootstrapping
+        angular.bootstrap(document, ['myApp']);
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker'])
 
     // Configuring our states
     app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',

@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$filter', '$location', '$rootScope', '$uibModal', '$timeout', '$sce', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService', 'apiConstants'];
+    searchController.$inject = ['$filter', '$location', '$rootScope', '$uibModal', '$timeout', '$sce', 'requestToListener', 'userAuthorizationService', 'encryptionService', 'apiConstants'];
 
-    function searchController($filter, $location, $rootScope, $uibModal, $timeout, $sce, requestToListener, firebaseFactory, userAuthorizationService, encryptionService, apiConstants) {
+    function searchController($filter, $location, $rootScope, $uibModal, $timeout, $sce, requestToListener, userAuthorizationService, encryptionService, apiConstants) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
