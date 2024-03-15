@@ -8,14 +8,20 @@ stages:
   - test
   - deploy
   - dast
+  - post
+
+variables:
+  ENV: "dev"  # The environment used for building and deployment
+  CONFIG: $CONFIG_DEV  # The content which will be written to config.json before building
+  DAST_WEBSITE: "https://devregistration.opalmedapps.ca"  # Used by 'dast' job
 
 build:
   stage: build
   before_script:
     - node --version
     - npm --version
-    - '[ -z "$CONFIG_DEV" ] && echo "Error: environment variable CONFIG_DEV must be configured in GitLab CI/CD variables for this repository" && exit 1'
-    - echo $CONFIG_DEV > config.json
+    - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG_$ENV must be configured in GitLab CI/CD variables for this repository" && exit 1'
+    - echo $CONFIG > config.json
   script:
     # Install dependencies and cache within the project directory to cache
     # See: https://javascript.plainenglish.io/improving-ci-performance-aka-how-to-save-your-money-31ff691360e4
@@ -38,9 +44,10 @@ build:
       - node_modules
 
 
-.deploy:
+deploy:
   stage: deploy
   image: alpine:latest
+  environment: $ENV
   needs:
     - build
   script:
@@ -63,26 +70,7 @@ build:
         bye
       "
   rules:
-    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
-
-
-deploy_development:
-  environment: development
-  extends: .deploy
-
-deploy_qa:
-  environment: qa
-  extends: .deploy
-  needs:
-    - build_development
-    - deploy_development
-
-deploy_staging:
-  environment: staging
-  extends: .deploy
-  needs:
-    - build_qa
-    - deploy_qa
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -99,7 +87,6 @@ include:
   - template: DAST.gitlab-ci.yml
 
 # Job Customizations
-#
 
 # Secret Detection:
 # https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
@@ -117,17 +104,74 @@ gemnasium-dependency_scanning:
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
 dast:
   # with needs: due to reliance on the deploy job on a non default branch the pipeline fails with
-  # 'dast' job needs 'deploy_development' job, but 'deploy_development' is not in any previous stage
+  # 'dast' job needs 'deploy' job, but 'deploy' is not in any previous stage
   # dast comes after the deploy stage so always after by default
   needs:
-    - deploy_development
+    - deploy
   # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
   variables:
-    DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
     DAST_BROWSER_SCAN: "true"
     # enables active scanning
     # https://docs.gitlab.com/ee/user/application_security/dast/browser/checks/#active-checks
     # DAST_FULL_SCAN_ENABLED: "true"
-  # ensure that deploy_development is in a previous stage
   rules:
-    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    # ensure that 'deploy' job is in a previous stage
+    # TODO only run this in Dev?
+    - if: $ENV == "dev" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+# Downstream Pipelines
+
+# Extended job for launching a downstream pipeline in another environment
+# See: https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html
+.build and deploy downstream:
+  stage: post
+  rules:
+    # Avoid infinite recursion
+    - if: $CI_PIPELINE_SOURCE == "parent_pipeline"
+      when: never
+    # Only offer build and deployment in other environments after automatic build and deployment for Dev
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
+  trigger:
+    include:
+      - local: .gitlab-ci.yml
+
+# Launches a downstream pipeline to build for the Demo environment
+build and deploy demo:
+  extends: .build and deploy downstream
+  variables:
+    # Override pipeline variables to run for the Demo environment
+    ENV: "demo"
+    CONFIG: $CONFIG_DEMO
+
+# Launches a downstream pipeline to build for the DevOps environment
+build and deploy devops:
+  extends: .build and deploy downstream
+  variables:
+    # Override pipeline variables to run for the DevOps environment
+    ENV: "devops"
+    CONFIG: $CONFIG_DEVOPS
+
+# Launches a downstream pipeline to build for the PreProd environment
+build and deploy preprod:
+  extends: .build and deploy downstream
+  variables:
+    # Override pipeline variables to run for the PreProd environment
+    ENV: "preprod"
+    CONFIG: $CONFIG_PREPROD
+
+# Launches a downstream pipeline to build for the QA environment
+build and deploy qa:
+  extends: .build and deploy downstream
+  variables:
+    # Override pipeline variables to run for the QA environment
+    ENV: "qa"
+    CONFIG: $CONFIG_QA
+
+# Launches a downstream pipeline to build for the Staging environment
+build and deploy staging:
+  extends: .build and deploy downstream
+  variables:
+    # Override pipeline variables to run for the Staging environment
+    ENV: "staging"
+    CONFIG: $CONFIG_STAGING
