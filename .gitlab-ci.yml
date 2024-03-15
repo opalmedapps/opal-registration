@@ -74,14 +74,14 @@ deploy_qa:
   environment: qa
   extends: .deploy
   needs:
-    - build
+    - build_development
     - deploy_development
 
 deploy_staging:
   environment: staging
   extends: .deploy
   needs:
-    - build
+    - build_qa
     - deploy_qa
 
 include:
