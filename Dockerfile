@@ -16,8 +16,7 @@ RUN npm ci
 
 FROM node:20.11.1-alpine3.19
 
-# Parent needs to be owned by www-data to satisfy npm
-COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
+WORKDIR /app
 
-# Copy all non-docker-ignored code sources
-COPY . .
+# Parent needs to be owned by www-data to satisfy npm
+COPY --from=dependencies --chown=www-data:www-data /app/node_modules /node_modules
