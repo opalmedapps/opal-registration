@@ -20,7 +20,7 @@ build:
   before_script:
     - node --version
     - npm --version
-    - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG_$ENV must be configured in GitLab CI/CD variables for this repository" && exit 1'
+    - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG_${ENV^^} must be configured in GitLab CI/CD variables for this repository" && exit 1'
     - echo $CONFIG > config.json
   script:
     # Install dependencies and cache within the project directory to cache
