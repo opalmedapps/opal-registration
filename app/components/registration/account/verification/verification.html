@@ -63,7 +63,7 @@
         </div>
         <div class="text-muted col-md-7 px-0"><label for="code" class="font-weight-bold text-muted">{{'VERIFICATION.VERIFY.CODE' | translate}}</label></div>
         <div class="text-muted col-md-10 px-0">
-            <input type="number" maxlength="6" pattern="\d*" ng-model="vm.inputCode" class="form-control mr-3 px-3" ng-change="vm.resetCodeValidity()"
+            <input type="number" name="code" maxlength="6" pattern="\d*" numeric-format name="code" ng-model="vm.inputCode" class="form-control mr-3 px-3" ng-change="vm.resetCodeValidity()"
                    class="verification-code">
             <button type="button" class="btn btn-secondary mt-3 mr-3 px-3"
                     ng-click="vm.checkVerificationCode()">

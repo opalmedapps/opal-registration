@@ -18,7 +18,7 @@
         vm.verificationCode = undefined;
         vm.inputCode = undefined;
         vm.sendCode = false;
-        vm.showMessage= false;
+        vm.showCodeMessage= false;
         vm.verifyCode = false;
         vm.isCodeValid = false;
         vm.countdownSeconds = 15;
@@ -82,7 +82,7 @@
 
                 $timeout(() => {
                     vm.sendCode = true;
-                    vm.showMessage= true;
+                    vm.showCodeMessage= true;
 
                     let countDown = vm.countdownSeconds;
                     let time = setInterval(function () {
@@ -119,13 +119,13 @@
                 $timeout(() => {
                     vm.verifyCode = true;
                     vm.isCodeValid = response?.status_code === "200";
-                    vm.showMessage= false;
+                    vm.showCodeMessage= false;
                 });
             } catch (error) {
                 $timeout(() => {
                     console.error(error);
                     vm.verifyCode = true;
-                    vm.showMessage= false;
+                    vm.showCodeMessage= false;
                 });
             }
         }
@@ -135,13 +135,13 @@
             vm.sendCode = false;
             vm.verifyCode = false;
             vm.sendCode = false;
-            vm.showMessage= false;
+            vm.showCodeMessage= false;
         }
 
         vm.verificationFormSubmit = function() {
             vm.formData.formFieldsData.email = vm.email;
             $location.path('/form/secureInformation');
-            vm.showMessage = false;
+            vm.showCodeMessage = false;
 
         }
         vm.resetCodeValidity = function() {
