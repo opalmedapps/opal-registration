@@ -4,14 +4,15 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import secureTemplate from './secure.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('secureComponent', {
-            templateUrl: 'app/components/registration/secure/secure.html',
+            template: secureTemplate,
             controller: 'secureController',
             controllerAs: 'vm',
             require: {

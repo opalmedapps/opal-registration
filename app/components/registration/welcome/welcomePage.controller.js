@@ -1,9 +1,10 @@
-
 /**
      Filename     :   welcomePage.controller.js
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import logoEn from '../../../../images/logos/navbar-logo-en.png';
+import logoFr from '../../../../images/logos/navbar-logo-fr.png';
 
 (function () {
     'use strict';
@@ -12,33 +13,29 @@
         .module('myApp')
         .controller('welcomePageController', welcomePageController);
 
-    welcomePageController.$inject = ['$translate', '$rootScope'];
+    welcomePageController.$inject = ['$rootScope', '$translate'];
 
-    function welcomePageController($translate, $rootScope) {
+    function welcomePageController($rootScope, $translate) {
         var vm = this;
-       
-        // Default opal logo in header.
-        vm.opalLogo = 'images/logos/navbar-logo.png';
-        
+
+        vm.logoEn = logoEn;
+        vm.logoFr = logoFr;
+
         // Change language function.
         vm.changeLanguage = function (language) {
-            
-            // Slice first two charcters and convert it into lowercase.
             vm.lan_key = (language.slice(0, 2)).toLowerCase();
 
-            // If lan_key has fr(french) value, website will converts its language in to french. 
+            // If lan_key has fr (french) value, switch to French
             if (vm.lan_key === 'fr') {
-                // vm.opalLogo = 'images/logos/navbar-logo-fr.png';
                 $translate.use(vm.lan_key);
             }
 
-            // If lan_key has en(english) value, website will converts its language in to english. This is default the language.
+            // If lan_key has en (english) value, switch to english
             if (vm.lan_key === 'en') {
-                //vm.opalLogo = 'images/logos/navbar-logo.png';
                 $translate.use(vm.lan_key);
             }
+
+            $rootScope.$broadcast("changeLanguage");
         };
     }
 })();
-
-

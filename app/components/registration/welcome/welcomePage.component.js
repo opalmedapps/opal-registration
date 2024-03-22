@@ -4,14 +4,16 @@
      Created by   :   Jinal Vyas
      Date         :   Feb 2020
  **/
+import headerTemplate from '../shared/header/header.html';
+import welcomePageTemplate from './welcomePage.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('welcomePageComponent', {
-            templateUrl: 'app/components/registration/welcome/welcomePage.html',
+            template: headerTemplate + welcomePageTemplate,
             controller: 'welcomePageController',
             controllerAs: 'vm'
         })

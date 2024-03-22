@@ -4,7 +4,7 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
-
+import headerTemplate from './header.html';
 
 (function () {
     'use strict';
@@ -12,7 +12,7 @@
     angular
         .module('myApp')
         .component('headerComponent', {
-            templateUrl: 'app/components/registration/shared/header/header.html',
+            template: headerTemplate,
             controller: 'headerController',
             controllerAs: 'vm',
             require: {

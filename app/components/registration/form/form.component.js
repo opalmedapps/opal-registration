@@ -4,14 +4,15 @@
   Created by   :   Jinal Vyas
   Date         :   June 2019
  **/
+import formTemplate from './form.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('formComponent', {
-            templateUrl: 'app/components/registration/form/form.html',
+            template: formTemplate,
             controller: 'formController',
             controllerAs: 'vm'
         })

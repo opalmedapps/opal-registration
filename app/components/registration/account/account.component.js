@@ -4,14 +4,18 @@
      Created by   :   LL
      Date         :   2022-04-07
 **/
+import accountTemplate from './account.html';
+import loginTemplate from './login/login.html';
+import questionsTemplate from './questions/questions.html';
+import verificationTemplate from './verification/verification.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('accountComponent', {
-            templateUrl: 'app/components/registration/account/account.html',
+            template: accountTemplate,
             controller: 'accountController',
             controllerAs: 'vm',
             require: {
@@ -24,7 +28,7 @@
             }
         })
         .component('loginComponent', {
-            templateUrl: 'app/components/registration/account/login/login.html',
+            template: loginTemplate,
             controller: 'loginController',
             controllerAs: 'vm',
             require: {
@@ -37,7 +41,7 @@
             }
         })
         .component('questionsComponent', {
-            templateUrl: 'app/components/registration/account/questions/questions.html',
+            template: questionsTemplate,
             controller: 'questionsController',
             controllerAs: 'vm',
             require: {
@@ -50,7 +54,7 @@
             }
         })
         .component('verificationComponent', {
-            templateUrl: 'app/components/registration/account/verification/verification.html',
+            template: verificationTemplate,
             controller: 'verificationController',
             controllerAs: 'vm',
             require: {

@@ -4,14 +4,15 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import successfulHtml from './successful.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('successfulComponent', {
-            templateUrl: 'app/components/registration/successful/successful.html',
+            template: successfulHtml,
             controller: 'successfulController',
             controllerAs: 'vm',
             require: {

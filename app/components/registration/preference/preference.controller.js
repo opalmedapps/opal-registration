@@ -10,19 +10,19 @@
     angular.module('myApp')
         .controller('preferenceController', preferenceController);
 
-    preferenceController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'preferenceService'];
+    preferenceController.$inject = ['$location', '$filter', '$rootScope', '$timeout'];
 
-    function preferenceController($location, $filter, $rootScope, $timeout, preferenceService) {
+    function preferenceController($location, $filter, $rootScope, $timeout) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
         vm.formData = {};
 
         // Fetch broadcast event and change the field error message language.
-        $rootScope.$on("changeErrorLanguage", function () {
+        $rootScope.$on("changeLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values            
+                // Check the field error values
                 vm.validateLanguage();
             });
         });

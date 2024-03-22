@@ -4,6 +4,10 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import appStoreLogoEn from "../../../../images/logos/AppStore_EN.svg";
+import appStoreLogoFr from "../../../../images/logos/AppStore_FR.svg";
+import playStoreLogoEn from "../../../../images/logos/PlayStore_EN.png";
+import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
 
 (function () {
     'use strict';
@@ -19,10 +23,15 @@
         // Create variable formData to store the values of parent data.
         vm.formData = {};
 
+        vm.appStoreLogoEn = appStoreLogoEn;
+        vm.appStoreLogoFr = appStoreLogoFr;
+        vm.playStoreLogoEn = playStoreLogoEn;
+        vm.playStoreLogoFr = playStoreLogoFr;
+
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            
+
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
