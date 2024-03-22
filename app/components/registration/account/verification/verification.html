@@ -1,4 +1,4 @@
-﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
+<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
 
 <form class="p-4 mb-0 mb-md-2 bg-light rounded" name="verificationForm" ng-submit="vm.verificationFormSubmit()" novalidate>
 
@@ -63,7 +63,8 @@
         </div>
         <div class="text-muted col-md-7 px-0"><label for="code" class="font-weight-bold text-muted">{{'VERIFICATION.VERIFY.CODE' | translate}}</label></div>
         <div class="text-muted col-md-10 px-0">
-            <input type="number" name="code" maxlength="6" pattern="\d*" numeric-format name="code" ng-model="vm.inputCode" class="form-control mr-3 px-3"
+            <input type="number" name="code" maxlength="6" pattern="\d*" numeric-format name="code" ng-model="vm.inputCode" class="form-control mr-3 px-3" ng-change="vm.resetCodeValidity()"
+            <!-- Future notice for the maxlength attribute -->
                    class="verification-code">
             <button type="button" class="btn btn-secondary mt-3 mr-3 px-3"
                     ng-click="vm.checkVerificationCode()">
@@ -76,7 +77,7 @@
         </div>
     </div>
     <div class="text-muted col-md-12 alert alert-success verify-code-info"
-         ng-if="vm.sendCode && !vm.verifyCode">{{'VERIFICATION.SEND.MESSAGE' | translate}}</div>
+         ng-if="vm.sendCode && !vm.verifyCode && vm.showCodeMessage">{{'VERIFICATION.SEND.MESSAGE' | translate}}</div>
     <div class="text-muted col-md-12 alert alert-success verify-code-info"
          ng-if="vm.verifyCode && vm.isCodeValid">{{'VERIFICATION.VERIFY.VALID' | translate}}</div>
     <div class="text-muted col-md-12 alert alert-danger verify-code-info"
