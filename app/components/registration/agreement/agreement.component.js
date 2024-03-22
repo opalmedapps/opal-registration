@@ -4,14 +4,15 @@
  * Created by   :   Jinal Vyas
  * Date         :   June 2019
  */
+import agreementTemplate from './agreement.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('agreementComponent', {
-            templateUrl: 'app/components/registration/agreement/agreement.html',
+            template: agreementTemplate,
             controller: 'agreementController',
             controllerAs: 'vm',
             require: {

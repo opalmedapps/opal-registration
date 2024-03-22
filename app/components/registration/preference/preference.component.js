@@ -4,6 +4,7 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import preferenceTemplate from './preference.html';
 
 (function () {
     'use strict';
@@ -11,7 +12,7 @@
     angular
         .module('myApp')
         .component('preferenceComponent', {
-            templateUrl: 'app/components/registration/preference/preference.html',
+            template: preferenceTemplate,
             controller: 'preferenceController',
             controllerAs: 'vm',
             require: {

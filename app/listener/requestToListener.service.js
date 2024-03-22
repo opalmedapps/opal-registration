@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 (function () {
     'use strict';
     angular.module('myApp')
