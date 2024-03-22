@@ -9,11 +9,16 @@ stages:
   - deploy
   - dast
 
-build:
+
+# Checks whether the build can be executed, but doesn't produce a valid build (since a real config.json file isn't included)
+check build:
   stage: build
-  script:
+  before_script:
     - node --version
     - npm --version
+    # Since this check-build job isn't environment-specific, an empty config file is used
+    - echo "{}" > config.json
+  script:
     # Install dependencies and cache within the project directory to cache
     # See: https://javascript.plainenglish.io/improving-ci-performance-aka-how-to-save-your-money-31ff691360e4
     - npm ci --cache .npm --prefer-offline
@@ -31,18 +36,22 @@ build:
     name: "$CI_COMMIT_REF_SLUG"
     expire_in: 1 week
     paths:
-      - dist
       - node_modules
 
 
-.deploy:
+# Builds and deploys a functional copy of the site to a given environment
+.build and deploy:
   stage: deploy
-  image: alpine:latest
   needs:
-    - build
-  script:
+    - check build
+  before_script:
+    - ENV_ALL_CAPS=$(echo "${CI_ENVIRONMENT_NAME}" | tr '[:lower:]' '[:upper:]')
+    - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG_${ENV_ALL_CAPS} must be configured in GitLab CI/CD variables for this repository" && exit 1'
+    - echo $CONFIG > config.json
     - apk add --no-cache lftp
     - lftp --version
+  script:
+    - npm run build
     - cd dist
     - echo "listing working directory..."
     - ls -la
@@ -58,27 +67,65 @@ build:
         ls -la registration/${CI_ENVIRONMENT_NAME};
         bye
       "
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
   rules:
-    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 
-deploy_development:
-  environment: development
-  extends: .deploy
+build and deploy demo:
+  environment: demo
+  extends: .build and deploy
+  needs:
+    - check build
+    - build and deploy dev
+  variables:
+    CONFIG: $CONFIG_DEMO
 
-deploy_qa:
+build and deploy dev:
+  environment: dev
+  extends: .build and deploy
+  variables:
+    CONFIG: $CONFIG_DEV
+
+build and deploy devops:
+  environment: devops
+  extends: .build and deploy
+  needs:
+    - check build
+    - build and deploy dev
+  variables:
+    CONFIG: $CONFIG_DEVOPS
+
+build and deploy preprod:
+  environment: preprod
+  extends: .build and deploy
+  needs:
+    - check build
+    - build and deploy staging
+  variables:
+    CONFIG: $CONFIG_PREPROD
+
+build and deploy qa:
   environment: qa
-  extends: .deploy
+  extends: .build and deploy
   needs:
-    - build
-    - deploy_development
+    - check build
+    - build and deploy dev
+  variables:
+    CONFIG: $CONFIG_QA
 
-deploy_staging:
+build and deploy staging:
   environment: staging
-  extends: .deploy
+  extends: .build and deploy
   needs:
-    - build
-    - deploy_qa
+    - check build
+    - build and deploy qa
+  variables:
+    CONFIG: $CONFIG_STAGING
+
 
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -95,7 +142,6 @@ include:
   - template: DAST.gitlab-ci.yml
 
 # Job Customizations
-#
 
 # Secret Detection:
 # https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
@@ -106,17 +152,17 @@ secret_detection:
 # Dependency Scanning
 # https://docs.gitlab.com/ee/user/application_security/dependency_scanning/index.html#overriding-dependency-scanning-jobs
 gemnasium-dependency_scanning:
-  dependencies: ["build"]
+  dependencies: ["check build"]
 
 # DAST Scanning:
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/requirements.html
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
 dast:
   # with needs: due to reliance on the deploy job on a non default branch the pipeline fails with
-  # 'dast' job needs 'deploy_development' job, but 'deploy_development' is not in any previous stage
+  # 'dast' job needs 'build and deploy dev' job, but 'build and deploy dev' is not in any previous stage
   # dast comes after the deploy stage so always after by default
   needs:
-    - deploy_development
+    - build and deploy dev
   # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
   variables:
     DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
@@ -124,6 +170,6 @@ dast:
     # enables active scanning
     # https://docs.gitlab.com/ee/user/application_security/dast/browser/checks/#active-checks
     # DAST_FULL_SCAN_ENABLED: "true"
-  # ensure that deploy_development is in a previous stage
+  # ensure that 'build and deploy dev' is in a previous stage
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
