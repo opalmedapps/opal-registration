@@ -4,6 +4,11 @@
     "type": "gitlab",
     "url": "gitlab+https://gitlab.com/yickmo/registration-web-page"
   },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --mode=development",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
     "@zxcvbn-ts/core": "3.0.4",
@@ -12,7 +17,6 @@
     "@zxcvbn-ts/language-fr": "3.0.2",
     "angular": "npm:@xlts.dev/angular@1.9.3",
     "angular-translate": "2.19.1",
-    "angular-translate-loader-static-files": "2.19.1",
     "angular-ui-bootstrap": "2.5.6",
     "angular-ui-router": "1.0.30",
     "angularfire": "1.2.0",
@@ -24,6 +28,19 @@
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1"
   },
-  "author": "Jinal Vyas",
-  "description": "Repository for registration website"
+  "devDependencies": {
+    "copy-webpack-plugin": "12.0.2",
+    "css-loader": "6.10.0",
+    "favicons": "7.1.5",
+    "favicons-webpack-plugin": "6.0.1",
+    "html-loader": "5.0.0",
+    "html-webpack-plugin": "5.6.0",
+    "style-loader": "3.3.4",
+    "webpack": "5.90.1",
+    "webpack-cli": "5.1.4",
+    "webpack-dev-server": "5.0.2"
+  },
+  "author": "Opal Health Informatics Group",
+  "description": "Repository for registration website",
+  "private": true
 }

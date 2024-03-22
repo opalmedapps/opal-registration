@@ -1,3 +1,8 @@
+import CryptoJS from "crypto-js";
+import nacl from "tweetnacl";
+import util from "tweetnacl-util";
+nacl.util = util;
+
 (function () {
     'use strict';
     angular.module('myApp')

@@ -1,10 +1,11 @@
-
 /**
      Filename     :   Header.controller.js
      Description  :   Change the dropdown fields language
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import logoEn from '../../../../../images/logos/navbar-logo-en.png';
+import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
 
 (function () {
     'use strict';
@@ -13,24 +14,28 @@
         .module('myApp')
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$translate', '$sce', '$rootScope'];
+    headerController.$inject = ['$filter', '$rootScope', '$translate'];
 
-    function headerController($translate, $sce, $rootScope) {
+    function headerController($filter, $rootScope, $translate) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
         vm.formData = {};
 
-        // Default opal logo in header.
-        vm.opalLogo = 'images/logos/navbar-logo.png';
+        vm.logoEn = logoEn;
+        vm.logoFr = logoFr;
 
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
         function activate() {
-            
+
             // get data from the parent component
             vm.formData = vm.parent.getData();
         }
+
+        // Translate the page title
+        $rootScope.$on("changeLanguage", () => window.document.title = $filter('translate')('HEADER.PAGETITLE'));
+        window.document.title = $filter('translate')('HEADER.PAGETITLE');
 
         // Change language function.
         vm.changeLanguage = function (language) {
@@ -45,16 +50,16 @@
                     // Call function to change language of data in child forms
                     vm.changeDataLanguage();
 
-                    $rootScope.$broadcast("changeErrorLanguage");
+                    $rootScope.$broadcast("changeLanguage");
                 });
         };
 
         // Common function to the change languages of data in child forms
         vm.changeDataLanguage = function () {
-            
+
             // If global variable selectedlanguage is set to french
             if (vm.formData.selectedLanguage === 'fr') {
-                
+
                 // Check if secure form is loaded. If yes assign french questions to dropdown modal
                 if (vm.formData.secureForm.flag === 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
@@ -77,14 +82,14 @@
                 }
 
                 // Check if aggreement form is loaded. If yes assign french document
-                if (vm.formData.agreementForm.flag === 1) { 
+                if (vm.formData.agreementForm.flag === 1) {
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_FR;
                 }
             }
 
             // If global variable selectedlanguage is set to english
             if (vm.formData.selectedLanguage === 'en') {
-                
+
                 // Check if secure form is loaded. If yes assign english questions to dropdown modal
                 if (vm.formData.secureForm.flag === 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_EN;
@@ -107,7 +112,7 @@
                 }
 
                 // Check if aggreement form is loaded. If yes assign english document
-                if (vm.formData.agreementForm.flag === 1) { 
+                if (vm.formData.agreementForm.flag === 1) {
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_EN;
                 }
             }

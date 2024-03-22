@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+import firebaseBranchConfig from '../../firebaseBranch.json';
 
 //Defines the module for the app services.
 var myModule = angular.module('myApp');
@@ -9,10 +11,9 @@ var myModule = angular.module('myApp');
       @requires myApp.service:userAuthorizationService
       @description Allows the app controllers or services obtain the authentication state and credentials, it also returns the urls inside for the firebase connection
 **/
-myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
-    function ($http) {
+myModule.factory("firebaseFactory", [
+    function () {
 
-        var firebaseBranch = '';
         var hospitalCodeArray = [];
         var devBranch = '';
         var parentBranch = '';
@@ -20,29 +21,17 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
         // Call function to load firebase configuration on page load.
         getFirebaseConfig();
 
-        // Function to load firebase configration
+        // Function to load firebase branch configurations
         function getFirebaseConfig() {
-            
-            return $http({
-                method: 'GET',
-                url: './firebaseBranch.json'
-            }).then(function (results) {
-                
-                // Assign branch structure.
-                firebaseBranch = results.data;
-                hospitalCodeArray = firebaseBranch.hospitalCodes;
-                devBranch = firebaseBranch.devBranch;
-                parentBranch = firebaseBranch.parentBranch;
-                apiParentBranch = firebaseBranch.apiParentBranch;
-
-                return 1;
-            }, function (error) {
-                return (error);
-            });
+            // Assign branch structure.
+            hospitalCodeArray = firebaseBranchConfig.hospitalCodes;
+            devBranch = firebaseBranchConfig.devBranch;
+            parentBranch = firebaseBranchConfig.parentBranch;
+            apiParentBranch = firebaseBranchConfig.apiParentBranch;
         }
 
         return {
-           
+
             /**
                 @ngdoc method
                 @name getFirebaseUrl
@@ -80,11 +69,9 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
             getFirebaseChild: function (child) {
                 switch (child) {
                     case null:
-                        return firebaseBranch.responseChildBranch + "/";
+                        return firebaseBranchConfig.responseChildBranch + "/";
                     case 'requests':
-                        return firebaseBranch.requestChildBranch + "/";
-                    //case 'response':
-                    //    return 'response/';
+                        return firebaseBranchConfig.requestChildBranch + "/";
                     default:
                         return '';
                 }
@@ -99,13 +86,13 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
             getApiParentBranch: function () {
                 return apiParentBranch;
             },
-            
+
             // Create firebase account with user email and password
             createFirebaseAccount: function (email, password) {
-                
+
                 // Method to create firebase account with user email and password
                 return firebase.auth().createUserWithEmailAndPassword(email, password).then(function (userData) {
-                    
+
                     return userData;
 
                 }, function (error) {
@@ -113,43 +100,13 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
                     return error;
                 });
             },
-            
-            // Delete firebase branch
-            deleteFirebaseBranch: function (branchName) {
-                var firebaseBranchName = firebase.database().ref(firebaseBranch.parentBranch + "/" + firebaseBranch.firebaseChildBranch + '/' + branchName);
-                var result = "";
 
-
-                return firebaseBranchName.once("value", function (snapshot) {
-                    if (snapshot.exists()) {
-                        
-                        firebaseBranchName.remove();
-                        result = "Branch deleted";
-                    }
-                    else {
-                        result = "Branch not deleted";
-                    }
-                    return result;
-                });
-            },
-            validateFirebaseBranch: function (branchName) {
-
-                var firebaseBranchReference = firebase.database().ref(config.firebaseBranch.parentBranch + '/' + config.firebaseBranch.firebaseChildBranch + '/' + branchName);
-                var result = null;
-                return firebaseBranchReference.once("value")
-                    .then(function (snapshot) {
-                        snapshot.forEach(function (snapShot) {
-                            result = snapShot.key;
-                        });
-                        return result;
-                    });
-            },
             // Sign in with the unique created token
             signInWithEmailAndPassword: function (email, password) {
-                
+
                 // Method to signIn in firebase with custom token .
                 return firebase.auth().signInWithEmailAndPassword(email, password).then(function (userData) {
-                    
+
                     return userData;
                     //authHandler(userData, vm.token);
 
@@ -157,7 +114,7 @@ myModule.factory("firebaseFactory", ['$http', 'userAuthorizationService',
                     // Get error response and display it.
                     return error;
                 });
-                
+
             }
         };
     }]);
