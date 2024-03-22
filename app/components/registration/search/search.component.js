@@ -4,14 +4,15 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
 **/
+import searchTemplate from './search.html';
 
 (function () {
     'use strict';
- 
+
     angular
         .module('myApp')
         .component('searchComponent', {
-            templateUrl: 'app/components/registration/search/search.html',
+            template: searchTemplate,
             controller: 'searchController',
             controllerAs: 'vm',
             require: {

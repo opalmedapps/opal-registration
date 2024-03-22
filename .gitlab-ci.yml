@@ -9,7 +9,7 @@ stages:
   - deploy
   - dast
 
-setup:
+build:
   stage: build
   script:
     - node --version
@@ -17,6 +17,7 @@ setup:
     # Install dependencies and cache within the project directory to cache
     # See: https://javascript.plainenglish.io/improving-ci-performance-aka-how-to-save-your-money-31ff691360e4
     - npm ci --cache .npm --prefer-offline
+    - npm run build
   # Cache modules in between pipelines
   cache:
     key:
@@ -30,6 +31,7 @@ setup:
     name: "$CI_COMMIT_REF_SLUG"
     expire_in: 1 week
     paths:
+      - dist
       - node_modules
 
 
@@ -37,10 +39,11 @@ setup:
   stage: deploy
   image: alpine:latest
   needs:
-    - setup
+    - build
   script:
     - apk add --no-cache lftp
     - lftp --version
+    - cd dist
     - echo "listing working directory..."
     - ls -la
     - echo "transferring files and listing remote directory..."
@@ -48,16 +51,16 @@ setup:
     # lftp mirror arguments: https://www.cyberciti.biz/faq/lftp-mirror-example/
     - >
       lftp -e "
-        set cmd:fail-exit yes; 
-        open $FTP_HOST; 
-        user $FTP_USER $FTP_PASSWORD; 
-        mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
-        ls -la registration/${CI_ENVIRONMENT_NAME}; 
+        set cmd:fail-exit yes;
+        open $FTP_HOST;
+        user $FTP_USER $FTP_PASSWORD;
+        mirror --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
+        ls -la registration/${CI_ENVIRONMENT_NAME};
         bye
       "
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
-  
+
 
 deploy_development:
   environment: development
@@ -67,14 +70,14 @@ deploy_qa:
   environment: qa
   extends: .deploy
   needs:
-    - setup
+    - build
     - deploy_development
 
 deploy_staging:
   environment: staging
   extends: .deploy
   needs:
-    - setup
+    - build
     - deploy_qa
 
 include:
@@ -94,7 +97,7 @@ include:
 # Job Customizations
 #
 
-# Secret Detection: 
+# Secret Detection:
 # https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
   variables:
@@ -103,9 +106,9 @@ secret_detection:
 # Dependency Scanning
 # https://docs.gitlab.com/ee/user/application_security/dependency_scanning/index.html#overriding-dependency-scanning-jobs
 gemnasium-dependency_scanning:
-  dependencies: ["setup"]
+  dependencies: ["build"]
 
-# DAST Scanning: 
+# DAST Scanning:
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/requirements.html
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
 dast:

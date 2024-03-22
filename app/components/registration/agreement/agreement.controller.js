@@ -19,10 +19,10 @@
         vm.formData = {};
 
         // Fetch broadcast event and change the field error message language.
-        $rootScope.$on("changeErrorLanguage", function () {
+        $rootScope.$on("changeLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values            
+                // Check the field error values
                 vm.validateAgreementSign();
             });
         });
@@ -86,7 +86,7 @@
                 vm.sharedErrorMessage = false;
             }
             if (vm.formData.termsandAggreementSignFormat.status === 'valid') {
-                
+
                 vm.sharedErrorMessage = true;
 
                 // Display display spinner before calling service
@@ -104,7 +104,7 @@
                 vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
                 vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
                 vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
-                
+
                 vm.formData.formFieldsData.termsandAggreementSign = 1;
                 vm.formData.formFieldsData.accessLevelSign = 1;
 
@@ -115,7 +115,7 @@
 
         // Function to call service for register patient
         vm.registerPatient = function () {
-            
+
             const parameters = vm.formData.formFieldsData;
 
             // Call service to register user.
