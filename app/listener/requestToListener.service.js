@@ -1,111 +1,93 @@
-import firebase from 'firebase';
-
 (function () {
     'use strict';
     angular.module('myApp')
         .service('requestToListener', requestToListener);
 
-    requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'apiConstants', 'responseValidatorFactory'];
+    requestToListener.$inject = ['apiConstants', 'encryptionService', 'firebase', 'responseValidatorFactory', 'userAuthorizationService'];
 
-    function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, apiConstants, responseValidatorFactory) {
+    function requestToListener(apiConstants, encryptionService, firebase, responseValidatorFactory, userAuthorizationService) {
 
         return {
             sendRequestWithResponse: sendRequestWithResponse,
             apiRequest: apiRequest
         };
 
-        // Function to send request to listener
+        /**
+         * @description Sends a request to the listener via Firebase.
+         * @param {string} typeOfRequest The type of request to send.
+         * @param {object} [parameters] Optional object containing parameters to send with the request.
+         * @returns {{key: string, ref: *}} An object containing the random reference key under which the request was uploaded,
+         *                                  and the base database reference at which the request was pushed.
+         */
         function sendRequest(typeOfRequest, parameters) {
+            // Clone the request parameters to prevent re-encrypting when using them in several requests
+            if (parameters) parameters = JSON.parse(JSON.stringify(parameters));
 
+            // Prepare the Firebase database reference
+            const hospitalCode = userAuthorizationService.getHospitalCode();
+            const requestBranch = typeOfRequest === firebase.getApiParentBranch()
+                ? firebase.getApiPath(hospitalCode)
+                : firebase.getLegacyPath(hospitalCode);
+            let baseRef = firebase.getDBRef(`${requestBranch}`);
+            let requestRef = firebase.child(baseRef, 'requests');
+
+            // Encrypt the request
+            encryptionService.generateEncryptionHash();
+            let encryptedType = encryptionService.encryptData(typeOfRequest);
+            let encryptedParameters = encryptionService.encryptData(parameters);
+
+            // Send the request
+            let requestObject = getRequestObject(encryptedType, encryptedParameters);
+            let pushID =  firebase.push(requestRef, requestObject);
+            return {
+                key: pushID.key,
+                ref: baseRef,
+            };
+        }
+
+        /**
+         * @description Sends a request to the listener and resolves after receiving a response (or after a timeout).
+         * @param {string} typeOfRequest The type of request to send.
+         * @param {object} [parameters] Optional object containing parameters to send with the request.
+         * @returns {Promise<object>} Resolves with the response from the listener, or rejects with an error.
+         */
+        function sendRequestWithResponse(typeOfRequest, parameters) {
             return new Promise((resolve, reject) => {
-                // Get firebase parent branch
-                const firebase_parentBranch = userAuthorizationService.getHospitalCode();
-
-                let branch_name;
+                // Send the request
+                let responseRef;
                 try {
-                    branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
-                        ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
-                        : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+                    const {key, ref} = sendRequest(typeOfRequest, parameters);
+
+                    // Get a reference to the response branch
+                    const baseResponseRef = firebase.child(ref, firebase.getResponseChildBranch());
+                    responseRef = firebase.child(baseResponseRef, key);
                 }
-                catch(error) {
+                catch (error) {
                     reject(error);
                     return;
                 }
 
-                // Get firebase request user
-                const firebase_url = firebase.database().ref(branch_name);
+                // Wait for a response
+                firebase.onValue(responseRef, snapshot => {
+                    if (snapshot.exists()) {
+                        let data = snapshot.val();
+                        firebase.set(responseRef, null);
+                        firebase.off(responseRef);
+                        data = responseValidatorFactory.validate(data, timeOut);
+                        data.success ? resolve(data.success) : reject(data.error);
+                    }
+                }, error => {
+                    firebase.set(responseRef, null);
+                    firebase.off(responseRef);
+                    reject(error);
+                });
 
-                let requestType;
-                // Clone the parameters to prevent re-encrypting when using them in several requests
-                let requestParameters = JSON.parse(JSON.stringify(parameters));
-
-                encryptionService.generateEncryptionHash();
-                requestType = encryptionService.encryptData(typeOfRequest);
-                requestParameters = encryptionService.encryptData(requestParameters);
-
-                constants.version()
-                    .then(version => {
-                        let request_object = {
-                            'Request': requestType,
-                            'BranchName': userAuthorizationService.getUserBranchName(),
-                            'Parameters': requestParameters,
-                            'Timestamp': firebase.database.ServerValue.TIMESTAMP
-                        };
-                        let reference = 'requests';
-                        let pushID = firebase_url.child(reference).push(request_object);
-                        resolve({key: pushID.key, url: firebase_url});
-                    });
-            });
-        }
-
-        function sendRequestWithResponse(typeOfRequest, parameters) {
-            return new Promise((resolve, reject) => {
-
-                //Sends request and gets random key for request
-                sendRequest(typeOfRequest, parameters)
-                    .then(response => {
-                        const key = response.key;
-                        const firebase_url = response.url;
-
-                        // Get firebase response url
-                        const response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
-
-                        let refRequestResponse = response_url.child(key);
-
-                        //Waits to obtain the request data.
-                        refRequestResponse.on('value', snapshot => {
-                            if (snapshot.exists()) {
-
-                                let data = snapshot.val();
-
-                                refRequestResponse.set(null);
-                                refRequestResponse.off();
-
-                                try {
-                                    data = responseValidatorFactory.validate(data, timeOut);
-                                    (data.success) ? resolve(data.success) : reject(data.error);
-                                } catch (error) {
-                                    const originalResponse = JSON.parse(JSON.stringify(data));
-                                    console.log(`Error validating response for request of type '${typeOfRequest}'`, originalResponse);
-                                    console.error(error);
-                                    reject(error);
-                                }
-                            }
-                        }, error => {
-                            console.log('sendRequestWithResponse error' + error);
-
-                            refRequestResponse.set(null);
-                            refRequestResponse.off();
-                            reject(error);
-                        });
-                        // If request takes longer to come back, time out the request
-                        const timeOut = setTimeout(function () {
-                            response_url.set(null);
-                            response_url.off();
-                            reject({ Response: 'timeout' });
-                        }, 30000);
-                    })
-                .catch(reject);
+                // If the request takes too long without a response, time out the request
+                const timeOut = setTimeout(function() {
+                    firebase.set(responseRef, null);
+                    firebase.off(responseRef);
+                    reject({ Response:'timeout' });
+                }, apiConstants.LEGACY_REQUEST_TIMEOUT);
             });
         }
 
@@ -117,38 +99,41 @@ import firebase from 'firebase';
          * @returns Promise that contains the response data
          */
         function apiRequest(parameters, language, data = null) {
-            return new Promise(async (resolve, reject) => {
-                const formatedParams = formatParams(parameters, language, data);
-                const requestType = firebaseFactory.getApiParentBranch();
+            return new Promise((resolve, reject) => {
+                const formattedParams = formatParams(parameters, language, data);
+                const requestType = firebase.getApiParentBranch();
 
-                let response_url;
+                let responseRef;
                 try {
-                    const {key, url} = await sendRequest(requestType, formatedParams);
+                    const {key, ref} = sendRequest(requestType, formattedParams);
                     const firebasePath = `responses/${key}`;
-                    response_url = url.child(firebasePath);
+                    responseRef = firebase.child(ref, firebasePath);
                 }
-                catch(error) {
+                catch (error) {
                     reject(error);
                     return;
                 }
 
-                response_url.on('value', snapshot => {
+                firebase.onValue(responseRef, snapshot => {
                     if (snapshot.exists()) {
-
                         let data = snapshot.val();
-
-                        response_url.set(null);
-                        response_url.off();
-
+                        firebase.set(responseRef, null);
+                        firebase.off(responseRef);
                         data = responseValidatorFactory.validateApiResponse(data, timeOut);
-                        (data.success) ? resolve(data.success) : reject(data.error);
+                        data.success ? resolve(data.success) : reject(data.error);
                     }
+                }, error => {
+                    firebase.set(responseRef, null);
+                    firebase.off(responseRef);
+                    reject(error);
                 });
+
+                // If the request takes too long without a response, time out the request
                 const timeOut = setTimeout(function () {
-                    response_url.set(null);
-                    response_url.off();
+                    firebase.set(responseRef, null);
+                    firebase.off(responseRef);
                     reject({ Response: 'timeout' });
-                }, 90000);
+                }, apiConstants.API_REQUEST_TIMEOUT);
             });
         }
 
@@ -158,6 +143,21 @@ import firebase from 'firebase';
                 ...parameters,
                 headers: {...apiConstants.REQUEST_HEADERS, 'Accept-Language': language},
             }
+        }
+
+        /**
+         * @description Assembles and returns a request object to be sent to the listener.
+         * @param {string} requestType The type of request to send.
+         * @param {object} [parameters] Optional object containing parameters to send with the request.
+         * @returns {object} The formatted request object.
+         */
+        function getRequestObject(requestType, parameters) {
+            return {
+                'Request': requestType,
+                'BranchName': userAuthorizationService.getUserBranchName(),
+                'Parameters': parameters,
+                'Timestamp': firebase.serverTimestamp(),
+            };
         }
     }
 })();

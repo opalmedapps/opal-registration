@@ -16,9 +16,9 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
 
         .controller('formController', formController);
 
-    formController.$inject = ['$rootScope', '$location', '$uibModal', 'formDataModel', 'firebaseFactory', 'requestToListener', 'apiConstants'];
+    formController.$inject = ['$rootScope', '$location', '$uibModal', 'formDataModel', 'requestToListener', 'apiConstants'];
 
-    function formController($rootScope, $location, $uibModal, formDataModel, firebaseFactory, requestToListener, apiConstants) {
+    function formController($rootScope, $location, $uibModal, formDataModel, requestToListener, apiConstants) {
         var vm = this;
         vm.token = null;
 

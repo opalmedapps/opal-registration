@@ -9,6 +9,10 @@
     angular
         .module("myApp")
         .constant("apiConstants", {
+            /** Timeouts **/
+            LEGACY_REQUEST_TIMEOUT: 30000,
+            API_REQUEST_TIMEOUT: 90000,
+
             /** Response codes **/
             SUCCESS: '200',
             /** Headers for new api request */
@@ -30,6 +34,6 @@
                     method: 'get',
                     url: '/api/security-questions/',
                 }
-            }
+            },
         });
 })();
