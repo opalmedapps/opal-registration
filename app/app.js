@@ -12,12 +12,11 @@ import 'angular/angular-csp.css';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
-import 'angularfire';
 import 'angularjs-datepicker';
 import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import firebase from 'firebase';
+import { initializeApp } from 'firebase/app';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 // Project CSS
@@ -32,14 +31,14 @@ import translationsFr from '../translate/fr.json';
     'use strict';
 
     angular.element(document).ready(function () {
-        firebase.initializeApp(firebaseConfig);
+        initializeApp(firebaseConfig);
 
         // Initialize angularjs app using bootstrapping
         angular.bootstrap(document, ['myApp']);
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker'])
 
     // Configuring our states
     app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',
