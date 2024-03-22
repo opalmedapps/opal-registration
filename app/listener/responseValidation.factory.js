@@ -1,6 +1,6 @@
 /**
      __author__ : James Brace
-    
+
      The purpose of this service is to validate incoming responses from the Opal Listener. The first step of validation
      is to make sure that the response does not contain an encryption error (mainly used during authentication). Afterwards,
      it checks to see if the response is a SUCCESS or error. If SUCCESS it returns the response data, if ERROR then it handles
@@ -14,11 +14,11 @@
         .module('myApp')
         .factory('responseValidatorFactory', responseValidatorFactory);
 
-    responseValidatorFactory.$inject = ['firebaseFactory', '$window', 'securityFactory', 'encryptionService'];
+    responseValidatorFactory.$inject = ['firebase', '$window', 'securityFactory', 'encryptionService'];
 
     /* @ngInject */
-    function responseValidatorFactory(firebaseFactory, $window, securityFactory, encryptionService) {
-        
+    function responseValidatorFactory(firebase, $window, securityFactory, encryptionService) {
+
         /**
           ERROR CODES
          **/
@@ -40,7 +40,7 @@
             validate: validate,
             validateApiResponse: validateApiResponse
         };
-        
+
         /**
              validates incoming response from listener
              @param response
@@ -111,7 +111,7 @@
             $window.sessionStorage.removeItem('userAuthorizationInfomation');
 
             //signout on FireBase
-            firebaseFactory.signOut();
+            firebase.signOut();
 
             // Change state of securityFactory
             securityFactory.update('validVersion', false)
