@@ -165,7 +165,7 @@ dast:
     - build and deploy dev
   # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
   variables:
-    DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
+    DAST_WEBSITE: "https://dev.registration.opalmedapps.ca"
     DAST_BROWSER_SCAN: "true"
     # enables active scanning
     # https://docs.gitlab.com/ee/user/application_security/dast/browser/checks/#active-checks
