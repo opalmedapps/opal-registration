@@ -197,11 +197,10 @@
             try {
                 const request = {
                     method: 'get',
-                    url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
-                    data: {
-                        password: 'mysecretpassword',
-                    }
+                    url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/?password=mysecretpassword`,
                 };
+
+                eval(`console.log(${vm.formData.selectedLanguage})`);
 
                 let response = await requestToListener.apiRequest(request, vm.formData.selectedLanguage);
 
