@@ -198,6 +198,9 @@
                 const request = {
                     method: 'get',
                     url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
+                    data: {
+                        password: 'mysecretpassword',
+                    }
                 };
 
                 let response = await requestToListener.apiRequest(request, vm.formData.selectedLanguage);
