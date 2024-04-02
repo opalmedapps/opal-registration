@@ -24,7 +24,9 @@ const config = (env, argv) => {
         mode: mode,
         devtool: mode === 'development' ? 'eval-cheap-source-map' : undefined,
         optimization: {
-            // TODO testing
+            // TODO Minification has been temporarily suspended to fix issues on the deployed site
+            //      The following error occurs when clicking Finish on the Terms of Use page: Unknown provider: eProvider <- e
+            //      This should be fixed and this "minimize" setting should be deleted (to use defaults based on the mode setting)
             minimize: false,
         },
         devServer: {
