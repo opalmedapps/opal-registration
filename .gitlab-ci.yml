@@ -89,6 +89,10 @@ build and deploy dev:
   extends: .build and deploy
   variables:
     CONFIG: $CONFIG_DEV
+  rules:
+    # TODO testing
+    - if: $CI_COMMIT_BRANCH
+      when: manual
 
 build and deploy devops:
   environment: devops
