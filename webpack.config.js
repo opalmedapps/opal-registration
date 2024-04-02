@@ -23,6 +23,10 @@ const config = (env, argv) => {
         ],
         mode: mode,
         devtool: mode === 'development' ? 'eval-cheap-source-map' : undefined,
+        optimization: {
+            // TODO testing
+            minimize: false,
+        },
         devServer: {
             client: {
                 overlay: {
