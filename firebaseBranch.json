@@ -8,31 +8,12 @@
   "parentBranch": "registration",
   "hospitalCodes": [
     {
-      "fullName": "MUHC_FULL",
       "uniqueHospitalCode": "A0"
     },
     {
-      "fullName": "SMHC_FULL",
-      "uniqueHospitalCode": "A1"
-    },
-    {
-      "fullName": "CHUM_FULL",
-      "uniqueHospitalCode": "A2"
-    },
-    {
-      "fullName": "HMR_FULL",
-      "uniqueHospitalCode": "A3"
-    },
-    {
-      "fullName": "CHU_SJ_FULL",
       "uniqueHospitalCode": "A4"
     },
     {
-      "fullName": "CITE_FULL",
-      "uniqueHospitalCode": "A5"
-    },
-    {
-      "fullName": "RI_MUHC_FULL",
       "uniqueHospitalCode": "A6"
     }
   ]

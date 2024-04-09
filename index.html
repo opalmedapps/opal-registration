@@ -3,6 +3,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-csp>
 <head>
     <meta charset="UTF-8" />
+
     <!-- Meta data -->
     <meta name="description" content="Opal strives to make patients' lives better by empowering them with their medical data." />
     <meta name="keywords" content="Oncology, Opal, Landing page, MUHC, App, Mobile, Android, iOS, Glen, Cancer, Patient, Cedars Cancer Center" />
@@ -11,120 +12,12 @@
 
     <!-- Site Title -->
     <title>Opal</title>
-    <!--<title>Opal - An App to Empower Patients</title>-->
-
-    <!-- Favicon -->
-    <link rel="icon" href="images/favicons/favicon.ico" />
-    <link rel="apple-touch-icon" href="images/favicons/apple-icon.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-icon-114x114.png" />
-
-    <!-- CSS links -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
-    <link rel="stylesheet" href="css/registration.css" />
-    
-    <!--Angularjs dependent style links-->
-    <!-- See: https://docs.angularjs.org/api/ng/directive/ngCsp -->
-    <link rel="stylesheet" href="node_modules/angular/angular-csp.css" />
-    <link rel="stylesheet" href="node_modules/angular-tooltips/dist/angular-tooltips.css" />
-    <link rel="stylesheet" href="node_modules/angularjs-datepicker/dist/angular-datepicker.min.css" />
-
 </head>
 
 <body ng-cloak>
 
     <!-- Views will be injected here -->
     <div data-ui-view="content"></div>
-
-    <!--Javascript dependency links-->
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!--Angularjs dependency links-->
-    <script src="node_modules/angular/angular.min.js"></script>
-    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="node_modules/angular-tooltips/dist/angular-tooltips.min.js"></script>
-    <script src="node_modules/@zxcvbn-ts/core/dist/zxcvbn-ts.min.js"></script>
-    <script src="node_modules/@zxcvbn-ts/language-common/dist/zxcvbn-ts.min.js"></script>
-    <script src="node_modules/@zxcvbn-ts/language-en/dist/zxcvbn-ts.min.js"></script>
-    <script src="node_modules/@zxcvbn-ts/language-fr/dist/zxcvbn-ts.min.js"></script>
-    <script src="node_modules/angular-translate/dist/angular-translate.min.js"></script>
-    <script src="node_modules/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <script src="node_modules/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-
-    <!-- Firebase -->
-    <script src="node_modules/firebase/firebase.js"></script>
-    <script src="node_modules/angularfire/dist/angularfire.min.js"></script>
-
-    <!--Encryption and Decryption libraries-->
-    <script src="node_modules/crypto-js/crypto-js.js"></script>
-    <script src="node_modules/tweetnacl/nacl-fast.min.js"></script>
-    <script src="node_modules/tweetnacl-util/nacl-util.min.js"></script>
-
-    <!-- Routing -->
-    <script src="app/app.module.js"></script>
-
-    <!--Listener dependency links-->
-    <script src="app/listener/requestToListener.service.js"></script>
-    <script src="app/listener/userAuthorization.service.js"></script>
-    <script src="app/listener/encryption.service.js"></script>
-    <script src="app/listener/firebaseAuthentication.factory.js"></script>
-    <script src="app/listener/security.service.js"></script>
-    <script src="app/listener/responseValidation.factory.js"></script>
-    <script src="app/listener/constants.constant.js"></script>
-    <script src="app/listener/api.constants.js"></script>
-
-    <!-- Header -->
-    <script src="app/components/registration/shared/header/header.component.js"></script>
-    <script src="app/components/registration/shared/header/header.controller.js"></script>
-
-    <!-- Footer -->
-    <script src="app/components/registration/shared/footer/footer.component.js"></script>
-    <script src="app/components/registration/shared/footer/footer.controller.js"></script>
-
-    <!--form-->
-    <script src="app/components/registration/form/form.component.js"></script>
-    <script src="app/components/registration/form/form.service.js"></script>
-    <script src="app/components/registration/form/form.controller.js"></script>
-    <script src="app/components/registration/form/formData.value.js"></script>
-
-    <!--Welcome Page-->
-    <script src="app/components/registration/welcome/welcomePage.component.js"></script>
-    <script src="app/components/registration/welcome/welcomePage.controller.js"></script>
-
-    <!--Search-->
-    <script src="app/components/registration/search/search.component.js"></script>
-    <script src="app/components/registration/search/search.controller.js"></script>
-
-    <!--account-->
-    <script src="app/components/registration/account/account.component.js"></script>
-    <script src="app/components/registration/account/account.controller.js"></script>
-    <script src="app/components/registration/account/login/login.controller.js"></script>
-    <script src="app/components/registration/account/questions/questions.controller.js"></script>
-    <script src="app/components/registration/account/verification/verification.controller.js"></script>
-
-    <!--Secure Information-->
-    <script src="app/components/registration/secure/secure.component.js"></script>
-    <script src="app/components/registration/secure/secure.controller.js"></script>
-
-    <!--Opal preference-->
-    <script src="app/components/registration/preference/preference.component.js"></script>
-    <script src="app/components/registration/preference/preference.service.js"></script>
-    <script src="app/components/registration/preference/preference.controller.js"></script>
-
-    <!--Terms of usage agreement-->
-    <script src="app/components/registration/agreement/agreement.component.js"></script>
-    <script src="app/components/registration/agreement/agreement.controller.js"></script>
-
-    <!--Registration successful-->
-    <script src="app/components/registration/successful/successful.component.js"></script>
-    <script src="app/components/registration/successful/successful.controller.js"></script>
-
-    <!--Directives-->
-    <script src="app/directives/numericFormat.js"></script>
-    <script src="app/directives/patientInfo.js"></script>
 
 </body>
 </html>

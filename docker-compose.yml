@@ -5,6 +5,7 @@ services:
     ports:
       - 8083:80
     volumes:
-      - .:/var/www/html/
-      # don't overwrite existing content in these directories
-      - /var/www/html/node_modules
+      - ./:/app
+      # Don't link node_modules between the file system and the container (rebuild to get dependency updates)
+      - /app/node_modules
+    command: npm run start

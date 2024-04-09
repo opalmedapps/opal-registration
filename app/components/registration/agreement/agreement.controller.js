@@ -10,19 +10,19 @@
     angular.module('myApp')
         .controller('agreementController', agreementController);
 
-    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
+    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'userAuthorizationService', 'encryptionService'];
 
-    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
+    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, userAuthorizationService, encryptionService) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
         vm.formData = {};
 
         // Fetch broadcast event and change the field error message language.
-        $rootScope.$on("changeErrorLanguage", function () {
+        $rootScope.$on("changeLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values            
+                // Check the field error values
                 vm.validateAgreementSign();
             });
         });
@@ -50,7 +50,7 @@
 
         //Function to validate aggrementSign checkbox
         vm.validateAgreementSign = function () {
-            if (vm.formData.formFieldsData.termsandAggreementSign == undefined || vm.formData.formFieldsData.termsandAggreementSign == null || vm.formData.formFieldsData.termsandAggreementSign == "" || vm.formData.formFieldsData.termsandAggreementSign == false) {
+            if (vm.formData.formFieldsData.termsandAggreementSign === undefined || vm.formData.formFieldsData.termsandAggreementSign === null || vm.formData.formFieldsData.termsandAggreementSign === "" || vm.formData.formFieldsData.termsandAggreementSign === false) {
                 vm.formData.termsandAggreementSignFormat.status = 'invalid';
                 vm.formData.termsandAggreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
 
@@ -79,14 +79,14 @@
 
         //Form on submit method
         vm.agreementFormSubmit = function () {
-            if (vm.formData.formFieldsData.termsandAggreementSign == undefined || vm.formData.formFieldsData.termsandAggreementSign == null || vm.formData.formFieldsData.termsandAggreementSign == "" || vm.formData.formFieldsData.termsandAggreementSign == false) {
+            if (vm.formData.formFieldsData.termsandAggreementSign === undefined || vm.formData.formFieldsData.termsandAggreementSign === null || vm.formData.formFieldsData.termsandAggreementSign === "" || vm.formData.formFieldsData.termsandAggreementSign === false) {
                 vm.formData.termsandAggreementSignFormat.status = 'invalid';
                 vm.formData.termsandAggreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
 
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.termsandAggreementSignFormat.status == 'valid') {
-                
+            if (vm.formData.termsandAggreementSignFormat.status === 'valid') {
+
                 vm.sharedErrorMessage = true;
 
                 // Display display spinner before calling service
@@ -116,18 +116,18 @@
 
         // Function to call service for register patient
         vm.registerPatient = function () {
-            
+
             const parameters = vm.formData.formFieldsData;
 
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
                 .then(function (response) {
-                    if (response == undefined || response == null || response == "") {
+                    if (response === undefined || response === null || response === "") {
 
                         // Call function to display error modal box.
                         vm.parent.errorPopup('contactUsError');
                     } else {
-                        if (response.Data[0].Result == "Successfully Update") {
+                        if (response.Data[0].Result === "Successfully Update") {
                             // Hide display spinner after all request get response.
                             vm.formData.displaySpinner = false;
 

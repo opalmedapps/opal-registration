@@ -4,6 +4,7 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import footerTemplate from './footer.html';
 
 (function () {
     'use strict';
@@ -11,7 +12,7 @@
     angular
         .module('myApp')
         .component('footerComponent', {
-            templateUrl: 'app/components/registration/shared/footer/footer.html',
+            template: footerTemplate,
             controller: 'footerController',
             controllerAs: 'vm'
         })

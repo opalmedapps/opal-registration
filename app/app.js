@@ -1,61 +1,71 @@
 /**
-     Filename     :   app.module.js
+     Filename     :   app.js
      Description  :   Contains all app configurations, routes and translation.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 
+// Dependencies
+import angular from 'angular';
+// See: https://docs.angularjs.org/api/ng/directive/ngCsp
+import 'angular/angular-csp.css';
+import 'angular-translate';
+import 'angular-ui-bootstrap';
+import 'angular-ui-router';
+import 'angularjs-datepicker';
+import 'angularjs-datepicker/dist/angular-datepicker.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { initializeApp } from 'firebase/app';
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
+// Project CSS
+import '../css/registration.css';
+
+// Project JSON
+import firebaseConfig from '../config.json';
+import translationsEn from '../translate/en.json';
+import translationsFr from '../translate/fr.json';
+
 (function () {
     'use strict';
-    
-    angular.element(document).ready(function () {
-        
-        fetch("./config.json").then((response) => {
-            return response.text()
-        }).then((data) => {
-            
-            // Before calling firebase function It's compulsory to initialize app with config.json file.
-            firebase.initializeApp(JSON.parse(data));
 
-            // Initialize angularjs app using bootstrapping
-            angular.bootstrap(document, ['myApp']);
-            
-        });
+    angular.element(document).ready(function () {
+        initializeApp(firebaseConfig);
+
+        // Initialize angularjs app using bootstrapping
+        angular.bootstrap(document, ['myApp']);
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', '720kb.tooltips', 'pascalprecht.translate', '720kb.datepicker', 'firebase'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker'])
 
-    // Configuring our states 
+    // Configuring our states
     app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',
 
         function ($stateProvider, $urlRouterProvider, $translateProvider) {
-            
-            // Load language entries from json files
-            $translateProvider.useStaticFilesLoader({
-                prefix: 'translate/',     //relative path of json file
-                suffix: '.json'            //file extension
-            });
 
-            //Check browser default language and base on that assign value to preferred and fallback Language. 
+            $translateProvider.translations('en', translationsEn);
+            $translateProvider.translations('fr', translationsFr);
+
+            //Check browser default language and base on that assign value to preferred and fallback Language.
             var lang = window.navigator.language || window.navigator.userLanguage;
             var defaultLanguage = lang.split("-")[0];
 
             // Default language
             $translateProvider.preferredLanguage(defaultLanguage);
 
-
             // Fallback language if entry is not found in current language
             $translateProvider.fallbackLanguage('fr');
 
             /* Header and Footer is shared to all pages. */
 
-            // This variable is used to bind header.html and assigning it's controller. 
+            // This variable is used to bind header.html and assigning it's controller.
             var header = {
                 component: 'headerComponent'
             }
 
-            // This variable is used to bind footer.html and assigning it's controller. 
+            // This variable is used to bind footer.html and assigning it's controller.
             var footer = {
                 component: 'footerComponent'
             }
@@ -64,7 +74,7 @@
             // For any unmatched url, redirect to search page
             $urlRouterProvider.otherwise('/form/search');
 
-            
+
             $stateProvider
 
                 // Welcome page.
@@ -76,7 +86,7 @@
                         }
                     }
                 })
-                
+
                 // PARENT STATE: form state
                 .state('form', {
                     abstract: true,
@@ -87,9 +97,9 @@
                         }
                     }
                 })
-                
-                // NESTED STATES: child states of 'form' state 
-                
+
+                // NESTED STATES: child states of 'form' state
+
                 // User search page.
                 .state('form.search', {
                     url: '/search',
@@ -149,7 +159,7 @@
                         footer: footer
                     }
                 })
-               
+
                 // User secure information page.
                 .state('form.secure', {
                     url: '/secureInformation',
@@ -197,20 +207,6 @@
                         footer: footer
                     }
                 })
-                
-
-            // Patient registration page. Backup for the routing different method.
-            //.state('form.registration', {
-            //    //parent: 'form',
-            //    url: '/registration',
-            //    views: {
-            //        content: {
-            //            templateUrl: 'app/components/registration/registration/registration.html',
-            //            controller: 'registrationController',
-            //            controllerAs: 'vm'
-            //        }
-            //    }
-            //})
         }
     ]);
 

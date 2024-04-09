@@ -1,11 +1,10 @@
 ﻿{
   "HEADER": {
     "LANGUAGE": "Français",
-    "PAGETITLE": "Opal User Registration",
-    "OPALLOGO": "images/logos/navbar-logo.png"
+    "PAGETITLE": "Opal User Registration"
   },
   "FOOTER": {
-    "COPYRIGHT": "Copyright © 2020 OPAL, All rights reserved"
+    "COPYRIGHT": "Copyright © Opal Health Informatics Group, All rights reserved"
   },
   "FORM": {
     "SEARCH": "Identity",
@@ -25,15 +24,27 @@
     "LOADINGPLEASEWAIT": "Please wait.",
     "LOADINGMESSAGE": "We are processing your request. Please do not refresh this page."
   },
+  "HOSPITALS": {
+    "RVH": "Royal Victoria Hospital",
+    "CEDARS": "Cedars Cancer Center",
+    "HIV": "Chronic Viral Illness Service (HIV)",
+    "MGH": "Montreal General Hospital",
+    "IBD": "Inflammatory Bowel Disease (IBD) Clinic",
+    "MCH": "Montreal Childrens Hospital",
+    "NEPHRO": "Nephrology Division",
+    "STJ": "CHU Sainte-Justine",
+    "HEMA": "Hematology-Oncology Day Centre"
+  },
   "WELCOME": {
     "TITLE": "",
-    "INSTRUCTION": "Opal is currently available for patients at the Cedars Cancer Centre of the McGill University Health Centre in Montreal.",
-    "STAPES": "If you are a patient at the Cedars Cancer Centre, please proceed to the Cedars Cancer Foundation kiosk at the S1 level of the Cancer Centre. The staff there will be happy to register you for an Opal account."
+    "INSTRUCTION": "Opal is currently available for patients at the following hospitals:",
+    "STEPS": "If you are a patient at one of these hospitals, please proceed to the hospital's reception desk or ask your clinician about obtaining an Opal registration code."
   },
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
     "TITLE": "Confirm Your Identity",
-    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number or your MRN number to confirm your identity.",
+    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number or your MRN to confirm your identity. Find out how to",
+    "INSTRUCTION_LINK": "obtain a registration code",
     "FIELDNAMES": {
       "PATIENTID": "Patient Identification Number",
       "REGISTRATIONCODE": "Your Registration Code"
@@ -215,7 +226,7 @@
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
     "PASSWORDFORMAT": "Your password should be at least 10 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
     "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution.",
-    "PATIENTID_TITLE1": "Enter patient's ",
+    "PATIENTID_TITLE1": "Enter the patient's MRN or RAMQ number. The MRN is found on the hospital card. The RAMQ number is found on the provincial health care card.",
     "PATIENTID_TITLE2": " or ",
     "PATIENTID_TITLE3": " number",
     "PATIENTID_CONTENT_MRN": " This number is found on the hospital card.",
@@ -229,12 +240,6 @@
     "CONTACTUSERRROR": {
       "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact us at",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
-    },
-    "REGISTRATIONERROR": {
-      "DESCRIPTION": "We are unable to register your information. Please try again later."
-    },
-    "SOMETHINGWENTWRONGERROR": {
-      "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please try again after 24 hours."
     },
     "EXISTINGEMAILERROR": {
       "DESCRIPTION": "This email address is already registered for an Opal account. To use this account to continue your registration, please enter your email address along with your existing Opal password. If you have any difficulty entering your password, it can be reset in the Opal app by going to \"Sign In\" and selecting \"Forgot Password\"."

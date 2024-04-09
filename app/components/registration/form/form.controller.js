@@ -4,6 +4,9 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import contactUsErrorTemplate from '../shared/modalBox/contactUsError.html';
+import emailExistingErrorTemplate from '../shared/modalBox/emailExistingError.html';
+import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
 
 (function () {
     'use strict';
@@ -13,9 +16,9 @@
 
         .controller('formController', formController);
 
-    formController.$inject = ['$rootScope', '$location', '$uibModal', 'formDataModel', 'firebaseFactory', 'requestToListener', 'apiConstants'];
+    formController.$inject = ['$rootScope', '$location', '$uibModal', 'formDataModel', 'requestToListener', 'apiConstants'];
 
-    function formController($rootScope, $location, $uibModal, formDataModel, firebaseFactory, requestToListener, apiConstants) {
+    function formController($rootScope, $location, $uibModal, formDataModel, requestToListener, apiConstants) {
         var vm = this;
         vm.token = null;
 
@@ -48,25 +51,19 @@
             window.history.forward(1);
         }
 
-        // Call function on page load to fetch the data.
-        vm.$onInit = activate;
-        function activate() {
-            //   vm.formData.displaySpinner = true;    
-        }
-
         // Shared function to return form data from every pages
         function getData() {
             return vm.formData;
         }
 
         // Shared function to display error
-        function displayError(errorModalPage, error) {
+        function displayError(errorModalTemplate, error) {
             // Hide display spinner if service get error.
             vm.formData.displaySpinner = false;
 
             $uibModal.open({
                 animation: true,
-                templateUrl: errorModalPage,
+                template: errorModalTemplate,
                 windowClass: 'show',
                 backdropClass: 'show',
                 controller: function ($scope, $uibModalInstance) {
@@ -132,19 +129,15 @@
 
         // Error dialog popup
         function errorPopup(error) {
-            let errorModalPage = '';
             switch (error) {
                 case 'contactUsError':
-                    errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.displayError(errorModalPage, "unsuccessfulRegistration");
+                    vm.displayError(contactUsErrorTemplate, "unsuccessfulRegistration");
                     break;
                 case 'notFoundError':
-                    errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.displayError(errorModalPage);
+                    vm.displayError(notFoundErrorTemplate);
                     break;
                 case 'emailExistingError':
-                    errorModalPage = 'app/components/registration/shared/modalBox/emailExistingError.html';
-                    vm.displayError(errorModalPage);
+                    vm.displayError(emailExistingErrorTemplate);
                     break;
             }
         }

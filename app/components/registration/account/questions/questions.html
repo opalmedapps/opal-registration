@@ -25,7 +25,7 @@
         </div>
     </div>
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mb-3 mb-md-2">
 
     <div class="form-row mb-2">
         <div class="form-group col-12">
@@ -177,15 +177,15 @@
     </div>
 
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Navigation button-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="11">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12"
+            <button type="submit" class="btn btn-secondary text-white mr-2 px-3 px-md-5" tabindex="12"
                     ng-disabled="questionsForm.email.$dirty && questionsForm.email.$invalid || questionsForm.email.$error.required">
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button>

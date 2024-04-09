@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('loginController', loginController);
 
-    loginController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$state', '$timeout', 'firebaseFactory', 'requestToListener'];
+    loginController.$inject = ['$filter', '$location', '$rootScope', '$scope', '$state', '$timeout', 'firebase', 'requestToListener'];
 
-    function loginController($rootScope, $location, $filter, $scope, $state, $timeout, firebaseFactory, requestToListener) {
+    function loginController($filter, $location, $rootScope, $scope, $state, $timeout, firebase, requestToListener) {
         let vm = this;
         vm.loginError = false;
 
@@ -31,8 +31,8 @@
 
         vm.loginFormSubmit = function() {
             // Get the authentication state
-            firebaseFactory.signInWithEmailAndPassword(vm.email, vm.password).then(function(data) {
-                if (data.code == undefined) {
+            firebase.signInWithEmailAndPassword(vm.email, vm.password).then(data => {
+                if (data.code === undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
                     vm.formData.alreadyRegistered = false;
@@ -42,8 +42,7 @@
                         vm.loginError = true;
                     });
                 }
-
-            }, function(error) {
+            }).catch(() => {
                 vm.loginError = true;
             });
         }
@@ -69,6 +68,6 @@
         vm.inputChange = function() {
             vm.loginError = false;
         }
-    };
+    }
 
 })();

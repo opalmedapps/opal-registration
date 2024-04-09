@@ -1,3 +1,5 @@
+import patientInfoTemplate from '../views/patient-info.html';
+
 angular.module("myApp").directive("patientInfo", patientInfo);
 
 /**
@@ -9,6 +11,6 @@ function patientInfo() {
         scope: {
             formData: "=",
         },
-        templateUrl:'app/views/patient-info.html',
+        template: patientInfoTemplate,
     };
 }

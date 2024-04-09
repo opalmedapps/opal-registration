@@ -4,6 +4,10 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
+import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
+import * as zxcvbnCommonPackage from '@zxcvbn-ts/language-common';
+import * as zxcvbnEnPackage from '@zxcvbn-ts/language-en';
+import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
 (function () {
     'use strict';
@@ -29,7 +33,7 @@
                             const username = email.substring(0, email.indexOf("@"));
                             // resolve password strength score using zxcvbn service
                             if ($scope.password.length >= 1 && $scope.password.length <= 50)
-                                $scope.passwordStrength = zxcvbnts.core.zxcvbn($scope.password, [email, username]).score;
+                                $scope.passwordStrength = zxcvbn($scope.password, [email, username]).score;
                             else
                                 $scope.passwordStrength = null;
                         });
@@ -50,10 +54,10 @@
         vm.formData = {};
 
         // Fetch broadcast event and change the field error message language.
-        $rootScope.$on("changeErrorLanguage", function () {
+        $rootScope.$on("changeLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values
+                // Check the field error values
                 vm.validatePassword();
                 vm.validateConfirmPassword();
                 vm.comparePassword();
@@ -78,14 +82,14 @@
 
             // Setup zxcvbn password strength estimator
             const options = {
-                graphs: zxcvbnts["language-common"].adjacencyGraphs,
+                graphs: zxcvbnCommonPackage.adjacencyGraphs,
                 dictionary: {
-                    ...zxcvbnts["language-common"].dictionary,
-                    ...zxcvbnts["language-en"].dictionary,
-                    ...zxcvbnts["language-fr"].dictionary,
+                    ...zxcvbnCommonPackage.dictionary,
+                    ...zxcvbnEnPackage.dictionary,
+                    ...zxcvbnFrPackage.dictionary,
                 },
             }
-            zxcvbnts.core.zxcvbnOptions.setOptions(options);
+            zxcvbnOptions.setOptions(options);
 
             // Hide display spinner on load
             vm.formData.displaySpinner = false;
@@ -116,12 +120,6 @@
         //    debugger;
         //    return "";
         //};
-
-        // Password ToolTip Message
-        vm.passwordTooltip = {
-            templateUrl: 'passwordTooltipTemplate.html',
-            content: $filter('translate')('TOOLTIP.PASSWORDFORMAT')
-        }
 
         // Method to to set current form class as active.
         vm.setFormStatus = function () {
@@ -502,7 +500,7 @@
                 vm.sharedErrorMessage = false;
             }
             if (vm.allStatusValid()) {
-                
+
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
 
