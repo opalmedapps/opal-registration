@@ -164,6 +164,7 @@
       "PASSWORDINVALIDNUMBER": "Mot de passe nécessite au moins un chiffre.",
       "PASSWORDINVALIDCAPITAL": "Mot de passe nécessite au moins une lettre majuscule.",
       "PASSWORDINVALIDLOWERCASE": "Mot de passe nécessite au moins une lettre minuscule.",
+      "PASSWORDINVALIDMRN": "Votre mot de passe ne peut pas contenir votre numéro RAMQ ou MRN.",
       "PASSWORDINVALIDSPECIALCHAR": "Mot de passe nécessite au moins un symbole.",
       "PASSWORDINVALIDSTRENGTH": "Mot de passe trop faible.",
       "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et un caractère spécial.",

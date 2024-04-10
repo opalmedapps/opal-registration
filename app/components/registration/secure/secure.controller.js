@@ -155,6 +155,11 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
+                } else if (vm.MRNandRAMQValidation(vm.formData.formFieldsData.password.toLowerCase())){
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDMRN');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.LONGPASSWORDLENGTH');
@@ -196,6 +201,24 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     }
                 }
             }
+        }
+
+        vm.MRNandRAMQValidation = function (password) {
+            var userMRN = vm.formData.formFieldsData.mrn;
+            var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
+            var RAMQLetters= userRAMQ.substring(0,4)
+            var RAMQNumbers= userRAMQ.substring(4,12);
+
+            if (password.includes(RAMQLetters) && userRAMQ !==""){
+                return true;
+            }
+            if (password.includes(RAMQNumbers) && userRAMQ !==""){
+                return true;
+            }
+            if (password.includes(userMRN) && userMRN !==""){
+                return true;
+            }
+            return false;
         }
 
         // Function to compare password and confirm password fields.

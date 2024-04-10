@@ -166,6 +166,7 @@
       "PASSWORDINVALIDLOWERCASE": "Password requires at least one lower case character.",
       "PASSWORDINVALIDSPECIALCHAR": "Password requires at least one special character.",
       "PASSWORDINVALIDSTRENGTH": "Password is not strong enough.",
+      "PASSWORDINVALIDMRN": "Password cannot contain your MRN or RAMQ number.",
       "PASSWORDFORMAT": "Your password should be at least 10 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
       "COMPAREPASSWORD": "Password and password confirmation should match.",
       "DUPLICATESECURITYQUESTION": "Please select a different security question.",
