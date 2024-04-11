@@ -165,6 +165,7 @@
       "PASSWORDINVALIDCAPITAL": "Password requires at least one capital letter.",
       "PASSWORDINVALIDLOWERCASE": "Password requires at least one lower case character.",
       "PASSWORDINVALIDSPECIALCHAR": "Password requires at least one special character.",
+      "PASSWORDINVALIDDOMAINNAME": "Password cannot contain the word Opal.",
       "PASSWORDINVALIDSTRENGTH": "Password is not strong enough.",
       "PASSWORDFORMAT": "Your password should be at least 10 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
       "COMPAREPASSWORD": "Password and password confirmation should match.",

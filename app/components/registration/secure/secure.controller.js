@@ -143,7 +143,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
             //Variable to set field status and message.
             vm.passwordFormat = { status: null, message: null };
-
             vm.formData.passwordMeter = $scope.passwordStrength;
             if (vm.parent.isEmpty(vm.formData.formFieldsData.password)) {
                 vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
@@ -153,6 +152,11 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 if (vm.formData.formFieldsData.password.length < 10) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
+                } else if (vm.passwordContainsDomainName(vm.formData.formFieldsData.password)) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message =$filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
@@ -175,8 +179,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDLOWERCASE');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
-                }
-                else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
+                } else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDSPECIALCHAR');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
@@ -196,6 +199,12 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     }
                 }
             }
+        }
+
+        // Function that limits the user from entering the Opal domain name in their passowrd 
+        vm.passwordContainsDomainName = function(password) {
+            var opalRegex = /[0o@&]p[a@&4][l1!]/;   // edge cases for the word opal
+            return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected 
         }
 
         // Function to compare password and confirm password fields.
