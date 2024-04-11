@@ -151,7 +151,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDREQUIRED');
             } else {
                 if (vm.formData.formFieldsData.password.length < 10) {
-                    console.log(vm.parent);
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
@@ -220,7 +219,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             }
             return (password.toLowerCase().includes(userMRN) && userMRN !==""); // if the mrn exists and is used in the password
         }
-
+        // Function that checks for the user's first name and last name in the password
         vm.passwordContainsUsersName = function(password){
             var firstName = vm.formData.firstName.toLowerCase();
             var lastName = vm.formData.lastName.toLowerCase();
