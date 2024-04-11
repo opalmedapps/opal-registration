@@ -151,13 +151,19 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDREQUIRED');
             } else {
                 if (vm.formData.formFieldsData.password.length < 10) {
+                    console.log(vm.parent);
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
-                } else if (vm.MRNandRAMQValidation(vm.formData.formFieldsData.password.toLowerCase())){
+                } else if (vm.passwordContainsMRNorRAMQ(vm.formData.formFieldsData.password)){
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDMRN');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
+                } else if (vm.passwordContainsUsersName(vm.formData.formFieldsData.password)){
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDNAME');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
@@ -202,23 +208,23 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 }
             }
         }
-
-        vm.MRNandRAMQValidation = function (password) {
+        // Function that limits the user from entering their MRN or RAMQ in the password 
+        vm.passwordContainsMRNorRAMQ = function (password) {
             var userMRN = vm.formData.formFieldsData.mrn;
             var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
-            var RAMQLetters= userRAMQ.substring(0,4)
-            var RAMQNumbers= userRAMQ.substring(4,12);
+            var RAMQLetters = userRAMQ.substring(0,4);
+            var RAMQNumbers = userRAMQ.substring(4,12);
 
-            if (password.includes(RAMQLetters) && userRAMQ !==""){
-                return true;
+            if ((password.toLowerCase().includes(RAMQLetters) || password.toLowerCase().includes(RAMQNumbers)) && userRAMQ !==""){
+                return true;    // if the RAMQ number or characters are being used in the password
             }
-            if (password.includes(RAMQNumbers) && userRAMQ !==""){
-                return true;
-            }
-            if (password.includes(userMRN) && userMRN !==""){
-                return true;
-            }
-            return false;
+            return (password.toLowerCase().includes(userMRN) && userMRN !==""); // if the mrn exists and is used in the password
+        }
+
+        vm.passwordContainsUsersName = function(password){
+            var firstName = vm.formData.firstName.toLowerCase();
+            var lastName = vm.formData.lastName.toLowerCase();
+            return (password.toLowerCase().includes(firstName) || password.toLowerCase().includes(lastName)); // if last name or first name is being used in the password
         }
 
         // Function to compare password and confirm password fields.

@@ -163,6 +163,7 @@
       "LONGPASSWORDLENGTH": "Password is too long.",
       "PASSWORDINVALIDNUMBER": "Password requires at least one number.",
       "PASSWORDINVALIDCAPITAL": "Password requires at least one capital letter.",
+      "PASSWORDNAME": "Password should not contain your first or last name.",
       "PASSWORDINVALIDLOWERCASE": "Password requires at least one lower case character.",
       "PASSWORDINVALIDSPECIALCHAR": "Password requires at least one special character.",
       "PASSWORDINVALIDSTRENGTH": "Password is not strong enough.",
