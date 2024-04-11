@@ -217,7 +217,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             if ((password.toLowerCase().includes(RAMQLetters) || password.toLowerCase().includes(RAMQNumbers)) && userRAMQ !==""){
                 return true;    // if the RAMQ exists and its number or characters are detected in the password
             }
-            return (password.toLowerCase().includes(userMRN) && userMRN !==""); // if the mrn exists and is used in the password
+            return (password.toLowerCase().includes(userMRN) && userMRN !== ""); // if the mrn exists and is used in the password
         }
         // Function that checks for the user's first name and last name in the password
         vm.passwordContainsUsersName = function(password){
