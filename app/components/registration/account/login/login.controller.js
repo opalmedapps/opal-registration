@@ -35,8 +35,8 @@
                 if (data.code === undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    vm.formData.alreadyRegistered = false;
-                    vm.isCaregiverAlreadyRegistered(data._lat);
+                    vm.formData.accessToken = "";
+                    vm.isCaregiverAlreadyRegistered(data.user.accessToken);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -52,7 +52,7 @@
             requestToListener.sendRequestWithResponse('IsCaregiverAlreadyRegistered', { Fields: {'token': token} })
                 .then(function (response) {
                     if (response?.status == 200) {
-                        vm.formData.alreadyRegistered = true;
+                        vm.formData.accessToken = token;
                         vm.parent.languageListForPreference();
                     } else {
                         $state.go('form.questions');
