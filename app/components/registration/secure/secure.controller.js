@@ -156,12 +156,12 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     return;
                 } else if (vm.passwordContainsDomainName(vm.formData.formFieldsData.password)) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message =$filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
-                } else if (vm.passwordContainsPersonnalInformation(vm.formData.formFieldsData.password)) {
+                } else if (vm.passwordContainsPersonalInformation(vm.formData.formFieldsData.password)) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message =$filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDPERSONALINFORMATION');
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDPERSONALINFORMATION');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
@@ -212,29 +212,27 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
         }
         
         // Function that checks for the user's personnal information in the password
-        vm.passwordContainsPersonnalInformation = function(password){
-            // User's medical information
+        vm.passwordContainsPersonalInformation = function(password){
+            
             var userMRN = vm.formData.formFieldsData.mrn;
             var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
             var RAMQLetters = userRAMQ.substring(0,4);
             var RAMQNumbers = userRAMQ.substring(4,12);
-            // User's first and last name
+            
             var firstName = vm.formData.firstName.toLowerCase();
             var lastName = vm.formData.lastName.toLowerCase();
-            // User's email information
+            
             const [emailUsername, emailDomain] = vm.formData.formFieldsData.email.toLowerCase().split('@');
 
-            // Other information that could be usefull
-
-            // List of string that should not be used in the user's password
+            // List of string that should not be contained in the user's password
             var blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, emailUsername, emailDomain];
-            // Iteration to check the blacklist in the password
+            
             for (var i = 0; i< password.length; i++){
                 if(password.toLowerCase().includes(blacklist[i]) && blacklist[i] !== ""){ 
                     return true; // If one of the words is used in the password and if that word exists
                 }
             }
-            return false;   // return false if nothing is found
+            return false;  
         }
 
         // Function to compare password and confirm password fields.
