@@ -166,6 +166,7 @@
       "PASSWORDINVALIDLOWERCASE": "Mot de passe nécessite au moins une lettre minuscule.",
       "PASSWORDINVALIDSPECIALCHAR": "Mot de passe nécessite au moins un symbole.",
       "PASSWORDINVALIDDOMAINNAME": "Votre mot de passe ne peut pas inclure le mot Opal.",
+      "PASSWORDPERSONALINFORMATION": "Votre mot de passe ne devrait pas contenir de renseignement personnel.",
       "PASSWORDINVALIDSTRENGTH": "Mot de passe trop faible.",
       "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et un caractère spécial.",
       "COMPAREPASSWORD": "Votre mot de passe et votre mot de passe de confirmation devraient être les mêmes.",

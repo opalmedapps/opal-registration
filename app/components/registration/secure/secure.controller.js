@@ -156,7 +156,12 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     return;
                 } else if (vm.passwordContainsDomainName(vm.formData.formFieldsData.password)) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message =$filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
+                } else if (vm.passwordContainsPersonalInformation(vm.formData.formFieldsData.password)) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDPERSONALINFORMATION');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
@@ -200,11 +205,35 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 }
             }
         }
-
         // Function that limits the user from entering the Opal domain name in their passowrd 
         vm.passwordContainsDomainName = function(password) {
-            var opalRegex = /[0o@&]p[a@&4][l1!]/;   // edge cases for the word opal
+            var opalRegex = /[0o@&]p[a@&4][l1!]/;              // edge cases for the word opal
             return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected 
+        }
+        
+        // Function that checks for the user's personal information in the password
+        vm.passwordContainsPersonalInformation = function(password){
+            
+            var userMRN = vm.formData.formFieldsData.mrn;
+            var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
+            var RAMQLetters = userRAMQ.substring(0,4);
+            var RAMQNumbers = userRAMQ.substring(4,12);
+            
+            var firstName = vm.formData.firstName.toLowerCase();
+            var lastName = vm.formData.lastName.toLowerCase();
+            
+            const [emailUsername, emailDomain] = vm.formData.formFieldsData.email.toLowerCase().split('@');
+
+            // List of string that should not be contained in the user's password
+            var blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, emailUsername, emailDomain];
+            
+            for (const term of blacklist){
+                // A term can be an empty string in some cases, e.g., if the patient has no RAMQ
+                if (term && password.toLowerCase().includes(term)){ 
+                    return true; 
+                }
+            }
+            return false;  
         }
 
         // Function to compare password and confirm password fields.
