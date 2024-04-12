@@ -165,6 +165,7 @@
       "PASSWORDINVALIDCAPITAL": "Password requires at least one capital letter.",
       "PASSWORDINVALIDLOWERCASE": "Password requires at least one lower case character.",
       "PASSWORDINVALIDSPECIALCHAR": "Password requires at least one special character.",
+      "PASSWORDINVALIDDOMAINNAME": "Password cannot contain the word Opal.",
       "PASSWORDINVALIDSTRENGTH": "Password is not strong enough.",
       "PASSWORDINVALIDMRN": "Password cannot contain your MRN or RAMQ number.",
       "PASSWORDNAME": "Password should not contain your first or last name.",
