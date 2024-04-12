@@ -227,9 +227,10 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             // List of string that should not be contained in the user's password
             var blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, emailUsername, emailDomain];
             
-            for (var i = 0; i< password.length; i++){
-                if(password.toLowerCase().includes(blacklist[i]) && blacklist[i] !== ""){ 
-                    return true; // If one of the words is used in the password and if that word exists
+            for (const term of blacklist){
+                // A term can be an empty string in some cases, e.g., if the patient has no RAMQ
+                if (term && password.toLowerCase().includes(term)){ 
+                    return true; 
                 }
             }
             return false;  
