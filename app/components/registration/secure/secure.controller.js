@@ -45,9 +45,9 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
         // Secure page controller
         .controller('secureController', secureController);
 
-    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'apiConstants'];
+    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout'];
 
-    function secureController($rootScope, $location, $filter, $scope, $timeout, requestToListener, apiConstants) {
+    function secureController($rootScope, $location, $filter, $scope, $timeout) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -213,20 +213,22 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
         
         // Function that checks for the user's personal information in the password
         vm.passwordContainsPersonalInformation = function(password){
-            
+
             var userMRN = vm.formData.formFieldsData.mrn;
             var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
             var RAMQLetters = userRAMQ.substring(0,4);
             var RAMQNumbers = userRAMQ.substring(4,12);
-            
-            var firstName = vm.formData.firstName.toLowerCase();
-            var lastName = vm.formData.lastName.toLowerCase();
-            
+
+            let firstName = vm.formData.firstName.toLowerCase();
+            let lastName = vm.formData.lastName.toLowerCase();
+            let caregiverFirstName = vm.formData.caregiverFirstName.toLowerCase();
+            let caregiverLastName = vm.formData.caregiverLastName.toLowerCase();
+
             const [emailUsername, emailDomain] = vm.formData.formFieldsData.email.toLowerCase().split('@');
 
             // List of string that should not be contained in the user's password
-            var blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, emailUsername, emailDomain];
-            
+            let blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, caregiverFirstName, caregiverLastName, emailUsername, emailDomain];
+
             for (const term of blacklist){
                 // A term can be an empty string in some cases, e.g., if the patient has no RAMQ
                 if (term && password.toLowerCase().includes(term)){ 
