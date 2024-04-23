@@ -3,9 +3,9 @@
     angular.module('myApp')
         .service('userAuthorizationService', userAuthorizationService);
 
-    userAuthorizationService.$inject = [];
+    userAuthorizationService.$inject = ['encryptionService'];
 
-    function userAuthorizationService() {
+    function userAuthorizationService(encryptionService) {
         /**
          @ngdoc property
          @name  MUHCApp.service.#userCode
@@ -118,6 +118,7 @@
                 userSalt = '';
                 userBranchName = '';
                 hospitalCode = '';
+                encryptionService.resetEncryptionHash();
             }
         }
     }
