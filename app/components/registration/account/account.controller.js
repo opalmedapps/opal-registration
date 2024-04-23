@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('accountController', accountController);
 
-    accountController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener'];
+    accountController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'userAuthorizationService'];
 
-    function accountController($rootScope, $location, $filter, $scope, $timeout, requestToListener) {
+    function accountController($rootScope, $location, $filter, $scope, $timeout, requestToListener, userAuthorizationService) {
         let vm = this;
 
         // Call function on page load to fetch the data.
@@ -51,6 +51,17 @@
         vm.createAccount = function() {
             vm.formData.formFieldsData.accountExists = 0;
             $location.path('/form/verification');
+        }
+
+        vm.onPrev = function() {
+            // Hide the display spinner upon error
+            vm.formData.displaySpinner = false;
+
+            // Clear the form data
+            vm.parent.resetFields();
+
+            // Call function to clear user authorized value
+            userAuthorizationService.clearUserAuthorizationInfomation();
         }
 
     }
