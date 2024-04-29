@@ -232,6 +232,7 @@
 
                 // Call function to clear user authorized value
                 userAuthorizationService.clearUserAuthorizationInfomation();
+                encryptionService.resetEncryptionHash();
             }
         }
 
