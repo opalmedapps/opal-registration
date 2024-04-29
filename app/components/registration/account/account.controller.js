@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('accountController', accountController);
 
-    accountController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'userAuthorizationService'];
+    accountController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'userAuthorizationService', 'encryptionService'];
 
-    function accountController($rootScope, $location, $filter, $scope, $timeout, requestToListener, userAuthorizationService) {
+    function accountController($rootScope, $location, $filter, $scope, $timeout, requestToListener, userAuthorizationService, encryptionService) {
         let vm = this;
 
         // Call function on page load to fetch the data.
@@ -62,6 +62,7 @@
 
             // Call function to clear user authorized value
             userAuthorizationService.clearUserAuthorizationInfomation();
+            encryptionService.resetEncryptionHash();
         }
 
     }
