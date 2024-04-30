@@ -100,7 +100,7 @@
                         ).value;
                     }
 
-                    // Encrypt important information before making service call.
+                    // Hash answers before making service call.
                     vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
                     vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
                     vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
@@ -121,7 +121,7 @@
         vm.registerPatient = function () {
 
             const parameters = vm.formData.formFieldsData;
-            
+
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
                 .then(function (response) {
