@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('loginController', loginController);
 
-    loginController.$inject = ['$filter', '$location', '$rootScope', '$scope', '$state', '$timeout', 'firebase'];
+    loginController.$inject = ['$filter', '$location', '$rootScope', '$scope', '$state', '$timeout', 'firebase', 'requestToListener'];
 
-    function loginController($filter, $location, $rootScope, $scope, $state, $timeout, firebase) {
+    function loginController($filter, $location, $rootScope, $scope, $state, $timeout, firebase, requestToListener) {
         let vm = this;
         vm.loginError = false;
 
@@ -35,7 +35,8 @@
                 if (data.code === undefined) {
                     vm.formData.formFieldsData.email = vm.email;
                     vm.formData.formFieldsData.password = vm.password;
-                    $state.go('form.questions');
+                    vm.formData.accessToken = "";
+                    vm.isCaregiverAlreadyRegistered(data.user.accessToken);
                 } else {
                     $timeout(function () {
                         vm.loginError = true;
@@ -44,6 +45,24 @@
             }).catch(() => {
                 vm.loginError = true;
             });
+        }
+
+        vm.isCaregiverAlreadyRegistered = function(token) {
+            // Verify user account using the login id token
+            requestToListener.sendRequestWithResponse('IsCaregiverAlreadyRegistered', { Fields: {'token': token} })
+                .then(function (response) {
+                    if (response?.status == 200) {
+                        vm.formData.accessToken = token;
+                        vm.parent.languageListForPreference();
+                    } else {
+                        $state.go('form.questions');
+                    }
+                })
+                .catch(function (error) {
+                    // Call function to display error modal box.
+                    vm.parent.errorPopup('contactUsError');
+                    return false;
+                });
         }
 
         vm.inputChange = function() {
