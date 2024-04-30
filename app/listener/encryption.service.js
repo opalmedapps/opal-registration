@@ -12,7 +12,7 @@ nacl.util = util;
 
     function encryptionService(userAuthorizationService) {
         var encryptionHash = '';
-        const main_fields = ['BranchName', 'Timestamp', 'Code'];
+        const main_fields = ['BranchName', 'timestamp', 'Timestamp', 'Code'];
 
 
         function decryptObject(object, secret) {
