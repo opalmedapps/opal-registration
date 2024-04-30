@@ -45,9 +45,9 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
         // Secure page controller
         .controller('secureController', secureController);
 
-    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'apiConstants'];
+    secureController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout'];
 
-    function secureController($rootScope, $location, $filter, $scope, $timeout, requestToListener, apiConstants) {
+    function secureController($rootScope, $location, $filter, $scope, $timeout) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -143,7 +143,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
             //Variable to set field status and message.
             vm.passwordFormat = { status: null, message: null };
-
             vm.formData.passwordMeter = $scope.passwordStrength;
             if (vm.parent.isEmpty(vm.formData.formFieldsData.password)) {
                 vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
@@ -153,6 +152,16 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 if (vm.formData.formFieldsData.password.length < 10) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
+                } else if (vm.passwordContainsDomainName(vm.formData.formFieldsData.password)) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
+                } else if (vm.passwordContainsPersonalInformation(vm.formData.formFieldsData.password)) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDPERSONALINFORMATION');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
@@ -175,8 +184,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDLOWERCASE');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
-                }
-                else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
+                } else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDSPECIALCHAR');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
@@ -196,6 +204,38 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     }
                 }
             }
+        }
+        // Function that limits the user from entering the Opal domain name in their passowrd 
+        vm.passwordContainsDomainName = function(password) {
+            var opalRegex = /[0o@&]p[a@&4][l1!]/;              // edge cases for the word opal
+            return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected 
+        }
+        
+        // Function that checks for the user's personal information in the password
+        vm.passwordContainsPersonalInformation = function(password){
+
+            var userMRN = vm.formData.formFieldsData.mrn;
+            var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
+            var RAMQLetters = userRAMQ.substring(0,4);
+            var RAMQNumbers = userRAMQ.substring(4,12);
+
+            let firstName = vm.formData.firstName.toLowerCase();
+            let lastName = vm.formData.lastName.toLowerCase();
+            let caregiverFirstName = vm.formData.caregiverFirstName.toLowerCase();
+            let caregiverLastName = vm.formData.caregiverLastName.toLowerCase();
+
+            const [emailUsername, emailDomain] = vm.formData.formFieldsData.email.toLowerCase().split('@');
+
+            // List of string that should not be contained in the user's password
+            let blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, caregiverFirstName, caregiverLastName, emailUsername, emailDomain];
+
+            for (const term of blacklist){
+                // A term can be an empty string in some cases, e.g., if the patient has no RAMQ
+                if (term && password.toLowerCase().includes(term)){ 
+                    return true; 
+                }
+            }
+            return false;  
         }
 
         // Function to compare password and confirm password fields.
