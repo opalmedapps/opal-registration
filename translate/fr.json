@@ -128,7 +128,7 @@
   },
   "PATIENT": {
     "HOSPITAL": "Hôpital: ",
-    "PATIENT": "Patient (Patiente) : "
+    "PATIENT": "Patient(e) : "
   },
   "SECURE": {
     "STEPS": "Étape 2c de 5: ",
@@ -223,9 +223,8 @@
     "PROCESS": "Si vous êtes sur une tablette ou sur un téléphone intelligent, vous pouvez télécharger Opal immédiatement en utilisant les liens ci-dessous. Sinon, vous pouvez suivre les liens fournis dans votre courriel de confirmation à partir de votre appareil mobile.",
     "APPSTORELOGO": "images/logos/AppStore_FR.svg",
     "PLAYSTORELOGO": "images/logos/PlayStore_FR.png",
-    "NOTIFICATION1": "Accéder aux données de ",
-    "NOTIFICATION2": " est sujet à confirmation par Medical Records.",
-    "NOTIFICATION3": "Vous y aurez accès dès que la relation sera confirmée."
+    "NOTIFICATION1": "L'accès aux données de ",
+    "NOTIFICATION2": " sera accordé sous réserve de confirmation par le Bureau des archives médicales."
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
