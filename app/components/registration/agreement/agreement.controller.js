@@ -43,11 +43,6 @@
             vm.sharedErrorMessage = true;
         }
 
-        // Display alert on page refresh
-        //window.onbeforeunload = function () {
-        //    return "";
-        //};
-
         //Function to validate aggrementSign checkbox
         vm.validateAgreementSign = function () {
             if (vm.formData.formFieldsData.termsandAggreementSign === undefined || vm.formData.formFieldsData.termsandAggreementSign === null || vm.formData.formFieldsData.termsandAggreementSign === "" || vm.formData.formFieldsData.termsandAggreementSign === false) {

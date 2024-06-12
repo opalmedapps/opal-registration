@@ -99,10 +99,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
         }
 
-        $scope.$on('$destroy', function () {
-            delete window.onbeforeunload;
-        });
-
         vm.allStatusValid = function() {
             return vm.formData.passwordFormat.status == vm.parent.STATUS_VALID &&
                 vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID &&
@@ -114,12 +110,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 vm.formData.securityQuestion3Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer3Format.status == vm.parent.STATUS_VALID;
         }
-
-        //// Display alert on page refresh
-        //window.onbeforeunload = function () {
-        //    debugger;
-        //    return "";
-        //};
 
         // Method to to set current form class as active.
         vm.setFormStatus = function () {

@@ -33,20 +33,19 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
         vm.isEmpty = isEmpty;
         vm.languageListForPreference = languageListForPreference;
 
-        vm.STATUS_VALID = 'valid',
-        vm.STATUS_INVALID = 'invalid',
+        vm.STATUS_VALID = 'valid';
+        vm.STATUS_INVALID = 'invalid';
 
-        // Display alert on page refresh
-        window.onbeforeunload = function (event) {
-            if (vm.formData.successForm.flag == 1) {
-                // Not display any alert message if user refresh the browser on success form page.
-            }
-            else {
-                // Display alert message on page refrech except success page.
-                return "";
+        // Display an alert to warn users that refreshing the page might cause a loss of data
+        // See: https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event
+        window.onbeforeunload = function () {
+            // Display the alert on all pages except the success page (at that point, it's safe to refresh)
+            if (vm.formData.successForm.flag !== 1) {
+                return true;
             }
         };
 
+        // Prevent users from pressing the back button during the registration process
         window.onpopstate = function (event) {
             window.history.forward(1);
         }
