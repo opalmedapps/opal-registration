@@ -15,9 +15,9 @@ import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
 
         .controller('successfulController', successfulController);
 
-    successfulController.$inject = [];
+    successfulController.$inject = ['$location'];
 
-    function successfulController() {
+    function successfulController($location) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -27,6 +27,8 @@ import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
         vm.appStoreLogoFr = appStoreLogoFr;
         vm.playStoreLogoEn = playStoreLogoEn;
         vm.playStoreLogoFr = playStoreLogoFr;
+
+        vm.backToHome = () => $location.path('/');
 
         // Call function on page load to fetch the data.
         vm.$onInit = activate;

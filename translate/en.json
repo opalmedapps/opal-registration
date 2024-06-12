@@ -13,6 +13,7 @@
     "AGREEMENT": "Terms",
     "SUCCESS": "Success",
     "BUTTONS": {
+      "BACK_TO_HOME": "Back to the home page",
       "NEXT": "Next",
       "PREVIOUS": "Previous",
       "FINISH": "Finish"

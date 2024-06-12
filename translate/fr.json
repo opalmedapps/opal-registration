@@ -13,6 +13,7 @@
     "AGREEMENT": "Conditions",
     "SUCCESS": "Succès",
     "BUTTONS": {
+      "BACK_TO_HOME": "Retour à la page d'accueil",
       "NEXT": "Prochain",
       "PREVIOUS": "Précédent",
       "FINISH": "Finir"
