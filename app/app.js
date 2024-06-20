@@ -237,7 +237,7 @@ import translationsFr from '../translate/fr.json';
              *              In particular, we use this function to catch errors thrown by the "resolve" clauses in the
              *              states defined above to redirect the user to the init page.
              * @author Stacey Beard
-             * @date 2024-06-15
+             * @date 2024-06-14
              */
             $uiRouterProvider.stateService.defaultErrorHandler(err => {
                 // RELOAD_REDIRECT is thrown by preventReload()
@@ -254,7 +254,7 @@ import translationsFr from '../translate/fr.json';
              *              empty (broken) pages within the site after a reload.
              *              If a reload has been detected, the site is redirected to the init route (see defaultErrorHandler above).
              * @author Stacey Beard
-             * @date 2024-06-15
+             * @date 2024-06-14
              * @param siteState Injection of the siteState service.
              * @returns {Promise<void|string>} Resolves if the site's state is intact, or rejects with
              *                                 an error ("RELOAD_REDIRECT") if the site has been reloaded,
