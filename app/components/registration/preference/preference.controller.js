@@ -72,11 +72,6 @@
             vm.sharedErrorMessage = true;
         }
 
-        // Display alert on page refresh
-        //window.onbeforeunload = function () {
-        //    return "";
-        //};
-
         // Method to to set current form class as active.
         vm.setFormStatus = function () {
             vm.formData.searchForm = "";
