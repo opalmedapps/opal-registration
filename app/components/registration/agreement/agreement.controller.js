@@ -45,11 +45,6 @@
             vm.sharedErrorMessage = true;
         }
 
-        // Display alert on page refresh
-        //window.onbeforeunload = function () {
-        //    return "";
-        //};
-
         //Function to validate aggrementSign checkbox
         vm.validateAgreementSign = function () {
             if (vm.formData.formFieldsData.termsandAggreementSign === undefined || vm.formData.formFieldsData.termsandAggreementSign === null || vm.formData.formFieldsData.termsandAggreementSign === "" || vm.formData.formFieldsData.termsandAggreementSign === false) {
@@ -102,10 +97,10 @@
                         ).value;
                     }
 
-                    // Hash answers before making service call.
-                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
-                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
-                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
+                    // Uppercase and hash answers before sending them to the backend
+                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1.toUpperCase());
+                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2.toUpperCase());
+                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3.toUpperCase());
                 }
                 else {
                     vm.formData.formFieldsData.accessToken = vm.formData.accessToken

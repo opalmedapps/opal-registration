@@ -13,6 +13,7 @@
     "AGREEMENT": "Terms",
     "SUCCESS": "Success",
     "BUTTONS": {
+      "BACK_TO_HOME": "Back to the home page",
       "NEXT": "Next",
       "PREVIOUS": "Previous",
       "FINISH": "Finish"
@@ -221,8 +222,7 @@
     "APPSTORELOGO": "images/logos/AppStore_EN.svg",
     "PLAYSTORELOGO": "images/logos/PlayStore_EN.png",
     "NOTIFICATION1": "Access to the data of ",
-    "NOTIFICATION2": " is subject to confirmation by Medical Records.",
-    "NOTIFICATION3": "You will have access once your relationship is confirmed."
+    "NOTIFICATION2": " is subject to confirmation by Medical Records."
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",

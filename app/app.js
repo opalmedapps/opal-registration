@@ -41,9 +41,9 @@ import translationsFr from '../translate/fr.json';
     var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker'])
 
     // Configuring our states
-    app.config(['$stateProvider', '$urlRouterProvider', '$translateProvider',
+    app.config(['$stateProvider', '$translateProvider', '$uiRouterProvider', '$urlRouterProvider',
 
-        function ($stateProvider, $urlRouterProvider, $translateProvider) {
+        function ($stateProvider, $translateProvider, $uiRouterProvider, $urlRouterProvider) {
 
             $translateProvider.translations('en', translationsEn);
             $translateProvider.translations('fr', translationsFr);
@@ -121,7 +121,10 @@ import translationsFr from '../translate/fr.json';
                             component: 'accountComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
                 // User account login page.
@@ -133,7 +136,10 @@ import translationsFr from '../translate/fr.json';
                             component: 'loginComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
                 // User account questions page.
@@ -145,7 +151,10 @@ import translationsFr from '../translate/fr.json';
                             component: 'questionsComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
                 // User account verification page.
@@ -157,7 +166,10 @@ import translationsFr from '../translate/fr.json';
                             component: 'verificationComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
                 // User secure information page.
@@ -169,7 +181,10 @@ import translationsFr from '../translate/fr.json';
                             component: 'secureComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
                 // User opal preference page.
@@ -181,10 +196,13 @@ import translationsFr from '../translate/fr.json';
                             component: 'preferenceComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
-                // Terms of usage aggrement document page.
+                // Terms of usage agreement document page.
                 .state('form.agreement', {
                     url: '/termsofUsageAgreement',
                     views: {
@@ -193,7 +211,10 @@ import translationsFr from '../translate/fr.json';
                             component: 'agreementComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
 
                 // Registration successful page.
@@ -205,9 +226,46 @@ import translationsFr from '../translate/fr.json';
                             component: 'successfulComponent'
                         },
                         footer: footer
-                    }
+                    },
+                    resolve: {
+                        "preventReload": ["siteState", preventReload],
+                    },
                 })
+
+            /**
+             * @description Defines a function to handle state change errors (when a Transition fails).
+             *              In particular, we use this function to catch errors thrown by the "resolve" clauses in the
+             *              states defined above to redirect the user to the init page.
+             * @author Stacey Beard
+             * @date 2024-06-14
+             */
+            $uiRouterProvider.stateService.defaultErrorHandler(err => {
+                // RELOAD_REDIRECT is thrown by preventReload()
+                if (err.detail === "RELOAD_REDIRECT") {
+                    console.warn("Reload triggered, causing live data to be cleared; redirecting to the init page", err);
+                    $uiRouterProvider.stateService.go('form.search');
+                }
+                else console.error("Transition Rejection", err);
+            });
+
+            /**
+             * @description Prevents reloading of certain routes by ensuring that the site's state is intact before
+             *              allowing them to be resolved. This is done to prevent users from viewing
+             *              empty (broken) pages within the site after a reload.
+             *              If a reload has been detected, the site is redirected to the init route (see defaultErrorHandler above).
+             * @author Stacey Beard
+             * @date 2024-06-14
+             * @param siteState Injection of the siteState service.
+             * @returns {Promise<void|string>} Resolves if the site's state is intact, or rejects with
+             *                                 an error ("RELOAD_REDIRECT") if the site has been reloaded,
+             *                                 to trigger a redirect.
+             */
+            function preventReload(siteState) {
+                /* The siteState service contains a variable that is set to true when the site is initialized.
+                 * If the site has been reloaded, it will lose this variable (and its value will become false), indicating
+                 * that we should redirect to the init page. */
+                return siteState.isInitialized() ? Promise.resolve() : Promise.reject("RELOAD_REDIRECT");
+            }
         }
     ]);
-
 })();
