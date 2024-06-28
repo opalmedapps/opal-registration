@@ -16,9 +16,9 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
 
         .controller('formController', formController);
 
-    formController.$inject = ['$rootScope', '$location', '$uibModal', 'formDataModel', 'requestToListener', 'apiConstants'];
+    formController.$inject = ['$location', '$rootScope', '$uibModal', 'apiConstants', 'formDataModel', 'requestToListener', 'siteState'];
 
-    function formController($rootScope, $location, $uibModal, formDataModel, requestToListener, apiConstants) {
+    function formController($location, $rootScope, $uibModal, apiConstants, formDataModel, requestToListener, siteState) {
         var vm = this;
         vm.token = null;
 
@@ -33,20 +33,22 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
         vm.isEmpty = isEmpty;
         vm.languageListForPreference = languageListForPreference;
 
-        vm.STATUS_VALID = 'valid',
-        vm.STATUS_INVALID = 'invalid',
+        vm.STATUS_VALID = 'valid';
+        vm.STATUS_INVALID = 'invalid';
 
-        // Display alert on page refresh
-        window.onbeforeunload = function (event) {
-            if (vm.formData.successForm.flag == 1) {
-                // Not display any alert message if user refresh the browser on success form page.
-            }
-            else {
-                // Display alert message on page refrech except success page.
-                return "";
+        // Set the site state to initialized to later detect page reloads (see app.js for details)
+        siteState.setInitialized(true);
+
+        // Display an alert to warn users that reloading/refreshing the page might cause a loss of data
+        // See: https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event
+        window.onbeforeunload = function () {
+            // Display the alert on all pages except the success page (at that point, it's safe to refresh)
+            if (vm.formData.successForm.flag !== 1) {
+                return true;
             }
         };
 
+        // Prevent users from pressing the back button during the registration process
         window.onpopstate = function (event) {
             window.history.forward(1);
         }
@@ -89,6 +91,7 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
             vm.formData.confirmEmail = "";
             vm.formData.formFieldsData.password = "";
             vm.formData.confirmPassword = "";
+            vm.formData.passwordMeter = "";
             vm.formData.formFieldsData.securityQuestion1 = "";
             vm.formData.formFieldsData.answer1 = "";
             vm.formData.formFieldsData.securityQuestion2 = "";
