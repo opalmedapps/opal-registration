@@ -15,9 +15,9 @@ import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
 
         .controller('successfulController', successfulController);
 
-    successfulController.$inject = [];
+    successfulController.$inject = ['$location'];
 
-    function successfulController() {
+    function successfulController($location) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -27,6 +27,8 @@ import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
         vm.appStoreLogoFr = appStoreLogoFr;
         vm.playStoreLogoEn = playStoreLogoEn;
         vm.playStoreLogoFr = playStoreLogoFr;
+
+        vm.backToHome = backToHome;
 
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
@@ -50,6 +52,15 @@ import playStoreLogoFr from "../../../../images/logos/PlayStore_FR.png";
             vm.formData.agreementForm.flag = 1;
             vm.formData.successForm.status = "active";
             vm.formData.successForm.flag = 1;
+        }
+
+        /**
+         * @description Sends the user back to the first page of the site, and clears live data by reloading the page.
+         */
+        function backToHome() {
+            // Reload the page to clear all data from the currently finished registration
+            location.reload();
+            $location.path('/');
         }
     }
 })();

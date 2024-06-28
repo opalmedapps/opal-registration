@@ -26,7 +26,7 @@
                 ng-class="{
                            'is-invalid':(vm.formData.patientIdFormat.status == 'invalid'),
                            'is-valid': (vm.formData.patientIdFormat.status == 'valid')}" class="form-control"
-                tabindex="1" required>
+                tabindex="1" required autofocus>
             <!--Display error if registration code format or length is inappropriate-->
             <div ng-show="vm.formData.patientIdFormat.status == 'invalid'">
                 <small class="text-danger font-weight-bold">{{vm.formData.patientIdFormat.message}}</small>

@@ -37,7 +37,6 @@
         // Below variables which are no need to pass to the listner It's used only for validations.
         this.confirmEmail = '';
         this.confirmPassword = '';
-        this.branchName = '';
         this.passwordMeter = '';
         this.hospitalCode = '';
 
