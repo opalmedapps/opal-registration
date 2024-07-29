@@ -44,12 +44,10 @@
         }
 
         vm.openAccount = function() {
-            vm.formData.formFieldsData.accountExists = 1;
             $location.path('/form/login');
         }
 
         vm.createAccount = function() {
-            vm.formData.formFieldsData.accountExists = 0;
             $location.path('/form/verification');
         }
 
