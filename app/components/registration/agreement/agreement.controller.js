@@ -88,8 +88,14 @@
 
                 // Display display spinner before calling service
                 vm.formData.displaySpinner = true;
-                if (!vm.formData.accessToken) {
-                // Add question strings to the form, to be saved in the backend
+
+                if (vm.formData.accessToken) {
+                    vm.formData.formFieldsData.accessToken = vm.formData.accessToken;
+                }
+
+                // Handle security questions if they were shown to the user
+                if (vm.formData.formFieldsData.answer1) {
+                    // Add question strings to the form
                     for (let i = 1; i <= 3; i++) {
                         let questionId = vm.formData.formFieldsData[`securityQuestion${i}`];
                         vm.formData.formFieldsData[`securityQuestionText${i}`] = vm.formData.securityQuestionList.find(
@@ -102,14 +108,7 @@
                     vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2.toUpperCase());
                     vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3.toUpperCase());
                 }
-                else {
-                    vm.formData.formFieldsData.accessToken = vm.formData.accessToken
-                }
 
-                vm.formData.formFieldsData.termsandAggreementSign = 1;
-                vm.formData.formFieldsData.accessLevelSign = 1;
-
-                // Call function to register patient
                 vm.registerPatient();
             }
         }
