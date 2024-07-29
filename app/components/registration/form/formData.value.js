@@ -14,31 +14,29 @@
         .value('formDataModel', formDataModel);
 
     function formDataModel() {
-        
+
         // Variables to pass the values to the listener
         this.formFieldsData = {
-            registrationCode: '',
-            mrn: '',
-            ramq: '',
-            email: '',
-            password: '',
-            securityQuestion1: '',
-            answer1: '',
-            securityQuestion2: '',
-            answer2: '',
-            securityQuestion3: '',
-            answer3: '',
-            language: '',
-            accessLevel: '',
-            accessLevelSign: '',
-            termsandAggreementSign: '',
+            registrationCode: "",
+            email: "",
+            password: "",
+            securityQuestion1: "",
+            answer1: "",
+            securityQuestion2: "",
+            answer2: "",
+            securityQuestion3: "",
+            answer3: "",
+            language: "",
+            accessLevel: "",
         }
-        
-        // Below variables which are no need to pass to the listner It's used only for validations.
-        this.confirmEmail = '';
-        this.confirmPassword = '';
-        this.passwordMeter = '';
-        this.hospitalCode = '';
+
+        // Below variables which are no need to pass to the listener. It's used only for validations.
+        this.confirmEmail = "";
+        this.confirmPassword = "";
+        this.passwordMeter = "";
+        this.hospitalCode = "";
+        this.ramq = "";
+        this.mrn = "";
 
         // Variables to set field status and message.
         this.codeFormat = { status: null, message: null };
@@ -62,7 +60,7 @@
         this.termsandAggreementSignFormat = { status: null, message: null };
 
         // Set variable's value from database response.
-        this.selectedLanguage = '';
+        this.selectedLanguage = "";
 
         this.securityQuestionList = [{}];
         this.securityQuestionList_EN = [{}];
@@ -86,20 +84,20 @@
 
         this.termsandAggreementDocuments = [{}];
 
-        // terms of use PDF file in base64 format 
+        // terms of use PDF file in base64 format
         this.termsOfUseBase64_EN = undefined;
         this.termsOfUseBase64_FR = undefined;
         this.termsOfUseDisplayed = undefined;
-        
-        this.userName = '';
+
+        this.userName = "";
 
         // Variable to set form active class.
-        this.searchForm = '';
-        this.secureForm = { status: '', flag: null };
-        this.preferenceForm = { status: '', flag: null };
-        this.agreementForm = { status: '', flag: null };
-        this.successForm = { status: '', flag: null };
-        
+        this.searchForm = "";
+        this.secureForm = { status: "", flag: null };
+        this.preferenceForm = { status: "", flag: null };
+        this.agreementForm = { status: "", flag: null };
+        this.successForm = { status: "", flag: null };
+
 
         // Access spinner value for all child forms
         this.displaySpinner = null;

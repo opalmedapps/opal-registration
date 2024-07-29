@@ -100,10 +100,6 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
             vm.formData.formFieldsData.answer3 = "";
             vm.formData.formFieldsData.language = "";
             vm.formData.formFieldsData.accessLevel = "";
-            vm.formData.formFieldsData.termsandAggreementSign = 0;
-            vm.formData.formFieldsData.accessLevelSign = 0;
-            vm.formData.formFieldsData.token = "";
-            vm.formData.formFieldsData.uniqueId = "";
             vm.formData.formFieldsData.phone = "";
 
             // Reset status and message of all fields.
@@ -123,7 +119,8 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
             // If success form is loaded or error while registering the patient than delete all the field values
             if (vm.formData.successForm.flag == 1 || error == "unsuccessfulRegistration") {
                 vm.formData.formFieldsData.registrationCode = "";
-                vm.formData.formFieldsData.ramq = "";
+                vm.formData.ramq = "";
+                vm.formData.mrn = "";
                 vm.formData.codeFormat = { status: null, message: null };
                 vm.formData.ramqFormat = { status: null, message: null };
             }
