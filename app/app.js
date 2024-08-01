@@ -21,6 +21,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css'
 
 // Project CSS
 import '../css/registration.css';
+import '../css/components.css';
 
 // Project JSON
 import firebaseConfig from '../config.json';
