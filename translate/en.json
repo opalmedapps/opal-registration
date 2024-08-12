@@ -28,18 +28,17 @@
   "HOSPITALS": {
     "RVH": "Royal Victoria Hospital",
     "CEDARS": "Cedars Cancer Center",
-    "HIV": "Chronic Viral Illness Service (HIV)",
     "MGH": "Montreal General Hospital",
     "IBD": "Inflammatory Bowel Disease (IBD) Clinic",
     "MCH": "Montreal Childrens Hospital",
-    "NEPHRO": "Nephrology Division",
-    "STJ": "CHU Sainte-Justine",
-    "HEMA": "Hematology-Oncology Day Centre"
+    "NEPHRO": "Nephrology Division"
   },
   "WELCOME": {
     "TITLE": "",
-    "INSTRUCTION": "Opal is currently available for patients at the following hospitals:",
-    "STEPS": "If you are a patient at one of these hospitals, please proceed to the hospital's reception desk or ask your clinician about obtaining an Opal registration code."
+    "INSTRUCTION": "Opal is currently available for patients at the following hospitals. Please refer to each clinic's guidelines below on how to register for an Opal account.",
+    "STEPS_CEDARS": "If you are a patient at the Cedars Cancer Centre, please call 514-934-1934 ext. 43382 during working business hours (Monday – Friday, 8:00am – 4:00pm local time) or leave a voicemail. The staff will be happy to assist you to register for an Opal account.",
+    "STEPS_IBD": "If you are a patient at the Montreal General Hospital Inflammatory Bowel Disease (IBD) Clinic, and wish to have an Opal account, please go to IBD Clinic's reception desk, at the Montreal General Hospital, and ask for an Opal registration code. The staff will be happy to assist you to register for an Opal account.",
+    "STEPS_NEPHRO": "If you are the caregiver of a child who is a patient at the Montreal Children’s Hospital Nephrology Clinic and wish to have an Opal account, please discuss this with your child’s nurse manager who will be happy to assist you to register for an Opal account."
   },
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
