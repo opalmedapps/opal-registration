@@ -1,5 +1,5 @@
 default:
-  image: node:20.14.0-alpine3.19
+  image: node:20.16.0-alpine3.19
   before_script:
     - uname -a
 
