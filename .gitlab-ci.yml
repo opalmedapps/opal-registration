@@ -39,6 +39,14 @@ check build:
       - node_modules
 
 
+check third party notice:
+  stage: test
+  image: python:3.12-alpine
+  script:
+    - python --version
+    - pip install markdown beautifulsoup4
+    - python check_thirdparty_notice.py
+
 # Builds and deploys a functional copy of the site to a given environment
 .build and deploy:
   stage: deploy
