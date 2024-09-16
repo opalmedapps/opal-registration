@@ -141,18 +141,20 @@ include:
   # Interruptible Merge Request pipelines
   - project: 'opalmedapps/engineering/ci-templates'
     file: '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
+  # use latest template versions to run security scanning jobs also in merge request pipelines:
+  # https://docs.gitlab.com/ee/user/application_security/index.html#use-security-scanning-tools-with-merge-request-pipelines
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.gitlab-ci.yml
-  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.latest.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.latest.gitlab-ci.yml
   # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Dependency-Scanning.gitlab-ci.yml
-  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Dependency-Scanning.latest.gitlab-ci.yml
+  - template: Jobs/Dependency-Scanning.latest.gitlab-ci.yml
   # SAST: https://docs.gitlab.com/ee/user/application_security/sast/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/SAST.gitlab-ci.yml
-  - template: Jobs/SAST.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/SAST.latest.gitlab-ci.yml
+  - template: Jobs/SAST.latest.gitlab-ci.yml
   # DAST Scanning: https://docs.gitlab.com/ee/user/application_security/dast/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Security/DAST.gitlab-ci.yml
-  - template: DAST.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Security/DAST.latest.gitlab-ci.yml
+  - template: DAST.latest.gitlab-ci.yml
 
 # Job Customizations
 
