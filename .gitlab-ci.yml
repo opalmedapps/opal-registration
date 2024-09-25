@@ -38,7 +38,6 @@ check build:
     paths:
       - node_modules
 
-
 # Builds and deploys a functional copy of the site to a given environment
 .build and deploy:
   stage: deploy
@@ -141,6 +140,9 @@ include:
   # Interruptible Merge Request pipelines
   - project: 'opalmedapps/engineering/ci-templates'
     file: '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
+  - component: $CI_SERVER_FQDN/opalmedapps/engineering/ci-templates/check-thirdparty-notice@main
+    inputs:
+      package-file: package.json
   # use latest template versions to run security scanning jobs also in merge request pipelines:
   # https://docs.gitlab.com/ee/user/application_security/index.html#use-security-scanning-tools-with-merge-request-pipelines
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
