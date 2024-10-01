@@ -233,30 +233,6 @@ li, .mx-3 {
     z-index: 2;
 }
 
-/*Datepicker*/
-._720kb-datepicker-calendar-day._720kb-datepicker-today {
-    background: #138efa;
-    color: white;
-}
-
-._720kb-datepicker-calendar-day._720kb-datepicker-active, ._720kb-datepicker-calendar-day:hover {
-    background: #138efa !important;
-    color: white;
-}
-
-._720kb-datepicker-calendar-header a, ._720kb-datepicker-calendar-header a:hover {
-    color: white !important;
-}
-
-._720kb-datepicker-calendar-month span {
-    color: white !important;
-}
-
-._720kb-datepicker-calendar {
-    width: 56% !important;
-    margin-top: 39px !important;
-}
-
 /*Opal preference page level of access layout*/
 .heighlight {
     background: #6EAC42;
