@@ -12,8 +12,6 @@ import 'angular/angular-csp.css';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
-import 'angularjs-datepicker';
-import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { initializeApp } from 'firebase/app';
@@ -39,7 +37,7 @@ import translationsFr from '../translate/fr.json';
     });
 
     // Creating our angular app and inject required module
-    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate', '720kb.datepicker'])
+    var app = angular.module('myApp', ['ui.router', 'ui.bootstrap', 'pascalprecht.translate'])
 
     // Configuring our states
     app.config(['$stateProvider', '$translateProvider', '$uiRouterProvider', '$urlRouterProvider',
