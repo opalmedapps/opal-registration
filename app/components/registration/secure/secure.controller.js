@@ -60,7 +60,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 // Check the field error values
                 vm.validatePassword();
                 vm.validateConfirmPassword();
-                vm.comparePassword();
                 vm.validatePhone();
                 vm.validateSecurityQuestion1();
                 vm.validateAnswer1();
@@ -247,29 +246,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     }
                 }
 
-            }
-        }
-
-        // Function to compare password and confirm password on blur event of password textbox.
-        vm.comparePassword = function () {
-            if (vm.parent.isEmpty(vm.formData.formFieldsData.password)) {
-                vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_INVALID;
-                vm.formData.confirmPasswordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREPASSWORD');
-            } else {
-                if (vm.formData.formFieldsData.password != vm.formData.confirmPassword) {
-                    vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.confirmPasswordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREPASSWORD');
-                }
-
-                else {
-                    vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_VALID;
-                    vm.formData.confirmPasswordFormat.message = null;
-
-                    if (vm.allStatusValid()) {
-                        // Display shared error message
-                        vm.sharedErrorMessage = true;
-                    }
-                }
             }
         }
 
