@@ -36,8 +36,8 @@
 
     <div class="form-row mb-2">
         <div class="form-group col-md-6 col-sm-12">
-            <label for="password" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
-            <input type="password" class="form-control password-checker" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()" ng-blur="vm.validateConfirmPassword()"
+            <label for="password-new" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
+            <input id="password-new" type="password" class="form-control password-checker" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()" ng-blur="vm.validateConfirmPassword()"
                    ng-class="{
                            'is-invalid' :(vm.formData.passwordFormat.status == vm.parent.STATUS_INVALID),
                            'is-valid': (vm.formData.passwordFormat.status == vm.parent.STATUS_VALID)}"
@@ -61,8 +61,8 @@
         </div>
 
         <div class="form-group col-md-6 col-sm-12">
-            <label for="confirmPassword" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMPASSWORD' | translate}}</label>
-            <input type="password" class="form-control" name="confirmPassword" ng-model="vm.formData.confirmPassword" ng-change="vm.validateConfirmPassword()"
+            <label for="password-confirm" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMPASSWORD' | translate}}</label>
+            <input id="password-confirm" type="password" class="form-control" name="confirmPassword" ng-model="vm.formData.confirmPassword" ng-change="vm.validateConfirmPassword()"
                    ng-class="{
                            'is-invalid':(vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_INVALID),
                            'is-valid':(vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID)}"
