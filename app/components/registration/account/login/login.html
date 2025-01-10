@@ -36,8 +36,10 @@
 
         <div class="form-group col-md-3 col-sm-12">
             <label for="password-login" class="font-weight-bold text-muted">{{'LOGIN.INPUT.PASSWORD' | translate}}</label>
-            <input id="password-login" type="password" name="password" ng-model="vm.password" ng-keyup="vm.inputChange()"
-                    class="form-control" tabindex="1" >
+            <password-input>
+                <input id="password-login" type="password" name="password" ng-model="vm.password" ng-keyup="vm.inputChange()"
+                       class="form-control" tabindex="1">
+            </password-input>
         </div>
     </div>
     <div class="row" ng-show="vm.loginError">
