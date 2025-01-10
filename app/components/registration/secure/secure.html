@@ -37,11 +37,18 @@
     <div class="form-row mb-2">
         <div class="form-group col-md-6 col-sm-12">
             <label for="password-new" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
-            <input id="password-new" type="password" class="form-control password-checker" name="password" ng-model="vm.formData.formFieldsData.password" ng-change="vm.validatePassword()" ng-blur="vm.validateConfirmPassword()"
-                   ng-class="{
-                           'is-invalid' :(vm.formData.passwordFormat.status == vm.parent.STATUS_INVALID),
-                           'is-valid': (vm.formData.passwordFormat.status == vm.parent.STATUS_VALID)}"
-                   tabindex="3" required>
+
+            <password-input eye-icon-ng-style="vm.passwordEyeStyle">
+                <!-- Note: ng-keyup is needed for the password strength bar to update in time; ng-change is too slow -->
+                <input id="password-new" type="password" class="form-control password-checker" name="password"
+                       ng-model="vm.formData.formFieldsData.password" ng-keyup="vm.validatePassword()" ng-blur="vm.validateConfirmPassword()"
+                       ng-class="{
+                           'is-invalid': (vm.formData.passwordFormat.status == vm.parent.STATUS_INVALID),
+                           'is-valid': (vm.formData.passwordFormat.status == vm.parent.STATUS_VALID)
+                       }"
+                       tabindex="3" required>
+            </password-input>
+
             <div ng-show="vm.formData.formFieldsData.password.length >= 1">
                 <div class="label d-inline px-2 py-1 text-justify align-baseline text-white font-weight-bold password-count" ng-class="vm.formData.passwordFormat.status == vm.parent.STATUS_VALID ? 'bg-success' : 'bg-danger'" ng-cloak>{{vm.formData.formFieldsData.password.length}}</div>
             </div>
@@ -62,11 +69,16 @@
 
         <div class="form-group col-md-6 col-sm-12">
             <label for="password-confirm" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMPASSWORD' | translate}}</label>
-            <input id="password-confirm" type="password" class="form-control" name="confirmPassword" ng-model="vm.formData.confirmPassword" ng-change="vm.validateConfirmPassword()"
-                   ng-class="{
-                           'is-invalid':(vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_INVALID),
-                           'is-valid':(vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID)}"
-                   tabindex="4" required>
+
+            <password-input eye-icon-ng-style="vm.confirmPasswordEyeStyle">
+                <input id="password-confirm" type="password" class="form-control" name="confirmPassword"
+                       ng-model="vm.formData.confirmPassword" ng-change="vm.validateConfirmPassword()"
+                       ng-class="{
+                           'is-invalid': (vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_INVALID),
+                           'is-valid': (vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_VALID)
+                       }"
+                       tabindex="4" required>
+            </password-input>
 
             <!--Display error if confirm password format is inappropriate-->
             <div ng-show="vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_INVALID">

@@ -8,19 +8,24 @@ import '../../css/directives/password-input.directive.css';
         .directive('passwordInput', PasswordInput);
 
     /**
-     * @author David Gagne
+     * @author David Gagne; modified by Stacey Beard
      * @date 2022-02-02
      * @description Directive to wrap password input and handle view password functionality
      */
     function PasswordInput() {
         return {
             restrict: 'E',
-            scope: true,
+            scope: {
+                // Function which dynamically sets the eye icon's style. Can be used to change its position based on the visibility of other elements.
+                eyeIconNgStyle: '=',
+            },
             transclude: true,
             template: `
                 <div class="password-input--wrapper style-4">
+                    <!-- Password field -->
                     <div class="input-slot" ng-transclude></div>
-                    <i class={{iconClass}} ng-click="switchInputType($event)" role="button" aria-label="{{'FORM.BUTTONS.SHOW_PASSWORD' | translate}}"></i>
+                    <!-- Eye icon which controls the visibility of the password -->
+                    <i class={{iconClass}} ng-style="eyeIconNgStyle()" ng-click="switchInputType($event)" role="button" aria-label="{{'FORM.BUTTONS.SHOW_PASSWORD' | translate}}"></i>
                 </div>
             `,
             link: function (scope) {
