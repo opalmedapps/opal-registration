@@ -22,9 +22,13 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 require: 'ngModel',
 
                 // add the NgModelController as a dependency to your link function
-                link: function ($scope, $element, $rootScope, ngModelCtrl) {
+                link: function ($scope, $element) {
                     $element.on('blur change keydown paste', function (evt) {
                         $scope.$evalAsync(function ($scope) {
+                            // Get a reference to the parent scope which expects the password strength
+                            let $parentScope = $scope.$parent?.$parent;
+                            if(!$parentScope) throw new Error('Could not access parent scope for the password strength checker');
+
                             // update the $scope.password with the element's value
                             $scope.password = $element.val();
 
@@ -33,9 +37,9 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                             const username = email.substring(0, email.indexOf("@"));
                             // resolve password strength score using zxcvbn service
                             if ($scope.password.length >= 1 && $scope.password.length <= 50)
-                                $scope.passwordStrength = zxcvbn($scope.password, [email, username]).score;
+                                $parentScope.passwordStrength = zxcvbn($scope.password, [email, username]).score;
                             else
-                                $scope.passwordStrength = null;
+                                $parentScope.passwordStrength = null;
                         });
                     });
                 }
@@ -60,7 +64,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 // Check the field error values
                 vm.validatePassword();
                 vm.validateConfirmPassword();
-                vm.comparePassword();
                 vm.validatePhone();
                 vm.validateSecurityQuestion1();
                 vm.validateAnswer1();
@@ -122,6 +125,31 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             vm.formData.agreementForm.flag = null;
             vm.formData.successForm.status = "";
             vm.formData.successForm.flag = null;
+        }
+
+        // Controls the placement of the eye icon in the password field
+        vm.passwordEyeStyle = () => {
+            let basicOffset = -2;
+            let validityOffset = vm.formData.passwordFormat.status ? -1.4 : 0;
+
+            // The length counter becomes wider every time a digit is added (e.g. 1 vs 10 vs 100)
+            let passwordLength = vm.formData.formFieldsData.password?.length || 0;
+            let digitsInPasswordLength = passwordLength.toString().length;
+            let lengthCounterOffset = passwordLength > 0 ? (-2 - 0.4 * digitsInPasswordLength) : 0;
+
+            return {
+                'margin-left': `${lengthCounterOffset + validityOffset + basicOffset}em`,
+            };
+        }
+
+        // Controls the placement of the eye icon in the confirm password field
+        vm.confirmPasswordEyeStyle = () => {
+            let basicOffset = -2;
+            let validityOffset = vm.formData.confirmPasswordFormat.status ? -1.4 : 0;
+
+            return {
+                'margin-left': `${validityOffset + basicOffset}em`,
+            };
         }
 
         // Function to validate password
@@ -247,29 +275,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     }
                 }
 
-            }
-        }
-
-        // Function to compare password and confirm password on blur event of password textbox.
-        vm.comparePassword = function () {
-            if (vm.parent.isEmpty(vm.formData.formFieldsData.password)) {
-                vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_INVALID;
-                vm.formData.confirmPasswordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREPASSWORD');
-            } else {
-                if (vm.formData.formFieldsData.password != vm.formData.confirmPassword) {
-                    vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.confirmPasswordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.COMPAREPASSWORD');
-                }
-
-                else {
-                    vm.formData.confirmPasswordFormat.status = vm.parent.STATUS_VALID;
-                    vm.formData.confirmPasswordFormat.message = null;
-
-                    if (vm.allStatusValid()) {
-                        // Display shared error message
-                        vm.sharedErrorMessage = true;
-                    }
-                }
             }
         }
 

@@ -14,9 +14,10 @@
     "SUCCESS": "Succès",
     "BUTTONS": {
       "BACK_TO_HOME": "Retour à la page d'accueil",
+      "FINISH": "Finir",
       "NEXT": "Prochain",
       "PREVIOUS": "Précédent",
-      "FINISH": "Finir"
+      "SHOW_PASSWORD": "Afficher le mot de passe"
     }
   },
   "SHARED": {
