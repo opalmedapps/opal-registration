@@ -18,8 +18,9 @@ import { initializeApp } from 'firebase/app';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 
 // Project CSS
-import '../css/registration.css';
 import '../css/components.css';
+import '../css/directives.css';
+import '../css/registration.css';
 
 // Project JSON
 import firebaseConfig from '../config.json';
