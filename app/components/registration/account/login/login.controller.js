@@ -43,7 +43,9 @@
                     });
                 }
             }).catch(() => {
-                vm.loginError = true;
+                $timeout(() => {
+                    vm.loginError = true;
+                });
             });
         }
 
