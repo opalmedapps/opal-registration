@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2022 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
      Filename     :   acount.component.js
      Description  :   Contains account.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.

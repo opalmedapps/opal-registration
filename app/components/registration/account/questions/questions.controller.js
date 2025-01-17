@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2022 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
      Filename     :   questions.controller.js
      Description  :   Control the login.html data(modal values, event, etc.) and to function to make service call.

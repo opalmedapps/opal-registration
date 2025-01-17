@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2022 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
      Filename     :   verification.controller.js
      Description  :   Control the verification.html data(modal values, event, etc.) and to function to make service call.

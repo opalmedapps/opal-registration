@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: Copyright 2020 Opal Health Informatics Group <info@opalmedapps.tld>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # Force HTTPS is enabled on the server already
 # RewriteEngine On
 # RewriteCond %{HTTPS} off

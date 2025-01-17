@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2025 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import '../../css/directives/password-input.directive.css';
 
 (function () {

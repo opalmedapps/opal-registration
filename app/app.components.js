@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2024 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import './components/registration/account/account.component.js';
 import './components/registration/agreement/agreement.component.js';
 import './components/registration/form/form.component.js';

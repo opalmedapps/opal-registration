@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2020 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
      Filename     :   formData.value.js
      Description  :   Declare all the variable of parent and child forms. This variable is accessible throught the application and It set the value when user entered values in all the fields.

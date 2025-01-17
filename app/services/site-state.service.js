@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2024 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
  * @description Service that helps manage the general state of the site, for example by taking actions when the state changes.
  * @author Stacey Beard

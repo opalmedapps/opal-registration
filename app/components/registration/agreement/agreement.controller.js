@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2020 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
      Filename     :   agreement.controller.js
      Description  :   Controlle the agreement.html data(modal values, event, etc.) and to function to make service call.

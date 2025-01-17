@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2024 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Inspired by:
 // https://stackoverflow.com/questions/20666900/using-bootstrap-tooltip-with-angularjs
 

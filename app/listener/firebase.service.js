@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2024 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /**
  * @description Service providing access to the Firebase Realtime Database.
  * @author Various; refactored by Stacey Beard in March 2024.

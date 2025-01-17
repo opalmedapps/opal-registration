@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright 2020 Opal Health Informatics Group <info@opalmedapps.tld>
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /*
  * Filename     :   agreement.component.js
  * Description  :   Contains agreement.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
