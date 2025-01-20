@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: Copyright 2020 Opal Health Informatics Group <info@opalmedapps.tld>
+// SPDX-FileCopyrightText: Copyright 2019 Opal Health Informatics Group <info@opalmedapps.tld>
 //
 // SPDX-License-Identifier: Apache-2.0
 
