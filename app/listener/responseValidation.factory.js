@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /**
-     __author__ : James Brace
+     __author__ : Opal Health Informatics Group
 
      The purpose of this service is to validate incoming responses from the Opal Listener. The first step of validation
      is to make sure that the response does not contain an encryption error (mainly used during authentication). Afterwards,

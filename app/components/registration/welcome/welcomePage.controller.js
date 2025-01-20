@@ -4,7 +4,7 @@
 
 /**
      Filename     :   welcomePage.controller.js
-     Created by   :   Jinal Vyas
+     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 import logoEn from '../../../../images/logos/navbar-logo-en.png';

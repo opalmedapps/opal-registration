@@ -5,7 +5,7 @@
 /**
      Filename     :   questions.controller.js
      Description  :   Control the login.html data(modal values, event, etc.) and to function to make service call.
-     Created by   :   LL
+     Created by   :   Opal Health Informatics Group
      Date         :   2022-04-07
  **/
 
@@ -65,7 +65,7 @@
 
             //Variable to set field status and message.
             const phone = vm.formData.formFieldsData.phone;
-            
+
             if (vm.parent.isEmpty(phone)) {
                 vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
                 //vm.formData.passwordFormat.message = null;

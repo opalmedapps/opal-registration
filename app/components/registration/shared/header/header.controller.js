@@ -5,7 +5,7 @@
 /**
      Filename     :   Header.controller.js
      Description  :   Change the dropdown fields language
-     Created by   :   Jinal Vyas
+     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 import logoEn from '../../../../../images/logos/navbar-logo-en.png';

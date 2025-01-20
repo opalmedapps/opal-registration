@@ -5,7 +5,7 @@
 /**
      Filename     :   app.js
      Description  :   Contains all app configurations, routes and translation.
-     Created by   :   Jinal Vyas
+     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 
@@ -240,7 +240,7 @@ import translationsFr from '../translate/fr.json';
              * @description Defines a function to handle state change errors (when a Transition fails).
              *              In particular, we use this function to catch errors thrown by the "resolve" clauses in the
              *              states defined above to redirect the user to the init page.
-             * @author Stacey Beard
+             * @author Opal Health Informatics Group
              * @date 2024-06-14
              */
             $uiRouterProvider.stateService.defaultErrorHandler(err => {
@@ -257,7 +257,7 @@ import translationsFr from '../translate/fr.json';
              *              allowing them to be resolved. This is done to prevent users from viewing
              *              empty (broken) pages within the site after a reload.
              *              If a reload has been detected, the site is redirected to the init route (see defaultErrorHandler above).
-             * @author Stacey Beard
+             * @author Opal Health Informatics Group
              * @date 2024-06-14
              * @param siteState Injection of the siteState service.
              * @returns {Promise<void|string>} Resolves if the site's state is intact, or rejects with

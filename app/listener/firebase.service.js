@@ -4,7 +4,7 @@
 
 /**
  * @description Service providing access to the Firebase Realtime Database.
- * @author Various; refactored by Stacey Beard in March 2024.
+ * @author Opal Health Informatics Group
  */
 import { getApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';

@@ -5,7 +5,7 @@
 /**
      Filename     :   secure.component.js
      Description  :   Contains secure.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
-     Created by   :   Jinal Vyas
+     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 import secureTemplate from './secure.html';

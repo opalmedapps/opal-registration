@@ -3,8 +3,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /**
-     __author__ : James Brace
-    
+     __author__ : Opal Health Informatics Group
+
      The purpose of this service is to preserve the security state of the app. Security is defined in an object literal
      called 'security_state'. Each state field consists of another object literal that consists of the 'value' of the
      sub-state .. ie can take on value 'true' for secure and 'false' for insecure .. and the 'callbacks' which is an array

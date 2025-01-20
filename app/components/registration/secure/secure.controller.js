@@ -5,7 +5,7 @@
 /**
      Filename     :   secure.controller.js
      Description  :   Controlle the secure.html data(modal values, event, etc.) and to function to make service call.
-     Created by   :   Jinal Vyas
+     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 import { zxcvbn, zxcvbnOptions } from '@zxcvbn-ts/core';
