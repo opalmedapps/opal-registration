@@ -5,7 +5,6 @@
 /*
  * Filename     :   agreement.component.js
  * Description  :   Contains agreement.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
- * Created by   :   Opal Health Informatics Group
  * Date         :   June 2019
  */
 import agreementTemplate from './agreement.html';

@@ -5,7 +5,6 @@
 /**
      Filename     :   form.controller.js
      Description  :   Controlle the form.html data(modal values, event, etc.).
-     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 import contactUsErrorTemplate from '../shared/modalBox/contactUsError.html';

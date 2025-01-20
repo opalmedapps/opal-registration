@@ -5,7 +5,6 @@
 /**
      Filename     :   acount.component.js
      Description  :   Contains account.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
-     Created by   :   Opal Health Informatics Group
      Date         :   2022-04-07
 **/
 import accountTemplate from './account.html';

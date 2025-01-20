@@ -5,7 +5,6 @@
 /**
   Filename     :   form.component.js
   Description  :   Contains form.html page link and contorller name.
-  Created by   :   Opal Health Informatics Group
   Date         :   June 2019
  **/
 import formTemplate from './form.html';

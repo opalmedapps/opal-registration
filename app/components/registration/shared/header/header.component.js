@@ -5,7 +5,6 @@
 /**
      Filename     :   header.component.js
      Description  :   Contains header.html page link, contorller name.
-     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 import headerTemplate from './header.html';

@@ -5,7 +5,6 @@
 /**
      Filename     :   preference.controller.js
      Description  :   Controlle the preference.html data(modal values, event, etc.) and to function to make service call.
-     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 

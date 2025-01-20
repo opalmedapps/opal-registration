@@ -4,7 +4,6 @@
 
 /**
  * @description Service providing access to the Firebase Realtime Database.
- * @author Opal Health Informatics Group
  */
 import { getApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';

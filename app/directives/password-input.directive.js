@@ -12,7 +12,6 @@ import '../../css/directives/password-input.directive.css';
         .directive('passwordInput', PasswordInput);
 
     /**
-     * @author Opal Health Informatics Group
      * @date 2022-02-02
      * @description Directive to wrap password input and handle view password functionality
      */

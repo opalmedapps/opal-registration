@@ -5,7 +5,6 @@
 /**
      Filename     :   footer.controller.js
      Description  :   Controller for the footer.html.
-     Created by   :   Opal Health Informatics Group
      Date         :   June 2019
  **/
 

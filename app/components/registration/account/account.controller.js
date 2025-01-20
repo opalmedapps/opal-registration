@@ -5,7 +5,6 @@
 /**
      Filename     :   account.controller.js
      Description  :   Control the account.html data(modal values, event, etc.) and to function to make service call.
-     Created by   :   Opal Health Informatics Group
      Date         :   2022-04-07
  **/
 
