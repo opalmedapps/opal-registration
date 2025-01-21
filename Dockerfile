@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: Copyright 2021 Opal Health Informatics Group <info@opalmedapps.tld>
+# SPDX-FileCopyrightText: Copyright 2021 Opal Health Informatics Group <john.kildea@mcgill.ca>
 #
-# SPDX-License-Identifier: Apache-2.0
+# SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Note: this file is set up for local development only. For builds deployed to our Opal environments, see .gitlab-ci.yml
 FROM node:20.18.1-alpine3.21 as dependencies
