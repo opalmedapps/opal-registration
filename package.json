@@ -38,7 +38,7 @@
     "webpack-cli": "6.0.1",
     "webpack-dev-server": "5.1.0"
   },
-  "author": "Opal Health Informatics Group",
+  "author": "Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>",
   "description": "Repository for registration website",
   "private": true
 }

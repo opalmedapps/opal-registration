@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: Copyright 2024 Opal Health Informatics Group <john.kildea@mcgill.ca>
+SPDX-FileCopyrightText: Copyright (C) 2024 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -143,7 +143,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2024 Fonticons, Inc.
+Copyright (C) 2024 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -728,7 +728,7 @@ For Google protobuf source.
 file: [source code root]/packages/firestore/src/protos/google/protobuf/any.proto
 
 // Protocol Buffers - Google's data interchange format
-// Copyright 2008 Google Inc.  All rights reserved.
+// Copyright (C) 2008 Google Inc.  All rights reserved.
 // https://developers.google.com/protocol-buffers/
 //
 // Redistribution and use in source and binary forms, with or without
