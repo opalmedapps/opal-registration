@@ -21,7 +21,7 @@
         vm.showCodeMessage= false;
         vm.verifyCode = false;
         vm.isCodeValid = false;
-        vm.countdownSeconds = 15;
+        vm.countdownSeconds = 60;
 
         const textContent = document.getElementById('count_down')?.textContent;
         document.getElementById('resend_btn').setAttribute('disabled','disabled');
@@ -144,7 +144,7 @@
 
         }
         vm.resetCodeValidity = function() {
-            vm.verifyCode = false; 
+            vm.verifyCode = false;
             vm.isCodeValid = false;
         };
     };
