@@ -79,6 +79,7 @@
             };
             try {
                 await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email});
+                document.getElementById('resend_btn').setAttribute('disabled','disabled');
 
                 $timeout(() => {
                     vm.sendCode = true;
