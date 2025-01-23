@@ -25,17 +25,33 @@ path = [
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (C) 2020 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>"
-SPDX-License-Identifier = "AGPL-3.0-or-later"
+SPDX-License-Identifier = "TBD"
+
+
+[[annotations]]
+path = [
+    "images/logos/AppStore_EN.svg",
+    "images/logos/AppStore_FR.svg",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (C) 2020 Apple Inc."
+SPDX-License-Identifier = "LicenseRef-AppleAppStoreBadge"
+
+
+[[annotations]]
+path = [
+    "images/logos/PlayStore_EN.png",
+    "images/logos/PlayStore_FR.png",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (C) 2020 Google LLC."
+SPDX-License-Identifier = "LicenseRef-GooglePlayBadge"
 
 
 [[annotations]]
 path = [
     "images/icon/**",
-    "images/logos/AppStore_EN.svg",
-    "images/logos/AppStore_FR.svg",
-    "images/logos/PlayStore_EN.png",
-    "images/logos/PlayStore_FR.png",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (C) TBD"
-SPDX-License-Identifier = "AGPL-3.0-or-later"
+SPDX-License-Identifier = "TBD"
