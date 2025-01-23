@@ -15,7 +15,13 @@ import 'angular-ui-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { initializeApp } from 'firebase/app';
-import '@fortawesome/fontawesome-free/css/all.min.css'
+
+// Font Awesome
+// See: https://stackoverflow.com/questions/52376720/how-to-make-font-awesome-5-work-with-webpack
+import '@fortawesome/fontawesome-free/js/fontawesome';
+import '@fortawesome/fontawesome-free/js/solid';
+import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/brands';
 
 // Project CSS
 import '../css/components.css';
