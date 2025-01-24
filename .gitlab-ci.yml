@@ -143,7 +143,10 @@ build and deploy staging:
 include:
   # Interruptible Merge Request pipelines
   - project: 'opalmedapps/engineering/ci-templates'
-    file: '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
+    file:
+      - '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
+      # Add reuse job
+      - '/templates/jobs/Reuse.gitlab-ci.yml'
   - component: $CI_SERVER_FQDN/opalmedapps/engineering/ci-templates/check-thirdparty-notice@main
     inputs:
       package-file: package.json
