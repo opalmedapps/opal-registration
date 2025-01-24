@@ -36,7 +36,8 @@
         <div class="form-group col-md-6 col-sm-12">
             <label for="registrationcode" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.REGISTRATIONCODE' |
                 translate}}</label>
-            <i class="fas fa-info-circle fa-icon-cursor text-muted" data-toggle="tooltip" data-placement="top" data-html="true" title="{{'TOOLTIP.REGISTRATIONCODE' | translate}}" tooltip></i>
+            <i class="fas fa-info-circle fa-icon-cursor text-muted" data-trigger="click" data-toggle="tooltip" data-placement="bottom" data-html="true"
+               title="{{'TOOLTIP.REGISTRATIONCODE' | translate}}" tooltip></i>
             <input type="text" name="registrationCode" ng-model="vm.formData.formFieldsData.registrationCode"
                 ng-change="vm.validateRegistrationCode()" ng-class="{
                            'is-invalid':(vm.formData.codeFormat.status == 'invalid'),
