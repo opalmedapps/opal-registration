@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 default:
-  image: node:20.18.1-alpine3.21
+  image: node:22.13.1-alpine3.21
   before_script:
     - uname -a
 
