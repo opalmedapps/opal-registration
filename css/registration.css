@@ -165,6 +165,10 @@ section.page-title h1 {
     font-size: 29px;
 }
 
+.icon-close-margin {
+  margin-bottom: -0.15em;
+}
+
 .icon-success-spacing {
   margin-bottom: 0.15rem;
   margin-top: 0.8rem;
