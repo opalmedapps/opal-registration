@@ -18,9 +18,7 @@ import { initializeApp } from 'firebase/app';
 
 // Font Awesome
 // Note that SVG + JS imports are required for layered icons to work (fa-layers)
-import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
-import '@fortawesome/fontawesome-free/js/regular';
+import '@fortawesome/fontawesome-free/js/all.min.js';
 
 // Project CSS
 import '../css/components.css';
