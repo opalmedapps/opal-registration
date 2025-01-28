@@ -3,7 +3,10 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-danger border-danger">
             <div class="modal-header text-white pb-0 border-bottom-0">
-                <img class="pr-2" src="../../../../../images/icon/icons8-nomatch.png">
+                <span class="fa-layers fa-2x m-1 mr-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-xmark" data-fa-transform="shrink-9 left-1.5 up-1.5"></i>
+                </span>
                 <h5 class="modal-title mt-1" id="exampleModalLabel">{{'ERRORMODAL.PATIENTNOTFOUNDERROR.TITLE' | translate}}</h5>
                 <i class="fas fa-times-circle close text-white fa-icon-cursor" ng-click="close()"></i>
             </div>
