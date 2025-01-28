@@ -46,12 +46,3 @@ path = [
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (C) 2020 Google LLC."
 SPDX-License-Identifier = "LicenseRef-GooglePlayBadge"
-
-
-[[annotations]]
-path = [
-    "images/icon/**",
-]
-precedence = "override"
-SPDX-FileCopyrightText = "Copyright (C) TBD"
-SPDX-License-Identifier = "TBD"
