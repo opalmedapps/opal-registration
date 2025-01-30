@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 /**
+ * @author Various; refactored by Stacey Beard in March 2024.
  * @description Service providing access to the Firebase Realtime Database.
  */
 import { getApp } from 'firebase/app';

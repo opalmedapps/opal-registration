@@ -4,7 +4,8 @@
 
 /**
      Filename     :   welcomePage.component.js
-     Description  :   Contains welcomePage.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
+     Description  :   Contains welcomePage.html page link, controller name and inherit parent form component to access variables in all parent and child forms.
+     Created by   :   Jinal Vyas
      Date         :   Feb 2020
  **/
 import headerTemplate from '../shared/header/header.html';

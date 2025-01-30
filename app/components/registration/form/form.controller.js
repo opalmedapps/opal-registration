@@ -5,6 +5,7 @@
 /**
      Filename     :   form.controller.js
      Description  :   Controlle the form.html data(modal values, event, etc.).
+     Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 import contactUsErrorTemplate from '../shared/modalBox/contactUsError.html';

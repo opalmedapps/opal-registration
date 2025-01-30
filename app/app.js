@@ -5,6 +5,7 @@
 /**
      Filename     :   app.js
      Description  :   Contains all app configurations, routes and translation.
+     Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 

@@ -4,7 +4,8 @@
 
 /**
      Filename     :   preference.component.js
-     Description  :   Contains perference.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
+     Description  :   Contains perference.html page link, controller name and inherit parent form component to access variables in all parent and child forms.
+     Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 import preferenceTemplate from './preference.html';

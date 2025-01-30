@@ -4,7 +4,8 @@
 
 /**
      Filename     :   secure.component.js
-     Description  :   Contains secure.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
+     Description  :   Contains secure.html page link, controller name and inherit parent form component to access variables in all parent and child forms.
+     Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 import secureTemplate from './secure.html';

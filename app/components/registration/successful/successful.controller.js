@@ -4,7 +4,8 @@
 
 /**
      Filename     :   successful.controller.js
-     Description  :   Controlle the successful.html data(modal values, event, etc.) and to function to make service call.
+     Description  :   Controller the successful.html data(modal values, event, etc.) and to function to make service call.
+     Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
 import appStoreLogoEn from "../../../../images/logos/AppStore_EN.svg";

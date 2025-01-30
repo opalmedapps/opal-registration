@@ -7,6 +7,7 @@
 
     /**
      * @description Constants used to make requests to the listener going through the new backend and define available routes.
+     * @author David Gagne
      * @date 2022-06-10
      */
     angular

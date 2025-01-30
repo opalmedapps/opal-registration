@@ -3,6 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 /**
+     __author__ : James Brace
      The purpose of this service is to validate incoming responses from the Opal Listener. The first step of validation
      is to make sure that the response does not contain an encryption error (mainly used during authentication). Afterwards,
      it checks to see if the response is a SUCCESS or error. If SUCCESS it returns the response data, if ERROR then it handles

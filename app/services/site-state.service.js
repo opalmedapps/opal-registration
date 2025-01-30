@@ -4,6 +4,7 @@
 
 /**
  * @description Service that helps manage the general state of the site, for example by taking actions when the state changes.
+ * @author Stacey Beard
  * @date 2024-06-14
  */
 (function () {
