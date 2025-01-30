@@ -43,4 +43,6 @@ Association with Apple
 
 Your app screen images, Mac, Apple Watch, iPhone, iPad, iPod touch, and Apple TV product images, or photographs thereof cannot be used in any manner that falsely suggests an association with Apple or is likely to reduce, diminish, or damage the goodwill, value, or reputation associated with the App Store, the Mac App Store, iPhone, iPad, iPod touch, Apple Watch, Apple TV, or Apple itself.
 
-see https://developer.apple.com/app-store/marketing/guidelines/
+See:
+    * https://developer.apple.com/app-store/marketing/guidelines/
+    * https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-AppleAppStoreBadge.txt
