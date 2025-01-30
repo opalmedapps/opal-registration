@@ -18,7 +18,10 @@ import 'angular-ui-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { initializeApp } from 'firebase/app';
-import '@fortawesome/fontawesome-free/css/all.min.css'
+
+// Font Awesome
+// Note that SVG + JS imports are required for layered icons to work (fa-layers)
+import '@fortawesome/fontawesome-free/js/all.min.js';
 
 // Project CSS
 import '../css/components.css';

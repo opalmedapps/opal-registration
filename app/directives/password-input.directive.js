@@ -28,16 +28,18 @@ import '../../css/directives/password-input.directive.css';
                     <!-- Password field -->
                     <div class="input-slot" ng-transclude></div>
                     <!-- Eye icon which controls the visibility of the password -->
-                    <i class={{iconClass}} ng-style="eyeIconNgStyle()" ng-click="switchInputType($event)" role="button" aria-label="{{'FORM.BUTTONS.SHOW_PASSWORD' | translate}}"></i>
+                    <div class="password-input--icon" ng-style="eyeIconNgStyle()" ng-click="switchInputType($event)" role="button" aria-label="{{'FORM.BUTTONS.SHOW_PASSWORD' | translate}}">
+                        <i class="fas fa-fw fa-eye"></i>
+                    </div>
                 </div>
             `,
             link: function (scope) {
                 scope.isVisible = false;
-                scope.iconClass = 'fas fa-eye';
                 scope.switchInputType = (event) => {
                     scope.isVisible = !scope.isVisible;
-                    scope.iconClass = scope.isVisible ? 'fas fa-eye-slash' : 'fas fa-eye';
-                    event.target.parentNode.querySelector('input').type = scope.isVisible ? 'text' : 'password';
+                    // See "Changing Icons by Changing Classes": https://docs.fontawesome.com/web/use-with/jquery
+                    $(event.currentTarget).find('[data-fa-i2svg]').toggleClass(['fa-eye', 'fa-eye-slash']);
+                    event.currentTarget.parentNode.querySelector('input').type = scope.isVisible ? 'text' : 'password';
                 }
             }
         };

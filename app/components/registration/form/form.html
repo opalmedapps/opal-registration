@@ -55,7 +55,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                         <!--<a ui-sref-active="active" ui-sref="form.successful" data-toggle="tab" title="success" class="text-decoration-none" ng-click="vm.finalStep()">-->
                         <a class="text-decoration-none {{vm.formData.successForm.status}}">
                             <span class="tab rounded-circle">
-                                <span class="icon pt-1"><img src="../../../../images/icon/icons8-registeredsuccessful.png"/></span>
+                                <span class="fa-layers fa-2x fa-fw icon-success-spacing">
+                                    <i class="fa-solid fa-laptop"></i>
+                                    <i class="fa-solid fa-check" data-fa-transform="shrink-8 up-0.5"></i>
+                                </span>
                                 <span>{{'FORM.SUCCESS' | translate}}</span>
                             </span>
                         </a>

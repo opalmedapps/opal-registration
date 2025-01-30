@@ -93,6 +93,7 @@ const config = (env, argv) => {
         },
         plugins: [
             new webpack.ProvidePlugin({
+                $: 'jquery',
                 // Required for bootstrap tooltips to work
                 // See also: https://webpack.js.org/plugins/provide-plugin/#usage-jquery-with-angular-1
                 'window.jQuery': 'jquery',
