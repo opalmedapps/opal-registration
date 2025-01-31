@@ -40,5 +40,6 @@
   },
   "author": "Opal Health Informatics Group",
   "description": "Repository for registration website",
+  "license": "AGPL-3.0-or-later",
   "private": true
 }
