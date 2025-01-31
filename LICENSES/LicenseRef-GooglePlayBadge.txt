@@ -19,7 +19,3 @@ Follow these guidelines whenever you are using a Google Play badge.
 * Use this form (https://partnermarketinghub.withgoogle.com/login/?next=/submit-assets/) to submit your marketing for approval.
 
 Google Play and the Google Play logo are trademarks of Google LLC.
-
-See:
-  * https://play.google.com/intl/en_us/badges/
-  * https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-GooglePlayBadge.txt
