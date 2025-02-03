@@ -145,7 +145,7 @@ include:
   - project: 'opalmedapps/engineering/ci-templates'
     file:
       - '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
-      # Add reuse job
+      # Add Reuse job: https://reuse.software/
       - '/templates/jobs/Reuse.gitlab-ci.yml'
   - component: $CI_SERVER_FQDN/opalmedapps/engineering/ci-templates/check-thirdparty-notice@main
     inputs:

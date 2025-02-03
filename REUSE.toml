@@ -36,10 +36,8 @@ path = [
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (C) 2020 Apple Inc."
 # See:
-#    - https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-AppleAppStoreBadge.txt
 #    - https://developer.apple.com/app-store/marketing/guidelines/
-#    - https://play.google.com/intl/en_us/badges/
-#    - https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-GooglePlayBadge.txt
+#    - https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-AppleAppStoreBadge.txt
 SPDX-License-Identifier = "LicenseRef-AppleAppStoreBadge"
 
 
@@ -50,4 +48,7 @@ path = [
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "Copyright (C) 2020 Google LLC."
+# See:
+#    - https://play.google.com/intl/en_us/badges/
+#    - https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-GooglePlayBadge.txt
 SPDX-License-Identifier = "LicenseRef-GooglePlayBadge"
