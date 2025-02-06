@@ -24,8 +24,8 @@ path = [
     "images/logos/navbar-logo-fr.png",
 ]
 precedence = "override"
-SPDX-FileCopyrightText = "Copyright (C) 2020 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>"
-SPDX-License-Identifier = "LicenseRef-OpalTrademarks"
+SPDX-FileCopyrightText = "Copyright (C) 2015 Ackeem Joseph <ackeem.joseph@muhc.mcgill.ca>"
+SPDX-License-Identifier = "NOASSERTION"
 
 
 [[annotations]]
