@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright (C) 2019 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 /**
      Filename     :   formData.value.js
      Description  :   Declare all the variable of parent and child forms. This variable is accessible throught the application and It set the value when user entered values in all the fields.
