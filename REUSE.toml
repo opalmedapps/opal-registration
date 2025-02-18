@@ -1,0 +1,54 @@
+version = 1
+
+
+[[annotations]]
+path = [
+    "config.json.sample",
+    "firebaseBranch.json",
+    "package-lock.json",
+    "package.json",
+    "translate/en.json",
+    "translate/fr.json",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (C) 2020 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+
+[[annotations]]
+path = [
+    "images/favicons/favicon-source.png",
+    "images/logos/hero-logo-inverse.png",
+    "images/logos/hero-logo.png",
+    "images/logos/navbar-logo-en.png",
+    "images/logos/navbar-logo-fr.png",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (C) 2015 Ackeem Joseph <ackeem.joseph@muhc.mcgill.ca>"
+SPDX-License-Identifier = "LicenseRef-AckeemJosephLogo"
+
+
+[[annotations]]
+path = [
+    "images/logos/AppStore_EN.svg",
+    "images/logos/AppStore_FR.svg",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (C) 2020 Apple Inc."
+# See:
+#    - https://developer.apple.com/app-store/marketing/guidelines/
+#    - https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-AppleAppStoreBadge.txt
+SPDX-License-Identifier = "LicenseRef-AppleAppStoreBadge"
+
+
+[[annotations]]
+path = [
+    "images/logos/PlayStore_EN.png",
+    "images/logos/PlayStore_FR.png",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "Copyright (C) 2020 Google LLC."
+# See:
+#    - https://play.google.com/intl/en_us/badges/
+#    - https://github.com/nextcloud/server/blob/master/LICENSES/LicenseRef-GooglePlayBadge.txt
+SPDX-License-Identifier = "LicenseRef-GooglePlayBadge"

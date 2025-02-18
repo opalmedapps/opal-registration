@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright (C) 2024 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import './components/registration/account/account.controller.js';
 import './components/registration/account/login/login.controller.js';
 import './components/registration/account/questions/questions.controller.js';
