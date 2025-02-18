@@ -1,6 +1,10 @@
+// SPDX-FileCopyrightText: Copyright (C) 2019 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 /**
      Filename     :   secure.controller.js
-     Description  :   Controlle the secure.html data(modal values, event, etc.) and to function to make service call.
+     Description  :   Controller the secure.html data(modal values, event, etc.) and to function to make service call.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/

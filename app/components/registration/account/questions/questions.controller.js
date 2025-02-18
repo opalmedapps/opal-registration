@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: Copyright (C) 2022 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 /**
      Filename     :   questions.controller.js
      Description  :   Control the login.html data(modal values, event, etc.) and to function to make service call.
@@ -61,7 +65,7 @@
 
             //Variable to set field status and message.
             const phone = vm.formData.formFieldsData.phone;
-            
+
             if (vm.parent.isEmpty(phone)) {
                 vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
                 //vm.formData.passwordFormat.message = null;
