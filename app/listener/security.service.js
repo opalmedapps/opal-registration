@@ -1,6 +1,10 @@
+// SPDX-FileCopyrightText: Copyright (C) 2020 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 /**
      __author__ : James Brace
-    
+
      The purpose of this service is to preserve the security state of the app. Security is defined in an object literal
      called 'security_state'. Each state field consists of another object literal that consists of the 'value' of the
      sub-state .. ie can take on value 'true' for secure and 'false' for insecure .. and the 'callbacks' which is an array
