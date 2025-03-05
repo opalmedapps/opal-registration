@@ -117,7 +117,7 @@ build and deploy prod:
   extends: .build and deploy
   needs:
     - check build
-    - build and deploy staging
+    - build and deploy dev
   variables:
     CONFIG: $CONFIG_PROD
 
