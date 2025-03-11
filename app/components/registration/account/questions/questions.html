@@ -35,7 +35,7 @@
                            ng-class="{
                            'is-invalid':(vm.formData.phoneFormat.status == vm.parent.STATUS_INVALID),
                            'is-valid':(vm.formData.phoneFormat.status == vm.parent.STATUS_VALID)}"
-                           tabindex="4" required>(123 456 7890)
+                           tabindex="4" required>(+1 123 456 7890)
                     <!--Display error if security answer1 field has blank value -->
                     <div ng-show="vm.formData.phoneFormat.status == vm.parent.STATUS_INVALID">
                         <small class="text-danger font-weight-bold ml-1"> {{vm.formData.phoneFormat.message}}</small>
