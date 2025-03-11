@@ -31,11 +31,11 @@ setup:
     expire_in: 1 week
     paths:
       - node_modules
-  
 
-deploy_development:
+
+.deploy:
   stage: deploy
-  environment: development
+  image: alpine:latest
   needs:
     - setup
   script:
@@ -44,6 +44,7 @@ deploy_development:
     - echo "listing working directory..."
     - ls -la
     - echo "transferring files and listing remote directory..."
+    - echo "deploying to ${CI_ENVIRONMENT_NAME}"
     # lftp mirror arguments: https://www.cyberciti.biz/faq/lftp-mirror-example/
     - >
       lftp -e "
@@ -56,12 +57,27 @@ deploy_development:
       "
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+  
+
+deploy_development:
+  environment: development
+  extends: .deploy
+
+deploy_qa:
+  environment: qa
+  extends: .deploy
+
+deploy_staging:
+  environment: staging
+  extends: .deploy
 
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
   - template: Jobs/Secret-Detection.gitlab-ci.yml
   # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  # SAST: https://docs.gitlab.com/ee/user/application_security/sast/
+  - template: Jobs/SAST.gitlab-ci.yml
   # DAST Scanning: https://docs.gitlab.com/ee/user/application_security/dast/
   - template: DAST.gitlab-ci.yml
 
