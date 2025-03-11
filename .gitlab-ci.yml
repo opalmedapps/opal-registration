@@ -41,7 +41,7 @@ check build:
 
 check third party notice:
   stage: test
-  image: ghcr.io/astral-sh/uv:0.4.10-alpine
+  image: ghcr.io/astral-sh/uv:0.4.10-python3.12-alpine
   script:
     - python --version
     - uv --version
