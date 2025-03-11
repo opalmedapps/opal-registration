@@ -43,8 +43,8 @@
 
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion1"
                     ng-class="{
-                           'is-invalid':(vm.formData.securityQuestion1Format.status == 'invalid'),
-                           'is-valid':(vm.formData.securityQuestion1Format.status == 'valid')}"
+                           'is-invalid':(vm.formData.securityQuestion1Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID)}"
                     ng-change="vm.validateSecurityQuestion1(vm.formData.formFieldsData.securityQuestion1)" tabindex="5">
 
                 <option value="">{{'QUESTIONS.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
@@ -52,7 +52,7 @@
             </select>
 
             <!--Display error if security question1 field has not been selected -->
-            <div ng-show="vm.formData.securityQuestion1Format.status == 'invalid'">
+            <div ng-show="vm.formData.securityQuestion1Format.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion1Format.message}}</small>
             </div>
 
@@ -64,12 +64,12 @@
             <label for="answer1" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.ANSWER1' | translate}}</label>
             <input type="text" class="form-control" name="answer1" ng-model="vm.formData.formFieldsData.answer1" ng-change="vm.validateAnswer1()"
                    ng-class="{
-                           'is-invalid':(vm.formData.answer1Format.status == 'invalid'),
-                           'is-valid':(vm.formData.answer1Format.status == 'valid')}"
+                           'is-invalid':(vm.formData.answer1Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.answer1Format.status == vm.parent.STATUS_VALID)}"
                    tabindex="6">
 
             <!--Display error if security answer1 field has blank value -->
-            <div ng-show="vm.formData.answer1Format.status == 'invalid'">
+            <div ng-show="vm.formData.answer1Format.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer1Format.message}}</small>
             </div>
 
@@ -83,14 +83,14 @@
             <label for="securityquestion2" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.SECURITYQUESTION2' | translate}}</label>
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion2"
                     ng-class="{
-                           'is-invalid':(vm.formData.securityQuestion2Format.status == 'invalid'),
-                           'is-valid':(vm.formData.securityQuestion2Format.status == 'valid')}"
+                           'is-invalid':(vm.formData.securityQuestion2Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID)}"
                     ng-change="vm.validateSecurityQuestion2(vm.formData.formFieldsData.securityQuestion2)" tabindex="7">
                 <option value="">{{'QUESTIONS.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
                 <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion1|filter:vm.securityQuestion3" value="{{questions.id}}">{{questions.value}}</option>
             </select>
             <!--Display error if security question2 field has not been selected -->
-            <div ng-show="vm.formData.securityQuestion2Format.status == 'invalid'">
+            <div ng-show="vm.formData.securityQuestion2Format.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion2Format.message}}</small>
             </div>
 
@@ -102,12 +102,12 @@
             <label for="answer2" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.ANSWER2' | translate}}</label>
             <input type="text" class="form-control" name="answer2" ng-model="vm.formData.formFieldsData.answer2" ng-change="vm.validateAnswer2()"
                    ng-class="{
-                           'is-invalid':(vm.formData.answer2Format.status == 'invalid'),
-                           'is-valid':(vm.formData.answer2Format.status == 'valid')}"
+                           'is-invalid':(vm.formData.answer2Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.answer2Format.status == vm.parent.STATUS_VALID)}"
                    tabindex="8">
 
             <!--Display error if security answer2 field has blank value -->
-            <div ng-show="vm.formData.answer2Format.status == 'invalid'">
+            <div ng-show="vm.formData.answer2Format.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer2Format.message}}</small>
             </div>
 
@@ -121,15 +121,15 @@
             <label for="securityquestion3" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.SECURITYQUESTION3' | translate}}</label>
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion3"
                     ng-class="{
-                           'is-invalid':(vm.formData.securityQuestion3Format.status == 'invalid'),
-                           'is-valid':(vm.formData.securityQuestion3Format.status == 'valid')}"
+                           'is-invalid':(vm.formData.securityQuestion3Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.securityQuestion3Format.status == vm.parent.STATUS_VALID)}"
                     ng-change="vm.validateSecurityQuestion3(vm.formData.formFieldsData.securityQuestion3)" tabindex="9">
                 <option value="">{{'QUESTIONS.FIELDNAMES.SECUREDROPDOWNDEAFULT' | translate}}</option>
                 <option ng-repeat="questions in vm.formData.securityQuestionList|filter:vm.securityQuestion1|filter:vm.securityQuestion2" value="{{questions.id}}">{{questions.value}}</option>
             </select>
 
             <!--Display error if security question3 field has not been selected -->
-            <div ng-show="vm.formData.securityQuestion3Format.status == 'invalid'">
+            <div ng-show="vm.formData.securityQuestion3Format.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion3Format.message}}</small>
             </div>
         </div>
@@ -140,12 +140,12 @@
             <label for="answer3" class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.ANSWER3' | translate}}</label>
             <input type="text" class="form-control" name="answer3" ng-model="vm.formData.formFieldsData.answer3" ng-change="vm.validateAnswer3()"
                    ng-class="{
-                           'is-invalid':(vm.formData.answer3Format.status == 'invalid'),
-                           'is-valid':(vm.formData.answer3Format.status == 'valid')}"
+                           'is-invalid':(vm.formData.answer3Format.status == vm.parent.STATUS_INVALID),
+                           'is-valid':(vm.formData.answer3Format.status == vm.parent.STATUS_VALID)}"
                    tabindex="10">
 
             <!--Display error if security answer3 field has blank value -->
-            <div ng-show="vm.formData.answer3Format.status == 'invalid'">
+            <div ng-show="vm.formData.answer3Format.status == vm.parent.STATUS_INVALID">
                 <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer3Format.message}}</small>
             </div>
 
