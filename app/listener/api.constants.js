@@ -18,14 +18,6 @@
             },
             /** Django backend available routes. */
             ROUTES: {
-                HOME: {
-                    method: 'get',
-                    url: '/api/app/home',
-                },
-                CHART: {
-                    method: 'get',
-                    url: '/api/app/chart',
-                },
                 HASH: {
                     method: 'get',
                     url: '/api/registration/by-hash/',

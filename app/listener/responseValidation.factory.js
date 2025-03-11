@@ -83,11 +83,7 @@
 
                 if (!encryptionKey) response = encryptionService.decryptData(response);
 
-                if (response.status_code === '200') {
-                    return {success: response};
-                } else {
-                    return handleResponseError(response)
-                }
+                return (response.status_code === '200') ? {success: response} : handleResponseError(response);
             }
         }
 
