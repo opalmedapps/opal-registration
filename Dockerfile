@@ -1,5 +1,5 @@
 # Note: this file is set up for local development only. For builds deployed to our Opal environments, see .gitlab-ci.yml
-FROM node:20.16.0-alpine3.19 as dependencies
+FROM node:20.17.0-alpine3.20 as dependencies
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ COPY .npmrc ./
 RUN npm ci
 
 
-FROM node:20.16.0-alpine3.19
+FROM node:20.17.0-alpine3.20
 
 WORKDIR /app
 

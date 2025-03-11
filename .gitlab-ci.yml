@@ -1,5 +1,5 @@
 default:
-  image: node:20.16.0-alpine3.19
+  image: node:20.17.0-alpine3.20
   before_script:
     - uname -a
 
@@ -38,20 +38,13 @@ check build:
     paths:
       - node_modules
 
-
-check third party notice:
-  stage: test
-  image: python:3.12-alpine
-  script:
-    - python --version
-    - pip install markdown beautifulsoup4
-    - python check_thirdparty_notice.py
-
 # Builds and deploys a functional copy of the site to a given environment
 .build and deploy:
   stage: deploy
   needs:
     - check build
+  # don't interrupt an FTP upload
+  interruptible: false
   before_script:
     - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG must be defined for this job" && exit 1'
     - echo $CONFIG > config.json
@@ -144,18 +137,26 @@ build and deploy staging:
 
 
 include:
+  # Interruptible Merge Request pipelines
+  - project: 'opalmedapps/engineering/ci-templates'
+    file: '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
+  - component: $CI_SERVER_FQDN/opalmedapps/engineering/ci-templates/check-thirdparty-notice@main
+    inputs:
+      package-file: package.json
+  # use latest template versions to run security scanning jobs also in merge request pipelines:
+  # https://docs.gitlab.com/ee/user/application_security/index.html#use-security-scanning-tools-with-merge-request-pipelines
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.gitlab-ci.yml
-  - template: Jobs/Secret-Detection.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.latest.gitlab-ci.yml
+  - template: Jobs/Secret-Detection.latest.gitlab-ci.yml
   # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Dependency-Scanning.gitlab-ci.yml
-  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Dependency-Scanning.latest.gitlab-ci.yml
+  - template: Jobs/Dependency-Scanning.latest.gitlab-ci.yml
   # SAST: https://docs.gitlab.com/ee/user/application_security/sast/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/SAST.gitlab-ci.yml
-  - template: Jobs/SAST.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/SAST.latest.gitlab-ci.yml
+  - template: Jobs/SAST.latest.gitlab-ci.yml
   # DAST Scanning: https://docs.gitlab.com/ee/user/application_security/dast/
-  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Security/DAST.gitlab-ci.yml
-  - template: DAST.gitlab-ci.yml
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Security/DAST.latest.gitlab-ci.yml
+  - template: DAST.latest.gitlab-ci.yml
 
 # Job Customizations
 
