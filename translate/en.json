@@ -35,17 +35,87 @@
     "TITLE": "Confirm Your Identity",
     "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number to confirm your identity.",
     "FIELDNAMES": {
-      "RAMQ": "Your RAMQ Number",
+      "PATIENTID": "Patient Identification Number",
       "REGISTRATIONCODE": "Your Registration Code"
     },
     "FIELDERRORMESSAGES": {
       "CODEREQUIRED": "Please enter a valid registration code.",
-      "RAMQREQUIRED": "Please enter a valid RAMQ number.",
+      "PATIENTIDREQUIRED": "Please enter a valid patient id.",
       "SHORTCODELENGTH": "Registration code is too short.",
       "LONGCODELENGTH": "Registration code is too long.",
-      "SHORTRAMQLENGTH": "RAMQ number is too short.",
-      "LONGRAMQLENGTH": "RAMQ number is too long."
+      "INVALIDPATIENTID": "A RAMQ number must contain 12 characters, or an MRN number must contain 7 digits."
     }
+  },
+  "LOGIN": {
+    "STEPS": "Step 2b of 5: ",
+    "TITLE": "Log In",
+    "INSTRUCTION": "To continue, please log in to your existing Opal account",
+    "INPUT": {
+      "EMAIL": "Email",
+      "PASSWORD": "Password"
+    },
+    "ERROR": {
+      "INPUT": "Invalid email",
+      "REQUIRED": "Email is required",
+      "INVALID": "Email or password is invalid"
+    }
+  },
+  "QUESTIONS": {
+    "STEPS": "Step 2c of 5: ",
+    "TITLE": "Create Security Questions",
+    "INSTRUCTION_START": "Please note that certain data (such as answers to security questions) are specific to the hospital and only stored within the hospital. To access the data of ",
+    "INSTRUCTION_END": " with your existing Opal account, please fill out the form below.",
+    "FIELDNAMES": {
+      "LOGINAS": "Logged in as ",
+      "PHONE": "Phone Number",
+      "QUESTION_TITLE": "Security Questions",
+      "SECURITYQUESTION1": "Security Question 1",
+      "ANSWER1": "Answer 1",
+      "SECURITYQUESTION2": "Security Question 2",
+      "ANSWER2": "Answer 2",
+      "SECURITYQUESTION3": "Security Question 3",
+      "ANSWER3": "Answer 3",
+      "SECUREDROPDOWNDEAFULT": "--- Select a security question ---"
+    }
+  },
+  "VERIFICATION": {
+    "STEPS": "Step 2b of 5: ",
+    "TITLE": "Email Verification",
+    "INSTRUCTION": "In order to create a new Opal account you need to first verify your email address.",
+    "SEND": {
+      "TITLE": "Enter Email Address",
+      "INSTRUCTION": "Please provide your email address. We will then send you a verification code to your email address to verify that it is yours.",
+      "EMAIL": "Email",
+      "INVALID_EMAIL": "Invalid Email",
+      "SENDCODE": "Send Verification Code",
+      "MESSAGE": "Verification code was sent to your email address successfully."
+    },
+    "VERIFY": {
+      "TITLE": "Verify Email Address",
+      "INSTRUCTION_START": "We sent you a verification code to ",
+      "INSTRUCTION_END": " to verify that it is yours. Please type it in below to continue creating your Opal Account.",
+      "CODE": "Verification Code",
+      "VERIFY": "Verify Email",
+      "RESEND": "Resend Verification code",
+      "VALID": "Code is Valid",
+      "INVALID": "Code is Invalid"
+    }
+  },
+  "ACCOUNT": {
+    "STEPS": "Step 2 of 5: ",
+    "TITLE": "Create or Log In to Opal Account",
+    "INSTRUCTION": {
+      "EXISTS": "If you already have an existing Opal account, you can use this account to access the data of ",
+      "CREATE": "Otherwise, you need to create a new Opal account."
+    },
+    "OPTION": {
+      "EXISTS": "I already have an Opal account",
+      "CREATE": "I don't have an Opal account"
+    }
+  },
+  "PATIENT": {
+    "HOSPITAL": "Hospital: ",
+    "PATIENT": "Patient: "
   },
   "SECURE": {
     "STEPS": "Step 2 of 5: ",
@@ -133,7 +203,12 @@
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
     "PASSWORDFORMAT": "Your password should be at least 8 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
-    "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution."
+    "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution.",
+    "PATIENTID_TITLE1": "Enter patient's ",
+    "PATIENTID_TITLE2": " or ",
+    "PATIENTID_TITLE3": " number",
+    "PATIENTID_CONTENT_MRN": " This number is found on the hospital card.",
+    "PATIENTID_CONTENT_RAMQ": " This number is found on the provincial health care card."
   },
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {

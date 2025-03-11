@@ -100,9 +100,55 @@
                         },
                         footer: footer
                     }
-
                 })
 
+                // User account page.
+                .state('form.account', {
+                    url: '/account',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'accountComponent'
+                        },
+                        footer: footer
+                    }
+                })
+
+                // User account login page.
+                .state('form.login', {
+                    url: '/login',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'loginComponent'
+                        },
+                        footer: footer
+                    }
+                })
+
+                // User account questions page.
+                .state('form.questions', {
+                    url: '/questions',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'questionsComponent'
+                        },
+                        footer: footer
+                    }
+                })
+
+                // User account verification page.
+                .state('form.verification', {
+                    url: '/verification',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'verificationComponent'
+                        },
+                        footer: footer
+                    }
+                })
                
                 // User secure information page.
                 .state('form.secure', {
