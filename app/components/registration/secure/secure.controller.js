@@ -172,6 +172,11 @@
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDCAPITAL');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
+                } else if (vm.formData.formFieldsData.password.search(/[a-z]/) === -1) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDLOWERCASE');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
+                    return;
                 }
                 else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
