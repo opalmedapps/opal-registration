@@ -19,24 +19,14 @@
         </div>
     </div>
 
+    <hr class="bg-opal mb-3 mb-md-2">
+
     <!--notifciation note-->
-    <div class="alert alert-primary">
-        <table class="border">
-            <tr>
-                <td width="40px">
-                    <i class="fas fa-info-circle" style="font-size:24px"></i>
-                </td>
-                <td>
-                    <div class="text-muted mr-2"><label class="alert-primary">{{'SUCCESS.NOTIFICATION1' | translate}}
-                        <span style="font-weight: bold;">{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</span>
-                        {{'SUCCESS.NOTIFICATION2' | translate}}</label></div>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><div class="text-muted mr-2"><label class="alert-primary">{{'SUCCESS.NOTIFICATION3' | translate}}</label></div></td>
-            </tr>
-        </table>
+    <div class="alert alert-primary mt-0 mt-md-4">
+        <i class="fas fa-info-circle mr-1"></i>
+        {{'SUCCESS.NOTIFICATION1' | translate}}
+        <span style="font-weight: bold;">{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</span>
+        {{'SUCCESS.NOTIFICATION2' | translate}}
     </div>
 
 

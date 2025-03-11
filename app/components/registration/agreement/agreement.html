@@ -16,13 +16,11 @@
     <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Form section-->
-    <div class="card text-center mt-5">
+    <div class="card text-center mt-0 mt-md-5">
         <div class="card-header text-muted">
             <h4 class="font-weight-bold text-center">{{'AGREEMENT.TITLE' | translate}}</h4>
-            <h5>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}}
-                <a ng-href="#" ng-click="vm.downloadTermsOfUse($event);">
-                    <span class="text-primary">{{'SHARED.CLICKHERE' | translate}}</span>
-                </a>
+            <h5>
+                <a ng-href="#" ng-click="vm.downloadTermsOfUse($event);">{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}}</a>
             </h5>
         </div>
         <div class="card-body document-layout">
@@ -61,7 +59,7 @@
 
     <!--Navigation buttons-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-3 mt-md-4">
             <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.preference" tabindex="2">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
