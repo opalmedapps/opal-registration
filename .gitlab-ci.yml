@@ -45,7 +45,7 @@ check third party notice:
   script:
     - python --version
     - uv --version
-    - uv run python check_thirdparty_notice.py
+    - uv run check_thirdparty_notice.py
 
 # Builds and deploys a functional copy of the site to a given environment
 .build and deploy:

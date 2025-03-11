@@ -1,3 +1,9 @@
+# /// script
+# dependencies = [
+#     "beautifulsoup4",
+#     "markdown",
+# ]
+# ///
 import json
 import sys
 from pathlib import Path
@@ -32,3 +38,5 @@ if dependencies != dependencies_in_notice:
     print(f'dependencies only in notice: {", ".join(extra_in_notice)}')
 
     sys.exit(1)
+
+print('Everything is in sync!')
