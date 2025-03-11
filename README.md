@@ -22,7 +22,12 @@ In the `php` directory, copy the content or rename `config.json.sample` to a fil
 }
 ```
 
-### Step 2 | Run the Docker scripts
+### Step 2 | Install bower dependencies
+Run the following command at the root of the project to install its dependencies.
+```
+bower install 
+```
+### Step 3 | Run the Docker scripts
 
 To do so, call `docker-compose up` from the project's root. Once the image is built and the container running, you can access it via `http://localhost:8083` from your browser.
 
