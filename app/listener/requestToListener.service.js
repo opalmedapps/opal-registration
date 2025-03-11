@@ -88,14 +88,13 @@
                             refRequestResponse.off();
                             reject(error);
                         });
+                        //If request takes longer than 90000 to come back with timeout request, delete reference
+                        const timeOut = setTimeout(function () {
+                            response_url.set(null);
+                            response_url.off();
+                            reject({ Response: 'timeout' });
+                        }, 90000);
                     });
-                //If request takes longer than 30000 to come back with timeout request, delete reference
-                const timeOut = setTimeout(function () {
-                    response_url.set(null);
-                    response_url.off();
-                    reject({ Response: 'timeout' });
-                }, 90000);
-
             }).catch(err => console.log(err));
         }
 
