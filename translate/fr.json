@@ -64,6 +64,7 @@
     "STEPS": "Étape 2c sur 5: ",
     "TITLE": "Créer des questions de sécurité",
     "INSTRUCTION_START": "Veuillez noter que certaines données (telles que les réponses aux questions de sécurité) sont spécifiques à l'hôpital et ne sont stockées qu'au sein de l'hôpital. Pour accéder aux données de ",
+    "INSTRUCTION_MID": " à ",
     "INSTRUCTION_END": " avec votre compte Opal existant, veuillez remplir le formulaire ci-dessous.",
     "FIELDNAMES": {
       "LOGINAS": "connecté en tant que ",
