@@ -44,10 +44,8 @@
         /**
              validates incoming response from listener
              @param response
-             @param encryptionKey
              @param timeOut
          **/
-
         function validate(response, timeOut) {
             let timestamp = response.Timestamp;
 
@@ -70,7 +68,6 @@
          @param response
          @param timeOut
          **/
-
         function validateApiResponse(response, timeOut) {
             if (!response.status_code) {
                 return {error: {Code: 'ENCRYPTION_ERROR'}}
