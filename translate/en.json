@@ -33,13 +33,13 @@
     "IBD": "Inflammatory Bowel Disease (IBD) Clinic",
     "MCH": "Montreal Childrens Hospital",
     "NEPHRO": "Nephrology Division",
-    "STJ": "Ste-Justine Childrens Hospital",
+    "STJ": "CHU Sainte-Justine",
     "HEMA": "Hematology-Oncology Day Centre"
   },
   "WELCOME": {
     "TITLE": "",
     "INSTRUCTION": "Opal is currently available for patients at the following hospitals:",
-    "STAPES": "If you are a patient at one of these hospitals, please proceed to the hospital's reception desk or ask your clinician about obtaining an Opal registration code."
+    "STEPS": "If you are a patient at one of these hospitals, please proceed to the hospital's reception desk or ask your clinician about obtaining an Opal registration code."
   },
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
