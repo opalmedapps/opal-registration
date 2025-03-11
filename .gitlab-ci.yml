@@ -134,6 +134,7 @@ dast:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
   trigger:
+    strategy: depend
     include:
       - local: .gitlab-ci.yml
 
