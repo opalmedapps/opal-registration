@@ -29,10 +29,6 @@
             });
         });
 
-        console.log(jQuery('[data-toggle="tooltip"]'));
-        console.log('active');
-
-
         // Call function on page load to fetch the data.
         vm.$onInit = activate;
 
@@ -57,8 +53,6 @@
             
             // Call function to fetch URL query parameters.
             vm.fetchURL();
-
-            console.log($('[data-toggle="tooltip"]'))
         }
 
         // Registration code tooltip template path
