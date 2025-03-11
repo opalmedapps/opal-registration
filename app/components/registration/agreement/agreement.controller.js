@@ -33,6 +33,8 @@
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
+            vm.formData.termsOfUseDisplayed = (vm.formData.selectedLanguage === 'fr') ? vm.formData.termsOfUseBase64_FR : vm.formData.termsOfUseBase64_EN;
+
             // Hide display spinner
             vm.formData.displaySpinner = false;
 
