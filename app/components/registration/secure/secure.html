@@ -15,8 +15,7 @@
         </div>
         <div class="col-sm-3">
             <div class="column">
-                <div class="row-sm-1"><label><span style="font-weight: bold;">{{'PATIENT.HOSPITAL' | translate}}</span>{{vm.formData.hospitalName}}</label></div>
-                <div class="row-sm-1"><label><span style="font-weight: bold;">{{'PATIENT.PATIENT' | translate}}</span>{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</label></div>
+                <patient-info form-data="vm.formData"></patient-info>
             </div>
         </div>
     </div>
@@ -32,28 +31,7 @@
                    ng-class="{
             'is-invalid':(vm.formData.emailFormat.status == 'invalid'),
             'is-valid':(vm.formData.emailFormat.status == 'valid')}"
-                   tabindex="1" required>
-
-            <!--Display error if email format or length is inappropriate-->
-            <div class="mb-1" ng-show="vm.formData.emailFormat.status == 'invalid'">
-                <small class="text-danger font-weight-bold">{{vm.formData.emailFormat.message}}</small>
-            </div>
-
-            <!--Message-->
-            <div><label class="text-muted">{{'TOOLTIP.EMAILINSTRUCTION' | translate}}</label></div>
-        </div>
-        <div class="form-group col-md-6 col-sm-12">
-            <label for="confirmEmail" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMEMAIL' | translate}}</label>
-            <input type="text" class="form-control" name="confirmEmail" ng-model="vm.formData.confirmEmail" ng-change="vm.validateConfirmEmail()"
-                   ng-class="{
-                           'is-invalid':(vm.formData.confirmEmailFormat.status == 'invalid'),
-                           'is-valid':(vm.formData.confirmEmailFormat.status == 'valid')}"
-                   tabindex="2" required>
-
-            <!--Display error if email format is inappropriate-->
-            <div ng-show="vm.formData.confirmEmailFormat.status == 'invalid'">
-                <small class="text-danger font-weight-bold">{{vm.formData.confirmEmailFormat.message}}</small>
-            </div>
+                   tabindex="1" ng-disabled="true">
         </div>
     </div>
 
@@ -252,7 +230,7 @@
     <!--Navigation buttons-->
     <div class="row">
         <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.search" tabindex="11">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.verification" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
             <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="12" ng-disabled="vm.secureFormValid">
@@ -261,6 +239,17 @@
         </div>
     </div>
 </form>
+<style>
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance:textfield;
+    }
+</style>
 
 
 <!--Password tooltip example-->
