@@ -31,16 +31,16 @@ section.page-title h1 {
 
 /* Customize Bootstrap tooltips */
 .tooltip-inner {
-    background-color: #ccc;
-    color: #000;
+    background-color: #50565B;
+    color: #fff;
 }
 
 .bs-tooltip-top .arrow:before {
-    border-top-color: #ccc;
+    border-top-color: #50565B;
 }
 
 .bs-tooltip-bottom .arrow:before {
-    border-bottom-color: #ccc;
+    border-bottom-color: #50565B;
 }
 
 @media(max-width:576px) {
