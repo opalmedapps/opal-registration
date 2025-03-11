@@ -10,11 +10,14 @@
         // Get firebase request user
         var firebase_url = null;
 
+        var firebase_api_url = null;
+
         // Get firebase response url
         var response_url = null;
 
         // Get firebase parent branch
-        var firebase_parentBranch = null;
+        var firebase_parentBranch = userAuthorizationService.getHospitalCode();
+
 
         return {
             sendRequestWithResponse: sendRequestWithResponse,
@@ -23,9 +26,6 @@
 
         // Function to send request to listener
         function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
-
-            // Get firebase parent branch
-            firebase_parentBranch = userAuthorizationService.getHospitalCode();
 
             // Get firebase request user
             firebase_url = firebase.database().ref(firebaseFactory.getFirebaseUrl(firebase_parentBranch));
@@ -104,14 +104,8 @@
 
         function sendApiRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
 
-            // Get firebase parent branch
-            firebase_parentBranch = userAuthorizationService.getHospitalCode();
-
             // Get firebase request user
-            firebase_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
-
-            // Get firebase response url
-            response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
+            firebase_api_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
 
             return new Promise((resolve) => {
                 let requestType;
@@ -134,7 +128,7 @@
                             'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
                         let reference = referenceField || 'requests';
-                        let pushID = firebase_url.child(reference).push(request_object);
+                        let pushID = firebase_api_url.child(reference).push(request_object);
                         resolve(pushID.key);
                     });
             });
@@ -153,23 +147,23 @@
                 const requestType = 'registration-api';
                 const requestKey = await sendApiRequest(requestType, formatedParams);
                 const firebasePath = `response/${requestKey}`;
-                const response_url = firebase_url.child(firebasePath);
+                const api_response_url = firebase_api_url.child(firebasePath);
 
-                response_url.on('value', snapshot => {
+                api_response_url.on('value', snapshot => {
                     if (snapshot.exists()) {
 
                         let data = snapshot.val();
 
-                        response_url.set(null);
-                        response_url.off();
+                        api_response_url.set(null);
+                        api_response_url.off();
 
                         data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
                         (data.success) ? resolve(data.success) : reject(data.error);
                     }
                 });
                 const timeOut = setTimeout(function () {
-                    response_url.set(null);
-                    response_url.off();
+                    api_response_url.set(null);
+                    api_response_url.off();
                     reject({ Response: 'timeout' });
                 }, 90000);
             });
