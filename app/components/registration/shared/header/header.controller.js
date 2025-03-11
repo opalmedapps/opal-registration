@@ -53,31 +53,31 @@
         vm.changeDataLanguage = function () {
             
             // If global variable selectedlanguage is set to french
-            if (vm.formData.selectedLanguage == 'fr') {
+            if (vm.formData.selectedLanguage === 'fr') {
                 
                 // Check if secure form is loaded. If yes assign french questions to dropdown modal
-                if (vm.formData.secureForm.flag == 1) {
+                if (vm.formData.secureForm.flag === 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_FR;
                     for (var i = 0; i < vm.formData.securityQuestionList.length; i++) {
-                        if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion1.id) {
+                        if (vm.formData.securityQuestionList[i].id === vm.formData.formFieldsData.securityQuestion1.id) {
                             vm.formData.formFieldsData.securityQuestion1 = vm.formData.securityQuestionList[i];
                         }
-                        if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion2.id) {
+                        if (vm.formData.securityQuestionList[i].id === vm.formData.formFieldsData.securityQuestion2.id) {
                             vm.formData.formFieldsData.securityQuestion2 = vm.formData.securityQuestionList[i];
                         }
-                        if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion3.id) {
+                        if (vm.formData.securityQuestionList[i].id === vm.formData.formFieldsData.securityQuestion3.id) {
                             vm.formData.formFieldsData.securityQuestion3 = vm.formData.securityQuestionList[i];
                         }
                     }
                 }
 
                 // Check if preference form is loaded. If yes assign french value to language and levelofaccess dropdown modal
-                if (vm.formData.preferenceForm.flag == 1) {
+                if (vm.formData.preferenceForm.flag === 1) {
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_FR;
                 }
 
                 // Check if aggreement form is loaded. If yes assign french document
-                if (vm.formData.agreementForm.flag == 1) { 
+                if (vm.formData.agreementForm.flag === 1) { 
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_FR;
                 }
             }
@@ -114,5 +114,3 @@
         }
     }
 })();
-
-

@@ -47,13 +47,13 @@
 
         //
         vm.allStatusValid = function() {
-            return vm.formData.phoneFormat.status == vm.parent.STATUS_VALID &&
-                vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.answer2Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.securityQuestion3Format.status == vm.parent.STATUS_VALID &&
-                vm.formData.answer3Format.status == vm.parent.STATUS_VALID;
+            return vm.formData.phoneFormat.status === vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion1Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.answer1Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion2Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.answer2Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion3Format.status === vm.parent.STATUS_VALID &&
+                vm.formData.answer3Format.status === vm.parent.STATUS_VALID;
         }
 
         // Function to validate phone
