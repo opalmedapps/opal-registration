@@ -54,10 +54,10 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
         vm.formData = {};
 
         // Fetch broadcast event and change the field error message language.
-        $rootScope.$on("changeErrorLanguage", function () {
+        $rootScope.$on("changeLanguage", function () {
             $timeout(function () {
 
-                // Call functions to check the both field error values
+                // Check the field error values
                 vm.validatePassword();
                 vm.validateConfirmPassword();
                 vm.comparePassword();

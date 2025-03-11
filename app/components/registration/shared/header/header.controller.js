@@ -4,8 +4,8 @@
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
-import enLogo from '../../../../../images/logos/navbar-logo-en.png';
-import frLogo from '../../../../../images/logos/navbar-logo-fr.png';
+import logoEn from '../../../../../images/logos/navbar-logo-en.png';
+import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
 
 (function () {
     'use strict';
@@ -44,7 +44,7 @@ import frLogo from '../../../../../images/logos/navbar-logo-fr.png';
          * @param {string} language The 2-character language key used to determine the language.
          */
         function translateLogo(language) {
-            vm.logo = language.toUpperCase() === 'EN' ? enLogo : frLogo;
+            vm.logo = language.toUpperCase() === 'EN' ? logoEn : logoFr;
         }
 
         // Change language function.
@@ -61,7 +61,7 @@ import frLogo from '../../../../../images/logos/navbar-logo-fr.png';
                     vm.changeDataLanguage();
                     translateLogo(languageId);
 
-                    $rootScope.$broadcast("changeErrorLanguage");
+                    $rootScope.$broadcast("changeLanguage");
                 });
         };
 
