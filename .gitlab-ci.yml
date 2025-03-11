@@ -37,6 +37,7 @@ setup:
 deploy_development:
   stage: deploy
   environment: development
+  image: alpine:latest
   needs:
     - setup
   script:
@@ -61,8 +62,11 @@ deploy_development:
 deploy_staging:
   stage: deploy
   environment: staging
+  image: alpine:latest
   needs:
     - setup
+  before_script:
+    - uname -a
   script:
     - apk add --no-cache lftp
     - lftp --version
