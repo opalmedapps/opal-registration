@@ -70,8 +70,8 @@ deploy:
         ls -la registration/${CI_ENVIRONMENT_NAME};
         bye
       "
-  # rules:
-  #   - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
@@ -131,7 +131,7 @@ dast:
     - if: $CI_PIPELINE_SOURCE == "parent_pipeline"
       when: never
     # Only offer build and deployment in other environments after automatic build and deployment for Dev
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
   trigger:
     strategy: depend
