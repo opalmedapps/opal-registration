@@ -136,9 +136,10 @@
     },
     "FIELDERRORMESSAGES": {
       "EMAILREQUIRED": "Veuillez entrer votre adresse courriel.",
-      "CONFIRMEMAILREQUIRED": "Veuillez entrer votre adresse courriel de nouveau.",
       "PASSWORDREQUIRED": "Veuillez entrer votre mot de passe.",
       "CONFIRMPASSWORDREQUIRED": "Veuillez entrer votre mot de passe de nouveau.",
+      "PHONEREQUIRED": "Veuillez entrer votre numéro de téléphone.",
+      "PHONEINVALID": "Le numéro de téléphone est invalide.",
       "SECURITYQUESTIONREQUIRED": "Veuillez choisir une question de sécurité.",
       "ANSWERREQUIRED": "Veuillez répondre à la question de sécurité ci-dessus.",
       "EMAILFORMAT": "Veuillez entrer une adresse courriel valide.",

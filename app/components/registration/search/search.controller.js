@@ -295,6 +295,9 @@
                         const institution = response.data?.institution;
 
                         if (patient &&  institution) {
+                            vm.formData.hospitalName = institution.name;
+                            vm.formData.firstName = patient.first_name;
+                            vm.formData.lastName = patient.last_name;
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
                         } else if (response?.status_code == 403) {
                             vm.formData.userName = `Forbidden`;

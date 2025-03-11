@@ -108,7 +108,7 @@
         // Function to call service for register patient
         vm.registerPatient = function () {
             
-            var parameters = vm.formData.formFieldsData;
+            const parameters = vm.formData.formFieldsData;
 
             // Call service to register user.
             requestToListener.sendRequestWithResponse('RegisterPatient', { Fields: parameters })
@@ -117,9 +117,8 @@
 
                         // Call function to display error modal box.
                         vm.parent.errorPopup('contactUsError');
-                    }
-                    else {
-                        if (response.Data[0].Result == "Successfully Update") {     
+                    } else {
+                        if (response.Data[0].Result == "Successfully Update") {
                             // Hide display spinner after all request get response.
                             vm.formData.displaySpinner = true;
 
@@ -127,15 +126,13 @@
                             vm.parent.resetFields();
 
                             // Call function to user authorized value
-                            userAuthorizationService.clearuserAuthorizationInfomation();
+                            userAuthorizationService.clearUserAuthorizationInfomation();
 
                             // Redirect to last successful page
                             $rootScope.$apply(function () {
                                 $location.path('/form/registrationSuccessful');
                             });
-                        }
-                        else {
-
+                        } else {
                             // Call function to display error modal box.
                             vm.parent.errorPopup('contactUsError');
                         }

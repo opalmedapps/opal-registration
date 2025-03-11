@@ -111,7 +111,7 @@
             // Reset status and message of all fields.
             vm.formData.dateofBirthFormat = { status: null, message: null };
             vm.formData.emailFormat = { status: null, message: null };
-            vm.formData.confirmEmailFormat = { status: null, message: null };
+            vm.formData.phoneFormat = { status: null, message: null };
             vm.formData.passwordFormat = { status: null, message: null };
             vm.formData.confirmPasswordFormat = { status: null, message: null };
             vm.formData.securityQuestion1Format = { status: null, message: null };
