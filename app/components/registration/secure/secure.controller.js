@@ -211,7 +211,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected 
         }
         
-        // Function that checks for the user's personnal information in the password
+        // Function that checks for the user's personal information in the password
         vm.passwordContainsPersonalInformation = function(password){
             
             var userMRN = vm.formData.formFieldsData.mrn;
