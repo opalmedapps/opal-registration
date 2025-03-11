@@ -98,7 +98,7 @@
                         response_url.set(null);
                         response_url.off();
                         reject({ Response: 'timeout' });
-                    }, 30000);
+                    }, 90000);
 
                 }).catch(err => console.log(err));
             },
