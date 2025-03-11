@@ -44,6 +44,8 @@ check build:
   stage: deploy
   needs:
     - check build
+  # don't interrupt an FTP upload
+  interruptible: false
   before_script:
     - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG must be defined for this job" && exit 1'
     - echo $CONFIG > config.json
@@ -136,6 +138,9 @@ build and deploy staging:
 
 
 include:
+  # Interruptible Merge Request pipelines
+  - project: 'opalmedapps/engineering/ci-templates'
+    file: '/templates/InterruptibleMergeRequest-Pipelines.gitlab-ci.yml'
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
   # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.gitlab-ci.yml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
