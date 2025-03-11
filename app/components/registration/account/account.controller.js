@@ -53,6 +53,18 @@
             $location.path('/form/verification');
         }
 
+        vm.onPrev = function() {
+            // Hide the display spinner upon error
+            vm.formData.displaySpinner = false;
+
+            // Clear the form data
+            vm.parent.resetFields();
+
+            // Call function to clear user authorized value
+            userAuthorizationService.clearUserAuthorizationInfomation();
+            encryptionService.resetEncryptionHash();
+        }
+
     }
 
 })();

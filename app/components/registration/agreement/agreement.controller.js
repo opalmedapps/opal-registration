@@ -133,8 +133,9 @@
                             // Call function to reset the fields value
                             vm.parent.resetFields();
 
-                            // Call function to user authorized value
+                            // Call function to clear user authorized value
                             userAuthorizationService.clearUserAuthorizationInfomation();
+                            encryptionService.resetEncryptionHash();
 
                             // Redirect to last successful page
                             $rootScope.$apply(function () {

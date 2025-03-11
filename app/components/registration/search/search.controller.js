@@ -226,6 +226,10 @@
 
                 // Clear the form data
                 vm.parent.resetFields();
+
+                // Call function to clear user authorized value
+                userAuthorizationService.clearUserAuthorizationInfomation();
+                encryptionService.resetEncryptionHash();
             }
         }
 
