@@ -204,6 +204,7 @@
 
                 // Read the patient and institution information sent in the response
                 const patient = response.data?.patient;
+                const caregiver = response.data?.caregiver;
                 const institution = response.data?.institution;
                 if (!patient || !institution) throw response;
 
@@ -211,6 +212,8 @@
                 vm.formData.institutionId = institution.id;
                 vm.formData.firstName = patient.first_name;
                 vm.formData.lastName = patient.last_name;
+                vm.formData.caregiverFirstName = caregiver.first_name;
+                vm.formData.caregiverLastName = caregiver.last_name;
                 vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
 
                 await vm.retrieveTermsOfUsePDF();
@@ -226,6 +229,9 @@
 
                 // Clear the form data
                 vm.parent.resetFields();
+
+                // Call function to clear user authorized value
+                userAuthorizationService.clearUserAuthorizationInfomation();
             }
         }
 
