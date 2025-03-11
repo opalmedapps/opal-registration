@@ -91,7 +91,7 @@
             vm.formData.formFieldsData.email = "";
             vm.formData.confirmEmail = "";
             vm.formData.formFieldsData.password = "";
-            vm.formData.confirmPassword = "";
+            vm.formData.confirmPassword = "invalid";
             vm.formData.formFieldsData.securityQuestion1 = "";
             vm.formData.formFieldsData.answer1 = "";
             vm.formData.formFieldsData.securityQuestion2 = "";
