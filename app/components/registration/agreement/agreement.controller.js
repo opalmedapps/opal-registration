@@ -91,19 +91,23 @@
 
                 // Display display spinner before calling service
                 vm.formData.displaySpinner = true;
-
+                if (!vm.formData.accessToken) {
                 // Add question strings to the form, to be saved in the backend
-                for (let i = 1; i <= 3; i++) {
-                    let questionId = vm.formData.formFieldsData[`securityQuestion${i}`];
-                    vm.formData.formFieldsData[`securityQuestionText${i}`] = vm.formData.securityQuestionList.find(
-                        question => question.id === questionId
-                    ).value;
-                }
+                    for (let i = 1; i <= 3; i++) {
+                        let questionId = vm.formData.formFieldsData[`securityQuestion${i}`];
+                        vm.formData.formFieldsData[`securityQuestionText${i}`] = vm.formData.securityQuestionList.find(
+                            question => question.id === questionId
+                        ).value;
+                    }
 
-                // Encrypt important information before making service call.
-                vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
-                vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
-                vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
+                    // Hash answers before making service call.
+                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
+                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
+                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
+                }
+                else {
+                    vm.formData.formFieldsData.accessToken = vm.formData.accessToken
+                }
 
                 vm.formData.formFieldsData.termsandAggreementSign = 1;
                 vm.formData.formFieldsData.accessLevelSign = 1;
@@ -135,6 +139,7 @@
 
                             // Call function to clear user authorized value
                             userAuthorizationService.clearUserAuthorizationInfomation();
+                            encryptionService.resetEncryptionHash();
 
                             // Redirect to last successful page
                             $rootScope.$apply(function () {
