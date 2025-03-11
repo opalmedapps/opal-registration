@@ -160,7 +160,7 @@
                 Salt: RAMQ
              **/
             generateEncryptionHash: function () {
-                encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuserCode(), userAuthorizationService.getUserRAMQ(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
+                encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuserCode(), userAuthorizationService.getUserSalt(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
 
             },
 

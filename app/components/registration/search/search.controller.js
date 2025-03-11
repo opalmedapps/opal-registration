@@ -1,6 +1,6 @@
 /**
      Filename     :   form.controller.js
-     Description  :   Controlle the search.html data(modal values, event, etc.) and to function to make service call.
+     Description  :   Control the search.html data(modal values, event, etc.) and to function to make service call.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
@@ -25,7 +25,7 @@
 
                 // Call functions to check the both field error values            
                 vm.validateRegistrationCode();
-                vm.validateRAMQ();
+                vm.validatePatientId();
             });
         });
 
@@ -37,6 +37,8 @@
         function activate() {
             // get data from the parent component
             vm.formData = vm.parent.getData();
+            vm.formData.patientId = undefined;
+            vm.formData.patientIdFormat = {};
 
             if (vm.formData.secureForm.flag != 1)
                 vm.formData.selectedLanguage = ((window.navigator.language || window.navigator.userLanguage).slice(0, 2)).toLowerCase();
@@ -54,16 +56,14 @@
             vm.fetchURL();
         }
 
-        // Registration code tooltip image path
+        // Registration code tooltip template path
         vm.registrationcodeTooltip = {
             templateUrl: 'registrationcodeTooltipTemplate.html',
-            content: $filter('translate')('TOOLTIP.REGISTRATIONCODE')
         };
 
-        // RAMQ tooltip image path
-        vm.ramqTooltip = {
-            templateUrl: 'ramqTooltipTemplate.html',
-            image: 'images/tooltip/ramq.jpg'
+        // Patient id tooltip template path
+        vm.patientidTooltip = {
+            templateUrl: 'patientidTooltipTemplate.html',
         };
 
         // Method to fetch URL query parameter to autofill Registration code.
@@ -116,26 +116,18 @@
             }
         };
 
-        // Validate to RAMQ format and length.
-        vm.validateRAMQ = function () {
-
-            if (vm.formData.formFieldsData.ramq == undefined || vm.formData.formFieldsData.ramq == null || vm.formData.formFieldsData.ramq == "") {
-                vm.formData.ramqFormat.status = 'invalid';
-                vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
-            }
-            else {
-                if (vm.formData.formFieldsData.ramq.length < 12) {
-                    vm.formData.ramqFormat.status = 'invalid';
-                    vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTRAMQLENGTH');
-                }
-
-                else if (vm.formData.formFieldsData.ramq.length > 12) {
-                    vm.formData.ramqFormat.status = 'invalid';
-                    vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGRAMQLENGTH');
-                }
-                else {
-                    vm.formData.ramqFormat.status = 'valid';
-                    vm.formData.ramqFormat.message = null;
+        // Validate to patient id format and length.
+        vm.validatePatientId = function () {
+            if (vm.formData.patientId == undefined || vm.formData.patientId == null || vm.formData.patientId == "") {
+                vm.formData.patientIdFormat.status = 'invalid';
+                vm.formData.patientIdFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.PATIENTIDREQUIRED');
+            } else {
+                if (vm.formData.patientId.length != 7 && vm.formData.patientId.length != 12) {
+                    vm.formData.patientIdFormat.status = 'invalid';
+                    vm.formData.patientIdFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.INVALIDPATIENTID');
+                } else {
+                    vm.formData.patientIdFormat.status = 'valid';
+                    vm.formData.patientIdFormat.message = null;
 
                     // Display shared error message
                     vm.sharedErrorMessage = true;
@@ -166,22 +158,29 @@
                 // Display shared error message
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.formFieldsData.ramq == undefined || vm.formData.formFieldsData.ramq == null || vm.formData.formFieldsData.ramq == "") {
-                vm.formData.ramqFormat.status = 'invalid';
-                vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
+            if (vm.formData.patientId == undefined || vm.formData.patientId == null || vm.formData.patientId == "") {
+                vm.formData.patientIdFormat.status = 'invalid';
+                vm.formData.patientIdFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.PATIENTIDREQUIRED');
 
                 // Display shared error message
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.codeFormat.status == 'valid' && vm.formData.ramqFormat.status == 'valid') {
+            if (vm.formData.codeFormat.status == 'valid' && vm.formData.patientIdFormat.status == 'valid') {
                 // Display shared error message
                 vm.sharedErrorMessage = true;
 
                 vm.formData.hospitalCode = vm.formData.formFieldsData.registrationCode.substring(0,2);
-                vm.formData.formFieldsData.ramq = vm.formData.formFieldsData.ramq.toUpperCase();
+                vm.formData.patientId = vm.formData.patientId.toUpperCase();
 
+                //Set registration code info
+                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.patientId, vm.formData.hospitalCode);
 
-                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq, vm.formData.hospitalCode);
+                if (vm.formData.patientId.length == 12) {
+                    vm.formData.formFieldsData.ramq = vm.formData.patientId;
+
+                } else if (vm.formData.patientId.length == 7) {
+                    vm.formData.formFieldsData.mrn = vm.formData.patientId;
+                }
                 vm.createBranchName();
             }
 
@@ -189,7 +188,6 @@
 
         // Call service to check valid branch.
         vm.createBranchName = function () {
-
             //Set the firebase branch name
             userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
@@ -215,14 +213,12 @@
                 else {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 }
             }).catch(function (error) {
 
                 // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
+                vm.errorPopup();
             });
 
         }
@@ -244,16 +240,14 @@
                     else {
 
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
 
                 })
                 .catch(function (error) {
                     
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
 
         }
@@ -276,36 +270,40 @@
                     else {
                      
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/somethingWentWrongError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/somethingWentWrongError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
         }
 
         // Method to call service to check valid input.
         vm.validInputs = function (requestObject) {
-            
-            // Parameter object
-            var parameters = {
-                'FirebaseBranchName': requestObject,
-                'RegistrationCode': vm.formData.formFieldsData.registrationCode,
-                'RAMQ': vm.formData.formFieldsData.ramq
-            };
 
             // Listener service call.
-            requestToListener.sendRequestWithResponse('ValidateInputs', { Fields: parameters })
+            const request = {
+                method: 'get',
+                url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
+            };
+
+            requestToListener.apiRequest(request, vm.formData.selectedLanguage)
                 .then(function (response) {
-                    var result = response.Data[0].Result.split(":");
-                    
-                    if (result[0] == 'SUCCESS') {
+
+                    if (response?.status_code == 200) {
                         // Call function to get user name.
-                        vm.formData.userName = result[1];
+                        const patient = response.data?.patient;
+                        const institution = response.data?.institution;
+
+                        if (patient &&  institution) {
+                            vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
+                        } else {
+                            vm.formData.userName = `Not found`;
+                            var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                            vm.parent.displayError(errorModalPage);
+                        }
 
                         vm.retrieveTermsOfUsePDF()
                             .then(function () {
@@ -323,11 +321,9 @@
                             // Call function to reset value of every text fields.
                             vm.resetFields();
                         });
-                    }
-                    else {
+                    } else {
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
 
                 })
@@ -337,8 +333,7 @@
                     vm.formData.displaySpinner = true;
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
 
                     // Call function to reset value of every text fields.
                     vm.resetFields();
@@ -347,34 +342,32 @@
     
         // Function to load security questions list on service call.
         vm.getSecurityQuestionList = function () {
-
-            // Parameter
-            var parameters = vm.formData.formFieldsData.ramq;
             
             // Listener service call.
-            requestToListener.sendRequestWithResponse('SecurityQuestionsList', { Fields: parameters })
+            requestToListener.apiRequest(apiConstants.ROUTES.QUESTIONS, vm.formData.selectedLanguage)
                 .then(function (response) {
 
                     // assing response to temporary variable.
-                    var SecurityQuestionsList = response.Data[0];
+                    let securityQuestions = response?.data?.results;
+
+                    vm.formData.securityQuestionList_EN = [];
+                    vm.formData.securityQuestionList_FR = [];
 
                     // Check length of the variable
-                    if (SecurityQuestionsList.length > 1) {
-
+                    if (securityQuestions?.length > 1) {
                         // Define loop for passing the value of securityquestions.
-                        for (var i = 0; i < SecurityQuestionsList.length; i++) {
-
+                        securityQuestions.forEach((question) => {
                             // Assing in JSON format
-                            vm.formData.securityQuestionList_EN[i] = {
-                                "id": SecurityQuestionsList[i].SecurityQuestionSerNum,
-                                "value": SecurityQuestionsList[i].QuestionText_EN
-                            }
+                            vm.formData.securityQuestionList_EN.push({
+                                "id": question.id,
+                                "value": question.title_en,
+                            })
 
-                            vm.formData.securityQuestionList_FR[i] = {
-                                "id": SecurityQuestionsList[i].SecurityQuestionSerNum,
-                                "value": SecurityQuestionsList[i].QuestionText_FR
-                            }
-                        }
+                            vm.formData.securityQuestionList_FR.push({
+                                "id": question.id,
+                                "value": question.title_fr,
+                            })
+                        })
 
                         // Check the default selected language.
                         if (vm.formData.selectedLanguage == 'en')
@@ -389,18 +382,15 @@
                             $location.path('/form/secureInformation');
                         });
 
-                    }
-                    else {
+                    } else {
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
                 })
                 .catch(function (error) {
                     
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
 
                 });
         }
@@ -444,10 +434,14 @@
                     // Hide display spinner after all request get response.
                     vm.formData.displaySpinner = true;
 
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                    vm.errorPopup();
                 });
             }
+        }
+
+        vm.errorPopup = function() {
+            const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+            vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
         }
     };
 })();
