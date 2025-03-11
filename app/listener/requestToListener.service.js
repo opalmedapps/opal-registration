@@ -110,8 +110,6 @@
             // Get firebase request user
             firebase_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
 
-            console.log(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
-
             // Get firebase response url
             response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
 
@@ -151,7 +149,7 @@
          */
         function apiRequest(parameters, language, data = null) {
             return new Promise(async (resolve, reject) => {
-                const formatedParams = formatParams(parameters, data);
+                const formatedParams = formatParams(parameters, language, data);
                 const requestType = 'registration-api';
                 const requestKey = await sendApiRequest(requestType, formatedParams);
                 const firebasePath = `response/${requestKey}`;

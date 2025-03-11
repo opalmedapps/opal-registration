@@ -28,7 +28,7 @@
                 },
                 QUESTIONS: {
                     method: 'get',
-                        url: '/api/security-questions/',
+                    url: '/api/security-questions/',
                 }
             }
         });
