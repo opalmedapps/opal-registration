@@ -3,9 +3,9 @@
     angular.module('myApp')
         .service('requestToListener', requestToListener);
 
-    requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'responseValidatorFactory'];
+    requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'apiConstants', 'responseValidatorFactory'];
 
-    function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, responseValidatorFactory) {
+    function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, apiConstants, responseValidatorFactory) {
         
         // Get firebase request user
         var firebase_url = null;
@@ -15,6 +15,12 @@
 
         // Get firebase parent branch
         var firebase_parentBranch = null;
+
+        return {
+            sendRequestWithResponse: sendRequestWithResponse,
+            sendRequest: sendRequest,
+            apiRequest: apiRequest
+        };
 
         // Function to send request to listener
         function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
@@ -49,63 +55,105 @@
                             'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
                         let reference = referenceField || 'requests';
+                        console.log(request_object);
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve(pushID.key);
                     });
             });
         }
 
-        return {
+        function sendRequestWithResponse(typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
+            return new Promise((resolve, reject) => {
 
-            sendRequestWithResponse: function (typeOfRequest, parameters, encryptionKey, referenceField, responseField) {
-                return new Promise((resolve, reject) => {
-                    
-                    //Sends request and gets random key for request
-                    sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
-                        .then(key => {
-                            
-                            let refRequestResponse = (!referenceField) ?
-                                response_url.child(key) :
-                                firebase_url.child(responseField).child(key);
-                            
-                            //Waits to obtain the request data.
-                            refRequestResponse.on('value', snapshot => {
-                                if (snapshot.exists()) {
-                                    
-                                    let data = snapshot.val();
+                //Sends request and gets random key for request
+                sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
+                    .then(key => {
 
-                                    refRequestResponse.set(null);
-                                    refRequestResponse.off();
+                        let refRequestResponse = (!referenceField) ?
+                            response_url.child(key) :
+                            firebase_url.child(responseField).child(key);
 
-                                    data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
-                                    
-                                    if (data.success) {
-                                        resolve(data.success);
-                                    } else {
-                                        reject(data.error);
-                                    }
-                                }
-                            }, error => {
-                                console.log('sendRequestWithResponse error' + error);
-                                
+                        console.log(key);
+                        //Waits to obtain the request data.
+                        refRequestResponse.on('value', snapshot => {
+                            if (snapshot.exists()) {
+
+                                let data = snapshot.val();
+
                                 refRequestResponse.set(null);
                                 refRequestResponse.off();
-                                reject(error);
-                            });
+
+                                data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
+
+                                if (data.success) {
+                                    resolve(data.success);
+                                } else {
+                                    reject(data.error);
+                                }
+                            }
+                        }, error => {
+                            console.log('sendRequestWithResponse error' + error);
+
+                            refRequestResponse.set(null);
+                            refRequestResponse.off();
+                            reject(error);
                         });
-                    //If request takes longer than 30000 to come back with timeout request, delete reference
-                    const timeOut = setTimeout(function () {
+                    });
+                //If request takes longer than 30000 to come back with timeout request, delete reference
+                const timeOut = setTimeout(function () {
+                    response_url.set(null);
+                    response_url.off();
+                    reject({ Response: 'timeout' });
+                }, 90000);
+
+            }).catch(err => console.log(err));
+        }
+
+        /**
+         * @description Call the new listener structure that relays the request to Django backend
+         * @param {object} parameters Required fields to process request
+         * @param {object | null} Data the is needed to be passed to the request.
+         * @returns Promise that contains the response data
+         */
+        function apiRequest(parameters, data = null) {
+            return new Promise(async (resolve, reject) => {
+                const formatedParams = formatParams(parameters, data);
+                const requestType = 'registration-api';
+                const requestKey = await sendRequest(requestType, formatedParams, null, requestType);
+                const firebasePath = `response/${requestKey}`;
+                const response_url = firebase_url.child(firebasePath);
+
+                response_url.on('value', snapshot => {
+                    if (snapshot.exists()) {
+
+                        let data = snapshot.val();
+
                         response_url.set(null);
                         response_url.off();
-                        reject({ Response: 'timeout' });
-                    }, 90000);
 
-                }).catch(err => console.log(err));
-            },
+                        data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
 
-            sendRequest: function (typeOfRequest, content, key) {
-                sendRequest(typeOfRequest, content, key);
+                        if (data.success) {
+                            resolve(data.success);
+                        } else {
+                            reject(data.error);
+                        }
+                    }
+                });
+                const timeOut = setTimeout(function () {
+                    response_url.set(null);
+                    response_url.off();
+                    reject({ Response: 'timeout' });
+                }, 90000);
+            });
+        }
+
+        function formatParams(parameters, data){
+            if (data) parameters.data = data;
+            return {
+                ...parameters,
+                headers: {...apiConstants.REQUEST_HEADERS, 'Accept-Language': 'en'},
             }
-        };
+        }
     }
 })();
