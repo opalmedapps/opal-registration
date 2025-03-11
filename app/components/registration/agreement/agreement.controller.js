@@ -133,7 +133,7 @@
                             // Call function to reset the fields value
                             vm.parent.resetFields();
 
-                            // Call function to clear user authorized value
+                            // Call function to user authorized value
                             userAuthorizationService.clearUserAuthorizationInfomation();
 
                             // Redirect to last successful page

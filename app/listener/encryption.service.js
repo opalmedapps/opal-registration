@@ -180,16 +180,6 @@ nacl.util = util;
                 return encryptionHash;
             },
 
-            /**
-             @ngdoc method
-             @name resetEncryptionHash
-             @methodOf myApp.service:encryptionService
-             @description Reset the encryption hash
-             **/
-            resetEncryptionHash: function () {
-                encryptionHash = '';
-            },
-
             generateNonce: function () {
                 return nacl.randomBytes(nacl.secretbox.nonceLength)
             }
