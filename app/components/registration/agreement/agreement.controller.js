@@ -157,7 +157,7 @@
 
             const downloadLink = document.createElement('a');
 
-            downloadLink.href = vm.formData.termsOfUseBase64;
+            downloadLink.href = vm.formData.termsOfUseDisplayed;
             downloadLink.download = 'opal-agreement.pdf';
             downloadLink.target = '_blank';
             downloadLink.click();

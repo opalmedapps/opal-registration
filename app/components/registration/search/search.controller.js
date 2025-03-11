@@ -302,15 +302,27 @@
             );
 
             $timeout(() => {
-                const termsOfUsePDF = terms_response?.data?.terms_of_use;
-                if (termsOfUsePDF === undefined || termsOfUsePDF === "") throw terms_response;
+                const termsOfUsePDF_EN = terms_response?.data?.terms_of_use_en;
+                const termsOfUsePDF_FR = terms_response?.data?.terms_of_use_fr;
+                if (termsOfUsePDF_EN === undefined || termsOfUsePDF_EN === "" || 
+                    termsOfUsePDF_FR === undefined || termsOfUsePDF_FR === "") throw terms_response;
 
-                vm.formData.termsOfUseBase64 = $sce.trustAsResourceUrl(
-                    `data:application/pdf;base64,${termsOfUsePDF}`
+                vm.formData.termsOfUseBase64_EN = $sce.trustAsResourceUrl(
+                    `data:application/pdf;base64,${termsOfUsePDF_EN}`
+                );
+
+                vm.formData.termsOfUseBase64_FR = $sce.trustAsResourceUrl(
+                    `data:application/pdf;base64,${termsOfUsePDF_FR}`
                 );
 
                 vm.isTermsLoaded = true;
 
+                // Check the default selected language.
+                if (vm.formData.selectedLanguage == 'en')
+                    vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_EN;
+                else
+                    vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_FR;
+                
                 // Hide display spinner after all request get response.
                 vm.formData.displaySpinner = false;
             });
