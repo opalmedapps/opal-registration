@@ -86,7 +86,7 @@
   "PREFERENCE": {
     "STEPS": "Étape 3 de 5: ",
     "TITLE": "Accès aux données",
-    "INSTRUCTION1": "Afin d’avoir accès à vos données médicales de ",
+    "INSTRUCTION1": "Afin d’avoir accès aux données médicales de ",
     "INSTRUCTION2": " à ",
     "INSTRUCTION3": " utilisant Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
     "FIELDNAMES": {
@@ -134,7 +134,7 @@
     "PLAYSTORELOGO": "images/logos/PlayStore_FR.png",
     "NOTIFICATION1": "Accéder aux données de ",
     "NOTIFICATION2": " est sujet à confirmation par Medical Records.",
-    "NOTIFICATION3": "Vous recevrez une notification une fois votre relation confirmée."
+    "NOTIFICATION3": "Vous aller recevoir une notification une fois votre relation est confirmé."
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
