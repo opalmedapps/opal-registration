@@ -79,11 +79,14 @@
                                 refRequestResponse.set(null);
                                 refRequestResponse.off();
 
-                                const originalResponse = JSON.parse(JSON.stringify(data));
-                                console.log(originalResponse);
-
-                                data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
-                                (data.success) ? resolve(data.success) : reject(data.error);
+                                try {
+                                    data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
+                                    (data.success) ? resolve(data.success) : reject(data.error);
+                                } catch (error) {
+                                    const originalResponse = JSON.parse(JSON.stringify(data));
+                                    console.log(originalResponse);
+                                    reject(error);
+                                }
                             }
                         }, error => {
                             console.log('sendRequestWithResponse error' + error);
