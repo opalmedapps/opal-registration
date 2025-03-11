@@ -283,11 +283,11 @@
                 //vm.formData.passwordFormat.message = null;
                 vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEREQUIRED');
             } else {
-                if (phone.toString().length < 10) {
+                if (phone.toString().length < 12) {
                     vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
                     return;
-                } else if (phone.toString().length > 10) {
+                } else if (phone.toString().length > 12) {
                     vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
                     return;
