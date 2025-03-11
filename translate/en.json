@@ -33,7 +33,7 @@
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",
     "TITLE": "Confirm Your Identity",
-    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number or you MRN number to confirm your identity.",
+    "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number or your MRN number to confirm your identity.",
     "FIELDNAMES": {
       "PATIENTID": "Patient Identification Number",
       "REGISTRATIONCODE": "Your Registration Code"
