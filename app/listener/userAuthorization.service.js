@@ -109,14 +109,15 @@
 
             /**
              @ngdoc method
-             @name clearuserAuthorizationInformation
+             @name clearUserAuthorizationInformation
              @methodOf MUHCApp.service:userAuthorizationService
              @description Clears service
              **/
-            clearuserAuthorizationInfomation: function () {
+            clearUserAuthorizationInfomation: function () {
                 userCode = '';
                 userSalt = '';
                 userBranchName = '';
+                hospitalCode = '';
             }
         }
     }
