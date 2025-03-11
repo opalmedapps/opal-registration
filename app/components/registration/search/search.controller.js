@@ -372,7 +372,7 @@
                         vm.formData.displaySpinner = true;
 
                         $rootScope.$apply(function () {
-                            $location.path('/form/secureInformation');
+                            $location.path('/form/account');
                         });
 
                     }
