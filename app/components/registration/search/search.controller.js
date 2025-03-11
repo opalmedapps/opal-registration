@@ -215,14 +215,12 @@
                 else {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 }
             }).catch(function (error) {
 
                 // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
+                vm.errorPopup();
             });
 
         }
@@ -244,16 +242,14 @@
                     else {
 
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
 
                 })
                 .catch(function (error) {
                     
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
 
         }
@@ -276,15 +272,13 @@
                     else {
                      
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/somethingWentWrongError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/somethingWentWrongError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
         }
 
@@ -326,8 +320,7 @@
                     }
                     else {
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
 
                 })
@@ -337,8 +330,7 @@
                     vm.formData.displaySpinner = true;
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
 
                     // Call function to reset value of every text fields.
                     vm.resetFields();
@@ -353,15 +345,15 @@
                 .then(function (response) {
 
                     // assing response to temporary variable.
-                    let SecurityQuestionsList = response.data.results;
+                    let security_questions = response?.data?.results;
 
                     vm.formData.securityQuestionList_EN = [];
                     vm.formData.securityQuestionList_FR = [];
 
                     // Check length of the variable
-                    if (SecurityQuestionsList.length > 1) {
+                    if (security_questions?.length > 1) {
                         // Define loop for passing the value of securityquestions.
-                        SecurityQuestionsList.forEach((question) => {
+                        security_questions.forEach((question) => {
                             // Assing in JSON format
                             vm.formData.securityQuestionList_EN.push({
                                 "id": question.id,
@@ -389,15 +381,13 @@
 
                     } else {
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
                 })
                 .catch(function (error) {
                     
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
 
                 });
         }
@@ -441,10 +431,14 @@
                     // Hide display spinner after all request get response.
                     vm.formData.displaySpinner = true;
 
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                    vm.errorPopup();
                 });
             }
+        }
+
+        vm.errorPopup = function() {
+            const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+            vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
         }
     };
 })();
