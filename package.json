@@ -5,7 +5,7 @@
     "url": "gitlab+https://gitlab.com/yickmo/registration-web-page"
   },
   "dependencies": {
-    "angular": "npm:@xlts.dev/angular@1.9.1",
+    "angular": "npm:@xlts.dev/angular@1.9.3",
     "angular-ui-router": "1.0.30",
     "angular-tooltips": "1.2.2",
     "angular-translate": "2.19.0",
