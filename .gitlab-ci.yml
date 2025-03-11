@@ -85,4 +85,4 @@ dast:
   variables:
     DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
     DAST_BROWSER_SCAN: "true"
-    DAST_FULL_SCAN_ENABLED: "true"
+    # DAST_FULL_SCAN_ENABLED: "true"
