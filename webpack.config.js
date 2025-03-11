@@ -1,3 +1,4 @@
+const CopyPlugin = require("copy-webpack-plugin");
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
@@ -84,5 +85,11 @@ module.exports = {
             // title: 'Opal Registration',
         }),
         new FaviconsWebpackPlugin('./images/favicons/favicon-source.png'),
+        new CopyPlugin({
+            patterns: [
+                // File copied for web deployment
+                ".htaccess",
+            ],
+        }),
     ],
 };
