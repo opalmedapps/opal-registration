@@ -55,8 +55,8 @@ setup:
         ls -la registration/${CI_ENVIRONMENT_NAME}; 
         bye
       "
-  # rules:
-    # - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
   
 
 deploy_development:
