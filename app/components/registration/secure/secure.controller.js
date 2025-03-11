@@ -201,7 +201,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             }
         }
 
-        // Function that limits the user from entering the Opal domain name in their passowrd 
+        // Function that limits the user from entering the Opal domain name in their password 
         vm.isPasswordDomainName = function(password) {
             var opalRegex = /[0o@&]p[a@&4][l1!]/;   // edge cases for the word opal
             if(opalRegex.test(password)){
