@@ -298,7 +298,7 @@
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
                         } else {
                             vm.formData.userName = `Not found`;
-                            vm.parent.errorPopup('notFoundError');
+                            vm.parent.errorPopup('patientError');
                         }
 
                         vm.retrieveTermsOfUsePDF()

@@ -148,6 +148,10 @@
                     errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
                     vm.parent.displayError(errorModalPage);
                     break;
+                case 'patientError':
+                    errorModalPage = 'app/components/registration/shared/modalBox/patientError.html';
+                    vm.parent.displayError(errorModalPage);
+                    break;
             }
         }
 
