@@ -19,7 +19,7 @@
 
                 // add the NgModelController as a dependency to your link function
                 link: function ($scope, $element, $rootScope, ngModelCtrl) {
-                    $element.on('blur change keydown', function (evt) {
+                    $element.on('blur change keydown paste', function (evt) {
                         $scope.$evalAsync(function ($scope) {
                             // update the $scope.password with the element's value
                             $scope.password = $element.val();
@@ -28,13 +28,13 @@
                             const email = angular.element('input[name="email"]').val();
                             const username = email.substring(0, email.indexOf("@"));
                             // resolve password strength score using zxcvbn service
-                            if ($scope.password.length >= 8 && $scope.password.length < 21)
+                            if ($scope.password.length >= 10 && $scope.password.length <= 50)
                                 $scope.passwordStrength = zxcvbnts.core.zxcvbn($scope.password, [email, username]).score;
                             else
                                 $scope.passwordStrength = null;
 
                             // define the validity criterion for passwordChecker constraint
-                            ngModelCtrl.$setValidity('passwordChecker', ($scope.passwordStrength >= 8 && $scope.passwordStrength < 21));
+                            ngModelCtrl.$setValidity('passwordChecker', ($scope.passwordStrength >= 10 && $scope.passwordStrength <= 50));
                         });
                     });
                 }
@@ -151,11 +151,11 @@
                 //vm.formData.passwordFormat.message = null;
                 vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDREQUIRED');
             } else {
-                if (vm.formData.formFieldsData.password.length < 8) {
+                if (vm.formData.formFieldsData.password.length < 10) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHOTPASSWORDLENGTH');
                     return;
-                } else if (vm.formData.formFieldsData.password.length > 20) {
+                } else if (vm.formData.formFieldsData.password.length > 50) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.LONGPASSWORDLENGTH');
                     return;
