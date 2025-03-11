@@ -9,8 +9,8 @@ default:
   image: node:20.11.0-alpine3.19
   before_script:
   - uname -a
-  - node --version
-  - npm --version
+  - node --version || true
+  - npm --version || true
 setup:
   stage: build
   script:
