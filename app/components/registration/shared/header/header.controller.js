@@ -89,13 +89,13 @@
                 if (vm.formData.secureForm.flag === 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_EN;
                     for (var i = 0; i < vm.formData.securityQuestionList.length; i++) {
-                        if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion1.id) {
+                        if (vm.formData.securityQuestionList[i].id === vm.formData.formFieldsData.securityQuestion1.id) {
                             vm.formData.formFieldsData.securityQuestion1 = vm.formData.securityQuestionList[i];
                         }
-                        if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion2.id) {
+                        if (vm.formData.securityQuestionList[i].id === vm.formData.formFieldsData.securityQuestion2.id) {
                             vm.formData.formFieldsData.securityQuestion2 = vm.formData.securityQuestionList[i];
                         }
-                        if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion3.id) {
+                        if (vm.formData.securityQuestionList[i].id === vm.formData.formFieldsData.securityQuestion3.id) {
                             vm.formData.formFieldsData.securityQuestion3 = vm.formData.securityQuestionList[i];
                         }
                     }
