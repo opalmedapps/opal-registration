@@ -51,58 +51,40 @@
 
         vm.sendVerificationCode = function() {
             vm.sendCode = true;
-            let parameters = {
-                'email': vm.email,
+
+            const request = {
+                method: 'post',
+                url: '/api/registration/' + vm.formData.formFieldsData.registrationCode + '/verify-email/',
             };
-
-            // Listener service call.
-            requestToListener.sendRequestWithResponse('SendVerificationCode', parameters)
-            .then(function (response) {
-
-                if (response.Data[0].Result == 'SUCCESS') {
-                    // Call function to validate IPAddress.
-
-                } else {
-
-                    // Call function to display error modal box.
-                    const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+            requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email})
+                .then(function (response) {
+                })
+                .catch(function (error) {
+                    const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                     vm.parent.displayError(errorModalPage);
-                }
-
-            })
-            .catch(function (error) {
-
-                // Call function to display error modal box.
-                const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
-            });
+                });
         }
         vm.checkVerificationCode = function() {
-            vm.verifyCode = true;
-            let parameters = {
-                'email': vm.email,
-            };
             // Listener service call.
-            requestToListener.sendRequestWithResponse('verifyVerificationCode', parameters)
-            .then(function (response) {
-
-                if (response.Data[0].Result == 'SUCCESS') {
-                    // Call function to validate IPAddress.
-                    vm.isCodeValid = true;
-                } else {
-
-                    vm.isCodeValid = false;
-                    const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+            const request = {
+                method: 'put',
+                url: '/api/registration/' + vm.formData.formFieldsData.registrationCode + '/verify-email-code/',
+            };
+            requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'code': vm.inputCode})
+                .then(function (response) {
+                    $timeout(() => {
+                        vm.verifyCode = true;
+                        if (response.status_code != 200) {
+                            vm.isCodeValid = false;
+                        } else {
+                            vm.isCodeValid = true;
+                        }
+                    })
+                })
+                .catch(function (error) {
+                    const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                     vm.parent.displayError(errorModalPage);
-                }
-
-            })
-            .catch(function (error) {
-
-                vm.isCodeValid = false;
-                const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                vm.parent.displayError(errorModalPage);
-            });
+                });
         }
         vm.resendVerificationCode = function() {
             vm.isCodeValid = false;
