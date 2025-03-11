@@ -98,7 +98,7 @@
       "CODE": "Code de vérification",
       "VERIFY": "Vérifier l'adresse courriel",
       "RESEND": "Renvoyer le code de vérification",
-      "VALID": "L'addresse courriel est valide",
+      "VALID": "Le code est valide",
       "INVALID": "Le code n'est pas valide"
     }
   },

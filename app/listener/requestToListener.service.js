@@ -79,8 +79,15 @@
                                 refRequestResponse.set(null);
                                 refRequestResponse.off();
 
-                                data = responseValidatorFactory.validate(data, timeOut);
-                                (data.success) ? resolve(data.success) : reject(data.error);
+                                try {
+                                    data = responseValidatorFactory.validate(data, timeOut);
+                                    (data.success) ? resolve(data.success) : reject(data.error);
+                                } catch (error) {
+                                    const originalResponse = JSON.parse(JSON.stringify(data));
+                                    console.log(`Error validating response for request of type '${typeOfRequest}'`, originalResponse);
+                                    console.error(error);
+                                    reject(error);
+                                }
                             }
                         }, error => {
                             console.log('sendRequestWithResponse error' + error);

@@ -84,16 +84,21 @@
              @returns {*}
          **/
         function handleResponseError(response){
+            let error = {};
             switch (response.Code) {
                 case SERVER_RESPONSE_ERROR:
                 case TOO_MANY_ATTEMPTS_ERROR:
-                    return {error: response};
+                    error = {error: response};
+                    break;
                 case INVALID_VERSION_ERROR:
                     handleInvalidVersionError();
-                    return {error: {Code: 'INVALID_VERSION_ERROR'}}
+                    error = {error: {Code: 'INVALID_VERSION_ERROR'}};
+                    break;
                 default:
-                    return {error: response};
+                    error = {error: response};
             }
+
+            return error;
         }
 
         /**
