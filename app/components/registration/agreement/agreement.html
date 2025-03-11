@@ -1,15 +1,24 @@
 ﻿<!--Aggrement form to aggre on terms and usage document-->
 <form class="p-4 mb-2 bg-light rounded" name="agreementForm" ng-submit="vm.agreementFormSubmit()" novalidate>
 
-    <!--Page title-->
-    <div class="d-flex justify-content-between text-muted">
-        <div><h4 class="font-weight-bold">{{'AGREEMENT.STEPS' | translate}}{{'AGREEMENT.TITLE' | translate}}</h4></div>
-        <div> <h4 class="font-weight-bold">{{vm.formData.userName}}</h4></div>
-    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="d-flex justify-content-between text-muted">
+                <div><h4 class="font-weight-bold">{{'AGREEMENT.STEPS' | translate}}{{'AGREEMENT.TITLE' | translate}}</h4></div>
+            </div>
 
-    <!--Instruction to follow-->
-    <div class="d-flex justify-content-between ">
-        <div class="text-muted mr-2"><label>{{'AGREEMENT.INSTRUCTION' | translate}}</label></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2"><label>{{'AGREEMENT.INSTRUCTION' | translate}}</label></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <div class="row-sm-1"><label>{{'PATIENT.HOSPITAL' | translate}}<span>Hospital Name</span></label></div>
+                <div class="row-sm-1"><label>{{'PATIENT.PATIENT' | translate}}<span>Patient Name</span></label></div>
+            </div>
+        </div>
     </div>
 
     <!--Horizontal line-->
@@ -18,15 +27,20 @@
     <!--Form section-->
     <div class="card text-center mt-5">
         <div class="card-header text-muted">
-            <h4 class="font-weight-bold text-center">{{'AGREEMENT.TITLE' | translate}}</h4>
-            <h5>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}} <a ng-href="{{'AGREEMENT.FIELDNAMES.PDFLINK' | translate}}" target="_blank"><span class="text-primary">{{'SHARED.CLICKHERE' | translate}}</span></a></h5>
-        </div>
+            <h4 class="font-weight-bold text-left">{{'AGREEMENT.TITLE' | translate}}</h4>
+            </div>
         <div class="card-body document-layout">
             <div class="embed-responsive embed-responsive-16by9">
                 <iframe class="embed-responsive-item" ng-src="{{'AGREEMENT.FIELDNAMES.DOUCMENTLINK' | translate}}" allowfullscreen></iframe>
             </div>
         </div>
-        <div class="card-footer text-muted font-weight-bold">
+        <div class="card-footer text-muted font-weight-bold text-left">
+            <div>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}}
+                <a ng-href="{{'AGREEMENT.FIELDNAMES.PDFLINK' | translate}}" target="_blank">
+                    <span class="text-primary"><u>{{'AGREEMENT.FIELDNAMES.CLICKHERE' | translate}}</u></span>
+                </a>
+            </div>
+            <div>{{'AGREEMENT.FIELDNAMES.SENDEMAILNOTE' | translate}}</div>
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input"
                        ng-class="{

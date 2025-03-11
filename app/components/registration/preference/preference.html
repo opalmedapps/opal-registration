@@ -1,15 +1,24 @@
 ﻿<!--Preference form to enter patient prefered opal application language and opal level of access-->
 <form name="preferenceForm" class="p-4 mb-2 bg-light rounded" ng-submit=" vm.preferenceFormSubmit()" novalidate>
 
-    <!--Page title-->
-    <div class="d-flex justify-content-between text-muted">
-        <div><h4 class="font-weight-bold">{{'PREFERENCE.STEPS' | translate}}{{'PREFERENCE.TITLE' | translate}}</h4></div>
-        <div> <h4 class="font-weight-bold">{{vm.formData.userName}}</h4></div>
-    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="d-flex justify-content-between text-muted">
+                <div><h4 class="font-weight-bold">{{'PREFERENCE.STEPS' | translate}}{{'PREFERENCE.TITLE' | translate}}</h4></div>
+            </div>
 
-    <!--Instruction to follow-->
-    <div class="d-flex justify-content-between ">
-        <div class="text-muted mr-2"><label>{{'PREFERENCE.INSTRUCTION' | translate}}</label></div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between ">
+                <div class="text-muted mr-2"><label>{{'PREFERENCE.INSTRUCTION' | translate}}</label></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <div class="row-sm-1"><label>{{'PATIENT.HOSPITAL' | translate}}<span>Hospital Name</span></label></div>
+                <div class="row-sm-1"><label>{{'PATIENT.PATIENT' | translate}}<span>Patient Name</span></label></div>
+            </div>
+        </div>
     </div>
 
     <!--Horizontal line-->
@@ -26,45 +35,14 @@
     <div class="form-row text-muted">
         <div class="form-group col-md-6 col-sm-12">
             <div class="border rounded">
-                <div class="custom-control custom-radio m-2" role="group">
-                    <input type="radio" class="custom-control-input" id="allAccessLevel" ng-model="vm.formData.formFieldsData.accessLevel" value="3"
-                           ng-class="{
-                           'is-invalid':(vm.formData.allAccessLevelFormat.status == 'invalid'),
-                            'is-valid':(vm.formData.allAccessLevelFormat.status == 'valid')}"
-                           name="allAccessLevel" ng-change='vm.validateAccessLevel()' tabindex="1">
-                    <label class="custom-control-label" for="allAccessLevel"></label>
-                    <span class="font-weight-bold"><span class="h5"> {{'PREFERENCE.FIELDNAMES.ALLACCESSLEVELTITLE' | translate}}</span>{{'PREFERENCE.FIELDNAMES.ALLACCESSLEVEL' | translate}} </span>
-                </div>
                 <div class="bg-white rounded m-3">
-                    <label class="font-weight-bold text-muted pl-3 pt-2">{{'PREFERENCE.FIELDNAMES.ACCESSLECELINCLUDESTITLE' | translate}}</label>
                     <ul class="rounded">
                         <li class="border-0 py-2" ng-repeat="allAccess in vm.formData.allAccessLevelList">{{allAccess.VALUE}}</li>
                     </ul>
                 </div>
             </div>
         </div>
-
-        <div class="form-group col-md-6 col-sm-12">
-            <div class="border rounded">
-                <div class="custom-control custom-radio m-2" role="group">
-                    <input type="radio" class="custom-control-input" id="needToKnowAccessLevel" ng-model="vm.formData.formFieldsData.accessLevel" value="1"
-                           ng-class="{
-                           'is-invalid':(vm.formData.needToKnowAccessLevelFormat.status == 'invalid'),
-                            'is-valid':(vm.formData.needToKnowAccessLevelFormat.status == 'valid')}"
-                           name="needToKnowAccessLevel" ng-change='vm.validateAccessLevel()' tabindex="2">
-                    <label class="custom-control-label" for="needToKnowAccessLevel"></label>
-                    <span class="font-weight-bold"><span class="h5"> {{'PREFERENCE.FIELDNAMES.NEEDTOKNOWACCESSLEVELTITLE' | translate}}</span>{{'PREFERENCE.FIELDNAMES.NEEDTOKNOWACCESSLEVEL' | translate}} </span>
-                </div>
-                <div class="bg-white rounded m-3">
-                    <label class="font-weight-bold text-muted pl-3 pt-2">{{'PREFERENCE.FIELDNAMES.ACCESSLECELINCLUDESTITLE' | translate}}</label>
-                    <ul class="rounded">
-                        <li class="border-0 py-2" ng-repeat="needToKnowAccess in vm.formData.needToKnowAccessLevelList"> {{needToKnowAccess.VALUE}} </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
-
     <!--Display error if didn't select level of access-->
     <div class="form-row">
         <div class="form-group col-md-12 col-sm-12">
@@ -132,7 +110,7 @@
     <!--Navigation button-->
     <div class="form-row">
         <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.secure" tabindex="5">
+            <button type="reset" class="btn btn-secondary text-white mr-2 px-5" ui-sref="form.account" tabindex="5">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i>  {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
             <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="6">

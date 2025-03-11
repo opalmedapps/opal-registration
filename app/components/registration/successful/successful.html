@@ -1,19 +1,44 @@
 ﻿<!--Display successful registration message-->
 <form name="successfulForm" class="p-4 mb-2 bg-light rounded" novalidate>
 
-    <!--Page title-->
-    <div class="d-flex justify-content-between text-muted">
-        <div><h4 class="font-weight-bold">{{'SUCCESS.STEPS' | translate}}{{'SUCCESS.TITLE' | translate}}</h4></div>
-        <div> <h4 class="font-weight-bold">{{vm.formData.userName}}</h4></div>
+    <div class="row">
+        <div class="col-sm-9">
+            <!--Page title-->
+            <div class="d-flex justify-content-between text-muted">
+                <div><h4 class="font-weight-bold">{{'SUCCESS.STEPS' | translate}}{{'SUCCESS.TITLE' | translate}}</h4></div>
+            </div>
+            <!--Instruction to follow-->
+            <div class="d-flex justify-content-between">
+                <div class="text-muted mr-2"><label>{{'SUCCESS.INSTRUCTION' | translate}}</label></div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="column">
+                <div class="row-sm-1"><label>{{'PATIENT.HOSPITAL' | translate}}<span>Hospital Name</span></label></div>
+                <div class="row-sm-1"><label>{{'PATIENT.PATIENT' | translate}}<span>Patient Name</span></label></div>
+            </div>
+        </div>
     </div>
 
-    <!--Instruction to follow-->
-    <div class="d-flex justify-content-between">
-        <div class="text-muted mr-2"><label>{{'SUCCESS.INSTRUCTION' | translate}}</label></div>
+    <!--notifciation note-->
+    <div class="alert alert-primary">
+        <table class="border">
+            <tr>
+                <td width="40px">
+                    <i class="fas fa-info-circle" style="font-size:24px"></i>
+                </td>
+                <td>
+                    <div class="text-muted mr-2"><label class="alert-primary">{{'SUCCESS.NOTIFICATION1' | translate}}<span style="font-weight: bold;">PAtient Name</span>{{'SUCCESS.NOTIFICATION2' | translate}}</label></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div class="text-muted mr-2"><label class="alert-primary">{{'SUCCESS.NOTIFICATION3' | translate}}</label></div></td>
+            </tr>
+        </table>
     </div>
 
-    <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+
 
     <!--Message section-->
     <div class="form-row mt-3">

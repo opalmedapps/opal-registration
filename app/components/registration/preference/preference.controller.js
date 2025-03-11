@@ -24,16 +24,16 @@
 
                 // Call functions to check the both field error values            
                 vm.validateLanguage();
-                vm.validateAccessLevel();
                 vm.validateaccessLevelSign();
             });
         });
 
         // Call function on page load to fetch the data.
-        vm.$onInit = activate;
-        function activate() {
+        vm.$onInit = function() {
             // get data from the parent component
             vm.formData = vm.parent.getData();
+            vm.formData.formFieldsData.accessLevel = 3;
+            vm.formData.accessLevelFormat.status = 'valid';
 
             // Call function to set current form class as active.
             vm.setFormStatus();
@@ -59,6 +59,7 @@
         // Method to to set current form class as active.
         vm.setFormStatus = function () {
             vm.formData.searchForm = "";
+            vm.formData.accountForm = '';
             vm.formData.secureForm.status = "";
             vm.formData.secureForm.flag = 1;
             vm.formData.preferenceForm.status = "active";
@@ -115,52 +116,6 @@
                         vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_EN;
                     else
                         vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_FR;
-
-
-                }
-                else {
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
-                }
-
-
-
-            }).catch(function (error) {
-
-                // Call function to display error modal box.
-                var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                vm.parent.displayError(errorModalPage);
-            });
-
-            preferenceService.needToKnowAccess().then(function (results) {
-
-                // Get the value from result response and bind values into dropdown
-                var needToKnowAccess = results.data.needToKnow;
-
-                // Check length of the variable
-                if (needToKnowAccess.length > 1) {
-
-                    // Define loop for passing the value of language option.
-                    for (var i = 0; i < needToKnowAccess.length; i++) {
-
-                        // Assing in JSON format
-                        vm.formData.needToKnowAccessLevelList_EN[i] = {
-                            "ID": needToKnowAccess[i].Id,
-                            "VALUE": needToKnowAccess[i].VALUE_EN
-                        }
-
-                        vm.formData.needToKnowAccessLevelList_FR[i] = {
-                            "ID": needToKnowAccess[i].Id,
-                            "VALUE": needToKnowAccess[i].VALUE_FR
-                        }
-                    }
-
-                    // Check the default selected language.
-                    if (vm.formData.selectedLanguage == 'en')
-                        vm.formData.needToKnowAccessLevelList = vm.formData.needToKnowAccessLevelList_EN;
-                    else
-                        vm.formData.needToKnowAccessLevelList = vm.formData.needToKnowAccessLevelList_FR;
                 }
                 else {
                     // Call function to display error modal box.
@@ -169,46 +124,11 @@
                 }
 
             }).catch(function (error) {
+
                 // Call function to display error modal box.
                 var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                 vm.parent.displayError(errorModalPage);
             });
-        }
-
-
-        // Validate to level of access field.
-        vm.validateAccessLevel = function () {
-            if (vm.formData.formFieldsData.accessLevel == undefined || vm.formData.formFieldsData.accessLevel == null || vm.formData.formFieldsData.accessLevel == "") {
-                vm.formData.accessLevelFormat.status = 'invalid';
-                vm.formData.accessLevelFormat.message = $filter('translate')('PREFERENCE.FIELDERRORMESSAGES.ACCESSLEVELREQUIRED');
-            }
-            else {
-                if (vm.formData.formFieldsData.accessLevel == "3") {
-                    vm.formData.allAccessLevelFormat.status = 'valid';
-                    vm.formData.allAccessLevelFormat.message = null;
-
-                    vm.formData.needToKnowAccessLevelFormat.status = null;
-                    vm.formData.needToKnowAccessLevelFormat.message = null;
-
-                    vm.formData.accessLevelFormat.status = 'valid';
-                    vm.formData.accessLevelFormat.message = null;
-                }
-                if (vm.formData.formFieldsData.accessLevel == "1") {
-                    vm.formData.allAccessLevelFormat.status = null;
-                    vm.formData.allAccessLevelFormat.message = null;
-
-                    vm.formData.needToKnowAccessLevelFormat.status = 'valid';
-                    vm.formData.needToKnowAccessLevelFormat.message = null;
-
-                    vm.formData.accessLevelFormat.status = 'valid';
-                    vm.formData.accessLevelFormat.message = null;
-                }
-
-                if (vm.formData.languageFormat.status == 'valid' && vm.formData.accessLevelFormat.status == 'valid' && vm.formData.accessLevelSignFormat.status == 'valid') {
-                    // Display shared error message
-                    vm.sharedErrorMessage = true;
-                }
-            }
         }
 
         //Function to validate aggrementSign checkbox
