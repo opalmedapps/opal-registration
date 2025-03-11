@@ -84,7 +84,8 @@
                                     (data.success) ? resolve(data.success) : reject(data.error);
                                 } catch (error) {
                                     const originalResponse = JSON.parse(JSON.stringify(data));
-                                    console.log(originalResponse);
+                                    console.log(`Error validating response for request of type '${typeOfRequest}'`, originalResponse);
+                                    console.error(error);
                                     reject(error);
                                 }
                             }
