@@ -114,25 +114,25 @@
                 const requestType = 'registration-api';
                 const response = await sendRequest(requestType, formatedParams);
                 const requestKey = response.key;
-                const firebase_api_url = response.url;
+                const firebase_url = response.url;
                 const firebasePath = `response/${requestKey}`;
-                const api_response_url = firebase_api_url.child(firebasePath);
+                const response_url = firebase_url.child(firebasePath);
 
-                api_response_url.on('value', snapshot => {
+                response_url.on('value', snapshot => {
                     if (snapshot.exists()) {
 
                         let data = snapshot.val();
 
-                        api_response_url.set(null);
-                        api_response_url.off();
+                        response_url.set(null);
+                        response_url.off();
 
                         data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
                         (data.success) ? resolve(data.success) : reject(data.error);
                     }
                 });
                 const timeOut = setTimeout(function () {
-                    api_response_url.set(null);
-                    api_response_url.off();
+                    response_url.set(null);
+                    response_url.off();
                     reject({ Response: 'timeout' });
                 }, 90000);
             });
