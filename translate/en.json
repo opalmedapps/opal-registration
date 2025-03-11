@@ -234,7 +234,7 @@
       "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please try again after 24 hours."
     },
     "EXISTINGEMAILERROR": {
-      "DESCRIPTION": "This email is already registered. Login please."
+      "DESCRIPTION": "This email address is already registered for an Opal account. To use this account to continue your registration, please enter your email address along with your existing Opal password. If you have any difficulty entering your password, it can be reset in the Opal app by going to \"Sign In\" and selecting \"Forgot Password\"。"
     },
     "SHARED": {
       "MODALTITLE": "Something Went Wrong",
