@@ -2,41 +2,21 @@
   "all": [
     {
       "ID": 1,
-      "VALUE_FR": "Note de consultation en radio-oncologie",
-      "VALUE_EN": "Radiation oncology consultation note"
+      "VALUE_FR": "Notes cliniques",
+      "VALUE_EN": "Clinical Notes"
     },
     {
       "ID": 2,
-      "VALUE_FR": "Statut de planification de traitement en radio-oncologie",
-      "VALUE_EN": "Radiation oncology treatment planning status"
-    },
-    {
-      "ID": 3,
-      "VALUE_FR": "Note de fin de traitement en radio-oncologie",
-      "VALUE_EN": "Radiation oncology end-of-treatment note"
-    },
-    {
-      "ID": 4,
-      "VALUE_FR": "Note de curiethérapie",
-      "VALUE_EN": "Brachytherapy note"
-    },
-    {
-      "ID": 5,
-      "VALUE_FR": "Note de suivi en radio-oncologie",
-      "VALUE_EN": "Radiation oncology follow-up note"
-    },
-    {
-      "ID": 6,
       "VALUE_FR": "Résultats d’examens de laboratoire",
       "VALUE_EN": "Lab test results"
     },
     {
-      "ID": 7,
+      "ID": 3,
       "VALUE_FR": "Rendez-vous",
       "VALUE_EN": "Appointment schedule"
     },
     {
-      "ID": 8,
+      "ID": 4,
       "VALUE_FR": "Matériel éducatif",
       "VALUE_EN": "Educational material"
     }
