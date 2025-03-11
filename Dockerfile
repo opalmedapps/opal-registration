@@ -13,8 +13,10 @@ WORKDIR /app
 COPY bower.json ./
 RUN bower --allow-root install
 
-COPY package.json .npmrc ./
-RUN npm install
+COPY package.json ./
+COPY package-lock.json ./
+COPY .npmrc ./
+RUN npm ci
 
 
 FROM php:8.0.16-apache-bullseye
