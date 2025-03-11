@@ -18,7 +18,7 @@ COPY .npmrc ./
 RUN npm ci
 
 
-FROM php:8.3.1-apache-bookworm
+FROM php:8.3.2-apache-bookworm
 
 # Install dependencies
 RUN apt-get update \
