@@ -70,6 +70,10 @@ deploy:
         ls -la registration/${CI_ENVIRONMENT_NAME};
         bye
       "
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
