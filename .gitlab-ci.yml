@@ -162,6 +162,14 @@ check_third_party_notice:
   script:
     - ls -la
 
+
+check_thirdparty_notice:
+  script:
+    - which curl
+    - apk add --no-cache curl
+    - curl $CI_SERVER_FQDN/opalmedapps/engineering/ci-templates/-/raw/main/templates/check-thirdparty-notice/check_thirdparty_notice.py
+    - ls -la
+
 # Secret Detection:
 # https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
