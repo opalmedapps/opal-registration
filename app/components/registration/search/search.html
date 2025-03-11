@@ -1,9 +1,11 @@
 ﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
 
-<form class="p-4 mb-2 bg-light rounded" name="searchForm" ng-submit="vm.searchFormSubmit()" novalidate>
+<form class="p-4 mb-0 bg-light mb-md-2 rounded" name="searchForm" ng-submit="vm.searchFormSubmit()" novalidate>
 
     <!--Page title-->
-    <div class="text-muted"><h4 class="font-weight-bold">{{'SEARCH.STEPS' | translate}}{{'SEARCH.TITLE' | translate}}</h4></div>
+    <div class="text-muted">
+        <h4 class="font-weight-bold">{{'SEARCH.STEPS' | translate}}{{'SEARCH.TITLE' | translate}}</h4>
+    </div>
 
     <!--Instruction to follow-->
     <div class="d-flex justify-content-between ">
@@ -11,19 +13,20 @@
     </div>
 
     <!--Horizontal line-->
-    <hr class="bg-opal mb-2">
+    <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Form section-->
-    <div class="form-row mb-2 mt-4">
+    <div class="form-row mb-0 mb-md-2 mt-md-4">
         <div class="form-group col-md-6 col-sm-12">
-            <label for="patientId" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.PATIENTID' | translate}}</label>
-            <i class="fas fa-info-circle fa-icon-cursor text-muted" tooltips tooltip-speed="slow" tooltip-template-url="{{vm.patientidTooltip.templateUrl}}"></i>
+            <label for="patientId" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.PATIENTID' |
+                translate}}</label>
+            <i class="fas fa-info-circle fa-icon-cursor text-muted" data-toggle="tooltip" data-placement="top" data-html="true"
+                title="{{'TOOLTIP.PATIENTID_TITLE1' | translate}}" tooltip></i>
             <input type="text" name="patientId" ng-model="vm.formData.patientId" ng-change="vm.validatePatientId()"
-                   ng-class="{
+                ng-class="{
                            'is-invalid':(vm.formData.patientIdFormat.status == 'invalid'),
-                           'is-valid': (vm.formData.patientIdFormat.status == 'valid')}"
-                   class="form-control" tabindex="1" required>
-            <!--<label class="text-muted">{{'SEARCH.FIELDNAMES.RAMQNUMBERHELPMESSAGE' | translate}} <a href="#" class="text-reset text-primary">{{'SHARED.CLICKHERE' | translate}}</a></label>-->
+                           'is-valid': (vm.formData.patientIdFormat.status == 'valid')}" class="form-control"
+                tabindex="1" required>
             <!--Display error if registration code format or length is inappropriate-->
             <div ng-show="vm.formData.patientIdFormat.status == 'invalid'">
                 <small class="text-danger font-weight-bold">{{vm.formData.patientIdFormat.message}}</small>
@@ -31,13 +34,14 @@
         </div>
 
         <div class="form-group col-md-6 col-sm-12">
-            <label for="registrationcode" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.REGISTRATIONCODE' | translate}}</label>
-            <i class="fas fa-info-circle fa-icon-cursor text-muted" tooltips tooltip-speed="slow" tooltip-template-url="{{vm.registrationcodeTooltip.templateUrl}}"></i>
-            <input type="text" name="registrationCode" ng-model="vm.formData.formFieldsData.registrationCode" ng-change="vm.validateRegistrationCode()"
-                   ng-class="{
+            <label for="registrationcode" class="font-weight-bold text-muted">{{'SEARCH.FIELDNAMES.REGISTRATIONCODE' |
+                translate}}</label>
+            <i class="fas fa-info-circle fa-icon-cursor text-muted" data-toggle="tooltip" data-placement="top" data-html="true" title="{{'TOOLTIP.REGISTRATIONCODE' | translate}}" tooltip></i>
+            <input type="text" name="registrationCode" ng-model="vm.formData.formFieldsData.registrationCode"
+                ng-change="vm.validateRegistrationCode()" ng-class="{
                            'is-invalid':(vm.formData.codeFormat.status == 'invalid'),
-                           'is-valid': (vm.formData.codeFormat.status == 'valid')}"
-                   class="form-control" tabindex="2" required>
+                           'is-valid': (vm.formData.codeFormat.status == 'valid')}" class="form-control" tabindex="2"
+                required>
 
             <!--Display error if registration code field is blank or format is inappropriate-->
             <div ng-show="vm.formData.codeFormat.status == 'invalid'">
@@ -57,7 +61,7 @@
 
     <!--Navigation button-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4">
+        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-3 mt-md-4">
             <button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="3">
                 <!--<button type="submit" class="btn btn-secondary text-white mr-2 px-5" tabindex="4" ng-disabled="vm.searchFormValid">-->
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
@@ -92,7 +96,3 @@
         </div>
     </div>
 </script>
-
-
-
-
