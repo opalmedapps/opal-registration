@@ -28,7 +28,7 @@
                             const email = angular.element('input[name="email"]').val();
                             const username = email.substring(0, email.indexOf("@"));
                             // resolve password strength score using zxcvbn service
-                            if ($scope.password.length >= 10 && $scope.password.length <= 50)
+                            if ($scope.password.length >= 1 && $scope.password.length <= 50)
                                 $scope.passwordStrength = zxcvbnts.core.zxcvbn($scope.password, [email, username]).score;
                             else
                                 $scope.passwordStrength = null;
@@ -150,24 +150,32 @@
             } else {
                 if (vm.formData.formFieldsData.password.length < 10) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHOTPASSWORDLENGTH');
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.LONGPASSWORDLENGTH');
                     return;
-                } else if (
-                    vm.formData.formFieldsData.password.search(/\W|_{1}/) <= -1 ||
-                    vm.formData.formFieldsData.password.search(/[A-Z]/) === -1 ||
-                    vm.formData.formFieldsData.password.search(/\d/) === -1
-                ) {
+                } else if (vm.formData.formFieldsData.password.search(/\d/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDFORMAT');
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDNUMBER');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
+                    return;
+                } else if (vm.formData.formFieldsData.password.search(/[A-Z]/) === -1) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDCAPITAL');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
+                    return;
+                }
+                else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
+                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDSPECIALCHAR');
                     vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
                     return;
                 } else if ($scope.passwordStrength < 3) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDFORMAT');
+                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDSTRENGTH');
                     return;
                 } else {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_VALID;

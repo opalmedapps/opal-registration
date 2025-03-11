@@ -97,20 +97,24 @@ tooltip .img-size {
     transition: width 0.5s ease-in-out, background 0.25s;
 }
 
- .strength-meter-fill[data-strength='0'],
- .strength-meter-fill[data-strength='1'] {
+ .strength-meter-fill[data-strength='0'] {
      background: darkred;
-     width: 25%;
+     width: 20%;
+ }
+
+ .strength-meter-fill[data-strength='1'] {
+     background: red;
+     width: 40%;
  }
 
  .strength-meter-fill[data-strength='2'] {
      background: orange;
-     width: 50%;
+     width: 60%;
  }
 
  .strength-meter-fill[data-strength='3'] {
      background: green;
-     width: 75%;
+     width: 80%;
  }
 
  .strength-meter-fill[data-strength='4'] {
