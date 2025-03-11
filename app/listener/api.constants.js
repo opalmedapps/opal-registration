@@ -33,6 +33,10 @@
                 LANGUAGES: {
                     method: 'get',
                     url: '/api/languages/',
+                },
+                QUESTIONS: {
+                    method: 'get',
+                        url: '/api/security-questions/',
                 }
             }
         });
