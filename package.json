@@ -39,7 +39,7 @@
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "5.0.2"
   },
-  "author": "Jinal Vyas",
+  "author": "Opal Health Informatics Group",
   "description": "Repository for registration website",
   "private": true
 }
