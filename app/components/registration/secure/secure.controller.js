@@ -159,14 +159,9 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                     vm.formData.passwordFormat.message =$filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDDOMAINNAME');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
-                } else if (vm.passwordContainsMRNorRAMQ(vm.formData.formFieldsData.password)){
+                } else if (vm.passwordContainsPersonnalInformation(vm.formData.formFieldsData.password)) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDMRN');
-                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
-                    return;
-                } else if (vm.passwordContainsUsersName(vm.formData.formFieldsData.password)){
-                    vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
-                    vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDNAME');
+                    vm.formData.passwordFormat.message =$filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDPERSONALINFORMATION');
                     vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
@@ -212,26 +207,34 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
         }
         // Function that limits the user from entering the Opal domain name in their passowrd 
         vm.passwordContainsDomainName = function(password) {
-            var opalRegex = /[0o@&]p[a@&4][l1!]/;   // edge cases for the word opal
+            var opalRegex = /[0o@&]p[a@&4][l1!]/;              // edge cases for the word opal
             return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected 
         }
-        // Function that limits the user from entering their MRN or RAMQ in the password 
-        vm.passwordContainsMRNorRAMQ = function (password) {
+        
+        // Function that checks for the user's personnal information in the password
+        vm.passwordContainsPersonnalInformation = function(password){
+            // User's medical information
             var userMRN = vm.formData.formFieldsData.mrn;
             var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
             var RAMQLetters = userRAMQ.substring(0,4);
             var RAMQNumbers = userRAMQ.substring(4,12);
-
-            if ((password.toLowerCase().includes(RAMQLetters) || password.toLowerCase().includes(RAMQNumbers)) && userRAMQ !== ""){
-                return true;    // if the RAMQ exists and its number or characters are detected in the password
-            }
-            return (password.toLowerCase().includes(userMRN) && userMRN !== ""); // if the mrn exists and is used in the password
-        }
-        // Function that checks for the user's first name and last name in the password
-        vm.passwordContainsUsersName = function(password){
+            // User's first and last name
             var firstName = vm.formData.firstName.toLowerCase();
             var lastName = vm.formData.lastName.toLowerCase();
-            return (password.toLowerCase().includes(firstName) || password.toLowerCase().includes(lastName)); // if last name or first name is being used in the password
+            // User's email information
+            const [emailUsername, emailDomain] = vm.formData.formFieldsData.email.toLowerCase().split('@');
+
+            // Other information that could be usefull
+
+            // List of string that should not be used in the user's password
+            var blacklist = [userMRN, RAMQLetters, RAMQNumbers, firstName, lastName, emailUsername, emailDomain];
+            // Iteration to check the blacklist in the password
+            for (var i = 0; i< password.length; i++){
+                if(password.toLowerCase().includes(blacklist[i]) && blacklist[i] !== ""){ 
+                    return true; // If one of the words is used in the password and if that word exists
+                }
+            }
+            return false;   // return false if nothing is found
         }
 
         // Function to compare password and confirm password fields.
