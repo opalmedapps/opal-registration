@@ -10,14 +10,8 @@
         // Get firebase request user
         var firebase_url = null;
 
-        var firebase_api_url = null;
-
         // Get firebase response url
         var response_url = null;
-
-        // Get firebase parent branch
-        var firebase_parentBranch = userAuthorizationService.getHospitalCode();
-
 
         return {
             sendRequestWithResponse: sendRequestWithResponse,
@@ -26,6 +20,9 @@
 
         // Function to send request to listener
         function sendRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
+
+            // Get firebase parent branch
+            const firebase_parentBranch = userAuthorizationService.getHospitalCode();
 
             // Get firebase request user
             firebase_url = firebase.database().ref(firebaseFactory.getFirebaseUrl(firebase_parentBranch));
@@ -104,8 +101,10 @@
 
         function sendApiRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
 
+            // Get firebase parent branch
+            const firebase_parentBranch = userAuthorizationService.getHospitalCode();
             // Get firebase request user
-            firebase_api_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
+            const firebase_api_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
 
             return new Promise((resolve) => {
                 let requestType;
@@ -129,7 +128,7 @@
                         };
                         let reference = referenceField || 'requests';
                         let pushID = firebase_api_url.child(reference).push(request_object);
-                        resolve(pushID.key);
+                        resolve({key: pushID.key, url: firebase_api_url});
                     });
             });
         }
@@ -145,7 +144,9 @@
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, language, data);
                 const requestType = 'registration-api';
-                const requestKey = await sendApiRequest(requestType, formatedParams);
+                const response = await sendApiRequest(requestType, formatedParams);
+                const requestKey = response.key;
+                const firebase_api_url = response.url;
                 const firebasePath = `response/${requestKey}`;
                 const api_response_url = firebase_api_url.child(firebasePath);
 
