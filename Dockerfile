@@ -39,5 +39,6 @@ USER www-data
 # Parent needs to be owned by www-data to satisfy npm
 # RUN chown -R www-data:www-data /var/www/
 COPY --from=dependencies --chown=www-data:www-data /app/bower_components ./bower_components
+COPY --from=dependencies --chown=www-data:www-data /app/node_modules ./node_modules
 
 COPY --chown=www-data:www-data . .
