@@ -144,6 +144,9 @@
       "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, s’il vous plaît, contactez nous à ",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
+    "PATIENTERROR": {
+      "DESCRIPTION": "Nous ne sommes pas en mesure d'enregistrer un patient décédé."
+    },
     "REGISTRATIONERROR": {
       "DESCRIPTION": "Nous ne pouvons pas enregistrer votre information. Veuillez réessayer plus tard."
     },

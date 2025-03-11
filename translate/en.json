@@ -144,6 +144,9 @@
       "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact us at",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
+    "PATIENTERROR": {
+      "DESCRIPTION": "We are unable to register a deceased patient."
+    },
     "REGISTRATIONERROR": {
       "DESCRIPTION": "We are unable to register your information. Please try again later."
     },
