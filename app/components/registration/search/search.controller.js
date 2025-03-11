@@ -15,6 +15,8 @@
 
     function searchController($filter, $location, $rootScope, $uibModal, $timeout, requestToListener, searchService, firebaseFactory, userAuthorizationService, encryptionService) {
         var vm = this;
+        const REGISTRATION_CODE_LENGTH = 12
+        const RAMQ_LENGTH = 12
 
         // Create variable formData to store the values of parent data.
         vm.formData = {};
@@ -101,10 +103,10 @@
                 if (codeArray.length !== 2) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.CODEREQUIRED');
-                } else if (codeArray[1].length < 10 || codeArray[0].length < 4) {
+                } else if (codeArray[1].length < REGISTRATION_CODE_LENGTH) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTCODELENGTH');
-                } else if (codeArray[1].length > 10 || codeArray[0].length > 4) {
+                } else if (codeArray[1].length > REGISTRATION_CODE_LENGTH) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGCODELENGTH');
                 } else {
@@ -128,12 +130,12 @@
                 vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
             }
             else {
-                if (vm.formData.formFieldsData.ramq.length < 12) {
+                if (vm.formData.formFieldsData.ramq.length < RAMQ_LENGTH) {
                     vm.formData.ramqFormat.status = 'invalid';
                     vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTRAMQLENGTH');
                 }
 
-                else if (vm.formData.formFieldsData.ramq.length > 12) {
+                else if (vm.formData.formFieldsData.ramq.length > RAMQ_LENGTH) {
                     vm.formData.ramqFormat.status = 'invalid';
                     vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGRAMQLENGTH');
                 }
