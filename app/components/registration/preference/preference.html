@@ -84,7 +84,7 @@
                     tabindex="3" required>
 
                 <option value="">{{'PREFERENCE.FIELDNAMES.LANGUAGEDROPDOWNDEAFULT' | translate}}</option>
-                <option ng-repeat="languageList in vm.formData.languageList" value="{{languageList.PREFIX}}">{{languageList.VALUE}}</option>
+                <option ng-repeat="language in vm.formData.languageList" value="{{language.code}}">{{language.name}}</option>
             </select>
 
             <!--Display error if user didn't select language-->
