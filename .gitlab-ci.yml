@@ -11,6 +11,8 @@ stages:
 setup:
   stage: build
   script:
+    - node --version
+    - npm --version
     - npm install -g bower
     - bower --version
     # bower needs git
