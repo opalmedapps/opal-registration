@@ -83,7 +83,6 @@
                 $timeout(() => {
                     vm.sendCode = true;
                     vm.showCodeMessage= true;
-
                     let countDown = vm.countdownSeconds;
                     let time = setInterval(function () {
                         if (document.getElementById('count_down')) {
