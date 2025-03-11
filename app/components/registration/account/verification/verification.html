@@ -1,6 +1,6 @@
 ﻿<!--Search Form to enter patient registration code, RAMQ and check for right patient information-->
 
-<form class="p-4 mb-2 bg-light rounded" name="verificationForm" ng-submit="vm.verificationFormSubmit()" novalidate>
+<form class="p-4 mb-0 mb-md-2 bg-light rounded" name="verificationForm" ng-submit="vm.verificationFormSubmit()" novalidate>
 
     <div class="row">
         <div class="col-sm-9">
@@ -23,7 +23,7 @@
     <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Send verification code-->
-    <div ng-if="!vm.sendCode">
+    <div ng-if="vm.sendCode">
         <div class="text-muted col-md-7 px-0"><h4>{{'VERIFICATION.SEND.TITLE' | translate}}</h4></div>
         <div class="d-flex justify-content-between col-md-7 px-0">
             <div class="text-muted mr-2">
@@ -50,7 +50,7 @@
     </div>
 
     <!--Verify Email Address-->
-    <div ng-show="vm.sendCode" class="mt-md-4">
+    <div ng-show="!vm.sendCode" class="mt-md-4">
         <div class="text-muted col-md-7 px-0"><h4>{{'VERIFICATION.VERIFY.TITLE' | translate}}</h4></div>
         <div class="d-flex justify-content-between col-md-7 px-0">
             <div class="text-muted mr-2">
