@@ -1,7 +1,7 @@
 default:
   image: node:20.11.0-alpine3.19
   before_script:
-  - uname -a
+    - uname -a
 
 stages:
   - build
@@ -11,51 +11,51 @@ stages:
 setup:
   stage: build
   script:
-  - npm install -g bower
-  - bower --version
-  - apk add --no-cache git
-  - bower install --allow-root
-  - npm ci --cache .npm --prefer-offline
+    - npm install -g bower
+    - bower --version
+    - apk add --no-cache git
+    - bower install --allow-root
+    - npm ci --cache .npm --prefer-offline
   cache:
     key:
       files:
-      - package-lock.json
+        - package-lock.json
     paths:
-    - ".npm/"
+      - ".npm/"
   artifacts:
     name: "$CI_COMMIT_REF_SLUG"
     expire_in: 1 week
     paths:
-    - node_modules
-    - bower_components
+      - node_modules
+      - bower_components
 
 deploy_development:
   stage: deploy
   environment: development
   needs:
-  - setup
+    - setup
   script:
-  - apk add --no-cache lftp
-  - lftp --version
-  - echo "listing working directory..."
-  - ls -la
-  - echo "transferring files and listing remote directory..."
-  - >
-    lftp -e "
-      set cmd:fail-exit yes; 
-      open $FTP_HOST; 
-      user $FTP_USER $FTP_PASSWORD; 
-      mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
-      ls -la registration/${CI_ENVIRONMENT_NAME}; 
-      bye
-    "
+    - apk add --no-cache lftp
+    - lftp --version
+    - echo "listing working directory..."
+    - ls -la
+    - echo "transferring files and listing remote directory..."
+    - >
+      lftp -e "
+        set cmd:fail-exit yes; 
+        open $FTP_HOST; 
+        user $FTP_USER $FTP_PASSWORD; 
+        mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
+        ls -la registration/${CI_ENVIRONMENT_NAME}; 
+        bye
+      "
 
   rules:
-  - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
 
 include:
-# Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
-- template: Jobs/Secret-Detection.gitlab-ci.yml
+  # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
+  - template: Jobs/Secret-Detection.gitlab-ci.yml
 
 # Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
