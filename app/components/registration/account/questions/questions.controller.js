@@ -47,12 +47,46 @@
 
         //
         vm.allStatusValid = function() {
-            return vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
+            return vm.formData.phoneFormat.status == vm.parent.STATUS_VALID &&
+                vm.formData.securityQuestion1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer1Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion2Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer2Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.securityQuestion3Format.status == vm.parent.STATUS_VALID &&
                 vm.formData.answer3Format.status == vm.parent.STATUS_VALID;
+        }
+
+        // Function to validate phone
+        vm.validatePhone = function () {
+
+            //Variable to set field status and message.
+            const phone = vm.formData.formFieldsData.phone;
+
+            vm.formData.passwordMeter = $scope.passwordStrength;
+            if (vm.parent.isEmpty(phone)) {
+                vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                //vm.formData.passwordFormat.message = null;
+                vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEREQUIRED');
+            } else {
+                if (phone.toString().length < 10) {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
+                    return;
+                } else if (phone.toString().length > 10) {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
+                    return;
+                } else {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_VALID;
+                    vm.formData.phoneFormat.message = null;
+
+                    if (vm.allStatusValid()) {
+                        // Display shared error message
+                        vm.sharedErrorMessage = true;
+
+                    }
+                }
+            }
         }
 
         // Function to validate security question1.
@@ -187,6 +221,13 @@
         }
 
         vm.questionsFormSubmit = function() {
+            if (vm.parent.isEmpty(vm.formData.formFieldsData.phone)) {
+                vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEREQUIRED');
+
+                // Display shared error message
+                vm.sharedErrorMessage = false;
+            }
             if (vm.parent.isEmpty(vm.formData.formFieldsData.securityQuestion1)) {
                 vm.formData.securityQuestion1Format.status = vm.parent.STATUS_INVALID;
                 vm.formData.securityQuestion1Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SECURITYQUESTIONREQUIRED');
