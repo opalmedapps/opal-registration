@@ -181,19 +181,52 @@
 
 
                 userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq, vm.formData.hospitalCode);
+                userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
                 vm.createBranchName();
             }
 
         };
 
+        var capitalize = function capitalize(string) {
+            return string[0].toUpperCase() + string.slice(1);
+        }
+
         // Call service to check valid branch.
         vm.createBranchName = function () {
 
-            //Set the firebase branch name
-            userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
-
-            // Call function to get an IP address of user.
-            vm.getIP();
+            let parameters = {
+                'ramq': vm.formData.formFieldsData.ramq,
+            };
+            console.log(parameters);
+            // Listener service call.
+            requestToListener.sendRequestWithResponse('GetPatientInfo', { Fields: parameters })
+                .then(function (response) {
+                    console.log(response);
+                    if (response.Result == 'SUCCESS') {
+                        // Call function to validate IPAddress.
+                        vm.formData.firstName = capitalize(response.Data.FirstName.toLowerCase());
+                        vm.formData.lastName = capitalize(response.Data.LastName.toLowerCase());
+                        vm.formData.hospitalName = vm.formData.selectedLanguage == 'en' ? response.Data.hospital_name_EN : response.Data.hospital_name_FR;
+                        vm.formData.hospitalInfo = [];
+                        vm.formData.hospitalInfo.name_EN = response.Data.hospital_name_EN;
+                        vm.formData.hospitalInfo.name_FR = response.Data.hospital_name_FR;
+                        // Call function to get an IP address of user.
+                        if (response.Data.BlockedStatus != 0) {
+                            const errorModalPage = 'app/components/registration/shared/modalBox/patientError.html';
+                            vm.parent.displayError(errorModalPage, "Cannot register a deceased patient");
+                        } else {
+                            vm.getIP();
+                        }
+                    } else {
+                        // Call function to display error modal box.
+                        const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                        vm.parent.displayError(errorModalPage);
+                    }
+                })
+                .catch(function (error) {
+                    const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                    vm.parent.displayError(errorModalPage);
+                });
         }
 
 
