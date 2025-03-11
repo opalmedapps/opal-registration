@@ -62,6 +62,8 @@ include:
   - template: Jobs/Secret-Detection.gitlab-ci.yml
   # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  # SAST: https://docs.gitlab.com/ee/user/application_security/sast/
+  - template: Jobs/SAST.gitlab-ci.yml
 
 # Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
