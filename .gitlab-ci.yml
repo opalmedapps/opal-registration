@@ -7,6 +7,7 @@ stages:
   - build
   - test
   - deploy
+  - dast
 
 setup:
   stage: build
@@ -53,7 +54,6 @@ deploy_development:
         ls -la registration/${CI_ENVIRONMENT_NAME}; 
         bye
       "
-
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
 
@@ -62,12 +62,27 @@ include:
   - template: Jobs/Secret-Detection.gitlab-ci.yml
   # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  # DAST Scanning: https://docs.gitlab.com/ee/user/application_security/dast/
+  - template: DAST.gitlab-ci.yml
 
-# Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Secret Detection Customization: 
+# https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
   variables:
     SECRET_DETECTION_HISTORIC_SCAN: "true"
 
+# Dependency Scanning Customization
 # https://docs.gitlab.com/ee/user/application_security/dependency_scanning/index.html#overriding-dependency-scanning-jobs
 gemnasium-dependency_scanning:
   dependencies: ["setup"]
+
+# DAST Scanning Customization: 
+# https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/requirements.html
+# https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
+dast:
+  dependencies: ["deploy_development"]
+  # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
+  variables:
+    DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
+    DAST_BROWSER_SCAN: "true"
+    DAST_FULL_SCAN_ENABLED: "true"
