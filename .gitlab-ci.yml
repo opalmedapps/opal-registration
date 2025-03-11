@@ -1,5 +1,5 @@
 default:
-  image: node:20.11.0-alpine3.19
+  image: node:20.11.1-alpine3.19
   before_script:
     - uname -a
 
@@ -7,6 +7,7 @@ stages:
   - build
   - test
   - deploy
+  - dast
 
 setup:
   stage: build
@@ -30,11 +31,11 @@ setup:
     expire_in: 1 week
     paths:
       - node_modules
-  
 
-deploy_development:
+
+.deploy:
   stage: deploy
-  environment: development
+  image: alpine:latest
   needs:
     - setup
   script:
@@ -43,6 +44,7 @@ deploy_development:
     - echo "listing working directory..."
     - ls -la
     - echo "transferring files and listing remote directory..."
+    - echo "deploying to ${CI_ENVIRONMENT_NAME}"
     # lftp mirror arguments: https://www.cyberciti.biz/faq/lftp-mirror-example/
     - >
       lftp -e "
@@ -53,21 +55,72 @@ deploy_development:
         ls -la registration/${CI_ENVIRONMENT_NAME}; 
         bye
       "
-
   rules:
     - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+  
+
+deploy_development:
+  environment: development
+  extends: .deploy
+
+deploy_qa:
+  environment: qa
+  extends: .deploy
+  needs:
+    - setup
+    - deploy_development
+
+deploy_staging:
+  environment: staging
+  extends: .deploy
+  needs:
+    - setup
+    - deploy_qa
 
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Secret-Detection.gitlab-ci.yml
   - template: Jobs/Secret-Detection.gitlab-ci.yml
   # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/Dependency-Scanning.gitlab-ci.yml
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+  # SAST: https://docs.gitlab.com/ee/user/application_security/sast/
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Jobs/SAST.gitlab-ci.yml
+  - template: Jobs/SAST.gitlab-ci.yml
+  # DAST Scanning: https://docs.gitlab.com/ee/user/application_security/dast/
+  # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Security/DAST.gitlab-ci.yml
+  - template: DAST.gitlab-ci.yml
 
-# Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Job Customizations
+#
+
+# Secret Detection: 
+# https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
   variables:
     SECRET_DETECTION_HISTORIC_SCAN: "true"
 
+# Dependency Scanning
 # https://docs.gitlab.com/ee/user/application_security/dependency_scanning/index.html#overriding-dependency-scanning-jobs
 gemnasium-dependency_scanning:
   dependencies: ["setup"]
+
+# DAST Scanning: 
+# https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/requirements.html
+# https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
+dast:
+  # with needs: due to reliance on the deploy job on a non default branch the pipeline fails with
+  # 'dast' job needs 'deploy_development' job, but 'deploy_development' is not in any previous stage
+  # dast comes after the deploy stage so always after by default
+  needs:
+    - deploy_development
+  # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
+  variables:
+    DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
+    DAST_BROWSER_SCAN: "true"
+    # enables active scanning
+    # https://docs.gitlab.com/ee/user/application_security/dast/browser/checks/#active-checks
+    # DAST_FULL_SCAN_ENABLED: "true"
+  # ensure that deploy_development is in a previous stage
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"

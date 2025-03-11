@@ -1,4 +1,4 @@
-FROM node:20.11.0-alpine3.19 as dependencies
+FROM node:20.11.1-alpine3.19 as dependencies
 
 ARG NODE_ENV="production"
 ENV NODE_ENV="${NODE_ENV}"
@@ -18,7 +18,7 @@ COPY .npmrc ./
 RUN npm ci
 
 
-FROM php:8.3.2-apache-bookworm
+FROM php:8.3.3-apache-bookworm
 
 # Install dependencies
 RUN apt-get update \

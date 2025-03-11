@@ -5,11 +5,13 @@
 
         <!--Opal logo-->
         <a class="navbar-brand header-brand my-1" ng-href="#">
-            <img class="d-inline-block header-logo align-top" ng-src="{{'HEADER.OPALLOGO' | translate}}" alt="OPAL - An App to Empower Patients" />
+            <img class="d-inline-block header-logo align-top" ng-src="{{'HEADER.OPALLOGO' | translate}}"
+                alt="OPAL - An App to Empower Patients" />
         </a>
 
         <!--Mobile menu icon-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -18,7 +20,8 @@
             <ul class="navbar-nav ml-auto">
                 <!--On click call function to change site language.-->
                 <li class="nav-item ml-3">
-                    <a class="nav-link js-scroll-trigger text-uppercase fa-icon-cursor" ng-click="vm.changeLanguage('HEADER.LANGUAGE'| translate)">{{'HEADER.LANGUAGE' | translate}}</a>
+                    <a class="nav-link js-scroll-trigger text-uppercase fa-icon-cursor"
+                        ng-click="vm.changeLanguage('HEADER.LANGUAGE'| translate)">{{'HEADER.LANGUAGE' | translate}}</a>
                 </li>
             </ul>
         </div>
@@ -68,5 +71,15 @@
         <p class="font-weight-bold text-muted">
             {{'WELCOME.STAPES' | translate}}
         </p>
+
+        <!--Navigation button-->
+        <div class="row">
+            <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center">
+                <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.search"
+                    tabindex="11">
+                    <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+                </button>
+            </div>
+        </div>
     </form>
 </div>
