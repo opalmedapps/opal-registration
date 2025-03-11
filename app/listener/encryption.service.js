@@ -169,7 +169,7 @@
                 encryptionHash = CryptoJS.PBKDF2(
                     userAuthorizationService.getuserCode(),
                     userAuthorizationService.getUserSalt(),
-                    { keySize: 256 / 32, iterations: 600000, hasher: CryptoJS.algo.SHA256 }
+                    { keySize: 256 / 32, iterations: 25000, hasher: CryptoJS.algo.SHA256 }
                 ).toString(CryptoJS.enc.Hex);
 
                 return encryptionHash;
