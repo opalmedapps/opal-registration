@@ -104,7 +104,12 @@
 
             } catch(error) {
                 console.log(error);
-                vm.parent.errorPopup('emailExistingError');
+                if (error.status_code === 400) {
+                    vm.parent.errorPopup('emailExistingError');
+                }
+                else {
+                    vm.parent.errorPopup('contactUsError');
+                }
             }
         }
 
