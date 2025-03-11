@@ -25,11 +25,11 @@
 
         /**
            @ngdoc property
-           @name  MUHCApp.service.#userRAMQ
+           @name  MUHCApp.service.#userSalt
            @propertyOf MUHCApp.service:userAuthorizationService
            @description code property
         **/
-        var userRAMQ = '';
+        var userSalt = '';
 
         /**
          @ngdoc property
@@ -47,9 +47,9 @@
                 @methodOf MUHCApp.service:userAuthorizationService
                 @description Sets all the user authorization.
             **/
-            setUserData: function (code, ramq, hospitalcode) {
+            setUserData: function (code, salt, hospitalcode) {
                 userCode = code;      // Registration code
-                userRAMQ = ramq;    //RAMQ
+                userSalt = salt;    //RAMQ or MRN
                 hospitalCode = hospitalcode;    //hospitalcode
             },
 
@@ -92,8 +92,8 @@
                @methodOf MUHCApp.service:userAuthorizationService
                @returns {string} Returns Firebase branch name.
            **/
-            getUserRAMQ: function () {
-                return userRAMQ;
+            getUserSalt: function () {
+                return userSalt;
 
             },
             
@@ -115,7 +115,7 @@
             **/
             clearuserAuthorizationInfomation: function () {
                 userCode = '';
-                userRAMQ = '';
+                userSalt = '';
                 userBranchName = '';
             }
         }
