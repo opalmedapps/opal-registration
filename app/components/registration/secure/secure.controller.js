@@ -278,7 +278,6 @@
             //Variable to set field status and message.
             const phone = vm.formData.formFieldsData.phone;
 
-            vm.formData.passwordMeter = $scope.passwordStrength;
             if (vm.parent.isEmpty(phone)) {
                 vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
                 //vm.formData.passwordFormat.message = null;
