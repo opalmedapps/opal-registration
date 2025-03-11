@@ -605,27 +605,20 @@
                         vm.formData.emailFormat.status = 'invalid',
                             //vm.formData.emailFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.EMAILINUSE');
                             vm.formData.emailFormat.message = 'test';
-                    }
-
-                    else if (response.Data == "ERROR") {
+                    } else if (response.Data == "ERROR") {
 
                         // Call function to get accesslevel list.
                         vm.accessLevelList();
-                    }
-                    else {
+                    } else {
 
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
-
-
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
         }
 
@@ -636,19 +629,18 @@
             vm.formData.displaySpinner = false;
 
             // Method to get security questions list from database
-            var parameters = vm.formData.formFieldsData.ramq;
 
-            requestToListener.sendRequestWithResponse('AccessLevelList', { Fields: parameters })
+            requestToListener.sendRequestWithResponse('AccessLevelList', { Fields: vm.formData.formFieldsData.ramq })
                 .then(function (response) {
 
                     // Get the value from result response and bind values into dropdown
-                    var accessLevelList = response.Data[0];
+                    const accessLevelList = response.Data[0];
 
                     // Check length of the variable
                     if (accessLevelList.length > 1) {
 
                         // Define loop for passing the value of language option.
-                        for (var i = 0; i < accessLevelList.length; i++) {
+                        for (let i = 0; i < accessLevelList.length; i++) {
 
                             // Assing in JSON format
                             vm.formData.accessLevelList_EN[i] = {
@@ -667,21 +659,17 @@
                             vm.formData.accessLevelList = vm.formData.accessLevelList_EN;
                         else
                             vm.formData.accessLevelList = vm.formData.accessLevelList_FR;
-
-
                     }
                     else {
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage);
+                        vm.errorPopup();
                     }
 
                 })
                 .catch(function (error) {
 
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
 
         }
@@ -690,18 +678,26 @@
         vm.languageList = function () {
             requestToListener.apiRequest(apiConstants.ROUTES.LANGUAGES, vm.formData.selectedLanguage)
                 .then(function (response) {
-                    vm.formData.languageList = response.data;
-                    vm.formData.displaySpinner = true;
+                    if (response?.data) {
+                        vm.formData.languageList = response.data;
+                        vm.formData.displaySpinner = true;
 
-                    $rootScope.$apply(function () {
-                        $location.path('/form/opalPreference');
-                    });
+                        $rootScope.$apply(function () {
+                            $location.path('/form/opalPreference');
+                        });
+                    } else {
+                        vm.errorPopup();
+                    }
                 })
                 .catch(function (error) {
                     // Call function to display error modal box.
-                    const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.errorPopup();
                 });
+        }
+
+        vm.errorPopup = function() {
+            const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+            vm.parent.displayError(errorModalPage);
         }
     }
 })();
