@@ -4,8 +4,6 @@
     "config:base",
     // https://docs.renovatebot.com/presets-default/#pinallexceptpeerdependencies
     ":pinAllExceptPeerDependencies",
-    // https://docs.renovatebot.com/presets-default/#rebasestaleprs
-    ":rebaseStalePrs",
     // https://docs.renovatebot.com/presets-default/#separatemultiplemajorreleases
     ":separateMultipleMajorReleases",
     // https://docs.renovatebot.com/presets-default/#separatepatchreleases
