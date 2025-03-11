@@ -222,6 +222,10 @@
       "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact us at",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
+    "FORBIDDENERRROR": {
+      "DESCRIPTION": "Unable to complete registration at this time. Please contact Medical Records at the hospital",
+      "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
+    },
     "REGISTRATIONERROR": {
       "DESCRIPTION": "We are unable to register your information. Please try again later."
     },
