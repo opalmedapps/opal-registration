@@ -58,3 +58,27 @@ deploy_development:
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
 
+deploy_staging:
+  stage: deploy
+  environment: staging
+  needs:
+    - setup
+  script:
+    - apk add --no-cache lftp
+    - lftp --version
+    - echo "listing working directory..."
+    - ls -la
+    - echo "transferring files and listing remote directory..."
+    # lftp mirror arguments: https://www.cyberciti.biz/faq/lftp-mirror-example/
+    - >
+      lftp -e "
+        set cmd:fail-exit yes; 
+        open $FTP_HOST; 
+        user $FTP_USER $FTP_PASSWORD; 
+        mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='php/config.json.sample' --exclude='php/config.json' --reverse --delete --parallel=20 --verbose ./ ./${CI_ENVIRONMENT_NAME}/;
+        ls -la ${CI_ENVIRONMENT_NAME}; 
+        bye
+      "
+  rules:
+    - when: manual
+    # - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
