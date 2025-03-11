@@ -296,6 +296,7 @@
 
                         if (patient &&  institution) {
                             vm.formData.hospitalName = institution.name;
+                            vm.formData.institutionId = institution.id;
                             vm.formData.firstName = patient.first_name;
                             vm.formData.lastName = patient.last_name;
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
@@ -398,10 +399,16 @@
 
         vm.retrieveTermsOfUsePDF = async function () {
             try {
+                const request = {
+                    method: 'get',
+                    url: `/api/institutions/${vm.formData.institutionId}/terms-of-use/`,
+                };
                 const terms_response = await requestToListener.apiRequest(
-                    apiConstants.ROUTES.TERMS_OF_USE,
+                    request,
                     vm.formData.selectedLanguage
                 );
+
+                console.log(terms_response);
                 
                 $timeout(() => {
                     const termsOfUsePDF = terms_response?.data?.terms_of_use;
