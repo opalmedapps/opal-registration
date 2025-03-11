@@ -93,7 +93,7 @@
                             response_url.set(null);
                             response_url.off();
                             reject({ Response: 'timeout' });
-                        }, 90000);
+                        }, 30000);
                     });
             }).catch(err => console.log(err));
         }
