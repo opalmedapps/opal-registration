@@ -534,10 +534,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
 
-                vm.formData.formFieldsData.answer1 = vm.formData.formFieldsData.answer1.toUpperCase();
-                vm.formData.formFieldsData.answer2 = vm.formData.formFieldsData.answer2.toUpperCase();
-                vm.formData.formFieldsData.answer3 = vm.formData.formFieldsData.answer3.toUpperCase();
-
                 // Call function ot language list
                 vm.parent.languageListForPreference();
             }

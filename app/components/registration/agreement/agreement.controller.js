@@ -95,10 +95,10 @@
                         ).value;
                     }
 
-                    // Hash answers before making service call.
-                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
-                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
-                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
+                    // Uppercase and hash answers before sending them to the backend
+                    vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1.toUpperCase());
+                    vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2.toUpperCase());
+                    vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3.toUpperCase());
                 }
                 else {
                     vm.formData.formFieldsData.accessToken = vm.formData.accessToken
