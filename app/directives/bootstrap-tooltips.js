@@ -1,3 +1,6 @@
+// Inspired by:
+// https://stackoverflow.com/questions/20666900/using-bootstrap-tooltip-with-angularjs
+
 angular.module("myApp").directive("tooltip", function () {
     console.log("tooltip directive");
     return {
