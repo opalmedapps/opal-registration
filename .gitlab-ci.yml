@@ -96,8 +96,11 @@ gemnasium-dependency_scanning:
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/requirements.html
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
 dast:
-  needs:
-    - deploy_development
+  # with needs: due to reliance on the deploy job on a non default branch the pipeline fails with
+  # 'dast' job needs 'deploy_development' job, but 'deploy_development' is not in any previous stage
+  # dast comes after the deploy stage so always after by default
+  # needs:
+    # - deploy_development
   # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
   variables:
     DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
