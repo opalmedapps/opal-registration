@@ -3,6 +3,11 @@ default:
   before_script:
     - uname -a
 
+stages:
+  - build
+  - test
+  - deploy
+
 setup:
   stage: build
   script:
