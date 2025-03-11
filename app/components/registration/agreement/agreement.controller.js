@@ -10,20 +10,13 @@
     angular.module('myApp')
         .controller('agreementController', agreementController);
 
-    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService', 'apiConstants'];
+    agreementController.$inject = ['$location', '$filter', '$rootScope', '$timeout', 'requestToListener', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
 
-    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService, apiConstants) {
+    function agreementController($location, $filter, $rootScope, $timeout, requestToListener, firebaseFactory, userAuthorizationService, encryptionService) {
         var vm = this;
-
-        vm.isTermsLoaded = false;  // This is for showing the terms of use
 
         // Create variable formData to store the values of parent data.
         vm.formData = {};
-
-        // Base64 encoded PDF of terms of use
-        vm.termsOfUsePDFData = undefined;
-
-        vm.downloadTermsOfUse = downloadTermsOfUse;
 
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
@@ -40,16 +33,14 @@
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
-            // Display display spinner before calling service
-            vm.formData.displaySpinner = false;
+            // Hide display spinner
+            vm.formData.displaySpinner = true;
 
             // Call function to set current form class as active.
             vm.setFormStatus();
 
             // Hide shared error message
             vm.sharedErrorMessage = true;
-
-            retrieveTermsOfUsePDF();
         }
 
         // Display alert on page refresh
@@ -162,59 +153,12 @@
                 });
         }
 
-        /**
-         * @name retrieveTermsOfUsePDF
-         * @desc This function loads base64 encoded terms of use that is set in the new backend
-         */
-        async function retrieveTermsOfUsePDF() {
-            try {
-                const terms_response = await requestToListener.apiRequest(
-                    apiConstants.ROUTES.TERMS_OF_USE,
-                    vm.formData.selectedLanguage
-                );
-
-                $timeout(() => {
-                    const termsOfUsePDF = terms_response?.data?.terms_of_use;
-
-                    if (termsOfUsePDF === undefined || termsOfUsePDF === "") {
-                        console.error(
-                            'Unable to retrieve the terms of use from the api-backend.'
-                        );
-
-                        // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                    }
-
-                    vm.termsOfUsePDFData = `data:application/pdf;base64,${termsOfUsePDF}`;
-
-                    vm.isTermsLoaded = true;
-
-                    // Hide display spinner after all request get response.
-                    vm.formData.displaySpinner = true;
-                });
-            } catch (error) {
-                $timeout(() => {
-                    console.error(
-                        'Unable to retrieve the terms of use from the api-backend:',
-                        error
-                    );
-
-                    // Hide display spinner after all request get response.
-                    vm.formData.displaySpinner = true;
-
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
-                });
-            }
-        }
-
-        function downloadTermsOfUse(event) {
+        vm.downloadTermsOfUse = function (event) {
             event.preventDefault();
 
             const downloadLink = document.createElement('a');
 
-            downloadLink.href = vm.termsOfUsePDFData;
+            downloadLink.href = vm.formData.termsOfUseBase64;
             downloadLink.download = 'opal-agreement.pdf';
             downloadLink.target = '_blank';
             downloadLink.click();

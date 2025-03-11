@@ -86,6 +86,9 @@
         this.needToKnowAccessLevelList_FR = [{}];
 
         this.termsandAggreementDocuments = [{}];
+
+        // terms of use PDF file in base64 format 
+        this.termsOfUseBase64 = undefined;
         
         this.userName = '';
 
