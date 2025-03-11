@@ -16,8 +16,8 @@
          * @description Sends a request to the listener via Firebase.
          * @param {string} typeOfRequest The type of request to send.
          * @param {object} [parameters] Optional object containing parameters to send with the request.
-         * @returns {{key: string, url: *}} An object containing the random reference key under which the request was uploaded,
-         *                                  and the database reference at which the request was pushed.
+         * @returns {{key: string, ref: *}} An object containing the random reference key under which the request was uploaded,
+         *                                  and the base database reference at which the request was pushed.
          */
         function sendRequest(typeOfRequest, parameters) {
             // Clone the request parameters to prevent re-encrypting when using them in several requests
@@ -28,7 +28,8 @@
             const requestBranch = typeOfRequest === firebase.getApiParentBranch()
                 ? firebase.getApiPath(hospitalCode)
                 : firebase.getLegacyPath(hospitalCode);
-            let firebaseReference = firebase.getDBRef(`${requestBranch}/requests`);
+            let baseRef = firebase.getDBRef(`${requestBranch}`);
+            let requestRef = firebase.child(baseRef, 'requests');
 
             // Encrypt the request
             encryptionService.generateEncryptionHash();
@@ -37,10 +38,10 @@
 
             // Send the request
             let requestObject = getRequestObject(encryptedType, encryptedParameters);
-            let pushID =  firebase.push(firebaseReference, requestObject);
+            let pushID =  firebase.push(requestRef, requestObject);
             return {
                 key: pushID.key,
-                url: firebaseReference,
+                ref: baseRef,
             };
         }
 
@@ -55,10 +56,10 @@
                 // Send the request
                 let responseRef;
                 try {
-                    const {key, url} = sendRequest(typeOfRequest, parameters);
+                    const {key, ref} = sendRequest(typeOfRequest, parameters);
 
                     // Get a reference to the response branch
-                    const baseResponseRef = firebase.child(url, firebase.getResponseChildBranch());
+                    const baseResponseRef = firebase.child(ref, firebase.getResponseChildBranch());
                     responseRef = firebase.child(baseResponseRef, key);
                 }
                 catch (error) {
@@ -73,7 +74,7 @@
                         firebase.set(responseRef, null);
                         firebase.off(responseRef);
                         data = responseValidatorFactory.validate(data, timeOut);
-                        data.success ? resolve(data.success) : reject(data.error)
+                        data.success ? resolve(data.success) : reject(data.error);
                     }
                 }, error => {
                     firebase.set(responseRef, null);
@@ -104,9 +105,9 @@
 
                 let responseRef;
                 try {
-                    const {key, url} = sendRequest(requestType, formattedParams);
+                    const {key, ref} = sendRequest(requestType, formattedParams);
                     const firebasePath = `responses/${key}`;
-                    responseRef = firebase.child(url, firebasePath);
+                    responseRef = firebase.child(ref, firebasePath);
                 }
                 catch (error) {
                     reject(error);
@@ -118,8 +119,8 @@
                         let data = snapshot.val();
                         firebase.set(responseRef, null);
                         firebase.off(responseRef);
-                        data = responseValidatorFactory.validate(data, timeOut);
-                        data.success ? resolve(data.success) : reject(data.error)
+                        data = responseValidatorFactory.validateApiResponse(data, timeOut);
+                        data.success ? resolve(data.success) : reject(data.error);
                     }
                 }, error => {
                     firebase.set(responseRef, null);

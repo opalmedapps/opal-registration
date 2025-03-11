@@ -37,6 +37,7 @@ import firebaseBranchConfig from '../../firebaseBranch.json';
             signOut: () => signOut(auth),
 
             // Direct access to other built-in Firebase functions
+            child: child,
             off: off,
             onValue: onValue,
             push: push,
