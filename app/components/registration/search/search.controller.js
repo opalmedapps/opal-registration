@@ -101,10 +101,10 @@
                 if (codeArray.length !== 2) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.CODEREQUIRED');
-                } else if (codeArray[1].length < 10) {
+                } else if (codeArray[1].length < 10 || codeArray[0].length < 4) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTCODELENGTH');
-                } else if (codeArray[1].length > 10) {
+                } else if (codeArray[1].length > 10 || codeArray[0].length > 4) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGCODELENGTH');
                 } else {
@@ -180,10 +180,7 @@
             if (vm.formData.codeFormat.status == 'valid' && vm.formData.ramqFormat.status == 'valid') {
                 // Display shared error message
                 vm.sharedErrorMessage = true;
-
-                vm.formData.hospitalCode = vm.formData.formFieldsData.registrationCode;
                 vm.formData.formFieldsData.ramq = vm.formData.formFieldsData.ramq.toUpperCase();
-
 
                 userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq, vm.formData.hospitalCode);
                 vm.createBranchName();
