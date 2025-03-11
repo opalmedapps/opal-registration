@@ -62,7 +62,7 @@
         <div class="text-muted col-md-7"><h6>{{'VERIFICATION.VERIFY.CODE' | translate}}</h6></div>
         <div class="text-muted col-md-10">
             <input type="number" name="code" ng-model="vm.inputCode" class="btn border-dark text-dark mr-3 px-3"
-                   style="margin-right: 15px;width: 30%;" required>
+                   style="margin-right: 15px;width: 30%;">
             <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
                     ng-click="vm.checkVerificationCode()">
                 {{'VERIFICATION.VERIFY.VERIFY' | translate}}
@@ -110,7 +110,6 @@
 <!--Registration code tooltip image example-->
 <script type="text/ng-template" id="registrationcodeTooltipTemplate.html">
     <div class="text-muted p-1">
-        <!--<label>{{vm.registrationcodeTooltip.content}}</label>-->
         <label>{{'TOOLTIP.REGISTRATIONCODE' | translate}}</label>
     </div>
 </script>

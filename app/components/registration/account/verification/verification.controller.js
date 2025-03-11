@@ -54,7 +54,7 @@
 
             const request = {
                 method: 'post',
-                url: '/api/registration/' + vm.formData.formFieldsData.registrationCode + '/verify-email/',
+                url: '/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email/',
             };
             requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email})
                 .then(function (response) {
@@ -68,17 +68,13 @@
             // Listener service call.
             const request = {
                 method: 'put',
-                url: '/api/registration/' + vm.formData.formFieldsData.registrationCode + '/verify-email-code/',
+                url: '/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email-code/',
             };
             requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'code': vm.inputCode})
                 .then(function (response) {
                     $timeout(() => {
                         vm.verifyCode = true;
-                        if (response.status_code != 200) {
-                            vm.isCodeValid = false;
-                        } else {
-                            vm.isCodeValid = true;
-                        }
+                        vm.isCodeValid = response?.status_code === 200;
                     })
                 })
                 .catch(function (error) {
