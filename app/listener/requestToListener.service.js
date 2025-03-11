@@ -49,7 +49,6 @@
                             'Timestamp': firebase.database.ServerValue.TIMESTAMP
                         };
                         let reference = referenceField || 'requests';
-                        console.log(request_object);
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve({key: pushID.key, url: firebase_url});
                     });
