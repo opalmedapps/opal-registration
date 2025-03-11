@@ -210,6 +210,7 @@
                 const patient = response.data?.patient;
                 const caregiver = response.data?.caregiver;
                 const institution = response.data?.institution;
+                const relationship = response.data?.relationship_type;
                 if (!patient || !institution) throw response;
 
                 vm.formData.hospitalName = institution.name;
@@ -219,6 +220,7 @@
                 vm.formData.caregiverFirstName = caregiver.first_name;
                 vm.formData.caregiverLastName = caregiver.last_name;
                 vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
+                vm.formData.relationship = relationship.name;
 
                 await vm.retrieveTermsOfUsePDF();
                 await vm.getSecurityQuestionList();
