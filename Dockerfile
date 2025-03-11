@@ -14,7 +14,7 @@ COPY bower.json ./
 RUN bower --allow-root install
 
 COPY package.json .npmrc ./
-RUN npm ci
+RUN npm install
 
 
 FROM php:8.0.16-apache-bullseye
