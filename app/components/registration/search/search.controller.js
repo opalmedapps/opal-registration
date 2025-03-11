@@ -1,6 +1,6 @@
 /**
      Filename     :   form.controller.js
-     Description  :   Controlle the search.html data(modal values, event, etc.) and to function to make service call.
+     Description  :   Control the search.html data(modal values, event, etc.) and to function to make service call.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
@@ -25,7 +25,7 @@
 
                 // Call functions to check the both field error values            
                 vm.validateRegistrationCode();
-                vm.validateRAMQ();
+                vm.validatePatientId();
             });
         });
 
@@ -37,6 +37,8 @@
         function activate() {
             // get data from the parent component
             vm.formData = vm.parent.getData();
+            vm.patientId = undefined;
+            vm.patientIdFormat = {};
 
             if (vm.formData.secureForm.flag != 1)
                 vm.formData.selectedLanguage = ((window.navigator.language || window.navigator.userLanguage).slice(0, 2)).toLowerCase();
@@ -60,10 +62,10 @@
             content: $filter('translate')('TOOLTIP.REGISTRATIONCODE')
         };
 
-        // RAMQ tooltip image path
-        vm.ramqTooltip = {
-            templateUrl: 'ramqTooltipTemplate.html',
-            image: 'images/tooltip/ramq.jpg'
+        // Patient id tooltip html path
+        vm.patientidTooltip = {
+            templateUrl: 'patientidTooltipTemplate.html',
+            content: $filter('translate')('TOOLTIP.PATIENTID_CONTENT')
         };
 
         // Method to fetch URL query parameter to autofill Registration code.
@@ -116,26 +118,18 @@
             }
         };
 
-        // Validate to RAMQ format and length.
-        vm.validateRAMQ = function () {
-
-            if (vm.formData.formFieldsData.ramq == undefined || vm.formData.formFieldsData.ramq == null || vm.formData.formFieldsData.ramq == "") {
-                vm.formData.ramqFormat.status = 'invalid';
-                vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
-            }
-            else {
-                if (vm.formData.formFieldsData.ramq.length < 12) {
-                    vm.formData.ramqFormat.status = 'invalid';
-                    vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTRAMQLENGTH');
-                }
-
-                else if (vm.formData.formFieldsData.ramq.length > 12) {
-                    vm.formData.ramqFormat.status = 'invalid';
-                    vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGRAMQLENGTH');
-                }
-                else {
-                    vm.formData.ramqFormat.status = 'valid';
-                    vm.formData.ramqFormat.message = null;
+        // Validate to patient id format and length.
+        vm.validatePatientId = function () {
+            if (vm.patientId == undefined || vm.patientId == null || vm.patientId == "") {
+                vm.patientIdFormat.status = 'invalid';
+                vm.patientIdFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
+            } else {
+                if (vm.patientId.length != 7 && vm.patientId.length != 12) {
+                    vm.patientIdFormat.status = 'invalid';
+                    vm.patientIdFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.INVALIDPATIENTID');
+                } else {
+                    vm.patientIdFormat.status = 'valid';
+                    vm.patientIdFormat.message = null;
 
                     // Display shared error message
                     vm.sharedErrorMessage = true;
@@ -166,22 +160,31 @@
                 // Display shared error message
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.formFieldsData.ramq == undefined || vm.formData.formFieldsData.ramq == null || vm.formData.formFieldsData.ramq == "") {
-                vm.formData.ramqFormat.status = 'invalid';
-                vm.formData.ramqFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
+            if (vm.patientId == undefined || vm.patientId == null || vm.patientId == "") {
+                vm.patientIdFormat.status = 'invalid';
+                vm.patientIdFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.RAMQREQUIRED');
 
                 // Display shared error message
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.codeFormat.status == 'valid' && vm.formData.ramqFormat.status == 'valid') {
+            if (vm.formData.codeFormat.status == 'valid' && vm.patientIdFormat.status == 'valid') {
                 // Display shared error message
                 vm.sharedErrorMessage = true;
 
                 vm.formData.hospitalCode = vm.formData.formFieldsData.registrationCode.substring(0,2);
-                vm.formData.formFieldsData.ramq = vm.formData.formFieldsData.ramq.toUpperCase();
+                vm.patientId = vm.patientId.toUpperCase();
 
+                //Set registration code info
+                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.patientId, vm.formData.hospitalCode);
+                //Set the firebase branch name
+                userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
-                userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.formFieldsData.ramq, vm.formData.hospitalCode);
+                if (vm.patientId.length == 12) {
+                    vm.formData.formFieldsData.ramq = vm.patientId;
+
+                } else if (vm.patientId.length == 7) {
+                    vm.formData.formFieldsData.mrn = vm.patientId;
+                }
                 vm.createBranchName();
             }
 
@@ -189,9 +192,6 @@
 
         // Call service to check valid branch.
         vm.createBranchName = function () {
-
-            //Set the firebase branch name
-            userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
             // Call function to get an IP address of user.
             vm.getIP();

@@ -35,16 +35,15 @@
     "TITLE": "Confirmez votre identité",
     "INSTRUCTION": "Pour créer un compte Opal, vous devez obtenir un code d’inscription à l’un de nos hôpitaux participants. Si vous avez un code d’inscription, veuillez entrer ce code ainsi que votre numéro d'assurance maladie (RAMQ) ci-dessous pour confirmer votre identité.",
     "FIELDNAMES": {
-      "RAMQ": "Votre numéro d'assurance maladie (RAMQ)",
+      "PATIENTID": "Numéro d'identification du patient",
       "REGISTRATIONCODE": "Votre code d’inscription"
     },
     "FIELDERRORMESSAGES": {
       "CODEREQUIRED": "Veuillez entrer un code d’inscription valide.",
-      "RAMQREQUIRED": "Veuillez entrer un numéro d'assurance maladie valide.",
+      "RAMQREQUIRED": "Veuillez saisir un identifiant patient valide.",
       "SHORTCODELENGTH": "Code d’inscription trop court.",
       "LONGCODELENGTH": "Code d’inscription trop long.",
-      "SHORTRAMQLENGTH": "Numéro d'assurance maladie trop court.",
-      "LONGRAMQLENGTH": "Numéro d'assurance maladie trop long."
+      "INVALIDPATIENTID": "Le code RAMQ a besoin de 12 caractères ou le code MRN a besoin de 7 chiffres"
     }
   },
   "SECURE": {
@@ -133,7 +132,12 @@
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
     "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 8 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et une lettre spéciale.",
-    "REGISTRATIONCODE": "Votre code d’inscription est un code de 12 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants."
+    "REGISTRATIONCODE": "Votre code d’inscription est un code de 12 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants.",
+    "PATIENTID_TITLE1": "Enter le numéro ",
+    "PATIENTID_TITLE2": " ou ",
+    "PATIENTID_TITLE3": " du patient",
+    "PATIENTID_CONTENT_MRN": " Ce numéro se trouve sur la carte de l'hôpital.",
+    "PATIENTID_CONTENT_RAMQ": " Ce numéro se trouve sur la carte d'assurance-maladie provinciale."
   },
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {
