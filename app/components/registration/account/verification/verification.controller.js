@@ -50,94 +50,64 @@
         }
 
         vm.sendVerificationCode = function() {
-            vm.verificationCode = parseInt(Math.random() * (1000000 - 100000) + 100000);
             vm.sendCode = true;
             let parameters = {
                 'email': vm.email,
-                'code': vm.verificationCode,
-                'language': vm.formData.formFieldsData.language ? vm.formData.formFieldsData.language : 'EN',
             };
 
-            // parameters = {
-            //     'IPAddress': '192.168.0.1',
-            // };
-
-            let code = 'A0127Q0T50hk';
-            let ramq = 'TESC53511613';
-            let hospitalCode = code.substring(0,2);
-            ramq = ramq.toUpperCase();
-            userAuthorizationService.setUserData(code, ramq, hospitalCode);
-            userAuthorizationService.setUserBranchName(encryptionService.hash(code));
-
             // Listener service call.
-            // requestToListener.sendRequestWithResponse('SendVerificationCode', parameters)
-            // .then(function (response) {
-            //
-            //     console.log(response);
-            //     if (response.Data[0].Result == 'SUCCESS') {
-            //         // Call function to validate IPAddress.
-            //
-            //     }
-            //     else {
-            //
-            //         // Call function to display error modal box.
-            //         var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-            //         vm.parent.displayError(errorModalPage);
-            //     }
-            //
-            // })
-            // .catch(function (error) {
-            //
-            //     // Call function to display error modal box.
-            //     var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-            //     vm.parent.displayError(errorModalPage);
-            // });
+            requestToListener.sendRequestWithResponse('SendVerificationCode', parameters)
+            .then(function (response) {
+
+                if (response.Data[0].Result == 'SUCCESS') {
+                    // Call function to validate IPAddress.
+
+                } else {
+
+                    // Call function to display error modal box.
+                    const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                    vm.parent.displayError(errorModalPage);
+                }
+
+            })
+            .catch(function (error) {
+
+                // Call function to display error modal box.
+                const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                vm.parent.displayError(errorModalPage);
+            });
         }
         vm.checkVerificationCode = function() {
             vm.verifyCode = true;
-            if (vm.inputCode != '123456') {
+            let parameters = {
+                'email': vm.email,
+            };
+            // Listener service call.
+            requestToListener.sendRequestWithResponse('verifyVerificationCode', parameters)
+            .then(function (response) {
+
+                if (response.Data[0].Result == 'SUCCESS') {
+                    // Call function to validate IPAddress.
+                    vm.isCodeValid = true;
+                } else {
+
+                    vm.isCodeValid = false;
+                    const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                    vm.parent.displayError(errorModalPage);
+                }
+
+            })
+            .catch(function (error) {
+
                 vm.isCodeValid = false;
-            } else {
-                vm.isCodeValid = true;
-            }
+                const errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                vm.parent.displayError(errorModalPage);
+            });
         }
         vm.resendVerificationCode = function() {
             vm.isCodeValid = false;
             vm.sendCode = false;
             vm.verifyCode = false;
-
-            let code = 'A0127Q0T50hk';
-            let ramq = 'TESC53511613';
-            let hospitalCode = code.substring(0,2);
-            ramq = ramq.toUpperCase();
-            userAuthorizationService.setUserData(code, ramq, hospitalCode);
-            userAuthorizationService.setUserBranchName(encryptionService.hash(code));
-
-            var parameters = {
-                'IPAddress': '192.168.0.1',
-            };
-
-            // Listener service call.
-            requestToListener.sendRequestWithResponse('InsertIPLog', { Fields: parameters })
-                .then(function (response) {
-                    console.log(response);
-                    if (response.Data[0].Result == 'SUCCESS') {
-                        // Call function to validate IPAddress.
-                    }
-                    else {
-
-                        // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                        vm.parent.displayError(errorModalPage);
-                    }
-
-                })
-                .catch(function (error) {
-
-                    // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                    vm.parent.displayError(errorModalPage);
-                });
         }
         vm.verificationFormSubmit = function() {
             vm.formData.formFieldsData.email = vm.email;
