@@ -121,9 +121,14 @@
 
                         response_url.set(null);
                         response_url.off();
+                        
+                        if (data?.data.errorMessage == 'API_ERROR_INTERNAL') {
+                            reject(data.data.errorMessage);
+                        } else {
+                            data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
+                            (data.success) ? resolve(data.success) : reject(data.error);
+                        }
 
-                        data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
-                        (data.success) ? resolve(data.success) : reject(data.error);
                     }
                 });
                 const timeOut = setTimeout(function () {

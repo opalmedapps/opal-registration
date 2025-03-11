@@ -77,7 +77,13 @@
                 await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email});
             } catch(error) {
                 console.log(error);
-                vm.parent.errorPopup('contactUsError');
+                if (error == 'API_ERROR_INTERNAL') {
+                    $timeout(() => {
+                        $location.path('/form/login');
+                    });
+                } else {
+                    vm.parent.errorPopup('contactUsError');
+                }
             }
         }
         vm.checkVerificationCode = async function() {
@@ -95,7 +101,7 @@
                 $timeout(() => {
                     vm.verifyCode = true;
                     vm.isCodeValid = response?.status_code === "200";
-                })
+                });
             } catch (error) {
                 vm.parent.errorPopup('contactUsError');
             }
