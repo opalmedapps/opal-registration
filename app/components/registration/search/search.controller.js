@@ -1,6 +1,6 @@
 /**
      Filename     :   form.controller.js
-     Description  :   Controlle the search.html data(modal values, event, etc.) and to function to make service call.
+     Description  :   Control the search.html data(modal values, event, etc.) and to function to make service call.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
@@ -157,7 +157,6 @@
 
         // Form onsubmit method
         vm.searchFormSubmit = function () {
-            
             //Validate all fields as required fields on form submit
             if (vm.formData.formFieldsData.registrationCode == undefined || vm.formData.formFieldsData.registrationCode == null || vm.formData.formFieldsData.registrationCode == "") {
                 vm.formData.codeFormat.status = 'invalid';
@@ -306,6 +305,10 @@
                     if (result[0] == 'SUCCESS') {
                         // Call function to get user name.
                         vm.formData.userName = result[1];
+                        // TODO need to get patient and hospital info from DB
+                        vm.formData.firstName = "Lisa";
+                        vm.formData.lastName = "Simpson"
+                        vm.formData.hospitalName = "Montreal Children's";
                         
                         // Call function to get security question list.
                         vm.getSecurityQuestionList();
