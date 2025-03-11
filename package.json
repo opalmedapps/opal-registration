@@ -20,7 +20,7 @@
     "angularjs-datepicker": "2.1.23",
     "bootstrap": "4.6.2",
     "crypto-js": "4.2.0",
-    "firebase": "3.9.0",
+    "firebase": "8.10.1",
     "jquery": "3.6.4",
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1"
