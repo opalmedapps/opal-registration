@@ -294,7 +294,7 @@
                         const patient = response.data?.patient;
                         const institution = response.data?.institution;
 
-                        if (patient &&  institution) {
+                        if (patient && institution && !patient.date_of_death) {
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
                         } else {
                             vm.formData.userName = `Not found`;
