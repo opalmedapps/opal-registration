@@ -23,6 +23,8 @@
         // Base64 encoded PDF of terms of use
         vm.termsOfUsePDFData = undefined;
 
+        vm.downloadTermsOfUse = downloadTermsOfUse;
+
         // Fetch broadcast event and change the field error message language.
         $rootScope.$on("changeErrorLanguage", function () {
             $timeout(function () {
@@ -205,6 +207,17 @@
                     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                 });
             }
+        }
+
+        function downloadTermsOfUse(event) {
+            event.preventDefault();
+
+            const downloadLink = document.createElement('a');
+
+            downloadLink.href = vm.termsOfUsePDFData;
+            downloadLink.download = 'opal-agreement.pdf';
+            downloadLink.target = '_blank';
+            downloadLink.click();
         }
     }
 })();

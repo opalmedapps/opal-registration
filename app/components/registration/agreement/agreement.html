@@ -19,7 +19,7 @@
     <div class="card text-center mt-5">
         <div class="card-header text-muted">
             <h4 class="font-weight-bold text-center">{{'AGREEMENT.TITLE' | translate}}</h4>
-            <h5>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}} <a ng-href="{{'AGREEMENT.FIELDNAMES.PDFLINK' | translate}}" target="_blank"><span class="text-primary">{{'SHARED.CLICKHERE' | translate}}</span></a></h5>
+            <h5>{{'AGREEMENT.FIELDNAMES.PRINTANDDOWNLOADDOCUEMNT' | translate}} <a ng-href="#" ng-click="vm.downloadTermsOfUse($event);"><span class="text-primary">{{'SHARED.CLICKHERE' | translate}}</span></a></h5>
         </div>
         <div class="card-body document-layout">
             <div class="embed-responsive embed-responsive-16by9">
