@@ -82,7 +82,6 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: './index.html',
-            // title: 'Opal Registration',
         }),
         new FaviconsWebpackPlugin('./images/favicons/favicon-source.png'),
         new CopyPlugin({
