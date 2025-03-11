@@ -12,7 +12,7 @@
     "font-awesome": "5.15.4",
     "zxcvbn": "4.4.2",
     "firebase": "3.9.0",
-    "crypto-js": "4.1.1",
+    "crypto-js": "4.2.0",
     "tweetnacl-util": "0.15.1",
     "tweetnacl": "1.0.3"
   }
