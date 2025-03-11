@@ -86,10 +86,13 @@
   "PREFERENCE": {
     "STEPS": "Step 3 of 5: ",
     "TITLE": "Your Data Access",
-    "INSTRUCTION": "In order to access your medical data using Opal, you must give your consent using the form below.",
+    "INSTRUCTION1": "In order to access your medical data of ",
+    "INSTRUCTION2": " at ",
+    "INSTRUCTION3": " using Opal, you must give your consent using the form below.",
     "FIELDNAMES": {
       "ACCESSLEVEL": "Data Access Level",
-      "ACCESSLEVELINSTRUCTION": "The following data are generally available (pending availability at Montreal Children's hospital):",
+      "ACCESSLEVELINSTRUCTION1": "The following data are generally available (pending availability at ",
+      "ACCESSLEVELINSTRUCTION2": "):",
       "LANGUAGE": "Your Language Preference",
       "LANGUAGEDROPDOWNDEAFULT": "--- Select a language ---",
       "AUTHORIZETRANSMISSION": "Authorization",

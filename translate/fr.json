@@ -86,10 +86,14 @@
   "PREFERENCE": {
     "STEPS": "Étape 3 de 5: ",
     "TITLE": "Accès aux données",
-    "INSTRUCTION": "Afin d’avoir accès à vos données médicales via Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
+    "INSTRUCTION1": "Afin d’avoir accès à vos données médicales de ",
+    "INSTRUCTION2": " à ",
+    "INSTRUCTION3": " utilisant Opal, vous devez consentir à cet accès par moyen du formulaire ci-dessous.",
     "FIELDNAMES": {
       "ACCESSLEVEL": "Niveau d’accès aux données",
       "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d’accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d’accès est expliqué ci-dessous:",
+      "ACCESSLEVELINSTRUCTION1": "Les données suivantes sont généralement disponibles (sous réserve de disponibilité à ",
+      "ACCESSLEVELINSTRUCTION2": "):",
       "LANGUAGE": "Votre choix de langue",
       "LANGUAGEDROPDOWNDEAFULT": "--- Sélectionnez une langue ---",
       "AUTHORIZETRANSMISSION": "Autorisation",
