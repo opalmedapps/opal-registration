@@ -35,16 +35,15 @@
     "TITLE": "Confirm Your Identity",
     "INSTRUCTION": "To register for Opal, you must have obtained a registration code from a participating hospital. If you have a registration code, please enter it here along with your RAMQ number to confirm your identity.",
     "FIELDNAMES": {
-      "RAMQ": "Your RAMQ Number",
+      "PATIENTID": "Patient Identification Number",
       "REGISTRATIONCODE": "Your Registration Code"
     },
     "FIELDERRORMESSAGES": {
       "CODEREQUIRED": "Please enter a valid registration code.",
-      "RAMQREQUIRED": "Please enter a valid RAMQ number.",
+      "RAMQREQUIRED": "Please enter a valid patient id.",
       "SHORTCODELENGTH": "Registration code is too short.",
       "LONGCODELENGTH": "Registration code is too long.",
-      "SHORTRAMQLENGTH": "RAMQ number is too short.",
-      "LONGRAMQLENGTH": "RAMQ number is too long."
+      "INVALIDPATIENTID": "RAMQ code needs 12 characters or MRN code needs 7 numbers"
     }
   },
   "SECURE": {
@@ -133,7 +132,12 @@
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Your email address will be used as your username when accessing your Opal account.",
     "PASSWORDFORMAT": "Your password should be at least 8 characters long and should contain at least one number, one capital letter, one lower-case letter and one special character.",
-    "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution."
+    "REGISTRATIONCODE": "Your registration code is a 12-digit code provided by your clinical team at a participating Quebec healthcare institution.",
+    "PATIENTID_TITLE1": "Enter patient's ",
+    "PATIENTID_TITLE2": " or ",
+    "PATIENTID_TITLE3": " number",
+    "PATIENTID_CONTENT_MRN": " This number is found on the hospital card.",
+    "PATIENTID_CONTENT_RAMQ": " This number is found on the provincial health care card."
   },
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {

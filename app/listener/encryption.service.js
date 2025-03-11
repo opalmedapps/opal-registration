@@ -159,9 +159,13 @@
                 Encryption key/Secrate: Registration code
                 Salt: RAMQ
              **/
-            generateEncryptionHash: function () {
-                encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuserCode(), userAuthorizationService.getUserRAMQ(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
-
+            generateEncryptionHash: function (type = 'ramq') {
+                let salt = userAuthorizationService.getUserRAMQ();
+                if (type == 'mrn') {
+                    salt = userAuthorizationService.getUserMRN();
+                }
+                const code = userAuthorizationService.getuserCode();
+                encryptionHash = CryptoJS.PBKDF2(code, salt, { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
             },
 
             generateNonce: function () {

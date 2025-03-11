@@ -33,6 +33,22 @@
 
         /**
          @ngdoc property
+         @name  MUHCApp.service.#userMRN
+         @propertyOf MUHCApp.service:userAuthorizationService
+         @description code property
+         **/
+        var userMRN = '';
+
+        /**
+         @ngdoc property
+         @name  MUHCApp.service.#encryptionTYpe
+         @propertyOf MUHCApp.service:userAuthorizationService
+         @description code property
+         **/
+        var encryptionType = '';
+
+        /**
+         @ngdoc property
          @name  MUHCApp.service.#hospitalCode
          @propertyOf MUHCApp.service:userAuthorizationService
          @description code property
@@ -47,10 +63,41 @@
                 @methodOf MUHCApp.service:userAuthorizationService
                 @description Sets all the user authorization.
             **/
-            setUserData: function (code, ramq, hospitalcode) {
+            setUserData: function (code, hospitalcode) {
                 userCode = code;      // Registration code
-                userRAMQ = ramq;    //RAMQ
                 hospitalCode = hospitalcode;    //hospitalcode
+            },
+
+            /**
+             @ngdoc method
+             @name setUserRAMQ
+             @methodOf MUHCApp.service:userAuthorizationService
+             @description Sets all the user authorization.
+             **/
+            setUserRAMQ: function (ramq) {
+                userRAMQ = ramq;    //RAMQ
+                this.setEncryptionType('ramq');
+            },
+
+            /**
+             @ngdoc method
+             @name setUserMRN
+             @methodOf MUHCApp.service:userAuthorizationService
+             @description Sets all the user authorization.
+             **/
+            setUserMRN: function (mrn) {
+                userMRN = mrn;    //MRN
+                this.setEncryptionType('mrn');
+            },
+
+            /**
+             @ngdoc method
+             @name setEncryptionType
+             @methodOf MUHCApp.service:userAuthorizationService
+             @description Sets all the user authorization.
+             **/
+            setEncryptionType: function (type) {
+                encryptionType = type;    // ramq or mrn
             },
 
             /**
@@ -96,6 +143,27 @@
                 return userRAMQ;
 
             },
+
+            /**
+             @ngdoc method
+             @name getUserMRN
+             @methodOf MUHCApp.service:userAuthorizationService
+             @returns {string} Returns Firebase branch name.
+             **/
+            getUserMRN: function () {
+                return userMRN;
+
+            },
+
+            /**
+             @ngdoc method
+             @name getEncryptionType
+             @methodOf MUHCApp.service:userAuthorizationService
+             @returns {string} Returns Firebase branch name.
+             **/
+            getEncryptionType: function () {
+                return encryptionType;
+            },
             
             /**
                 @ngdoc method
@@ -116,6 +184,8 @@
             clearuserAuthorizationInfomation: function () {
                 userCode = '';
                 userRAMQ = '';
+                userMRN = '';
+                encryptionType = '';
                 userBranchName = '';
             }
         }

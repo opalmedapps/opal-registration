@@ -31,23 +31,35 @@
             return new Promise((resolve) => {
                 let requestType;
                 let requestParameters;
-                
+                let request_object = {};
                 if (encryptionKey) {
                     requestType = typeOfRequest;
                     requestParameters = encryptionService.encryptWithKey(parameters, encryptionKey);
+                    request_object = {
+                        'Request': requestType,
+                        'BranchName': userAuthorizationService.getUserBranchName(),
+                        'Parameters': requestParameters,
+                        'Timestamp': firebase.database.ServerValue.TIMESTAMP
+                    };
                 } else {
-                    encryptionService.generateEncryptionHash();
+                    encryptionService.generateEncryptionHash(userAuthorizationService.getEncryptionType());
                     requestType = encryptionService.encryptData(typeOfRequest);
                     requestParameters = encryptionService.encryptData(parameters);
+                    const encryptionType = encryptionService.hash(userAuthorizationService.getEncryptionType());
+                    let encryptionId = userAuthorizationService.getEncryptionType() == 'ramq' ?
+                        userAuthorizationService.getUserRAMQ() : userAuthorizationService.getUserMRN();
+                    encryptionId = encryptionService.hash(encryptionId);
+                    request_object = {
+                        'Request': requestType,
+                        'EncryptionType': encryptionType,
+                        'EncryptionId': encryptionId,
+                        'BranchName': userAuthorizationService.getUserBranchName(),
+                        'Parameters': requestParameters,
+                        'Timestamp': firebase.database.ServerValue.TIMESTAMP
+                    };
                 }
                 constants.version()
                     .then(version => {
-                        let request_object = {
-                            'Request': requestType,
-                            'BranchName': userAuthorizationService.getUserBranchName(),
-                            'Parameters': requestParameters,
-                            'Timestamp': firebase.database.ServerValue.TIMESTAMP
-                        };
                         let reference = referenceField || 'requests';
                         let pushID = firebase_url.child(reference).push(request_object);
                         resolve(pushID.key);
