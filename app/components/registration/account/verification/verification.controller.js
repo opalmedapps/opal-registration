@@ -102,6 +102,7 @@
             vm.isCodeValid = false;
             vm.sendCode = false;
             vm.verifyCode = false;
+            vm.sendCode = false;
         }
         vm.verificationFormSubmit = function() {
             vm.formData.formFieldsData.email = vm.email;

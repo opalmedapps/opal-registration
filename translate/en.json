@@ -101,6 +101,22 @@
       "INVALID": "Code is Invalid"
     }
   },
+  "ACCOUNT": {
+    "STEPS": "Step 2 of 5: ",
+    "TITLE": "Create or Log In to Opal Account",
+    "INSTRUCTION": {
+      "EXISTS": "If you already have an existing Opal account, you can use this account to access the data of ",
+      "CREATE": "Otherwise, you need to create a new Opal account."
+    },
+    "OPTION": {
+      "EXISTS": "I already have an Opal account",
+      "CREATE": "I don't have an Opal account"
+    }
+  },
+  "PATIENT": {
+    "HOSPITAL": "Hospital: ",
+    "PATIENT": "Patient: "
+  },
   "SECURE": {
     "STEPS": "Step 2 of 5: ",
     "TITLE": "Create Your Opal Account",

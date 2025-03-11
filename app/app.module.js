@@ -100,7 +100,18 @@
                         },
                         footer: footer
                     }
+                })
 
+                // User account page.
+                .state('form.account', {
+                    url: '/account',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'accountComponent'
+                        },
+                        footer: footer
+                    }
                 })
 
                 // User account login page.
@@ -113,7 +124,6 @@
                         },
                         footer: footer
                     }
-
                 })
 
                 // User account questions page.

@@ -101,6 +101,22 @@
       "INVALID": "Le code n'est pas valide"
     }
   },
+  "ACCOUNT": {
+    "STEPS": "Étape 2 of 5: ",
+    "TITLE": "Créer ou se connecter à un compte Opal",
+    "INSTRUCTION": {
+      "EXISTS": "Si vous avez déjà un compte Opal existant, vous pouvez utiliser ce compte pour accéder aux données de ",
+      "CREATE": "Sinon, vous devez créer un nouveau compte Opal."
+    },
+    "OPTION": {
+      "EXISTS": "J'ai déjà un compte Opal",
+      "CREATE": "Je n'ai pas de compte Opal"
+    }
+  },
+  "PATIENT": {
+    "HOSPITAL": "Hôpital: ",
+    "PATIENT": "Patient (Patiente) : "
+  },
   "SECURE": {
     "STEPS": "Étape 2 de 5: ",
     "TITLE": "Créez votre compte Opal",
