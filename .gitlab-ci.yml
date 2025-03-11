@@ -96,7 +96,8 @@ gemnasium-dependency_scanning:
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/requirements.html
 # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/enabling_the_analyzer.html
 dast:
-  dependencies: ["deploy_development"]
+  needs:
+    - deploy_development
   # https://docs.gitlab.com/ee/user/application_security/dast/browser/configuration/variables.html
   variables:
     DAST_WEBSITE: "https://devregistration.opalmedapps.ca"
