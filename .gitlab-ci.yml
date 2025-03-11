@@ -1,5 +1,5 @@
 default:
-  image: node:20.14.0-alpine3.19
+  image: node:20.16.0-alpine3.19
   before_script:
     - uname -a
 
@@ -45,8 +45,7 @@ check build:
   needs:
     - check build
   before_script:
-    - ENV_ALL_CAPS=$(echo "${CI_ENVIRONMENT_NAME}" | tr '[:lower:]' '[:upper:]')
-    - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG_${ENV_ALL_CAPS} must be configured in GitLab CI/CD variables for this repository" && exit 1'
+    - '[ -z "$CONFIG" ] && echo "Error: environment variable CONFIG must be defined for this job" && exit 1'
     - echo $CONFIG > config.json
     - apk add --no-cache lftp
     - lftp --version
@@ -107,6 +106,15 @@ build and deploy preprod:
     - build and deploy staging
   variables:
     CONFIG: $CONFIG_PREPROD
+
+build and deploy prod:
+  environment: prod
+  extends: .build and deploy
+  needs:
+    - check build
+    - build and deploy staging
+  variables:
+    CONFIG: $CONFIG_PROD
 
 build and deploy qa:
   environment: qa
