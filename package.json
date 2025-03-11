@@ -12,7 +12,7 @@
     "angular-translate-loader-static-files": "2.19.0",
     "angularjs-datepicker": "2.1.23",
     "angularfire": "^2.3.0",
-    "angular-bootstrap": "^2.5.0"
+    "angular-ui-bootstrap": "^2.5.0"
   },
   "author": "Jinal Vyas",
   "description": "Repository for registration website"
