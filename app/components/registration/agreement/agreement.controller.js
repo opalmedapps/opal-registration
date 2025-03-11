@@ -33,6 +33,9 @@
             // get data from the parent component
             vm.formData = vm.parent.getData();
 
+            // Hide display spinner
+            vm.formData.displaySpinner = true;
+
             // Call function to set current form class as active.
             vm.setFormStatus();
 
@@ -89,7 +92,7 @@
                 // Display display spinner before calling service
                 vm.formData.displaySpinner = false;
 
-                // Encrypt important information before makeing service call.
+                // Encrypt important information before making service call.
                 vm.formData.formFieldsData.answer1 = encryptionService.hash(vm.formData.formFieldsData.answer1);
                 vm.formData.formFieldsData.answer2 = encryptionService.hash(vm.formData.formFieldsData.answer2);
                 vm.formData.formFieldsData.answer3 = encryptionService.hash(vm.formData.formFieldsData.answer3);
@@ -148,6 +151,17 @@
                     var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
                     vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                 });
+        }
+
+        vm.downloadTermsOfUse = function (event) {
+            event.preventDefault();
+
+            const downloadLink = document.createElement('a');
+
+            downloadLink.href = vm.formData.termsOfUseBase64;
+            downloadLink.download = 'opal-agreement.pdf';
+            downloadLink.target = '_blank';
+            downloadLink.click();
         }
     }
 })();
