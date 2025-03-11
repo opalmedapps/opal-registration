@@ -6,12 +6,6 @@
     requestToListener.$inject = ['userAuthorizationService', 'encryptionService', 'firebaseFactory', 'constants', 'apiConstants', 'responseValidatorFactory'];
 
     function requestToListener(userAuthorizationService, encryptionService, firebaseFactory, constants, apiConstants, responseValidatorFactory) {
-        
-        // Get firebase request user
-        var firebase_url = null;
-
-        // Get firebase response url
-        var response_url = null;
 
         return {
             sendRequestWithResponse: sendRequestWithResponse,
@@ -24,11 +18,15 @@
             // Get firebase parent branch
             const firebase_parentBranch = userAuthorizationService.getHospitalCode();
 
-            // Get firebase request user
-            firebase_url = firebase.database().ref(firebaseFactory.getFirebaseUrl(firebase_parentBranch));
+            let branch_name = null;
+            if (typeOfRequest == 'registration-api') {
+                branch_name = firebaseFactory.getFirebaseApiUrl(firebase_parentBranch);
+            } else {
+                branch_name = firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+            }
 
-            // Get firebase response url
-            response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
+            // Get firebase request user
+            const firebase_url = firebase.database().ref(branch_name);
 
             return new Promise((resolve) => {
                 let requestType;
@@ -53,7 +51,7 @@
                         let reference = referenceField || 'requests';
                         console.log(request_object);
                         let pushID = firebase_url.child(reference).push(request_object);
-                        resolve(pushID.key);
+                        resolve({key: pushID.key, url: firebase_url});
                     });
             });
         }
@@ -63,7 +61,12 @@
 
                 //Sends request and gets random key for request
                 sendRequest(typeOfRequest, parameters, encryptionKey, referenceField)
-                    .then(key => {
+                    .then(response => {
+                        const key = response.key;
+                        const firebase_url = response.url;
+
+                        // Get firebase response url
+                        const response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
 
                         let refRequestResponse = (!referenceField) ?
                             response_url.child(key) :
@@ -99,40 +102,6 @@
             }).catch(err => console.log(err));
         }
 
-        function sendApiRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
-
-            // Get firebase parent branch
-            const firebase_parentBranch = userAuthorizationService.getHospitalCode();
-            // Get firebase request user
-            const firebase_api_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
-
-            return new Promise((resolve) => {
-                let requestType;
-                let requestParameters;
-
-                if (encryptionKey) {
-                    requestType = typeOfRequest;
-                    requestParameters = encryptionService.encryptWithKey(parameters, encryptionKey);
-                } else {
-                    encryptionService.generateEncryptionHash();
-                    requestType = encryptionService.encryptData(typeOfRequest);
-                    requestParameters = encryptionService.encryptData(parameters);
-                }
-                constants.version()
-                    .then(version => {
-                        let request_object = {
-                            'Request': requestType,
-                            'BranchName': userAuthorizationService.getUserBranchName(),
-                            'Parameters': requestParameters,
-                            'Timestamp': firebase.database.ServerValue.TIMESTAMP
-                        };
-                        let reference = referenceField || 'requests';
-                        let pushID = firebase_api_url.child(reference).push(request_object);
-                        resolve({key: pushID.key, url: firebase_api_url});
-                    });
-            });
-        }
-
         /**
          * @description Call the new listener structure that relays the request to Django backend
          * @param {object} parameters Required fields to process request
@@ -144,7 +113,7 @@
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, language, data);
                 const requestType = 'registration-api';
-                const response = await sendApiRequest(requestType, formatedParams);
+                const response = await sendRequest(requestType, formatedParams);
                 const requestKey = response.key;
                 const firebase_api_url = response.url;
                 const firebasePath = `response/${requestKey}`;
