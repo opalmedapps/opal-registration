@@ -18,7 +18,6 @@
 
         return {
             sendRequestWithResponse: sendRequestWithResponse,
-            sendRequest: sendRequest,
             apiRequest: apiRequest
         };
 
@@ -73,7 +72,6 @@
                             response_url.child(key) :
                             firebase_url.child(responseField).child(key);
 
-                        console.log(key);
                         //Waits to obtain the request data.
                         refRequestResponse.on('value', snapshot => {
                             if (snapshot.exists()) {
@@ -84,12 +82,7 @@
                                 refRequestResponse.off();
 
                                 data = responseValidatorFactory.validate(data, encryptionKey, timeOut);
-
-                                if (data.success) {
-                                    resolve(data.success);
-                                } else {
-                                    reject(data.error);
-                                }
+                                (data.success) ? resolve(data.success) : reject(data.error);
                             }
                         }, error => {
                             console.log('sendRequestWithResponse error' + error);
@@ -109,6 +102,46 @@
             }).catch(err => console.log(err));
         }
 
+        function sendApiRequest(typeOfRequest, parameters, encryptionKey, referenceField) {
+
+            // Get firebase parent branch
+            firebase_parentBranch = userAuthorizationService.getHospitalCode();
+
+            // Get firebase request user
+            firebase_url = firebase.database().ref(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
+
+            console.log(firebaseFactory.getFirebaseApiUrl(firebase_parentBranch));
+
+            // Get firebase response url
+            response_url = firebase_url.child(firebaseFactory.getFirebaseChild(null));
+
+            return new Promise((resolve) => {
+                let requestType;
+                let requestParameters;
+
+                if (encryptionKey) {
+                    requestType = typeOfRequest;
+                    requestParameters = encryptionService.encryptWithKey(parameters, encryptionKey);
+                } else {
+                    encryptionService.generateEncryptionHash();
+                    requestType = encryptionService.encryptData(typeOfRequest);
+                    requestParameters = encryptionService.encryptData(parameters);
+                }
+                constants.version()
+                    .then(version => {
+                        let request_object = {
+                            'Request': requestType,
+                            'BranchName': userAuthorizationService.getUserBranchName(),
+                            'Parameters': requestParameters,
+                            'Timestamp': firebase.database.ServerValue.TIMESTAMP
+                        };
+                        let reference = referenceField || 'requests';
+                        let pushID = firebase_url.child(reference).push(request_object);
+                        resolve(pushID.key);
+                    });
+            });
+        }
+
         /**
          * @description Call the new listener structure that relays the request to Django backend
          * @param {object} parameters Required fields to process request
@@ -119,7 +152,7 @@
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, data);
                 const requestType = 'registration-api';
-                const requestKey = await sendRequest(requestType, formatedParams, null, requestType);
+                const requestKey = await sendApiRequest(requestType, formatedParams);
                 const firebasePath = `response/${requestKey}`;
                 const response_url = firebase_url.child(firebasePath);
 
@@ -132,12 +165,7 @@
                         response_url.off();
 
                         data = responseValidatorFactory.validateApiResponse(data, null, timeOut);
-
-                        if (data.success) {
-                            resolve(data.success);
-                        } else {
-                            reject(data.error);
-                        }
+                        (data.success) ? resolve(data.success) : reject(data.error);
                     }
                 });
                 const timeOut = setTimeout(function () {

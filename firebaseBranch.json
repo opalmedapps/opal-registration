@@ -7,37 +7,44 @@
     {
       "fullName": "MUHC_FULL",
       "uniqueHospitalCode": "A0",
-      "parentBranch": "dev3/A0/registration"
+      "parentBranch": "dev3/A0/registration",
+      "apiBranch": "dev3/A0/registration-api"
     },
     {
       "fullName": "SMHC_FULL",
       "uniqueHospitalCode": "A1",
-      "parentBranch": "dev3/A1/registration"
+      "parentBranch": "dev3/A1/registration",
+      "apiBranch": "dev3/A1/registration-api"
     },
     {
       "fullName": "CHUM_FULL",
       "uniqueHospitalCode": "A2",
-      "parentBranch": "dev3/A2/registration"
+      "parentBranch": "dev3/A2/registration",
+      "apiBranch": "dev3/A2/registration-api"
     },
     {
       "fullName": "HMR_FULL",
       "uniqueHospitalCode": "A3",
-      "parentBranch": "dev3/A3/registration"
+      "parentBranch": "dev3/A3/registration",
+      "apiBranch": "dev3/A3/registration-api"
     },
     {
       "fullName": "CHU_SJ_FULL",
       "uniqueHospitalCode": "A4",
-      "parentBranch": "dev3/A4/registration"
+      "parentBranch": "dev3/A4/registration",
+      "apiBranch": "dev3/A4/registration-api"
     },
     {
       "fullName": "CITE_FULL",
       "uniqueHospitalCode": "A5",
-      "parentBranch": "dev3/A5/registration"
+      "parentBranch": "dev3/A5/registration",
+      "apiBranch": "dev3/A5/registration-api"
     },
     {
       "fullName": "RI_MUHC_FULL",
       "uniqueHospitalCode": "A6",
-      "parentBranch": "dev3/A6/registration"
+      "parentBranch": "dev3/A6/registration",
+      "apiBranch": "dev3/A6/registration-api"
     }
   ]
 }

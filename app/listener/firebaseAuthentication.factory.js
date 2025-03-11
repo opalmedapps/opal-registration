@@ -46,9 +46,37 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
              **/
 
             getFirebaseUrl: function (extension) {
+                console.log(hospitalCodeArray)
                 for(var i =0; i<hospitalCodeArray.length; i++){
                     if(hospitalCodeArray[i].uniqueHospitalCode == extension){
                         return hospitalCodeArray[i].parentBranch + '/';
+                    }
+                }
+                // switch (extension) {
+                //     case null:
+                //         return firebaseBranch.parentBranch + '/' ;
+                //     case 'users':
+                //         return firebaseBranch.parentBranch + firebaseBranch.responseChildBranch + "/";
+                //     case 'requests':
+                //         return firebaseBranch.parentBranch + firebaseBranch.requestChildBranch + "/";
+                //     default:
+                //         return firebaseUrl;
+                // }
+
+            },
+
+            /**
+             @ngdoc method
+             @name getFirebaseApiUrl
+             @methodOf myApp.service:firebaseFactory
+             @returns {String} Returns firebase api url string
+             **/
+
+            getFirebaseApiUrl: function (extension) {
+                console.log(hospitalCodeArray)
+                for(var i =0; i<hospitalCodeArray.length; i++){
+                    if(hospitalCodeArray[i].uniqueHospitalCode == extension){
+                        return hospitalCodeArray[i].apiBranch + '/';
                     }
                 }
                 // switch (extension) {
