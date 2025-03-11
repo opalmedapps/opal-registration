@@ -119,7 +119,7 @@
     "PATIENT": "Patient: "
   },
   "SECURE": {
-    "STEPS": "Step 2 of 5: ",
+    "STEPS": "Step 2c of 5: ",
     "TITLE": "Create Your Opal Account",
     "INSTRUCTION": "Please complete the form below to create your Opal account. All fields are required.",
     "FIELDNAMES": {
