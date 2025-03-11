@@ -15,12 +15,21 @@ This project contains a `Dockerfile` as well as a `docker-compose.yml` file to r
 In the root directory, copy `config.json.sample` to `config.json`.
 Then add the values for `apiKey` and `databaseURL` to that of your Firebase project.
 
+### Step 2: Add the `.npmrc` file
+
+This project uses [AngularJS](https://angularjs.org/) which reached end of life in January 2022.
+This project uses a long-term support version of AngularJS provided by [XLTS.dev](https://www.xlts.dev/).
+If you have an `npm` token to retrieve this version from their registry, place the `.npmrc` file containing the credentials in the root directory.
+
+You can also use the [last available version](https://www.npmjs.com/package/angular) of AngularJS (version 1.8.3).
+To do so, change the value for the `angular` dependency in `package.json` to `angular@1.8.3` and run `npm install` to update the lock file.
+
 ### Step 2: Start the container
 
 ```shell
 docker compose up
 ```
 
-This builds the image (if necessary) and brings up the container.Y
+This builds the image (if necessary) and brings up the container.
 
 You can access the web page at `http://localhost:8083` with your browser.
