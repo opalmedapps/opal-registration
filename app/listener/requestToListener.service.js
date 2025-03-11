@@ -145,10 +145,11 @@
         /**
          * @description Call the new listener structure that relays the request to Django backend
          * @param {object} parameters Required fields to process request
+         * @param {string} language Required field to request header, 'en' or 'fr'
          * @param {object | null} Data the is needed to be passed to the request.
          * @returns Promise that contains the response data
          */
-        function apiRequest(parameters, data = null) {
+        function apiRequest(parameters, language, data = null) {
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, data);
                 const requestType = 'registration-api';
@@ -176,11 +177,11 @@
             });
         }
 
-        function formatParams(parameters, data){
+        function formatParams(parameters, language, data){
             if (data) parameters.data = data;
             return {
                 ...parameters,
-                headers: {...apiConstants.REQUEST_HEADERS, 'Accept-Language': 'en'},
+                headers: {...apiConstants.REQUEST_HEADERS, 'Accept-Language': language},
             }
         }
     }
