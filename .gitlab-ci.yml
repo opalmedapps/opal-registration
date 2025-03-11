@@ -79,7 +79,7 @@ deploy_staging:
         set cmd:fail-exit yes; 
         open $FTP_HOST; 
         user $FTP_USER $FTP_PASSWORD; 
-        mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=20 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
+        mirror --exclude-glob='.*' --exclude-glob='.git/*' --include='.htaccess' --exclude='Dockerfile' --exclude='docker-compose.yml' --exclude='bower.json' --exclude='package.json' --exclude='package-lock.json' --exclude='renovate.json5' --exclude='README.md' --exclude='config.json.sample' --exclude='config.json' --reverse --delete --parallel=10 --verbose ./ ./registration/${CI_ENVIRONMENT_NAME}/;
         ls -la registration/${CI_ENVIRONMENT_NAME}; 
         bye
       "
