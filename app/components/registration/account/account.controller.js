@@ -20,7 +20,6 @@
         vm.$onInit = function() {
             // get data from the parent component
             vm.formData = vm.parent.getData();
-
             // Call function to set current form class as active.
             vm.setFormStatus();
 
@@ -46,10 +45,12 @@
         }
 
         vm.openAccount = function() {
+            vm.formData.formFieldsData.accountExists = true;
             $location.path('/form/login');
         }
 
         vm.createAccount = function() {
+            vm.formData.formFieldsData.accountExists = false;
             $location.path('/form/verification');
         }
 
