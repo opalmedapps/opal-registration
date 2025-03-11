@@ -103,6 +103,17 @@
 
                 })
 
+                // User account verification page.
+                .state('form.verification', {
+                    url: '/verification',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'verificationComponent'
+                        },
+                        footer: footer
+                    }
+                })
                
                 // User secure information page.
                 .state('form.secure', {
