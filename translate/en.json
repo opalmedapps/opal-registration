@@ -111,10 +111,8 @@
     "INSTRUCTION": "Please review the document below and accept the terms in order to complete the registration process.",
     "FIELDNAMES": {
       "PRINTANDDOWNLOADDOCUEMNT": "Download this document",
-      "SENDEMAILNOTE": "A copy will also be sent to you via email upon successful registration.",
       "ACCEPTCHECKBOX": "I have read and accept the Terms of Use Agreement.",
       "DOUCMENTLINK": "documents/TermsofUseAgreement.html",
-      "PDFLINK": "documents/TermsofUseAgreement.pdf",
       "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {

@@ -113,10 +113,8 @@
     "INSTRUCTION": "Afin de compléter le processus d'inscription, veuillez lire les documents ci-dessous et accepter les conditions d’utilisation.",
     "FIELDNAMES": {
       "PRINTANDDOWNLOADDOCUEMNT": "Télécharger ce document",
-      "SENDEMAILNOTE": "Une copie vous sera également envoyée par e-mail une fois l'inscription réussie.",
       "ACCEPTCHECKBOX": "J’ai lu et accepté les termes de cet accord.",
       "DOUCMENTLINK": "documents/ContratdutilisationduLogiciel.html",
-      "PDFLINK": "documents/Contratd'utilisationduLogiciel.pdf",
       "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {
