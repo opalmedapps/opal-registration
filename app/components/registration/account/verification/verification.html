@@ -61,7 +61,7 @@
         </div>
         <div class="text-muted col-md-7"><h6>{{'VERIFICATION.VERIFY.CODE' | translate}}</h6></div>
         <div class="text-muted col-md-10">
-            <input type="number" name="code" ng-model="vm.inputCode" class="btn border-dark text-dark mr-3 px-3"
+            <input type="text" maxlength="10" name="code" ng-model="vm.inputCode" class="btn border-dark text-dark mr-3 px-3"
                    class="verification-code">
             <button type="button" class="btn btn-light border-dark text-dark mr-3 px-3"
                     ng-click="vm.checkVerificationCode()">
