@@ -18,4 +18,4 @@ Header set X-Content-Type-Options nosniff
 
 # add Content-Security-Policy headers
 # generated with https://www.validbot.com/tools/csp-wizard.php
-Header add Content-Security-Policy "base-uri 'self'; default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
+Header add Content-Security-Policy "base-uri 'self'; default-src https://*.firebaseio.com; font-src 'self'; img-src 'self'; connect-src 'self' wss://*.firebaseio.com https://*.firebaseio.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.firebaseio.com; style-src 'self' 'unsafe-inline';"
