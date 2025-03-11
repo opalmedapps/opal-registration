@@ -67,10 +67,10 @@
         vm.checkVerificationCode = function() {
             // Listener service call.
             const request = {
-                method: 'put',
+                method: 'post',
                 url: '/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email-code/',
             };
-            requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'code': vm.inputCode})
+            requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'code': vm.inputCode, 'email': vm.email})
                 .then(function (response) {
                     $timeout(() => {
                         vm.verifyCode = true;
