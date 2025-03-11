@@ -108,15 +108,6 @@ build and deploy preprod:
   variables:
     CONFIG: $CONFIG_PREPROD
 
-build and deploy research prod:
-  environment: research
-  extends: .build and deploy
-  needs:
-    - check build
-    # - build and deploy staging
-  variables:
-    CONFIG: $CONFIG_RESEARCH_PROD
-
 build and deploy qa:
   environment: qa
   extends: .build and deploy
@@ -125,6 +116,15 @@ build and deploy qa:
     - build and deploy dev
   variables:
     CONFIG: $CONFIG_QA
+
+build and deploy research prod:
+  environment: research
+  extends: .build and deploy
+  needs:
+    - check build
+    # - build and deploy staging
+  variables:
+    CONFIG: $CONFIG_RESEARCH
 
 build and deploy staging:
   environment: staging
