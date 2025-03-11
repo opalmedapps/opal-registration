@@ -11,7 +11,6 @@
     "angular-translate-loader-static-files": "2.19.0",
     "angular-ui-bootstrap": "2.5.6",
     "angular-ui-router": "1.0.30",
-    "angularfire": "^1.2.0",
     "angularjs-datepicker": "2.1.23"
   },
   "author": "Jinal Vyas",
