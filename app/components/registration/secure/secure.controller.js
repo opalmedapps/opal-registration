@@ -291,6 +291,10 @@
                     vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
                     return;
+                } else if (!phone.match(/^\+(?:[0-9] ?){6,14}[0-9]$/)) {
+                    vm.formData.phoneFormat.status = vm.parent.STATUS_INVALID;
+                    vm.formData.phoneFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PHONEINVALID');
+                    return;
                 } else {
                     vm.formData.phoneFormat.status = vm.parent.STATUS_VALID;
                     vm.formData.phoneFormat.message = null;
