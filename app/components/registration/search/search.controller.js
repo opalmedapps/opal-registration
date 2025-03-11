@@ -294,18 +294,18 @@
             // Listener service call.
             const request = {
                 method: 'get',
-                url: '/api/registration/' + vm.formData.formFieldsData.registrationCode + '/',
+                url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
             };
 
             requestToListener.apiRequest(request, vm.formData.selectedLanguage)
                 .then(function (response) {
 
-                    if (response.status_code == 200) {
+                    if (response?.status_code == 200) {
                         // Call function to get user name.
-                        const patient = response.data.patient;
-                        const institution = response.data.institution;
+                        const patient = response.data?.patient;
+                        const institution = response.data?.institution;
 
-                        vm.formData.userName = patient.first_name + ' ' + patient.last_name;
+                        vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
 
                         vm.retrieveTermsOfUsePDF()
                             .then(function () {
