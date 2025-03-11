@@ -143,7 +143,6 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
             //Variable to set field status and message.
             vm.passwordFormat = { status: null, message: null };
-            console.log(vm.formData);
             vm.formData.passwordMeter = $scope.passwordStrength;
             if (vm.parent.isEmpty(vm.formData.formFieldsData.password)) {
                 vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
