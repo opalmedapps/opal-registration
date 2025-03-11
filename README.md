@@ -38,24 +38,16 @@ Modify SQL database connection info to match you local database setup.
 Modify the firebase connection info to match your personal firebase app:
 
 ``` json
-"firebaseConfig":{
-    "database":{
-         "_comment":"API/database configs found in firebase",
-         "apiKey": "xxxxxxxxxxxxxx",
-         "authDomain": "xxxxxxxxxxxxxx",
-         "databaseURL": "xxxxxxxxxx",
-         "projectId": "xxxxxxxx",
-         "storageBucket": "xxxxxxxxx",
-         "messagingSenderId": "xxxxxxxxxx",
-         "appId": "xxxxxxxx"
-    },
-    "firebaseBranch":{
-         "parentBranch":"dev3/A0/registration",
-         "firebaseChildBranch":"branch",
-         "requestChildBranch":"requests",
-         "responseChildBranch":"users"
-    }
-},
+{
+     "_comment":"API/database configs found in firebase",
+     "apiKey": "xxxxxxxxxxxxxx",
+     "authDomain": "xxxxxxxxxxxxxx",
+     "databaseURL": "xxxxxxxxxx",
+     "projectId": "xxxxxxxx",
+     "storageBucket": "xxxxxxxxx",
+     "messagingSenderId": "xxxxxxxxxx",
+     "appId": "xxxxxxxx"
+}
 ```
 
 ### Step 2 | Run the Docker scripts
@@ -66,4 +58,4 @@ If port `8083` is already in use, change the port mapping in `docker-compose.yml
 
 To force a re-build of the image. You may call `docker-compose build` before running or `docker-compose up --build` to force a re-build when running the container.
 
->If you don't have a SSL certificate installed on your local machine you might need to comment line 7 from the `.htaccess` file.
+> If you don't have a SSL certificate installed on your local machine you might need to comment line 7 from the `.htaccess` file.
