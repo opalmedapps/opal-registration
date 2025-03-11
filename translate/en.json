@@ -98,8 +98,8 @@
       "CODE": "Verification Code",
       "VERIFY": "Verify Email",
       "RESEND": "Resend Verification code",
-      "VALID": "Code is Valid",
-      "INVALID": "Code is Invalid"
+      "VALID": "The code is Valid",
+      "INVALID": "The code is Invalid"
     }
   },
   "ACCOUNT": {

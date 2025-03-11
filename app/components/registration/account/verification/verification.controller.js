@@ -123,7 +123,6 @@
             } catch (error) {
                 console.log(error);
                 vm.verifyCode = true;
-                vm.parent.errorPopup('contactUsError');
             }
         }
 
