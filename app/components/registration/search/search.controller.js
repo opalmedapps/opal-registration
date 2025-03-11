@@ -296,6 +296,9 @@
 
                         if (patient &&  institution) {
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
+                        } else if (response?.status_code == 403) {
+                            vm.formData.userName = `Forbidden`;
+                            vm.parent.errorPopup('forbiddenError');
                         } else {
                             vm.formData.userName = `Not found`;
                             vm.parent.errorPopup('notFoundError');

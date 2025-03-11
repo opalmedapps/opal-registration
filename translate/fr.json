@@ -223,6 +223,10 @@
       "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, s’il vous plaît, contactez nous à ",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
+    "FORBIDDENERRROR": {
+      "DESCRIPTION": "Impossible de terminer l'inscription pour le moment. Veuillez contacter les dossiers médicaux au",
+      "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
+    },
     "REGISTRATIONERROR": {
       "DESCRIPTION": "Nous ne pouvons pas enregistrer votre information. Veuillez réessayer plus tard."
     },
