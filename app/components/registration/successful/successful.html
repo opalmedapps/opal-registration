@@ -14,8 +14,8 @@
         </div>
         <div class="col-sm-3">
             <div class="column">
-                <div class="row-sm-1"><label>{{'PATIENT.HOSPITAL' | translate}}<span>Hospital Name</span></label></div>
-                <div class="row-sm-1"><label>{{'PATIENT.PATIENT' | translate}}<span>Patient Name</span></label></div>
+                <div class="row-sm-1"><label><span style="font-weight: bold;">{{'PATIENT.HOSPITAL' | translate}}</span>{{vm.formData.hospitalName}}</label></div>
+                <div class="row-sm-1"><label><span style="font-weight: bold;">{{'PATIENT.PATIENT' | translate}}</span>{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</label></div>
             </div>
         </div>
     </div>
@@ -28,7 +28,9 @@
                     <i class="fas fa-info-circle" style="font-size:24px"></i>
                 </td>
                 <td>
-                    <div class="text-muted mr-2"><label class="alert-primary">{{'SUCCESS.NOTIFICATION1' | translate}}<span style="font-weight: bold;">PAtient Name</span>{{'SUCCESS.NOTIFICATION2' | translate}}</label></div>
+                    <div class="text-muted mr-2"><label class="alert-primary">{{'SUCCESS.NOTIFICATION1' | translate}}
+                        <span style="font-weight: bold;">{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</span>
+                        {{'SUCCESS.NOTIFICATION2' | translate}}</label></div>
                 </td>
             </tr>
             <tr>
