@@ -155,7 +155,7 @@
       "PASSWORDINVALIDLOWERCASE": "Mot de passe nécessite au moins une lettre minuscule.",
       "PASSWORDINVALIDSPECIALCHAR": "Mot de passe nécessite au moins un symbole.",
       "PASSWORDINVALIDSTRENGTH": "Mot de passe trop faible.",
-      "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et une caractère spéciale.",
+      "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et un caractère spéciale.",
       "COMPAREPASSWORD": "Votre mot de passe et votre mot de passe de confirmation devraient être les mêmes.",
       "DUPLICATESECURITYQUESTION": "Veuillez choisir une question de sécurité différente.",
       "DUPLICATESECURITYANSWER": "Veuillez choisir une réponse différente.",
@@ -215,7 +215,7 @@
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
-    "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et une caractère spéciale.",
+    "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et un caractère spéciale.",
     "REGISTRATIONCODE": "Votre code d’inscription est un code de 12 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants.",
     "PATIENTID_TITLE1": "Enter le numéro ",
     "PATIENTID_TITLE2": " ou ",
