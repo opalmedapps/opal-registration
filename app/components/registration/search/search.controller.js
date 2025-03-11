@@ -305,10 +305,6 @@
                     if (result[0] == 'SUCCESS') {
                         // Call function to get user name.
                         vm.formData.userName = result[1];
-                        // TODO need to get patient and hospital info from DB
-                        vm.formData.firstName = "Lisa";
-                        vm.formData.lastName = "Simpson"
-                        vm.formData.hospitalName = "Montreal Children's";
                         
                         // Call function to get security question list.
                         vm.getSecurityQuestionList();
