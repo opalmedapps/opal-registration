@@ -53,6 +53,26 @@
             vm.formData.successForm.flag = null;
         }
 
+        vm.checkEmailAndSendVerificationCode = function() {
+            requestToListener.sendRequestWithResponse('CheckEmailExistsInFirebase', { Fields: {'email': vm.email} })
+                .then(function (response) {
+                    if (response?.Data?.errorInfo?.code == 'auth/user-not-found') {
+                        vm.sendVerificationCode();
+                    } else if (response?.Data?.uid) {
+                        vm.parent.errorPopup('emailExistingError');
+                        $timeout(() => {
+                            $location.path('/form/login');
+                        });
+                    } else {
+                        vm.parent.errorPopup('contactUsError');
+                    }
+                })
+                .catch(function (error) {
+                    // Call function to display error modal box.
+                    vm.parent.errorPopup('contactUsError');
+                });
+        }
+
         vm.sendVerificationCode = async function() {
             const request = {
                 method: 'post',
@@ -80,16 +100,10 @@
 
             } catch(error) {
                 console.log(error);
-                if (error == 'API_ERROR_INTERNAL') {
-                    vm.parent.errorPopup('emailExistingError');
-                    $timeout(() => {
-                        $location.path('/form/login');
-                    });
-                } else {
-                    vm.parent.errorPopup('contactUsError');
-                }
+                vm.parent.errorPopup('contactUsError');
             }
         }
+
         vm.checkVerificationCode = async function() {
             // Listener service call.
             const request = {
@@ -110,12 +124,14 @@
                 vm.parent.errorPopup('contactUsError');
             }
         }
+
         vm.resendVerificationCode = function() {
             vm.isCodeValid = false;
             vm.sendCode = false;
             vm.verifyCode = false;
             vm.sendCode = false;
         }
+
         vm.verificationFormSubmit = function() {
             vm.formData.formFieldsData.email = vm.email;
             $location.path('/form/secureInformation');
