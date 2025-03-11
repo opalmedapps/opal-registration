@@ -115,7 +115,7 @@
                 const response = await sendRequest(requestType, formatedParams);
                 const requestKey = response.key;
                 const firebase_url = response.url;
-                const firebasePath = `response/${requestKey}`;
+                const firebasePath = `responses/${requestKey}`;
                 const response_url = firebase_url.child(firebasePath);
 
                 response_url.on('value', snapshot => {
