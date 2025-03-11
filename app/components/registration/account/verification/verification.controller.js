@@ -60,8 +60,7 @@
                 .then(function (response) {
                 })
                 .catch(function (error) {
-                    const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.parent.errorPopup();
                 });
         }
         vm.checkVerificationCode = function() {
@@ -78,8 +77,7 @@
                     })
                 })
                 .catch(function (error) {
-                    const errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage);
+                    vm.parent.errorPopup();
                 });
         }
         vm.resendVerificationCode = function() {

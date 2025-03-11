@@ -118,8 +118,7 @@
                     if (response == undefined || response == null || response == "") {
 
                         // Call function to display error modal box.
-                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                        vm.parent.errorPopup();
                     }
                     else {
                         if (response.Data[0].Result == "Successfully Update") {     
@@ -140,16 +139,14 @@
                         else {
 
                             // Call function to display error modal box.
-                            var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                            vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                            vm.parent.errorPopup();
                         }
                     }
                 })
                 .catch(function (error) {
                    
                     // Call function to display error modal box.
-                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
-                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                    vm.parent.errorPopup();
                 });
         }
 

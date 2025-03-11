@@ -26,6 +26,7 @@
         vm.getData = getData;
         vm.displayError = displayError;
         vm.resetFields = resetFields;
+        vm.errorPopup = errorPopup;
 
         // Display alert on page refresh
         window.onbeforeunload = function (event) {
@@ -130,7 +131,20 @@
             }
 
         }
-        
+
+        // Error dialog popup
+        function errorPopup(error = 'contactUsError') {
+            let errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+            switch (error) {
+                case 'contactUsError':
+                    vm.displayError(errorModalPage, "unsuccessfulRegistration");
+                    break;
+                case 'notFoundError':
+                    errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                    vm.parent.displayError(errorModalPage);
+                    break;
+            }
+        }
     }
 
 })();
