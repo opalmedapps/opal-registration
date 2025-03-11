@@ -233,6 +233,9 @@
     "SOMETHINGWENTWRONGERROR": {
       "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please try again after 24 hours."
     },
+    "EXISTINGEMAILERROR": {
+      "DESCRIPTION": "This email is already registered. Login please."
+    },
     "SHARED": {
       "MODALTITLE": "Something Went Wrong",
       "BUTTONDISMISS": "Dismiss"

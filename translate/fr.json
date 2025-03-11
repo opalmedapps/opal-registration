@@ -235,6 +235,9 @@
     "SOMETHINGWENTWRONGERROR": {
       "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, veuillez réessayer après 24 heures."
     },
+    "EXISTINGEMAILERROR": {
+      "DESCRIPTION": "Le courriel est déjà enregistré. Connectez-vous s'il vous plaît."
+    },
     "SHARED": {
       "MODALTITLE": "Une erreur s’est produite",
       "BUTTONDISMISS": "Fermer"

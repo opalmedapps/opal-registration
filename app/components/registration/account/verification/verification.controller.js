@@ -54,30 +54,34 @@
         }
 
         vm.sendVerificationCode = async function() {
-            vm.sendCode = true;
-
-            let countDown = vm.countdownSeconds;
-            let time = setInterval(function() {
-                if (document.getElementById('count_down')) {
-                    document.getElementById('count_down').textContent = countDown + textContent;
-                    countDown--;
-                    if (countDown < 0) {
-                        clearInterval(time);
-                        document.getElementById('count_down').textContent = '';
-                        document.getElementById('resend_btn').removeAttribute('disabled');
-                    }
-                }
-            }, 1000);
-
             const request = {
                 method: 'post',
                 url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email/`,
             };
             try {
                 await requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email});
+
+                $timeout(() => {
+                    vm.sendCode = true;
+
+                    let countDown = vm.countdownSeconds;
+                    let time = setInterval(function () {
+                        if (document.getElementById('count_down')) {
+                            document.getElementById('count_down').textContent = countDown + textContent;
+                            countDown--;
+                            if (countDown < 0) {
+                                clearInterval(time);
+                                document.getElementById('count_down').textContent = '';
+                                document.getElementById('resend_btn').removeAttribute('disabled');
+                            }
+                        }
+                    }, 1000);
+                });
+
             } catch(error) {
                 console.log(error);
                 if (error == 'API_ERROR_INTERNAL') {
+                    vm.parent.errorPopup('emailExistingError');
                     $timeout(() => {
                         $location.path('/form/login');
                     });
