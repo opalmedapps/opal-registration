@@ -13,9 +13,13 @@ setup:
   script:
     - npm install -g bower
     - bower --version
+    # bower needs git
     - apk add --no-cache git
     - bower install --allow-root
+    # Install dependencies and cache within the project directory to cache
+    # See: https://javascript.plainenglish.io/improving-ci-performance-aka-how-to-save-your-money-31ff691360e4
     - npm ci --cache .npm --prefer-offline
+  # Cache modules in between pipelines
   cache:
     key:
       files:
@@ -23,6 +27,8 @@ setup:
     paths:
       - ".npm/"
   artifacts:
+    # pin artifacts to the branch
+    # see: https://docs.gitlab.com/ee/ci/jobs/job_artifacts.html#with-a-dynamically-defined-name
     name: "$CI_COMMIT_REF_SLUG"
     expire_in: 1 week
     paths:
@@ -40,6 +46,7 @@ deploy_development:
     - echo "listing working directory..."
     - ls -la
     - echo "transferring files and listing remote directory..."
+    # lftp mirror arguments: https://www.cyberciti.biz/faq/lftp-mirror-example/
     - >
       lftp -e "
         set cmd:fail-exit yes; 
