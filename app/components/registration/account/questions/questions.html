@@ -30,7 +30,7 @@
             <div class="form-row mb-2">
                 <div class="form-group col-md-6 col-sm-12">
                     <label class="font-weight-bold text-muted pr-1">{{'QUESTIONS.FIELDNAMES.PHONE' | translate}}</label>
-                    <input type="number" class="form-control" name="phone" ng-model="vm.formData.formFieldsData.phone"
+                    <input type="tel" class="form-control" name="phone" ng-model="vm.formData.formFieldsData.phone"
                            ng-change="vm.validatePhone()"
                            ng-class="{
                            'is-invalid':(vm.formData.phoneFormat.status == vm.parent.STATUS_INVALID),
