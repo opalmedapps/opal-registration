@@ -345,15 +345,15 @@
                 .then(function (response) {
 
                     // assing response to temporary variable.
-                    let security_questions = response?.data?.results;
+                    let securityQuestions = response?.data?.results;
 
                     vm.formData.securityQuestionList_EN = [];
                     vm.formData.securityQuestionList_FR = [];
 
                     // Check length of the variable
-                    if (security_questions?.length > 1) {
+                    if (securityQuestions?.length > 1) {
                         // Define loop for passing the value of securityquestions.
-                        security_questions.forEach((question) => {
+                        securityQuestions.forEach((question) => {
                             // Assing in JSON format
                             vm.formData.securityQuestionList_EN.push({
                                 "id": question.id,
