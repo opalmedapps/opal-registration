@@ -78,6 +78,29 @@
       "SECUREDROPDOWNDEAFULT": "--- Select a security question ---"
     }
   },
+  "VERIFICATION": {
+    "STEPS": "Step 2b of 5: ",
+    "TITLE": "Email Verification",
+    "INSTRUCTION": "In order to create a new Opal account you need to first verify your email address.",
+    "SEND": {
+      "TITLE": "Enter Email Address",
+      "INSTRUCTION": "Please provide your email address. We will then send you a verification code to your email address to verify that it is yours.",
+      "EMAIL": "Email",
+      "INVALID_EMAIL": "Invalid Email",
+      "SENDCODE": "Send Verification Code",
+      "MESSAGE": "Verification code was sent to your email address successfully."
+    },
+    "VERIFY": {
+      "TITLE": "Verify Email Address",
+      "INSTRUCTION_START": "We sent you a verification code to ",
+      "INSTRUCTION_END": " to verify that it is yours. Please type it in below to continue creating your Opal Account.",
+      "CODE": "Verification Code",
+      "VERIFY": "Verify Email",
+      "RESEND": "Resend Verification code",
+      "VALID": "Code is Valid",
+      "INVALID": "Code is Invalid"
+    }
+  },
   "SECURE": {
     "STEPS": "Step 2 of 5: ",
     "TITLE": "Create Your Opal Account",
