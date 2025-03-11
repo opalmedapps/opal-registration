@@ -301,8 +301,7 @@
                             vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
                         } else {
                             vm.formData.userName = `Not found`;
-                            var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
-                            vm.parent.displayError(errorModalPage);
+                            vm.parent.errorPopup('notFoundError');
                         }
 
                         vm.retrieveTermsOfUsePDF()
