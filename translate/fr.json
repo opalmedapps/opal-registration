@@ -48,7 +48,7 @@
   },
   "LOGIN": {
     "STEPS": "Étape 2b sur 5: ",
-    "TITLE": "connexion",
+    "TITLE": "Connexion",
     "INSTRUCTION": "Pour continuer, veuillez vous connecter à votre compte Opal existant",
     "INPUT": {
       "EMAIL": "Email",
