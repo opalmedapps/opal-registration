@@ -284,22 +284,28 @@
 
         // Method to call service to check valid input.
         vm.validInputs = function (requestObject) {
-            
-            // Parameter object
-            var parameters = {
-                'FirebaseBranchName': requestObject,
-                'RegistrationCode': vm.formData.formFieldsData.registrationCode,
-                'RAMQ': vm.formData.formFieldsData.ramq
-            };
 
             // Listener service call.
-            requestToListener.sendRequestWithResponse('ValidateInputs', { Fields: parameters })
+            const request = {
+                method: 'get',
+                url: `/api/registration/${vm.formData.formFieldsData.registrationCode}/`,
+            };
+
+            requestToListener.apiRequest(request, vm.formData.selectedLanguage)
                 .then(function (response) {
-                    var result = response.Data[0].Result.split(":");
-                    
-                    if (result[0] == 'SUCCESS') {
+
+                    if (response?.status_code == 200) {
                         // Call function to get user name.
-                        vm.formData.userName = result[1];
+                        const patient = response.data?.patient;
+                        const institution = response.data?.institution;
+
+                        if (patient &&  institution) {
+                            vm.formData.userName = `${patient?.first_name} ${patient?.last_name}`;
+                        } else {
+                            vm.formData.userName = `Not found`;
+                            var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                            vm.parent.displayError(errorModalPage);
+                        }
 
                         vm.retrieveTermsOfUsePDF()
                             .then(function () {
@@ -317,8 +323,7 @@
                             // Call function to reset value of every text fields.
                             vm.resetFields();
                         });
-                    }
-                    else {
+                    } else {
                         // Call function to display error modal box.
                         vm.errorPopup();
                     }
