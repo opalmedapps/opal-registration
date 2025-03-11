@@ -32,15 +32,15 @@ module.exports = {
         liveReload: true,
         open: true,
         port: 80,
-        static: {
-            directory: './app',
-            watch: {
-                // ignored: /node_modules/,
-                usePolling: true,
-            }
-        },
     },
-    // The value of [contenthash] changes when a file's content changes. We use this for cache busting of various files.
+    // Reloads the build in Docker every time a source file is modified (used for local development)
+    // See: https://stackoverflow.com/questions/42445288/enabling-webpack-hot-reload-in-a-docker-application
+    watchOptions: {
+        aggregateTimeout: 500,
+        poll: 1000, // Enable polling since fsevents are not supported in Docker
+        ignored: /node_modules/,
+    },
+    // The value of [contenthash] changes when a file's content changes (used for cache busting of various file types)
     output: {
         filename: '[name].[contenthash].bundle.js',
         path: path.resolve(__dirname, 'dist'),
