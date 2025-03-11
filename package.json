@@ -5,6 +5,7 @@
     "url": "gitlab+https://gitlab.com/yickmo/registration-web-page"
   },
   "dependencies": {
+    "angular": "npm:@xlts.dev/angular@1.9.1"
   },
   "author": "Jinal Vyas",
   "description": "Repository for registration website"
