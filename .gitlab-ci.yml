@@ -113,7 +113,7 @@ build and deploy research prod:
   extends: .build and deploy
   needs:
     - check build
-    - build and deploy staging
+    # - build and deploy staging
   variables:
     CONFIG: $CONFIG_RESEARCH_PROD
   rules:
