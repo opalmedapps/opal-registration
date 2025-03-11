@@ -56,6 +56,7 @@
                 method: 'post',
                 url: '/api/registration/${vm.formData.formFieldsData.registrationCode}/verify-email/',
             };
+
             requestToListener.apiRequest(request, vm.formData.selectedLanguage, {'email': vm.email})
                 .then(function (response) {
                 })
