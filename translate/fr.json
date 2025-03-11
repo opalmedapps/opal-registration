@@ -47,6 +47,29 @@
       "LONGRAMQLENGTH": "Numéro d'assurance maladie trop long."
     }
   },
+  "VERIFICATION": {
+    "STEPS": "Étape 2b of 5: ",
+    "TITLE": "vérification de l'E-mail",
+    "INSTRUCTION": "Afin de créer un nouveau compte Opal, vous devez d'abord vérifier votre adresse e-mail.",
+    "SEND": {
+      "TITLE": "Entrer l'adresse e-mail",
+      "INSTRUCTION": "Veuillez fournir votre adresse e-mail. Nous vous enverrons ensuite un code de vérification à votre adresse e-mail pour vérifier qu'il vous appartient.",
+      "EMAIL": "Email",
+      "INVALID_EMAIL": "Invalid Email",
+      "SENDCODE": "Envoyer le code de vérification",
+      "MESSAGE": "Le code de vérification a été envoyé avec succès à votre adresse e-mail."
+    },
+    "VERIFY": {
+      "TITLE": "Vérifier l'adresse e-mail",
+      "INSTRUCTION_START": "Nous vous avons envoyé un code de vérification pour ",
+      "INSTRUCTION_END": " pour vérifier qu'il vous appartient. Veuillez le saisir ci-dessous pour continuer à créer votre compte Opal.",
+      "CODE": "Code de vérification",
+      "VERIFY": "Vérifier les courriels",
+      "RESEND": "Renvoyer le code de vérification",
+      "VALID": "L'e-mail est valide",
+      "INVALID": "Le code n'est pas valide"
+    }
+  },
   "SECURE": {
     "STEPS": "Étape 2 de 5: ",
     "TITLE": "Créez votre compte Opal",
