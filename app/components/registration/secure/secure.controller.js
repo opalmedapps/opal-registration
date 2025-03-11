@@ -195,17 +195,16 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
                 }
             }
         }
-        // Function that limits the user from entering the Opal domain name in their passowrd 
+        // Function that limits the user from entering the Opal domain name in their passowrd
         vm.passwordContainsDomainName = function(password) {
             var opalRegex = /[0o@&]p[a@&4][l1!]/;              // edge cases for the word opal
-            return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected 
+            return opalRegex.test(password.toLowerCase());     // returns true if one of the case is detected
         }
-        
+
         // Function that checks for the user's personal information in the password
         vm.passwordContainsPersonalInformation = function(password){
-
-            var userMRN = vm.formData.formFieldsData.mrn;
-            var userRAMQ = vm.formData.formFieldsData.ramq.toLowerCase();
+            var userMRN = vm.formData.mrn;
+            var userRAMQ = vm.formData.ramq.toLowerCase();
             var RAMQLetters = userRAMQ.substring(0,4);
             var RAMQNumbers = userRAMQ.substring(4,12);
 
@@ -221,11 +220,11 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
 
             for (const term of blacklist){
                 // A term can be an empty string in some cases, e.g., if the patient has no RAMQ
-                if (term && password.toLowerCase().includes(term)){ 
-                    return true; 
+                if (term && password.toLowerCase().includes(term)){
+                    return true;
                 }
             }
-            return false;  
+            return false;
         }
 
         // Function to compare password and confirm password fields.

@@ -163,10 +163,10 @@
                 //Set registration code info
                 userAuthorizationService.setUserData(vm.formData.formFieldsData.registrationCode, vm.formData.patientId, vm.formData.hospitalCode);
                 if (vm.formData.patientId.length == 12) {
-                    vm.formData.formFieldsData.ramq = vm.formData.patientId;
+                    vm.formData.ramq = vm.formData.patientId;
 
                 } else if (vm.formData.patientId.length == 7) {
-                    vm.formData.formFieldsData.mrn = vm.formData.patientId;
+                    vm.formData.mrn = vm.formData.patientId;
                 }
                 vm.createBranchName();
             }
