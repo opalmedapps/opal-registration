@@ -185,15 +185,19 @@
 
         // Call service to check valid branch.
         vm.createBranchName = function () {
-            //Set the firebase branch name
+            // Set the firebase branch name
             userAuthorizationService.setUserBranchName(encryptionService.hash(vm.formData.formFieldsData.registrationCode));
 
-            // Display display spinner before calling service
+            // Display spinner before calling service
             vm.formData.displaySpinner = true;
 
-            // Call the backend to validate the user's inputs and proceed with data initialization
-            vm.validateInputs();
-        }
+            // Use $timeout to defer the execution of vm.validateInputs() to be in the next event loop
+            $timeout(function () {
+                // Call the backend to validate the user's inputs and proceed with data initialization
+                vm.validateInputs();
+            });
+        };
+
 
         /**
          * @description Calls the listener to validate the input data and receive patient and institution information.
