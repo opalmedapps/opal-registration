@@ -2,9 +2,9 @@
 
 ## Using Docker
 
-This project contains a `Dockerfile` as well as a `docker-compose.yml` to run it within a Docker container. 
+This project contains a `Dockerfile` as well as a `docker-compose.yml` to run it within a Docker container.
 
-### Step 1 | Create configuration file.
+### Step 1 | Create configuration file
 
 In the `PHP` directory, copy the content or rename `config.json.sample` to a file called `config.json. Then we need to modify some information contained in it.
 
