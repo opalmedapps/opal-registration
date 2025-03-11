@@ -121,7 +121,7 @@
                     vm.isCodeValid = response?.status_code === "200";
                 });
             } catch (error) {
-                console.log(error);
+                console.error(error);
                 vm.verifyCode = true;
             }
         }
