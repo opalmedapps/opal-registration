@@ -8,7 +8,7 @@ import markdown
 dependencies: set[str] = set()
 
 # load direct dependencies (excluding dev)
-with Path('/Users/mschoettle/Documents/Development/registration/web/package-lock.json').open() as fd:
+with Path('package-lock.json').open() as fd:
     package_data = json.load(fd)
 
 for package_name in package_data['packages']['']['dependencies']:
