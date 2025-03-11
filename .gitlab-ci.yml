@@ -71,8 +71,8 @@ check build:
     expire_in: 1 week
     paths:
       - dist
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  # rules:
+    # - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
 
 build and deploy demo:
@@ -116,8 +116,6 @@ build and deploy research prod:
     # - build and deploy staging
   variables:
     CONFIG: $CONFIG_RESEARCH_PROD
-  rules:
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
 
 build and deploy qa:
   environment: qa
