@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('accountController', accountController);
 
-    accountController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener'];
+    accountController.$inject = ['$rootScope', '$location', '$filter', '$scope', '$timeout', 'requestToListener', 'userAuthorizationService', 'encryptionService',];
 
-    function accountController($rootScope, $location, $filter, $scope, $timeout, requestToListener) {
+    function accountController($rootScope, $location, $filter, $scope, $timeout, requestToListener, userAuthorizationService, encryptionService,) {
         let vm = this;
 
         // Call function on page load to fetch the data.
