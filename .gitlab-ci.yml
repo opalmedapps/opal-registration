@@ -158,6 +158,9 @@ include:
   - template: DAST.gitlab-ci.yml
 
 # Job Customizations
+check_third_party_notice:
+  script:
+    - ls -la
 
 # Secret Detection:
 # https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
