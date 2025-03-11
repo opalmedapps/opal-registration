@@ -1,0 +1,10 @@
+image: alpine:3.15.4
+
+before_script:
+  - apk add --no-cache lftp
+
+deploy:dev:
+  environment: development
+  script:
+    - lftp --version
+    - lftp -e 'open $FTP_HOST; user $FTP_USER $FTP_PASSWORD; mirror --exclude-glob .* --include-glob .htaccess --reverse --delete --verbose ./ test/; bye'
