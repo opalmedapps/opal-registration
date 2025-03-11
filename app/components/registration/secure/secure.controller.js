@@ -32,9 +32,6 @@
                                 $scope.passwordStrength = zxcvbnts.core.zxcvbn($scope.password, [email, username]).score;
                             else
                                 $scope.passwordStrength = null;
-
-                            // define the validity criterion for passwordChecker constraint
-                            ngModelCtrl.$setValidity('passwordChecker', ($scope.passwordStrength >= 10 && $scope.passwordStrength <= 50));
                         });
                     });
                 }
@@ -166,7 +163,7 @@
                 ) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDFORMAT');
-                    vm.formData.passwordMeter = null;
+                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
                     return;
                 } else if ($scope.passwordStrength < 3) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
