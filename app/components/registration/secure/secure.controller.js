@@ -497,9 +497,6 @@
                 // Call function ot language list
                 vm.parent.languageListForPreference();
             }
-
-            console.log(vm.formData.formFieldsData);
-            console.log(vm.allStatusValid());
         }
 
         // Function to check if email is already in use.
