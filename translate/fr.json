@@ -149,7 +149,7 @@
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
     "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 8 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et une lettre spéciale.",
-    "REGISTRATIONCODE": "Votre code d’inscription est un code de 10 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants."
+    "REGISTRATIONCODE": "Votre code d’inscription est un code de 12 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants."
   },
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {
