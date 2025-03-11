@@ -65,8 +65,14 @@ deploy_development:
 include:
   # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
   - template: Jobs/Secret-Detection.gitlab-ci.yml
+  # Dependency Scanning: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/
+  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
 
 # Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 secret_detection:
   variables:
     SECRET_DETECTION_HISTORIC_SCAN: "true"
+
+# https://docs.gitlab.com/ee/user/application_security/dependency_scanning/index.html#overriding-dependency-scanning-jobs
+gemnasium-dependency_scanning:
+  dependencies: ["setup"]
