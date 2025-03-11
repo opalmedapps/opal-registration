@@ -214,7 +214,7 @@ import * as zxcvbnFrPackage from '@zxcvbn-ts/language-fr';
             var RAMQLetters = userRAMQ.substring(0,4);
             var RAMQNumbers = userRAMQ.substring(4,12);
 
-            if ((password.toLowerCase().includes(RAMQLetters) || password.toLowerCase().includes(RAMQNumbers)) && userRAMQ !==""){
+            if ((password.toLowerCase().includes(RAMQLetters) || password.toLowerCase().includes(RAMQNumbers)) && userRAMQ !== ""){
                 return true;    // if the RAMQ exists and its number or characters are detected in the password
             }
             return (password.toLowerCase().includes(userMRN) && userMRN !== ""); // if the mrn exists and is used in the password
