@@ -25,10 +25,21 @@
     "LOADINGPLEASEWAIT": "Please wait.",
     "LOADINGMESSAGE": "We are processing your request. Please do not refresh this page."
   },
+  "HOSPITALS": {
+    "RVH": "Royal Victoria Hospital",
+    "CEDARS": "Cedars Cancer Center",
+    "HIV": "Chronic Viral Illness Service (HIV)",
+    "MGH": "Montreal General Hospital",
+    "IBD": "Inflammatory Bowel Disease (IBD) Clinic",
+    "MCH": "Montreal Childrens Hospital",
+    "NEPHRO": "Nephrology Division",
+    "STJ": "Ste-Justine Childrens Hospital",
+    "HEMA": "Hematology-Oncology Day Centre"
+  },
   "WELCOME": {
     "TITLE": "",
-    "INSTRUCTION": "Opal is currently available for patients at the Cedars Cancer Centre of the McGill University Health Centre in Montreal.",
-    "STAPES": "If you are a patient at the Cedars Cancer Centre, please proceed to the Cedars Cancer Foundation kiosk at the S1 level of the Cancer Centre. The staff there will be happy to register you for an Opal account."
+    "INSTRUCTION": "Opal is currently available for patients at the following hospitals:",
+    "STAPES": "If you are a patient at one of these hospitals, please proceed to the hospital's reception desk or ask your clinician about obtaining an Opal registration code."
   },
   "SEARCH": {
     "STEPS": "Step 1 of 5: ",

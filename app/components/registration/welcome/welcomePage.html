@@ -37,20 +37,36 @@
 <!--Page content main section-->
 <div class="container mt-0 mt-md-4 p-0 shadow-lg rounded">
     <form name="welcomeForm" class="p-4 pb-2 mb-0 mb-md-2 bg-light rounded">
-        <div class="form-row">
-            <p class="font-weight-bold text-muted">
-                {{'WELCOME.INSTRUCTION' | translate}}
-            </p>
-            <p class="font-weight-bold text-muted">
-                {{'WELCOME.STAPES' | translate}}
-            </p>
-        </div>
+        <p class="font-weight-bold text-muted">
+            {{'WELCOME.INSTRUCTION' | translate}}
+        </p>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.RVH' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.CEDARS' | translate }}</li>
+            <li>{{ 'HOSPITALS.HIV' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.MGH' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.IBD' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.MCH' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.NEPHRO' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{ 'HOSPITALS.STJ' | translate }}
+        </p>
+        <ul class="list-unstyled ml-4 text-muted">
+            <li>{{ 'HOSPITALS.HEMA' | translate }}</li>
+        </ul>
+        <p class="font-weight-bold text-muted">
+            {{'WELCOME.STAPES' | translate}}
+        </p>
     </form>
 </div>
-
-
-
-
-
-<!--Footer view injected here-->
-<!--<div ui-view="footer"></div>-->
