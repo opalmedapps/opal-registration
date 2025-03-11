@@ -83,10 +83,10 @@
             }
 
             // If global variable selectedlanguage is set to english
-            if (vm.formData.selectedLanguage == 'en') {
+            if (vm.formData.selectedLanguage === 'en') {
                 
                 // Check if secure form is loaded. If yes assign english questions to dropdown modal
-                if (vm.formData.secureForm.flag == 1) {
+                if (vm.formData.secureForm.flag === 1) {
                     vm.formData.securityQuestionList = vm.formData.securityQuestionList_EN;
                     for (var i = 0; i < vm.formData.securityQuestionList.length; i++) {
                         if (vm.formData.securityQuestionList[i].id == vm.formData.formFieldsData.securityQuestion1.id) {
@@ -102,12 +102,12 @@
                 }
 
                 // Check if preference form is loaded. If yes assign english value to language and levelofaccess dropdown modal
-                if (vm.formData.preferenceForm.flag == 1) {
+                if (vm.formData.preferenceForm.flag === 1) {
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_EN;
                 }
 
                 // Check if aggreement form is loaded. If yes assign english document
-                if (vm.formData.agreementForm.flag == 1) { 
+                if (vm.formData.agreementForm.flag === 1) { 
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_EN;
                 }
             }

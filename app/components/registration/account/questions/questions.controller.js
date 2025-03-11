@@ -200,10 +200,10 @@
                 vm.formData.answer3Format.status = vm.parent.STATUS_INVALID,
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.ANSWERREQUIRED');
             } else {
-                if (vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer1 ||
-                    vm.formData.formFieldsData.answer3 == vm.formData.formFieldsData.answer2) {
-                    vm.formData.answer3Format.status = vm.parent.STATUS_INVALID,
-                        vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
+                if (vm.formData.formFieldsData.answer3 === vm.formData.formFieldsData.answer1 ||
+                    vm.formData.formFieldsData.answer3 === vm.formData.formFieldsData.answer2) {
+                    vm.formData.answer3Format.status = vm.parent.STATUS_INVALID;
+                    vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.DUPLICATESECURITYANSWER');
                 } else if (vm.formData.formFieldsData.answer3.length < 3) {
                     vm.formData.answer3Format.status = vm.parent.STATUS_INVALID;
                     vm.formData.answer3Format.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SECURITYANSWERLENGTH');
@@ -283,6 +283,6 @@
                 vm.parent.languageListForPreference();
             }
         }
-    };
+    }
 
 })();
