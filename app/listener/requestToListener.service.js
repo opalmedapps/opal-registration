@@ -18,12 +18,10 @@
             // Get firebase parent branch
             const firebase_parentBranch = userAuthorizationService.getHospitalCode();
 
-            let branch_name = null;
-            if (typeOfRequest == 'registration-api') {
-                branch_name = firebaseFactory.getFirebaseApiUrl(firebase_parentBranch);
-            } else {
-                branch_name = firebaseFactory.getFirebaseUrl(firebase_parentBranch);
-            }
+            let branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
+                ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
+                : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+
 
             // Get firebase request user
             const firebase_url = firebase.database().ref(branch_name);
@@ -105,18 +103,16 @@
          * @description Call the new listener structure that relays the request to Django backend
          * @param {object} parameters Required fields to process request
          * @param {string} language Required field to request header, 'en' or 'fr'
-         * @param {object | null} Data the is needed to be passed to the request.
+         * @param {object | null} data that is needed to be passed to the request.
          * @returns Promise that contains the response data
          */
         function apiRequest(parameters, language, data = null) {
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, language, data);
-                const requestType = 'registration-api';
-                const response = await sendRequest(requestType, formatedParams);
-                const requestKey = response.key;
-                const firebase_url = response.url;
-                const firebasePath = `responses/${requestKey}`;
-                const response_url = firebase_url.child(firebasePath);
+                const requestType = firebaseFactory.getApiParentBranch();
+                const {key, url} = await sendRequest(requestType, formatedParams);
+                const firebasePath = `responses/${key}`;
+                const response_url = url.child(firebasePath);
 
                 response_url.on('value', snapshot => {
                     if (snapshot.exists()) {
