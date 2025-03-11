@@ -1,4 +1,4 @@
-FROM node:16.20.0-alpine3.17 as dependencies
+FROM node:16.20.1-alpine3.17 as dependencies
 
 # Install dependencies for bower
 RUN apk add --no-cache git
