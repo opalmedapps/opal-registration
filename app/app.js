@@ -12,7 +12,6 @@ import 'angular/angular-csp.css';
 import 'angular-translate';
 import 'angular-ui-bootstrap';
 import 'angular-ui-router';
-import 'angularfire';
 import 'angularjs-datepicker';
 import 'angularjs-datepicker/dist/angular-datepicker.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
