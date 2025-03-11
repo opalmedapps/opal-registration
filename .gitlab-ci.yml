@@ -81,6 +81,6 @@ deploy_staging:
         ls -la ${CI_ENVIRONMENT_NAME}; 
         bye
       "
-  rules:
-    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
-      when: manual
+  # rules:
+  #   - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+  #     when: manual
