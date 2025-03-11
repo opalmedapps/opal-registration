@@ -3,6 +3,11 @@ default:
   before_script:
   - uname -a
 
+stages:
+  - build
+  - test
+  - deploy
+
 setup:
   stage: build
   script:
@@ -50,5 +55,9 @@ deploy_development:
 
 include:
 # Secret Detection: https://docs.gitlab.com/ee/user/application_security/secret_detection/
-# Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
 - template: Jobs/Secret-Detection.gitlab-ci.yml
+
+# Customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+secret_detection:
+  variables:
+    SECRET_DETECTION_HISTORIC_SCAN: "true"
