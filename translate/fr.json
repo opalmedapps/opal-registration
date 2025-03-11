@@ -114,7 +114,8 @@
       "PRINTANDDOWNLOADDOCUEMNT": "Pour télécharger ou imprimer ce document",
       "ACCEPTCHECKBOX": "J’ai lu et accepté les termes de cet accord.",
       "DOUCMENTLINK": "documents/ContratdutilisationduLogiciel.html",
-      "PDFLINK": "documents/Contratd'utilisationduLogiciel.pdf"
+      "PDFLINK": "documents/Contratd'utilisationduLogiciel.pdf",
+      "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {
       "ACCEPTCHECKBOXREQUIRED": "Veuillez accepter les conditions d’utilisation ci-dessus afin de procéder."
@@ -128,7 +129,10 @@
     "DOWNLOADAPP": "Si ce n’est pas déjà fait, veuillez télécharger l’application Opal à partir de l'iOS App Store ou du Google Play Store, et connectez-vous pour avoir accès à vos données médicales.",
     "PROCESS": "Si vous êtes sur une tablette ou sur un téléphone intelligent, vous pouvez télécharger Opal immédiatement en utilisant les liens ci-dessous. Sinon, vous pouvez suivre les liens fournis dans votre courriel de confirmation à partir de votre appareil mobile.",
     "APPSTORELOGO": "images/logos/AppStore_FR.svg",
-    "PLAYSTORELOGO": "images/logos/PlayStore_FR.png"
+    "PLAYSTORELOGO": "images/logos/PlayStore_FR.png",
+    "NOTIFICATION1": "Accéder aux données de ",
+    "NOTIFICATION2": " est sujet à confirmation par Medical Records.",
+    "NOTIFICATION3": "Vous recevrez une notification une fois votre relation confirmée."
   },
   "TOOLTIP": {
     "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
