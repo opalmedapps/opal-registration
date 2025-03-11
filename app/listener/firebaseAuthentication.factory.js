@@ -13,8 +13,11 @@ var myModule = angular.module('myApp');
 myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject', 'userAuthorizationService',
     function ($firebaseAuth, $http) {
 
-        var firebaseBranch = "";
+        var firebaseBranch = '';
         var hospitalCodeArray = [];
+        var devBranch = '';
+        var parentBranch = '';
+        var apiParentBranch = ''
         // Call function to load firebase configuration on page load.
         getFirebaseConfig();
 
@@ -29,6 +32,9 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                 // Assign branch structure.
                 firebaseBranch = results.data;
                 hospitalCodeArray = firebaseBranch.hospitalCodes;
+                devBranch = firebaseBranch.devBranch;
+                parentBranch = firebaseBranch.parentBranch;
+                apiParentBranch = firebaseBranch.apiParentBranch;
 
                 return 1;
             }, function (error) {
@@ -46,22 +52,22 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
              **/
 
             getFirebaseUrl: function (extension) {
-                for(var i =0; i<hospitalCodeArray.length; i++){
-                    if(hospitalCodeArray[i].uniqueHospitalCode == extension){
-                        return hospitalCodeArray[i].parentBranch + '/';
-                    }
-                }
-                // switch (extension) {
-                //     case null:
-                //         return firebaseBranch.parentBranch + '/' ;
-                //     case 'users':
-                //         return firebaseBranch.parentBranch + firebaseBranch.responseChildBranch + "/";
-                //     case 'requests':
-                //         return firebaseBranch.parentBranch + firebaseBranch.requestChildBranch + "/";
-                //     default:
-                //         return firebaseUrl;
-                // }
+                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode == extension);
+                const unique_code = hospital_code ? hospital_code.uniqueHospitalCode + '/' : '';
+                return devBranch + '/' + unique_code + parentBranch + '/';
+            },
 
+            /**
+             @ngdoc method
+             @name getFirebaseApiUrl
+             @methodOf myApp.service:firebaseFactory
+             @returns {String} Returns firebase api url string
+             **/
+
+            getFirebaseApiUrl: function (extension) {
+                const hospital_code = hospitalCodeArray.find(code => code.uniqueHospitalCode == extension);
+                const unique_code = hospital_code ? hospital_code.uniqueHospitalCode + '/' : '';
+                return devBranch + '/' + unique_code + apiParentBranch + '/';
             },
 
             /**
@@ -81,6 +87,16 @@ myModule.factory("firebaseFactory", ['$firebaseAuth', '$http', '$firebaseObject'
                     default:
                         return '';
                 }
+            },
+
+            /**
+             @ngdoc method
+             @name getApiParentBranch
+             @methodOf myApp.service:firebaseFactory
+             @returns {String} Returns api parent branch string
+             **/
+            getApiParentBranch: function () {
+                return apiParentBranch;
             },
             
             // Create firebase account with user email and password

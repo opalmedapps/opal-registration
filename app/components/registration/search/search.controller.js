@@ -11,9 +11,9 @@
     angular.module('myApp')
         .controller('searchController', searchController);
 
-    searchController.$inject = ['$filter', '$location', '$rootScope', '$uibModal', '$timeout', 'requestToListener', 'searchService', 'firebaseFactory', 'userAuthorizationService', 'encryptionService'];
+    searchController.$inject = ['$filter', '$location', '$rootScope', '$uibModal', '$timeout', '$sce', 'requestToListener', 'searchService', 'firebaseFactory', 'userAuthorizationService', 'encryptionService', 'apiConstants'];
 
-    function searchController($filter, $location, $rootScope, $uibModal, $timeout, requestToListener, searchService, firebaseFactory, userAuthorizationService, encryptionService) {
+    function searchController($filter, $location, $rootScope, $uibModal, $timeout, $sce, requestToListener, searchService, firebaseFactory, userAuthorizationService, encryptionService, apiConstants) {
         var vm = this;
 
         // Create variable formData to store the values of parent data.
@@ -50,7 +50,7 @@
             // Hide shared error message
             vm.sharedErrorMessage = true;
             
-            // Call functio to fetch URL query parameters.
+            // Call function to fetch URL query parameters.
             vm.fetchURL();
         }
 
@@ -338,9 +338,23 @@
                     if (result[0] == 'SUCCESS') {
                         // Call function to get user name.
                         vm.formData.userName = result[1];
-                        
-                        // Call function to get security question list.
-                        vm.getSecurityQuestionList();
+
+                        vm.retrieveTermsOfUsePDF()
+                            .then(function () {
+                                vm.getSecurityQuestionList();
+                        })
+                        .catch(function (error) {
+
+                            // Hide display spinner if service get error.
+                            vm.formData.displaySpinner = true;
+        
+                            // Call function to display error modal box.
+                            var errorModalPage = 'app/components/registration/shared/modalBox/notFoundError.html';
+                            vm.parent.displayError(errorModalPage);
+        
+                            // Call function to reset value of every text fields.
+                            vm.resetFields();
+                        });
                     }
                     else {
                         // Call function to display error modal box.
@@ -423,6 +437,49 @@
                 });
         }
 
-    };
+        vm.retrieveTermsOfUsePDF = async function () {
+            try {
+                const terms_response = await requestToListener.apiRequest(
+                    apiConstants.ROUTES.TERMS_OF_USE,
+                    vm.formData.selectedLanguage
+                );
+                
+                $timeout(() => {
+                    const termsOfUsePDF = terms_response?.data?.terms_of_use;
 
+                    if (termsOfUsePDF === undefined || termsOfUsePDF === "") {
+                        console.error(
+                            'Unable to retrieve the terms of use from the api-backend.'
+                        );
+
+                        // Call function to display error modal box.
+                        var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                        vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                    }
+
+                    vm.formData.termsOfUseBase64 = $sce.trustAsResourceUrl(
+                        `data:application/pdf;base64,${termsOfUsePDF}`
+                    );
+
+                    vm.isTermsLoaded = true;
+
+                    // Hide display spinner after all request get response.
+                    vm.formData.displaySpinner = true;
+                });
+            } catch (error) {
+                $timeout(() => {
+                    console.error(
+                        'Unable to retrieve the terms of use from the api-backend:',
+                        error
+                    );
+
+                    // Hide display spinner after all request get response.
+                    vm.formData.displaySpinner = true;
+
+                    var errorModalPage = 'app/components/registration/shared/modalBox/contactUsError.html';
+                    vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
+                });
+            }
+        }
+    };
 })();

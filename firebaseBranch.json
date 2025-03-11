@@ -1,43 +1,39 @@
 {
   "_comment": "Firebase branch declaration file",
+  "devBranch": "dev3",
   "firebaseChildBranch": "branch",
   "requestChildBranch": "requests",
   "responseChildBranch": "users",
+  "apiParentBranch": "registration-api",
+  "parentBranch": "registration",
   "hospitalCodes": [
     {
       "fullName": "MUHC_FULL",
-      "uniqueHospitalCode": "A0",
-      "parentBranch": "dev3/A0/registration"
+      "uniqueHospitalCode": "A0"
     },
     {
       "fullName": "SMHC_FULL",
-      "uniqueHospitalCode": "A1",
-      "parentBranch": "dev3/A1/registration"
+      "uniqueHospitalCode": "A1"
     },
     {
       "fullName": "CHUM_FULL",
-      "uniqueHospitalCode": "A2",
-      "parentBranch": "dev3/A2/registration"
+      "uniqueHospitalCode": "A2"
     },
     {
       "fullName": "HMR_FULL",
-      "uniqueHospitalCode": "A3",
-      "parentBranch": "dev3/A3/registration"
+      "uniqueHospitalCode": "A3"
     },
     {
       "fullName": "CHU_SJ_FULL",
-      "uniqueHospitalCode": "A4",
-      "parentBranch": "dev3/A4/registration"
+      "uniqueHospitalCode": "A4"
     },
     {
       "fullName": "CITE_FULL",
-      "uniqueHospitalCode": "A5",
-      "parentBranch": "dev3/A5/registration"
+      "uniqueHospitalCode": "A5"
     },
     {
       "fullName": "RI_MUHC_FULL",
-      "uniqueHospitalCode": "A6",
-      "parentBranch": "dev3/A6/registration"
+      "uniqueHospitalCode": "A6"
     }
   ]
 }
