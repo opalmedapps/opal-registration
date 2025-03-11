@@ -138,6 +138,10 @@
 
         // Function to validate password
         vm.validatePassword = function () {
+            // If the password is strong via zxcvbn, but invalid via our own requirements,
+            // lower the strength to the highest invalid level. This makes the UI clearer
+            // by showing a low strength for passwords we consider invalid.
+            const minPasswordStrength = 3;
 
             //Variable to set field status and message.
             vm.passwordFormat = { status: null, message: null };
@@ -151,27 +155,28 @@
                 if (vm.formData.formFieldsData.password.length < 10) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.SHORTPASSWORDLENGTH');
-                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.length > 50) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.LONGPASSWORDLENGTH');
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.search(/\d/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDNUMBER');
-                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if (vm.formData.formFieldsData.password.search(/[A-Z]/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDCAPITAL');
-                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 }
                 else if (vm.formData.formFieldsData.password.search(/\W|_{1}/) === -1) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
                     vm.formData.passwordFormat.message = $filter('translate')('SECURE.FIELDERRORMESSAGES.PASSWORDINVALIDSPECIALCHAR');
-                    vm.formData.passwordMeter = $scope.passwordStrength >= 3 ? 2 : $scope.passwordStrength;
+                    vm.formData.passwordMeter = $scope.passwordStrength >= minPasswordStrength ? minPasswordStrength - 1 : $scope.passwordStrength;
                     return;
                 } else if ($scope.passwordStrength < 3) {
                     vm.formData.passwordFormat.status = vm.parent.STATUS_INVALID;
