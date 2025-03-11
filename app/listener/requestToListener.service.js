@@ -15,18 +15,24 @@
         // Function to send request to listener
         function sendRequest(typeOfRequest, parameters) {
 
-            // Get firebase parent branch
-            const firebase_parentBranch = userAuthorizationService.getHospitalCode();
+            return new Promise((resolve, reject) => {
+                // Get firebase parent branch
+                const firebase_parentBranch = userAuthorizationService.getHospitalCode();
 
-            let branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
-                ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
-                : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+                let branch_name;
+                try {
+                    branch_name = typeOfRequest === firebaseFactory.getApiParentBranch()
+                        ? firebaseFactory.getFirebaseApiUrl(firebase_parentBranch)
+                        : firebaseFactory.getFirebaseUrl(firebase_parentBranch);
+                }
+                catch(error) {
+                    reject(error);
+                    return;
+                }
 
+                // Get firebase request user
+                const firebase_url = firebase.database().ref(branch_name);
 
-            // Get firebase request user
-            const firebase_url = firebase.database().ref(branch_name);
-
-            return new Promise((resolve) => {
                 let requestType;
                 // Clone the parameters to prevent re-encrypting when using them in several requests
                 let requestParameters = JSON.parse(JSON.stringify(parameters));
@@ -89,8 +95,9 @@
                             response_url.off();
                             reject({ Response: 'timeout' });
                         }, 30000);
-                    });
-            }).catch(err => console.log(err));
+                    })
+                .catch(reject);
+            });
         }
 
         /**
@@ -104,9 +111,17 @@
             return new Promise(async (resolve, reject) => {
                 const formatedParams = formatParams(parameters, language, data);
                 const requestType = firebaseFactory.getApiParentBranch();
-                const {key, url} = await sendRequest(requestType, formatedParams);
-                const firebasePath = `responses/${key}`;
-                const response_url = url.child(firebasePath);
+
+                let response_url;
+                try {
+                    const {key, url} = await sendRequest(requestType, formatedParams);
+                    const firebasePath = `responses/${key}`;
+                    response_url = url.child(firebasePath);
+                }
+                catch(error) {
+                    reject(error);
+                    return;
+                }
 
                 response_url.on('value', snapshot => {
                     if (snapshot.exists()) {
