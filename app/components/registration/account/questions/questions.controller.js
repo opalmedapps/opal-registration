@@ -88,6 +88,16 @@
             }
         }
 
+        vm.securityQuestion1 = function (securityQuestion) {
+            return (!(vm.formData.formFieldsData.securityQuestion1 && vm.formData.formFieldsData.securityQuestion1) || securityQuestion.id != vm.formData.formFieldsData.securityQuestion1);
+        };
+        vm.securityQuestion2 = function (securityQuestion) {
+            return (!(vm.formData.formFieldsData.securityQuestion2 && vm.formData.formFieldsData.securityQuestion2) || securityQuestion.id != vm.formData.formFieldsData.securityQuestion2);
+        };
+        vm.securityQuestion3 = function (securityQuestion) {
+            return (!(vm.formData.formFieldsData.securityQuestion3 && vm.formData.formFieldsData.securityQuestion3) || securityQuestion.id != vm.formData.formFieldsData.securityQuestion3);
+        };
+
         // Function to validate security question1.
         vm.validateSecurityQuestion1 = function () {
 
