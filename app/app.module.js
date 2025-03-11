@@ -103,19 +103,6 @@
 
                 })
 
-               
-                // User secure information page.
-                .state('form.secure', {
-                    url: '/secureInformation',
-                    views: {
-                        header: header,
-                        content: {
-                            component: 'secureComponent'
-                        },
-                        footer: footer
-                    }
-                })
-
                 // User account login page.
                 .state('form.login', {
                     url: '/login',
@@ -127,6 +114,31 @@
                         footer: footer
                     }
 
+                })
+
+                // User account questions page.
+                .state('form.questions', {
+                    url: '/questions',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'questionsComponent'
+                        },
+                        footer: footer
+                    }
+
+                })
+               
+                // User secure information page.
+                .state('form.secure', {
+                    url: '/secureInformation',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'secureComponent'
+                        },
+                        footer: footer
+                    }
                 })
 
                 // User opal preference page.

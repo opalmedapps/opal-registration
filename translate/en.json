@@ -61,6 +61,24 @@
       "INVALID": "Email or password is invalid"
     }
   },
+  "QUESTIONS": {
+    "STEPS": "Step 2c of 5: ",
+    "TITLE": "Create Security Questions",
+    "INSTRUCTION_START": "Please note that certain data (such as answers to security questions) are specific to the hospital and only stored within the hospital. To access the data of ",
+    "INSTRUCTION_END": " with your existing Opal account, please fill out the form below.",
+    "FIELDNAMES": {
+      "LOGINAS": "Logged in as ",
+      "PHONE": "Phone Number",
+      "QUESTION_TITLE": "Security Questions",
+      "SECURITYQUESTION1": "Security Question 1",
+      "ANSWER1": "Answer 1",
+      "SECURITYQUESTION2": "Security Question 2",
+      "ANSWER2": "Answer 2",
+      "SECURITYQUESTION3": "Security Question 3",
+      "ANSWER3": "Answer 3",
+      "SECUREDROPDOWNDEAFULT": "--- Select a security question ---"
+    }
+  },
   "SECURE": {
     "STEPS": "Step 2 of 5: ",
     "TITLE": "Create Your Opal Account",
