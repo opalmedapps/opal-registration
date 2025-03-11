@@ -97,18 +97,22 @@
                 vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.CODEREQUIRED');
             }
             else {
-                if (vm.formData.formFieldsData.registrationCode.length < 12) {
+                const codeArray = vm.formData.formFieldsData.registrationCode.split('-');
+                if (codeArray.length !== 2) {
+                    vm.formData.codeFormat.status = 'invalid';
+                    vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.CODEREQUIRED');
+                } else if (codeArray[1].length < 10) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.SHORTCODELENGTH');
-                }
-
-                else if (vm.formData.formFieldsData.registrationCode.length > 12) {
+                } else if (codeArray[1].length > 10) {
                     vm.formData.codeFormat.status = 'invalid';
                     vm.formData.codeFormat.message = $filter('translate')('SEARCH.FIELDERRORMESSAGES.LONGCODELENGTH');
-                }
-                else {
+                } else {
                     vm.formData.codeFormat.status = 'valid';
                     vm.formData.codeFormat.message = null;
+
+                    vm.formData.hospitalCode = codeArray[0];
+                    vm.formData.formFieldsData.registrationCode = codeArray[1]
 
                     // Display shared error message
                     vm.sharedErrorMessage = true;
@@ -177,7 +181,7 @@
                 // Display shared error message
                 vm.sharedErrorMessage = true;
 
-                vm.formData.hospitalCode = vm.formData.formFieldsData.registrationCode.substring(0,2);
+                vm.formData.hospitalCode = vm.formData.formFieldsData.registrationCode;
                 vm.formData.formFieldsData.ramq = vm.formData.formFieldsData.ramq.toUpperCase();
 
 
