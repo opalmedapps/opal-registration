@@ -19,7 +19,7 @@ COPY .npmrc ./
 RUN npm ci
 
 
-FROM php:8.2.9-apache-bullseye
+FROM php:8.2.10-apache-bullseye
 
 # Install dependencies
 RUN apt-get update \
