@@ -121,6 +121,8 @@
                     vm.isCodeValid = response?.status_code === "200";
                 });
             } catch (error) {
+                console.log(error);
+                vm.verifyCode = true;
                 vm.parent.errorPopup('contactUsError');
             }
         }
