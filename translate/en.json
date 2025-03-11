@@ -93,7 +93,8 @@
       "LANGUAGE": "Your Language Preference",
       "LANGUAGEDROPDOWNDEAFULT": "--- Select a language ---",
       "AUTHORIZETRANSMISSION": "Authorization",
-      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "I authorize the secure transmission of the medical data that I have selected above to my Opal app."
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT_START": "I authorize the secure transmission of the medical data of ",
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT_END": " to my Opal app."
     },
     "FIELDERRORMESSAGES": {
       "LANGUAGEREQUIRED": "Please select your preferred language.",
