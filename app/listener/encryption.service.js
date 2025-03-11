@@ -83,12 +83,12 @@
         }
 
         /**
-             Creates a new Uint8Array based on two different ArrayBuffers
-            
-             @private
-             @param {Uint8Array} buffer1 The first buffer.
-             @param {Uint8Array} buffer2 The second buffer.
-             @return {Uint8Array} The new ArrayBuffer created out of the two.
+         Creates a new Uint8Array based on two different ArrayBuffers
+
+         @private
+         @param {Uint8Array} buffer1 The first buffer.
+         @param {Uint8Array} buffer2 The second buffer.
+         @return {Uint8Array} The new ArrayBuffer created out of the two.
          **/
         var appendUint8Array = function (buffer1, buffer2) {
             var tmp = new Uint8Array(buffer1.length + buffer2.length);
@@ -99,69 +99,80 @@
 
         return {
             /**
-                @ngdoc method
-                @name decryptData
-                @methodOf myApp.service:encryptionService
-                @params {Object} object Object to be decrypted
-                @description Uses the hashed of the password from the {@link myApp.service:userAuthorizationService  userAuthorizationService} service as key to decrypt object parameter
-                @return {Object} Returns decrypted object
-            **/
+             @ngdoc method
+             @name decryptData
+             @methodOf myApp.service:encryptionService
+             @params {Object} object Object to be decrypted
+             @description Uses the hashed of the password from the {@link myApp.service:userAuthorizationService  userAuthorizationService} service as key to decrypt object parameter
+             @return {Object} Returns decrypted object
+             **/
             decryptData: function (object) {
                 //Decrypt
                 return decryptObject(object, nacl.util.decodeUTF8(encryptionHash.substring(0, nacl.secretbox.keyLength)));
             },
-            
+
             /**
-                @ngdoc method
-                @name encryptData
-                @methodOf myApp.service:encryptionService
-                @params {Object} object Object to be encrypted
-                @description Uses the hashed of the password from the {@link myApp.service:userAuthorizationService  userAuthorizationService} service as key to encrypt object parameter
-                @return {Object} Returns encrypted object
-            **/
+             @ngdoc method
+             @name encryptData
+             @methodOf myApp.service:encryptionService
+             @params {Object} object Object to be encrypted
+             @description Uses the hashed of the password from the {@link myApp.service:userAuthorizationService  userAuthorizationService} service as key to encrypt object parameter
+             @return {Object} Returns encrypted object
+             **/
             encryptData: function (object) {
                 var nonce = this.generateNonce();
-                
+
                 return encryptObject(object, nacl.util.decodeUTF8(encryptionHash.substring(0, nacl.secretbox.keyLength)), nonce);
             },
 
             /**
-                @ngdoc method
-                @name encryptWithKey
-                @methodOf myApp.service:encryptionService
-                @params {Object} object Object to be encrypted
-                @params {String} secret Key for encrypting
-                @description Uses the secret parameter as key to encrypt object parameter
-                @return {Object} Returns encrypted object
-            **/
+             @ngdoc method
+             @name encryptWithKey
+             @methodOf myApp.service:encryptionService
+             @params {Object} object Object to be encrypted
+             @params {String} secret Key for encrypting
+             @description Uses the secret parameter as key to encrypt object parameter
+             @return {Object} Returns encrypted object
+             **/
             encryptWithKey: function (object, secret) {
                 var nonce = this.generateNonce();
                 return encryptObject(object, nacl.util.decodeUTF8(secret.substring(0, nacl.secretbox.keyLength)), nonce);
             },
-            
+
             /**
-                @ngdoc method
-                @name encryptPassword
-                @methodOf myApp.service:encryptionService
-                @description Encrypts a given password using SHA512
-                @return {String} Returns hashed password
+             @ngdoc method
+             @name encryptPassword
+             @methodOf myApp.service:encryptionService
+             @description Encrypts a given password using SHA512
+             @return {String} Returns hashed password
              **/
             hash: function (incoming) {
                 return CryptoJS.SHA512(incoming).toString();
             },
-            
+
             /**
-                @ngdoc method
-                @name setEncryptionHash
-                @methodOf myApp.service:encryptionService
-                @description Encrypts a given password using SHA512
-                @return {String} Returns hashed password
-                Encryption key/Secrate: Registration code
-                Salt: RAMQ
+             @ngdoc method
+             @name setEncryptionHash
+             @methodOf myApp.service:encryptionService
+             @description Encrypts a given password using SHA512
+             @return {String} Returns hashed password
+             Encryption key/Secrate: Registration code
+             Salt: RAMQ
              **/
             generateEncryptionHash: function () {
-                encryptionHash = CryptoJS.PBKDF2(userAuthorizationService.getuserCode(), userAuthorizationService.getUserSalt(), { keySize: 512 / 32, iterations: 1000 }).toString(CryptoJS.enc.Hex);
+                // Check if encryptionHash is already set
+                if (encryptionHash) {
+                    return encryptionHash;
+                }
 
+                // If not set, compute and set the value
+                encryptionHash = CryptoJS.PBKDF2(
+                    userAuthorizationService.getuserCode(),
+                    userAuthorizationService.getUserSalt(),
+                    { keySize: 256 / 32, iterations: 600000, hasher: CryptoJS.algo.SHA256 }
+                ).toString(CryptoJS.enc.Hex);
+
+                return encryptionHash;
             },
 
             generateNonce: function () {
