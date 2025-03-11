@@ -1,5 +1,5 @@
-﻿<!--Page to display patient not found error modal box-->
-<div class="modal  in show d-block" tabindex="-1" role="dialog" aria-labelledby="notFoundModal" id="notFound" aria-modal="true">
+﻿<!--Page to display patient forbidden error modal box-->
+<div class="modal  in show d-block" tabindex="-1" role="dialog" aria-labelledby="forbiddenModal" id="forbidden" aria-modal="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content bg-danger border-danger">
             <div class="modal-header text-white pb-0 border-bottom-0">
@@ -13,6 +13,7 @@
                         <div class="col">
                             <p class="text-center text-muted">
                                 {{'ERRORMODAL.FORBIDDENERRROR.DESCRIPTION' | translate}}
+                                <a href="mailto: opal@muhc.mcgill.ca"> {{'ERRORMODAL.FORBIDDENERRROR.CONTACTUSEMAILADDRESS' | translate}}</a>.
                             </p>
                         </div>
                     </div>

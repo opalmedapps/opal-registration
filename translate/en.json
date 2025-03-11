@@ -223,7 +223,7 @@
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
     "FORBIDDENERRROR": {
-      "DESCRIPTION": "Unable to complete registration at this time. Please contact Medical Records at",
+      "DESCRIPTION": "Unable to complete registration at this time. Please contact Medical Records at the hospital",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
     "REGISTRATIONERROR": {

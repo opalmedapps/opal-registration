@@ -225,7 +225,7 @@
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
     "FORBIDDENERRROR": {
-      "DESCRIPTION": "Impossible de terminer l'inscription pour le moment. Veuillez contacter les dossiers médicaux au",
+      "DESCRIPTION": "Impossible de terminer l'inscription pour le moment. Veuillez contacter les dossiers médicaux à l'hôpital",
       "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
     },
     "REGISTRATIONERROR": {
