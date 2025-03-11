@@ -186,7 +186,7 @@
                         vm.parent.displayError(errorModalPage, "unsuccessfulRegistration");
                     }
 
-                    vm.termsOfUsePDFData = "data:application/pdf;base64," + termsOfUsePDF;
+                    vm.termsOfUsePDFData = `data:application/pdf;base64,${termsOfUsePDF}`;
 
                     vm.isTermsLoaded = true;
 
