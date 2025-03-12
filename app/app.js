@@ -84,6 +84,16 @@ import translationsFr from '../translate/fr.json';
 
             $stateProvider
 
+                .state('about', {
+                    url: '/about',
+                    views: {
+                        header: header,
+                        content: {
+                            component: 'aboutComponent'
+                        }
+                    }
+                })
+
                 // Welcome page.
                 .state('welcomePage', {
                     url: '/welcomePage',
