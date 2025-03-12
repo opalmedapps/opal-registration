@@ -2,6 +2,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import './components/registration/about/about.component.js';
 import './components/registration/account/account.component.js';
 import './components/registration/agreement/agreement.component.js';
 import './components/registration/form/form.component.js';

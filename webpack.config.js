@@ -68,7 +68,7 @@ const config = (env, argv) => {
         module: {
             rules: [
                 {
-                    test: /\.html$/,
+                    test: /\.(html|md)$/,
                     loader: "html-loader",
                     generator: {
                         filename: '[contenthash][ext][query]',
