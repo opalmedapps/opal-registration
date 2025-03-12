@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <!-- Shared header for navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
-    <div class="container">
+    <div class="container" ui-view autoscroll>
 
         <!--Opal logo-->
         <a class="navbar-brand header-brand my-1" ng-href="#">
@@ -25,7 +25,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item ml-3">
-                  <a href="#!/about" class="nav-link js-scroll-trigger text-uppercase fa-icon-cursor">{{ 'HEADER.ABOUT' | translate }}</a>
+                  <a ui-sref="about" class="nav-link js-scroll-trigger text-uppercase fa-icon-cursor">{{ 'HEADER.ABOUT' | translate }}</a>
                 </li>
                 <!--On click call function to change site language.-->
                 <li class="nav-item ml-3">

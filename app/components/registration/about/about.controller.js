@@ -53,7 +53,7 @@ import thirdPartyLicenses from "../../../../THIRDPARTY.md";
         // Process the Markdown file into HTML
         let htmlContent = marked(mdContent);
 
-        // If applicable, add a paragraph at the beginning stating that the page has not been translated
+        // If applicable, add a paragraph at the beginning stating that the section has not been translated
         if (vm.currentLang !== 'en') htmlContent = `<p class="third-party-pre">${$filter('translate')('ABOUT_OPAL.UNTRANSLATED_PAGE_DISCLAIMER')}</p>
             <hr>`
             + htmlContent;
@@ -75,6 +75,12 @@ import thirdPartyLicenses from "../../../../THIRDPARTY.md";
             }
 
             $rootScope.$broadcast("changeLanguage");
+        };
+
+        vm.gotoDisclaimer = function() {
+            // Set the location hash to the id of the element
+            $location.hash('healthcare-disclaimer');
+            $anchorScroll();
         };
     }
 })();
