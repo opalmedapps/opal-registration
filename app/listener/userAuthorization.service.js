@@ -12,8 +12,6 @@
     function userAuthorizationService() {
         /**
          @ngdoc property
-         @name  MUHCApp.service.#userCode
-         @propertyOf MUHCApp.service:userAuthorizationService
          @description code property
          **/
         var userCode = '';
@@ -21,24 +19,18 @@
 
         /**
          @ngdoc property
-         @name  MUHCApp.service.#userBranchName
-         @propertyOf MUHCApp.service:userAuthorizationService
          @description code property
          **/
         var userBranchName = '';
 
         /**
          @ngdoc property
-         @name  MUHCApp.service.#userSalt
-         @propertyOf MUHCApp.service:userAuthorizationService
          @description code property
          **/
         var userSalt = '';
 
         /**
          @ngdoc property
-         @name  MUHCApp.service.#hospitalCode
-         @propertyOf MUHCApp.service:userAuthorizationService
          @description code property
          **/
         var hospitalCode = '';
@@ -47,8 +39,6 @@
 
             /**
              @ngdoc method
-             @name setUserData
-             @methodOf MUHCApp.service:userAuthorizationService
              @description Sets all the user authorization.
              **/
             setUserData: function (code, salt, hospitalcode) {
@@ -59,8 +49,6 @@
 
             /**
              @ngdoc method
-             @name setFirebaseBranchName
-             @methodOf MUHCApp.service:userAuthorizationService
              @param {String} branchName
              @description Sets all the user authorization.
              **/
@@ -70,8 +58,6 @@
 
             /**
              @ngdoc method
-             @name getHospitalCode
-             @methodOf MUHCApp.service:userAuthorizationService
              @returns {string} Returns hospital code.
              **/
             getHospitalCode: function () {
@@ -81,8 +67,6 @@
 
             /**
              @ngdoc method
-             @name getUserBranchName
-             @methodOf MUHCApp.service:userAuthorizationService
              @returns {string} Returns Firebase branch name.
              **/
             getUserBranchName: function () {
@@ -92,8 +76,6 @@
 
             /**
              @ngdoc method
-             @name getUserSalt
-             @methodOf MUHCApp.service:userAuthorizationService
              @returns {string} Returns Firebase branch name.
              **/
             getUserSalt: function () {
@@ -103,8 +85,6 @@
 
             /**
              @ngdoc method
-             @name getuniqueCode
-             @methodOf MUHCApp.service:userAuthorizationService
              @returns {string} Returns unique ID.
              **/
             getuserCode: function () {
@@ -113,8 +93,6 @@
 
             /**
              @ngdoc method
-             @name clearUserAuthorizationInformation
-             @methodOf MUHCApp.service:userAuthorizationService
              @description Clears service
              **/
             clearUserAuthorizationInfomation: function () {

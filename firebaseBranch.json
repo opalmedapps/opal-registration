@@ -5,22 +5,5 @@
   "requestChildBranch": "requests",
   "responseChildBranch": "users",
   "apiParentBranch": "registration-api",
-  "parentBranch": "registration",
-  "hospitalCodes": [
-    {
-      "uniqueHospitalCode": "A0"
-    },
-    {
-      "uniqueHospitalCode": "A4"
-    },
-    {
-      "uniqueHospitalCode": "A6"
-    },
-    {
-      "uniqueHospitalCode": "D1"
-    },
-    {
-      "uniqueHospitalCode": "D2"
-    }
-  ]
+  "parentBranch": "registration"
 }

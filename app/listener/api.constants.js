@@ -15,7 +15,7 @@
         .constant("apiConstants", {
             /** Timeouts **/
             LEGACY_REQUEST_TIMEOUT: 30000,
-            API_REQUEST_TIMEOUT: 90000,
+            API_REQUEST_TIMEOUT: 30000,
 
             /** Response codes **/
             SUCCESS: '200',
