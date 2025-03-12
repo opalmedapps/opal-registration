@@ -22,7 +22,7 @@ import thirdPartyLicenses from "../../../../THIRDPARTY.md";
 
         vm.logoEn = logoEn;
         vm.logoFr = logoFr;
-        vm.currentLang = $translate.use();
+        vm.lan_key = $translate.use();
 
         const customRenderExtension = {
             renderer: {
@@ -54,7 +54,7 @@ import thirdPartyLicenses from "../../../../THIRDPARTY.md";
         let htmlContent = marked(mdContent);
 
         // If applicable, add a paragraph at the beginning stating that the section has not been translated
-        if (vm.currentLang !== 'en') htmlContent = `<p class="third-party-pre">${$filter('translate')('ABOUT_OPAL.UNTRANSLATED_PAGE_DISCLAIMER')}</p>
+        if (vm.lan_key !== 'en') htmlContent = `<p class="third-party-pre">${$filter('translate')('ABOUT_OPAL.UNTRANSLATED_PAGE_DISCLAIMER')}</p>
             <hr>`
             + htmlContent;
 
