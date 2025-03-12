@@ -234,7 +234,7 @@
       "DESCRIPTION": "Nous n'avons pas trouvé de dossier patient actif correspondant à l'information fournie. Veuillez vous assurer que votre code d'inscription n'est pas expiré, puis vérifiez vos données et essayez de nouveau."
     },
     "CONTACTUSERRROR": {
-      "DESCRIPTION": "Une erreur s'est produite. Veuillez essayer de nouveau. Si le problème persiste, veuillez contacter l'institution auprès de laquelle vous avez obtenu le code d'enregistrement."
+      "DESCRIPTION": "Une erreur s'est produite. Veuillez essayer de nouveau. Si le problème persiste, veuillez contacter l'institution auprès de laquelle vous avez obtenu le code d'inscription."
     },
     "EXISTINGEMAILERROR": {
       "DESCRIPTION": "Cette adresse courriel est déjà enregistrée pour un compte Opal. Pour utiliser ce compte afin de poursuivre votre inscription, veuillez entrer votre adresse courriel ainsi que votre mot de passe Opal existant. Si vous rencontrez des difficultés durant la saisie de votre mot de passe, vous pouvez le réinitialiser dans l'application Opal en vous rendant à « Se connecter » et en sélectionnant « Mot de passe oublié »."
