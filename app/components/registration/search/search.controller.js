@@ -230,7 +230,7 @@
                 vm.formData.displaySpinner = false;
 
                 // Display an error in a modal box
-                if (error === 'INVALID_HOSPITAL_CODE' || error.status_code === 404) {
+                if (error.status_code === 404) {
                     vm.parent.errorPopup('notFoundError');
                 }
                 else {

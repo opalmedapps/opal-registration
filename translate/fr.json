@@ -31,22 +31,22 @@
   },
   "WELCOME": {
     "INSTRUCTION": "Opal est actuellement disponible pour les patients fréquentant les hôpitaux suivants. Veuillez vous référer aux instructions de chaque clinique, fournies ci-dessous, pour les étapes à suivre pour s'inscrire à Opal.",
-    "STEPS_NEURO": "Nous recrutons actuellement un petit nombre de patients pour inscription par demande directe. Plus d'informations seront fournies lorsque l’inscription sera ouverte à plus grande échelle. Merci de votre compréhension."
+    "STEPS_NEURO": "Nous recrutons actuellement un petit nombre de patients pour inscription par demande directe. Plus d'informations seront fournies lorsque l'inscription sera ouverte à plus grande échelle. Merci de votre compréhension."
   },
   "SEARCH": {
     "STEPS": "Étape 1 de 5: ",
     "TITLE": "Confirmez votre identité",
-    "INSTRUCTION": "Pour créer un compte Opal, vous devez obtenir un code d’inscription à l’un de nos hôpitaux participants. Si vous avez un code d’inscription, veuillez entrer ce code ainsi que votre numéro d'assurance maladie (RAMQ) ou votre numéro de dossier médical (MRN) ci-dessous pour confirmer votre identité. Découvrez comment",
-    "INSTRUCTION_LINK": "obtenir un code d’inscription",
+    "INSTRUCTION": "Pour créer un compte Opal, vous devez obtenir un code d'inscription à l'un de nos hôpitaux participants. Si vous avez un code d'inscription, veuillez entrer ce code ainsi que votre numéro d'assurance maladie (RAMQ) ou votre numéro de dossier médical (MRN) ci-dessous pour confirmer votre identité. Découvrez comment",
+    "INSTRUCTION_LINK": "obtenir un code d'inscription",
     "FIELDNAMES": {
       "PATIENTID": "Numéro d'identification du patient",
-      "REGISTRATIONCODE": "Votre code d’inscription"
+      "REGISTRATIONCODE": "Votre code d'inscription"
     },
     "FIELDERRORMESSAGES": {
-      "CODEREQUIRED": "Veuillez entrer un code d’inscription valide.",
+      "CODEREQUIRED": "Veuillez entrer un code d'inscription valide.",
       "PATIENTIDREQUIRED": "Veuillez saisir un identifiant patient valide.",
-      "SHORTCODELENGTH": "Code d’inscription trop court.",
-      "LONGCODELENGTH": "Code d’inscription trop long.",
+      "SHORTCODELENGTH": "Code d'inscription trop court.",
+      "LONGCODELENGTH": "Code d'inscription trop long.",
       "INVALIDPATIENTID": "Un numéro RAMQ doit contenir 12 caractères, ou un numéro MRN doit contenir 7 chiffres."
     }
   },
@@ -89,7 +89,7 @@
     "INSTRUCTION": "Afin de créer un nouveau compte Opal, vous devez d'abord vérifier votre adresse courriel.",
     "SEND": {
       "TITLE": "Entrer l'adresse courriel",
-      "INSTRUCTION": "Veuillez fournir votre adresse courriel. Nous vous enverrons ensuite un code de vérification à l’adresse fournie pour vérifier qu'elle vous appartient.",
+      "INSTRUCTION": "Veuillez fournir votre adresse courriel. Nous vous enverrons ensuite un code de vérification à l'adresse fournie pour vérifier qu'elle vous appartient.",
       "EMAIL": "Email",
       "INVALID_EMAIL": "Addresse courriel invalide",
       "SENDCODE": "Envoyer le code de vérification",
@@ -172,38 +172,38 @@
   "PREFERENCE": {
     "STEPS": "Étape 3 de 5: ",
     "TITLE": "Accès aux données",
-    "INSTRUCTION1": "Afin d’avoir accès aux données médicales de ",
+    "INSTRUCTION1": "Afin d'avoir accès aux données médicales de ",
     "INSTRUCTION2": " à ",
     "INSTRUCTION3": " dans Opal, et aux données médicales de tout patient auquel vous demanderez l'accès plus tard dans cette institution, vous devrez donner votre consentement par moyen du formulaire ci-dessous.",
     "FIELDNAMES": {
-      "ACCESSLEVEL": "Niveau d’accès aux données",
-      "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d’accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d’accès est expliqué ci-dessous:",
+      "ACCESSLEVEL": "Niveau d'accès aux données",
+      "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d'accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d'accès est expliqué ci-dessous:",
       "ACCESSLEVELINSTRUCTION1": "Les données suivantes sont généralement disponibles (sous réserve de disponibilité à ",
       "ACCESSLEVELINSTRUCTION2": "):",
       "LANGUAGE": "Votre choix de langue",
       "LANGUAGEDROPDOWNDEAFULT": "--- Sélectionnez une langue ---",
       "AUTHORIZETRANSMISSION": "Autorisation",
-      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "J’autorise la transmission sécurisée des données médicales que j’ai sélectionnées ci-dessus à l’application Opal.",
+      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "J'autorise la transmission sécurisée des données médicales que j'ai sélectionnées ci-dessus à l'application Opal.",
       "AUTHORIZETRANSMISSIONCHECKBOXTEXT_START": "J'autorise la transmission sécurisée des données médicales de ",
       "AUTHORIZETRANSMISSIONCHECKBOXTEXT_END": " à mon application Opal."
     },
     "FIELDERRORMESSAGES": {
       "LANGUAGEREQUIRED": "Veuillez sélectionner une langue.",
-      "ACCESSLEVELREQUIRED": "Veuillez sélectionner un niveau d’accès aux données.",
+      "ACCESSLEVELREQUIRED": "Veuillez sélectionner un niveau d'accès aux données.",
       "AUTHORIZETRANSMISSIONREQUIRED": "Votre autorisation est requise afin de procéder."
     }
   },
   "AGREEMENT": {
     "STEPS": "Étape 4 de 5: ",
-    "TITLE": "Conditions d’utilisation",
-    "INSTRUCTION": "Afin de compléter le processus d'inscription, veuillez lire les documents ci-dessous et accepter les conditions d’utilisation.",
+    "TITLE": "Conditions d'utilisation",
+    "INSTRUCTION": "Afin de compléter le processus d'inscription, veuillez lire les documents ci-dessous et accepter les conditions d'utilisation.",
     "FIELDNAMES": {
       "PRINTANDDOWNLOADDOCUEMNT": "Télécharger ce document",
-      "ACCEPTCHECKBOX": "J’ai lu et accepté les termes de cet accord.",
+      "ACCEPTCHECKBOX": "J'ai lu et accepté les termes de cet accord.",
       "CLICKHERE": "PDF"
     },
     "FIELDERRORMESSAGES": {
-      "ACCEPTCHECKBOXREQUIRED": "Veuillez accepter les conditions d’utilisation ci-dessus afin de procéder."
+      "ACCEPTCHECKBOXREQUIRED": "Veuillez accepter les conditions d'utilisation ci-dessus afin de procéder."
     }
   },
   "SUCCESS": {
@@ -211,7 +211,7 @@
     "TITLE": "Inscription terminée",
     "INSTRUCTION": "Votre compte Opal est maintenant prêt. Vous recevrez un courriel de confirmation sous peu.",
     "THANKYOUMESSAGE": "Merci d'avoir créé un compte Opal!",
-    "DOWNLOADAPP": "Si ce n’est pas déjà fait, veuillez télécharger l’application Opal à partir de l'iOS App Store ou du Google Play Store, et connectez-vous pour avoir accès à vos données médicales.",
+    "DOWNLOADAPP": "Si ce n'est pas déjà fait, veuillez télécharger l'application Opal à partir de l'iOS App Store ou du Google Play Store, et connectez-vous pour avoir accès à vos données médicales.",
     "PROCESS": "Si vous êtes sur une tablette ou sur un téléphone intelligent, vous pouvez télécharger Opal immédiatement en utilisant les liens ci-dessous. Sinon, vous pouvez suivre les liens fournis dans votre courriel de confirmation à partir de votre appareil mobile.",
     "APPSTORELOGO": "images/logos/AppStore_FR.svg",
     "PLAYSTORELOGO": "images/logos/PlayStore_FR.png",
@@ -219,9 +219,9 @@
     "NOTIFICATION2": " sera accordé sous réserve de confirmation par le Bureau des archives médicales."
   },
   "TOOLTIP": {
-    "EMAILINSTRUCTION": "Votre nom d’utilisateur Opal sera votre adresse courriel.",
+    "EMAILINSTRUCTION": "Votre nom d'utilisateur Opal sera votre adresse courriel.",
     "PASSWORDFORMAT": "Votre mot de passe doit contenir au moins 10 caractères dont au moins un chiffre, une lettre majuscule, une lettre minuscule, et un caractère spécial.",
-    "REGISTRATIONCODE": "Votre code d’inscription est un code de 12 chiffres fourni par votre équipe clinique à l’un des établissements de santé du Québec participants.",
+    "REGISTRATIONCODE": "Votre code d'inscription est un code de 12 chiffres fourni par votre équipe clinique à l'un des établissements de santé du Québec participants.",
     "PATIENTID_TITLE1": "Entrez le numéro ",
     "PATIENTID_TITLE2": " ou ",
     "PATIENTID_TITLE3": " du patient",
@@ -231,17 +231,16 @@
   "ERRORMODAL": {
     "PATIENTNOTFOUNDERROR": {
       "TITLE": "Dossier patient non trouvé",
-      "DESCRIPTION": "Nous n'avons pas trouvé de dossier patient actif correspondant à l’information fournie. Veuillez vous assurer que votre code d’inscription n'est pas expiré, puis vérifiez vos données et essayez de nouveau."
+      "DESCRIPTION": "Nous n'avons pas trouvé de dossier patient actif correspondant à l'information fournie. Veuillez vous assurer que votre code d'inscription n'est pas expiré, puis vérifiez vos données et essayez de nouveau."
     },
     "CONTACTUSERRROR": {
-      "DESCRIPTION": "Une erreur s’est produite. Veuillez essayer de nouveau. Si le problème persiste, s’il vous plaît, contactez nous à ",
-      "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
+      "DESCRIPTION": "Une erreur s'est produite. Veuillez essayer de nouveau. Si le problème persiste, veuillez contacter l'institution auprès de laquelle vous avez obtenu le code d'inscription."
     },
     "EXISTINGEMAILERROR": {
       "DESCRIPTION": "Cette adresse courriel est déjà enregistrée pour un compte Opal. Pour utiliser ce compte afin de poursuivre votre inscription, veuillez entrer votre adresse courriel ainsi que votre mot de passe Opal existant. Si vous rencontrez des difficultés durant la saisie de votre mot de passe, vous pouvez le réinitialiser dans l'application Opal en vous rendant à « Se connecter » et en sélectionnant « Mot de passe oublié »."
     },
     "SHARED": {
-      "MODALTITLE": "Une erreur s’est produite",
+      "MODALTITLE": "Une erreur s'est produite",
       "BUTTONDISMISS": "Fermer"
     }
   }
