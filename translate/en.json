@@ -249,8 +249,7 @@
       "DESCRIPTION": "We couldn't find an active patient record matching the information you have entered. Please make sure that your registration code hasn't expired, check your input and try again."
     },
     "CONTACTUSERRROR": {
-      "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact us at",
-      "CONTACTUSEMAILADDRESS": "opal@muhc.mcgill.ca"
+      "DESCRIPTION": "Something went wrong; please try again. If the problem persists, please contact the institution at which you obtained the registration code."
     },
     "EXISTINGEMAILERROR": {
       "DESCRIPTION": "This email address is already registered for an Opal account. To use this account to continue your registration, please enter your email address along with your existing Opal password. If you have any difficulty entering your password, it can be reset in the Opal app by going to \"Sign In\" and selecting \"Forgot Password\"."
