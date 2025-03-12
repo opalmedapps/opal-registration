@@ -56,10 +56,6 @@ import firebaseBranchConfig from '../../firebaseBranch.json';
          * @returns {string}
          */
         function getBasePath(hospitalCode, requestTypePath) {
-            // Validate the existence of the hospital code
-            const validHospital = firebaseBranchConfig.hospitalCodes.find(hospital => hospital.uniqueHospitalCode === hospitalCode);
-            if (!validHospital) throw 'INVALID_HOSPITAL_CODE';
-
             return `/${hospitalCode}/${requestTypePath}/`;
         }
 
