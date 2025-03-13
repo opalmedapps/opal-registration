@@ -31,15 +31,10 @@ import thirdPartyLicenses from "../../../../THIRDPARTY.md";
                     return `
                         <details>
                           <summary>${$filter('translate')('ABOUT_OPAL.SHOW_LICENSE_TEXT')}</summary>
-                          <pre><code>${code}</code></pre>
+                          <pre><code>${code.text}</code></pre>
                         </details>
                     `;
                 },
-                // Convert all links to open in a new tab using a _blank target
-                link(href, title, text) {
-                    const titleAttr = title ? ` title="${title}"` : '';
-                    return `<a href="${href}"${titleAttr} target="_blank" rel="noopener">${text}</a>`;
-                }
             }
         };
 

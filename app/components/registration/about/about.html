@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <!--Page content main section-->
 <div class="container mt-0 mt-md-4 p-0 shadow-lg rounded">
-  <form name="welcomeForm" class="p-4 pb-2 mb-0 mb-md-2 bg-light rounded">
+  <form name="aboutForm" class="p-4 pb-2 m-2 mb-0 mb-md-2 bg-light rounded">
     <div class="row">
       <div class="col-xs-12">
       <h2>{{'ABOUT_OPAL.LICENSE_INFORMATION_TITLE'|translate}}</h2>
@@ -49,10 +49,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="row" style="padding-bottom: 60px;">
+    <div class="row">
         <div class="col-xs-12">
             <h2>{{'ABOUT_OPAL.THIRD_PARTY_TITLE'|translate}}</h2>
-            <div class="third-party container" ng-bind-html="vm.content"></div>
+            <div class="third-party container p-0" ng-bind-html="vm.content"></div>
         </div>
     </div>
 
