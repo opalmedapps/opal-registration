@@ -106,6 +106,7 @@ const config = (env, argv) => {
                 patterns: [
                     // File copied for web deployment
                     ".htaccess",
+                    "LICENSE",
                 ],
             }),
         ],
