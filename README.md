@@ -22,15 +22,7 @@ This project uses a long-term support version of AngularJS provided by [HeroDevs
 If you have an `npm` token to retrieve this version from their registry, place the `.npmrc` file containing the credentials in the root directory.
 
 You can also use the [last available version](https://www.npmjs.com/package/angular) of AngularJS (version 1.8.3).
-To do so, change the value for the `angular` dependency to `angular@1.8.3` in `package.json`.
-Also change all other auxiliary angular dependencies accessed through `neverendingsupport` to their latest default versions, as provided by npm.
-Then, run:
-
-```shell
-npm install
-```
-
-For a list of all dependencies, refer to [package.json](./package.json).
+To do so, change the value for the `angular` dependency in `package.json` to `angular@1.8.3` and run `npm install` to update the lock file.
 
 ### Step 2: Start the container
 
