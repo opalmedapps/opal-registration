@@ -44,10 +44,12 @@
     "LOADINGMESSAGE": "We are processing your request. Please do not refresh this page."
   },
   "HOSPITALS": {
+    "DEMO": "Opal Demo 1 & 2",
     "NEURO": "The Neuro (Montreal Neurological Institute-Hospital)"
   },
   "WELCOME": {
     "INSTRUCTION": "Opal is currently available for patients at the following hospitals. Please refer to each clinic's guidelines below on how to register for an Opal account.",
+    "STEPS_DEMO": "Opal Demo 1 & 2 are currently used for demonstration purposes. If you have been directed to use an Opal Demo site for login, please refer to the documentation sent to you for instructions on how to register for additional accounts.",
     "STEPS_NEURO": "We are currently recruiting a small number of patients for registration by direct request. More information will be provided when registration is made widely available. Thank you for your understanding."
   },
   "SEARCH": {

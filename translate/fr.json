@@ -44,10 +44,12 @@
     "LOADINGMESSAGE": "Nous traitons votre demande. Veuillez ne pas actualiser cette page."
   },
   "HOSPITALS": {
+    "DEMO": "Démo Opal 1 & 2",
     "NEURO": "Le Neuro (L'Institut-hôpital neurologique de Montréal)"
   },
   "WELCOME": {
     "INSTRUCTION": "Opal est actuellement disponible pour les patients fréquentant les hôpitaux suivants. Veuillez vous référer aux instructions de chaque clinique, fournies ci-dessous, pour les étapes à suivre pour s'inscrire à Opal.",
+    "STEPS_DEMO": "Démo Opal 1 & 2 servent actuellement à des fins de démonstration. Si l'on vous a invité à utiliser un site Démo Opal pour vous connecter à l'application, veuillez vous référer à la documentation partagée avec vous pour créer des comptes usagers additionnels.",
     "STEPS_NEURO": "Nous recrutons actuellement un petit nombre de patients pour inscription par demande directe. Plus d'informations seront fournies lorsque l'inscription sera ouverte à plus grande échelle. Merci de votre compréhension."
   },
   "SEARCH": {
