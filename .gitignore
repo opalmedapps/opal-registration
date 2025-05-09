@@ -13,3 +13,7 @@ node_modules
 config.json
 package-lock.json
 /dist
+
+# Local uv / pre-commit installation files
+pyproject.toml
+uv.lock
