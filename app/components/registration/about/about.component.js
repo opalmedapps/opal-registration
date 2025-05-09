@@ -4,7 +4,7 @@
 
 /**
      Filename     :   about.component.js
-     Description  :   Contains about.html page link, controller name and inherit parent form component to access variables in all parent and child forms.
+     Description  :   Contains about.html page link, controller name, and inherits parent form component to access variables in all parent and child forms.
  **/
 import headerTemplate from '../shared/header/header.html';
 import aboutPageTemplate from './about.html';

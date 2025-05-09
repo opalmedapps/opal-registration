@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: Copyright (C) 2025 Opal Health Informatics Group at the Research Institute of the McGill University Health Centre <john.kildea@mcgill.ca>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+[default.extend-words]
+muhc = "muhc"
+
+# French
+
+[default]
+extend-ignore-re = [
+]
+
+[files]
+extend-exclude = [
+    "translate/fr.json",
+]

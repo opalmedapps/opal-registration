@@ -288,7 +288,7 @@
                 // Hide shared error message
                 vm.sharedErrorMessage = true;
 
-                // Call function ot language list
+                // Call function to get language list
                 vm.parent.languageListForPreference();
             }
         }

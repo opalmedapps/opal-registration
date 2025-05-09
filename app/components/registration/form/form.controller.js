@@ -118,7 +118,7 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
             vm.formData.securityQuestion3Format = { status: null, message: null };
             vm.formData.answer3Format = { status: null, message: null };
             vm.formData.languageFormat = { status: null, message: null };
-            vm.formData.termsandAggreementSignFormat = { status: null, message: null };
+            vm.formData.termsAndAgreementSignFormat = { status: null, message: null };
 
             // If success form is loaded or error while registering the patient than delete all the field values
             if (vm.formData.successForm.flag == 1 || error == "unsuccessfulRegistration") {

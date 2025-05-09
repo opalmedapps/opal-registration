@@ -95,7 +95,7 @@
              @ngdoc method
              @description Clears service
              **/
-            clearUserAuthorizationInfomation: function () {
+            clearUserAuthorizationInformation: function () {
                 userCode = '';
                 userSalt = '';
                 userBranchName = '';

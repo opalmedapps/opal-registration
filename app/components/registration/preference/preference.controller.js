@@ -112,7 +112,7 @@
             vm.formData.allAccessLevelList_EN = [];
             vm.formData.allAccessLevelList_FR = [];
             vm.allAccess.forEach(function(access) {
-                // Assing in JSON format
+                // Assign in JSON format
                 vm.formData.allAccessLevelList_EN.push({
                     "ID": access.Id,
                     "VALUE": access.VALUE_EN

@@ -4,7 +4,7 @@
 
 /**
      Filename     :   header.component.js
-     Description  :   Contains header.html page link, contorller name.
+     Description  :   Contains header.html page link, controller name.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
