@@ -5,12 +5,6 @@
 [default.extend-words]
 muhc = "muhc"
 
-# French
-
-[default]
-extend-ignore-re = [
-]
-
 [files]
 extend-exclude = [
     "translate/fr.json",
