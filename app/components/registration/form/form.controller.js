@@ -186,5 +186,3 @@ import notFoundErrorTemplate from '../shared/modalBox/notFoundError.html';
     }
 
 })();
-
-
