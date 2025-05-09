@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: Copyright (C) 2020 Opal Health Informatics Group at the 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-<!--Aggrement form to aggre on terms and usage document-->
+<!--Agreement form to agree to the terms of use document-->
 <form class="p-4 mb-0 mb-md-2 bg-light rounded" name="agreementForm" ng-submit="vm.agreementFormSubmit()" novalidate>
 
     <div class="row">
@@ -47,15 +47,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input"
                        ng-class="{
-                           'is-invalid':(vm.formData.termsandAggreementSignFormat.status == 'invalid'),
-                           'is-valid': (vm.formData.termsandAggreementSignFormat.status == 'valid')}"
-                       ng-model="vm.formData.formFieldsData.termsandAggreementSign" id="termsandAggreementSign" ng-change="vm.validateAgreementSign()" tabindex="1" required>
-                <label class="custom-control-label" for="termsandAggreementSign"></label>
-                <span class="font-weight-bold" for="termsandAggreementSign">{{'AGREEMENT.FIELDNAMES.ACCEPTCHECKBOX' | translate}}</span>
+                           'is-invalid':(vm.formData.termsAndAgreementSignFormat.status == 'invalid'),
+                           'is-valid': (vm.formData.termsAndAgreementSignFormat.status == 'valid')}"
+                       ng-model="vm.formData.formFieldsData.termsAndAgreementSign" id="termsAndAgreementSign" ng-change="vm.validateAgreementSign()" tabindex="1" required>
+                <label class="custom-control-label" for="termsAndAgreementSign"></label>
+                <span class="font-weight-bold" for="termsAndAgreementSign">{{'AGREEMENT.FIELDNAMES.ACCEPTCHECKBOX' | translate}}</span>
 
                 <!--Display error if registration code field is blank or format is inappropriate-->
-                <div ng-show="vm.formData.termsandAggreementSignFormat.status == 'invalid'">
-                    <small class="text-danger font-weight-bold">{{vm.formData.termsandAggreementSignFormat.message}}</small>
+                <div ng-show="vm.formData.termsAndAgreementSignFormat.status == 'invalid'">
+                    <small class="text-danger font-weight-bold">{{vm.formData.termsAndAgreementSignFormat.message}}</small>
                 </div>
             </div>
         </div>

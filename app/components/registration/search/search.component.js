@@ -4,7 +4,7 @@
 
 /**
      Filename     :   search.component.js
-     Description  :   Contains search.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
+     Description  :   Contains search.html page link, controller name, and inherits parent form component to access variables in all parent and child forms.
      Created by   :   Jinal Vyas
      Date         :   June 2019
 **/

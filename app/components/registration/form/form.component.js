@@ -4,7 +4,7 @@
 
 /**
   Filename     :   form.component.js
-  Description  :   Contains form.html page link and contorller name.
+  Description  :   Contains form.html page link and controller name.
   Created by   :   Jinal Vyas
   Date         :   June 2019
  **/

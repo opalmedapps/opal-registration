@@ -112,7 +112,7 @@
         function handleInvalidVersionError(){
 
             //remove the saved authorized user info from session storage
-            $window.sessionStorage.removeItem('userAuthorizationInfomation');
+            $window.sessionStorage.removeItem('userAuthorizationInformation');
 
             //signout on FireBase
             firebase.signOut();

@@ -3,8 +3,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 /**
-     Filename     :   acount.component.js
-     Description  :   Contains account.html page link, contorller name and inherit parent form component to access variables in all parent and child forms.
+     Filename     :   account.component.js
+     Description  :   Contains account.html page link, controller name, and inherits parent form component to access variables in all parent and child forms.
      Created by   :   LL
      Date         :   2022-04-07
 **/
