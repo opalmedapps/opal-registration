@@ -23,6 +23,9 @@ jobs:
   check-dependencies:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - name: Install dependencies
         uses: ./.github/actions/build-setup
         with:
