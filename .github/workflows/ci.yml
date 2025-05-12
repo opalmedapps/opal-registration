@@ -29,6 +29,7 @@ jobs:
       - name: Install dependencies
         uses: ./.github/actions/build-setup
         with:
+          CONFIG: "{}"
           NPMRC_FILE: ${{ secrets.NPMRC_FILE }}
 
   lint:
