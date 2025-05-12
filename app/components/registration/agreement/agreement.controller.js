@@ -49,17 +49,17 @@
             vm.sharedErrorMessage = true;
         }
 
-        //Function to validate aggrementSign checkbox
+        //Function to validate agreementSign checkbox
         vm.validateAgreementSign = function () {
-            if (vm.formData.formFieldsData.termsandAggreementSign === undefined || vm.formData.formFieldsData.termsandAggreementSign === null || vm.formData.formFieldsData.termsandAggreementSign === "" || vm.formData.formFieldsData.termsandAggreementSign === false) {
-                vm.formData.termsandAggreementSignFormat.status = 'invalid';
-                vm.formData.termsandAggreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
+            if (vm.formData.formFieldsData.termsAndAgreementSign === undefined || vm.formData.formFieldsData.termsAndAgreementSign === null || vm.formData.formFieldsData.termsAndAgreementSign === "" || vm.formData.formFieldsData.termsAndAgreementSign === false) {
+                vm.formData.termsAndAgreementSignFormat.status = 'invalid';
+                vm.formData.termsAndAgreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
 
                 vm.sharedErrorMessage = false;
             }
             else {
-                vm.formData.termsandAggreementSignFormat.status = 'valid';
-                vm.formData.termsandAggreementSignFormat.message = null;
+                vm.formData.termsAndAgreementSignFormat.status = 'valid';
+                vm.formData.termsAndAgreementSignFormat.message = null;
 
                 vm.sharedErrorMessage = true;
             }
@@ -80,13 +80,13 @@
 
         //Form on submit method
         vm.agreementFormSubmit = function () {
-            if (vm.formData.formFieldsData.termsandAggreementSign === undefined || vm.formData.formFieldsData.termsandAggreementSign === null || vm.formData.formFieldsData.termsandAggreementSign === "" || vm.formData.formFieldsData.termsandAggreementSign === false) {
-                vm.formData.termsandAggreementSignFormat.status = 'invalid';
-                vm.formData.termsandAggreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
+            if (vm.formData.formFieldsData.termsAndAgreementSign === undefined || vm.formData.formFieldsData.termsAndAgreementSign === null || vm.formData.formFieldsData.termsAndAgreementSign === "" || vm.formData.formFieldsData.termsAndAgreementSign === false) {
+                vm.formData.termsAndAgreementSignFormat.status = 'invalid';
+                vm.formData.termsAndAgreementSignFormat.message = $filter('translate')('AGREEMENT.FIELDERRORMESSAGES.ACCEPTCHECKBOXREQUIRED');
 
                 vm.sharedErrorMessage = false;
             }
-            if (vm.formData.termsandAggreementSignFormat.status === 'valid') {
+            if (vm.formData.termsAndAgreementSignFormat.status === 'valid') {
 
                 vm.sharedErrorMessage = true;
 
@@ -138,7 +138,7 @@
                             vm.parent.resetFields();
 
                             // Call function to clear user authorized value
-                            userAuthorizationService.clearUserAuthorizationInfomation();
+                            userAuthorizationService.clearUserAuthorizationInformation();
                             encryptionService.resetEncryptionHash();
 
                             // Redirect to last successful page

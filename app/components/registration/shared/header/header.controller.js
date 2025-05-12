@@ -44,7 +44,7 @@ import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
         // Change language function.
         vm.changeLanguage = function (language) {
 
-            // Slice first two charcters and convert it into lowercase.
+            // Slice first two characters and convert it into lowercase.
             vm.lan_key = (language.slice(0, 2)).toLowerCase();
 
             $translate.use(vm.lan_key)
@@ -85,7 +85,7 @@ import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_FR;
                 }
 
-                // Check if aggreement form is loaded. If yes assign french document
+                // Check if agreement form is loaded. If yes assign french document
                 if (vm.formData.agreementForm.flag === 1) {
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_FR;
                 }
@@ -115,7 +115,7 @@ import logoFr from '../../../../../images/logos/navbar-logo-fr.png';
                     vm.formData.allAccessLevelList = vm.formData.allAccessLevelList_EN;
                 }
 
-                // Check if aggreement form is loaded. If yes assign english document
+                // Check if agreement form is loaded. If yes assign english document
                 if (vm.formData.agreementForm.flag === 1) {
                     vm.formData.termsOfUseDisplayed = vm.formData.termsOfUseBase64_EN;
                 }

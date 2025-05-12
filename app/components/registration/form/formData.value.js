@@ -4,8 +4,8 @@
 
 /**
      Filename     :   formData.value.js
-     Description  :   Declare all the variable of parent and child forms. This variable is accessible throught the application and It set the value when user entered values in all the fields.
-                      NOTE: On page refresh of either of parent or child pages, All variables will loose their values.
+     Description  :   Declare all the variables of parent and child forms. These variables are accessible throughout the application and values are set when the user enters them in the fields.
+                      NOTE: On page refresh of either parent or child pages, all variables will lose their values.
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
@@ -61,7 +61,7 @@
         this.allAccessLevelFormat = { status: null, message: null };
         this.needToKnowAccessLevelFormat = { status: null, message: null };
         this.accessLevelSignFormat = { status: null, message: null };
-        this.termsandAggreementSignFormat = { status: null, message: null };
+        this.termsAndAgreementSignFormat = { status: null, message: null };
 
         // Set variable's value from database response.
         this.selectedLanguage = "";
@@ -86,7 +86,7 @@
         this.needToKnowAccessLevelList_EN = [{}];
         this.needToKnowAccessLevelList_FR = [{}];
 
-        this.termsandAggreementDocuments = [{}];
+        this.termsAndAgreementDocuments = [{}];
 
         // terms of use PDF file in base64 format
         this.termsOfUseBase64_EN = undefined;

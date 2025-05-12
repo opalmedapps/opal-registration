@@ -241,7 +241,7 @@
                 vm.parent.resetFields();
 
                 // Call function to clear user authorized value
-                userAuthorizationService.clearUserAuthorizationInfomation();
+                userAuthorizationService.clearUserAuthorizationInformation();
                 encryptionService.resetEncryptionHash();
             }
         }
@@ -253,7 +253,7 @@
             requestToListener.apiRequest(apiConstants.ROUTES.QUESTIONS, vm.formData.selectedLanguage)
                 .then(function (response) {
 
-                    // assing response to temporary variable.
+                    // Assign response to temporary variable.
                     let securityQuestions = response?.data;
 
                     vm.formData.securityQuestionList_EN = [];
@@ -263,7 +263,7 @@
                     if (securityQuestions?.length > 1) {
                         // Define loop for passing the value of securityquestions.
                         securityQuestions.forEach((question) => {
-                            // Assing in JSON format
+                            // Assign in JSON format
                             vm.formData.securityQuestionList_EN.push({
                                 "id": question.id,
                                 "value": question.title_en,
