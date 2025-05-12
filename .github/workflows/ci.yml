@@ -20,6 +20,14 @@ permissions:
   contents: read
 
 jobs:
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        uses: ./.github/actions/build-setup
+        with:
+          NPMRC_FILE: ${{ secrets.NPMRC_FILE }}
+
   lint:
     runs-on: ubuntu-latest
     steps:
