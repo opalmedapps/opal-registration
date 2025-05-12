@@ -59,7 +59,7 @@ jobs:
       - name: Build the registration website
         run: npm run build
       - name: Archive build output
-          uses: actions/upload-artifact@v4.6.2
-          with:
-            name: Website
-            path: dist
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: Website
+          path: dist
