@@ -12,8 +12,11 @@
     ":separateMultipleMajorReleases",
     // https://docs.renovatebot.com/presets-default/#separatepatchreleases
     ":separatePatchReleases",
+    // https://docs.renovatebot.com/modules/manager/pre-commit/
+    // https://docs.renovatebot.com/presets-default/#enableprecommit
+    ":enablePreCommit",
     // get updates for alpine version of node images
-    "gitlab>opalmedapps/renovate-bot//presets/docker-alpine.json5",
+    "github>mschoettle/renovate-presets//presets/docker-alpine.json5",
     // Regex manager for GitHub Actions
     "github>mschoettle/renovate-presets//presets/actions-dependency-version.json5"
   ],
@@ -30,7 +33,7 @@
     },
     // Group angular-related updates
     {
-      "matchPackagePatterns": ["^angular"],
+      "matchPackageNames": ["/^angular/"],
       "groupName": "angular packages"
     },
   ],
