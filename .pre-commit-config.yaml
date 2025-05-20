@@ -22,7 +22,7 @@ repos:
     - id: reuse-lint-file
 
 - repo: https://github.com/crate-ci/typos
-  rev: v1.31.1
+  rev: v1.32.0
   hooks:
     - id: typos
 
@@ -33,7 +33,7 @@ repos:
     - id: zizmor
 
 - repo: https://github.com/python-jsonschema/check-jsonschema
-  rev: 0.32.1
+  rev: 0.33.0
   hooks:
     - id: check-github-workflows
       args: ["--verbose"]
