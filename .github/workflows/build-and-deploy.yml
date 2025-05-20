@@ -47,7 +47,7 @@ jobs:
     steps:
       # Setup
       - name: Print environment
-        run: "Environment: $ENVIRONMENT"
+        run: echo "Environment = $ENVIRONMENT"
       - uses: actions/checkout@v4.2.2
         with:
           persist-credentials: false
