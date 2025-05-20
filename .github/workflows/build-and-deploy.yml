@@ -95,6 +95,7 @@ jobs:
       # See: https://www.cyberciti.biz/faq/lftp-mirror-example/
       # See: https://linuxconfig.org/lftp-tutorial-on-linux-with-examples
       - name: Upload files using lftp
+        working-directory: dist
         # TODO using a test directory
         run: >
           lftp -c "
