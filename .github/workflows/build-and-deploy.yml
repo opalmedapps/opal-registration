@@ -60,8 +60,32 @@ jobs:
       # Build
       - name: Build the registration website
         run: npm run build
+      - name: Organize the folder structure for the output
+        run: |
+          mkdir web-build
+          cp -r dist web-build
       - name: Archive build output
         uses: actions/upload-artifact@v4.6.2
         with:
           name: web-build
-          path: dist
+          path: web-build
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Setup
+      - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
+      - name: Download build artifact
+        uses: actions/download-artifact@v4.3.0
+        with:
+          name: web-build
+          run-id: ${{ github.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install lftp
+        run: |
+          sudo apt-get install lftp
+          lftp --version
+      - name: List contents of `dist`
+        run: ls -la dist
