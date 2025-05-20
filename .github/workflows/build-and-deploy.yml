@@ -96,14 +96,14 @@ jobs:
       # See: https://linuxconfig.org/lftp-tutorial-on-linux-with-examples
       - name: Upload files using lftp
         working-directory: dist
-        # TODO using a test directory
+        # TODO --delete
         run: >
           lftp -c "
             set cmd:fail-exit yes;
             open $FTP_HOST
             user $FTP_USER $FTP_PASSWORD;
-            mirror --reverse --parallel=10 --verbose ./ ./registration/test-ci/;
-            ls -la ./registration/test-ci/;
+            mirror --reverse --parallel=10 --verbose ./ ./registration/${ENVIRONMENT}/;
+            ls -la ./registration/${ENVIRONMENT};
             bye
           "
         env:
