@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-name: Build
+name: Build and Deploy
 # Default to dev when running automatically (see also "env" below)
 run-name: Building and (optionally) deploying for ${{ inputs.ENVIRONMENT || 'dev' }}
 on:
@@ -52,7 +52,7 @@ jobs:
       - name: Set up build
         uses: ./.github/actions/build-setup
         with:
-          CONFIG: ${{ vars[format('{0}_CONFIG_JS', env.ENVIRONMENT)] }}
+          CONFIG: ${{ vars[format('{0}_CONFIG', env.ENVIRONMENT)] }}
           NPMRC_FILE: ${{ secrets.NPMRC_FILE }}
 
       # Build
@@ -61,5 +61,5 @@ jobs:
       - name: Archive build output
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: Website
+          name: web-build
           path: dist
