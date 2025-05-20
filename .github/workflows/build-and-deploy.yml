@@ -91,18 +91,23 @@ jobs:
       - name: List contents of `dist`
         run: ls -la dist
 
+      - name: Ensure $ENVIRONMENT is defined to avoid destructive mirroring on the server
+        run: |
+          echo "Environment = $ENVIRONMENT; target folder for upload is ./registration/${ENVIRONMENT}/"
+          if [ -z "$ENVIRONMENT" ]; then exit 1; fi
+        shell: bash
+
       # Upload web files
       # See: https://www.cyberciti.biz/faq/lftp-mirror-example/
       # See: https://linuxconfig.org/lftp-tutorial-on-linux-with-examples
       - name: Upload files using lftp
         working-directory: dist
-        # TODO --delete
         run: >
           lftp -c "
             set cmd:fail-exit yes;
             open $FTP_HOST
             user $FTP_USER $FTP_PASSWORD;
-            mirror --reverse --parallel=10 --verbose ./ ./registration/${ENVIRONMENT}/;
+            mirror --reverse --delete --parallel=10 --verbose ./ ./registration/${ENVIRONMENT}/;
             ls -la ./registration/${ENVIRONMENT};
             bye
           "
