@@ -90,3 +90,22 @@ jobs:
           lftp --version
       - name: List contents of `dist`
         run: ls -la dist
+
+      # Upload web files
+      # See: https://www.cyberciti.biz/faq/lftp-mirror-example/
+      # See: https://linuxconfig.org/lftp-tutorial-on-linux-with-examples
+      - name: Upload files using lftp
+        # TODO using a test directory
+        run: >
+          lftp -c "
+            set cmd:fail-exit yes;
+            open $FTP_HOST
+            user $FTP_USER $FTP_PASSWORD;
+            mirror --reverse --parallel=10 --verbose ./ ./registration/test-ci/;
+            ls -la ./registration/test-ci/;
+            bye
+          "
+        env:
+          FTP_HOST: ${{ vars.FTP_HOST }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_USER: ${{ vars.FTP_USER }}
