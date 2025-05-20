@@ -71,6 +71,7 @@ jobs:
           path: web-build
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       # Setup
