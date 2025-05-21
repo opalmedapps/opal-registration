@@ -26,9 +26,12 @@ jobs:
       - uses: actions/checkout@v4.2.2
         with:
           persist-credentials: false
+      # Use the build-setup action to test dependency installation
       - name: Install dependencies
         uses: ./.github/actions/build-setup
         with:
+          # No actual config is required, since this job just checks that all dependencies can be installed
+          CONFIG: "{}"
           NPMRC_FILE: ${{ secrets.NPMRC_FILE }}
 
   lint:
