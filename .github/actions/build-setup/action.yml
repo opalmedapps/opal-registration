@@ -6,6 +6,9 @@ name: Build Setup
 description: Setup before building the website
 
 inputs:
+  CONFIG:
+    description: 'Contents of the file `config.json` for the given environment'
+    required: true
   NPMRC_FILE:
     description: 'Secret with the contents of .npmrc'
     required: true
@@ -24,7 +27,7 @@ runs:
     - uses: actions/setup-node@v4.4.0
       with:
         # renovate: datasource=node-version dependency=node
-        node-version: 22.15.0
+        node-version: 22.16.0
         cache: 'npm'
     - name: Check npm installation
       run: npm -v
@@ -32,3 +35,10 @@ runs:
     - name: Install dependencies
       run: npm ci
       shell: bash
+
+    # Initialize the config file needed to build
+    - name: Load config file
+      run: echo "$CONFIG" >> config.json
+      shell: bash
+      env:
+        CONFIG: ${{ inputs.CONFIG }}

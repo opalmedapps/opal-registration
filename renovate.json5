@@ -23,6 +23,9 @@
   // Extra rules for node images. See: https://github.com/renovatebot/renovate/discussions/29501
   // Ensure that node docker versioning doesn't interfere with the custom managers.
   "ignorePresets": ["workarounds:nodeDockerVersioning"],
+  // https://docs.renovatebot.com/getting-started/private-packages/#automatically-authenticate-for-npm-package-stored-in-private-github-npm-repository
+  // The token for the registry it configured via hostRules in the Renovate developer dashboard for the whole organization
+  "npmrc": "@neverendingsupport:registry=https://registry.nes.herodevs.com/npm/pkg/",
   "assignees": ["staceybeard"],
   "labels": ["dependencies"],
   "packageRules": [
