@@ -38,7 +38,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Form section-->
     <div class="row mb-2 mt-4">
         <div class="col-md-12 col-sm-12 mb-3">
-            <label for="accessLevel" class="form-label font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.ACCESSLEVEL' | translate}}</label>
+            <label for="accessLevel" class="form-label font-weight-bold text-muted pe-1">{{'PREFERENCE.FIELDNAMES.ACCESSLEVEL' | translate}}</label>
             <div class="text-muted">
                 <label>
                     {{'PREFERENCE.FIELDNAMES.ACCESSLEVELINSTRUCTION1' | translate}}
@@ -61,7 +61,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2 mt-3">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="language" class="form-label font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.LANGUAGE' | translate}}</label>
+            <label for="language" class="form-label font-weight-bold text-muted pe-1">{{'PREFERENCE.FIELDNAMES.LANGUAGE' | translate}}</label>
             <select class="form-control col-md-4" name="language" ng-model="vm.formData.formFieldsData.language" ng-change="vm.validateLanguage()"
                     ng-class="{
                             'is-invalid':(vm.formData.languageFormat.status == 'invalid'),
@@ -92,10 +92,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
             <button type="reset" class="btn btn-secondary text-white me-2 px-3 px-md-5" ui-sref="form.account" tabindex="5">
-                <i class="far fa-arrow-alt-circle-left pr-1"></i>  {{'FORM.BUTTONS.PREVIOUS' | translate}}
+                <i class="far fa-arrow-alt-circle-left pe-1"></i>  {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
             <button type="submit" class="btn btn-secondary text-white me-2 px-3 px-md-5" tabindex="6">
-                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right ps-1"></i>
             </button>
         </div>
     </div>

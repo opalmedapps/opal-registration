@@ -32,7 +32,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Form section-->
     <div class="row mb-2 mt-4">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="email" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.EMAIL' | translate}}</label>
+            <label for="email" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.EMAIL' | translate}}</label>
             <input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email"
                    ng-class="{
             'is-invalid':(vm.formData.emailFormat.status == vm.parent.STATUS_INVALID),
@@ -43,7 +43,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="password-new" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
+            <label for="password-new" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
 
             <password-input eye-icon-ng-style="vm.passwordEyeStyle">
                 <!-- Note: ng-keyup is needed for the password strength bar to update in time; ng-change is too slow -->
@@ -75,7 +75,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
 
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="password-confirm" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.CONFIRMPASSWORD' | translate}}</label>
+            <label for="password-confirm" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.CONFIRMPASSWORD' | translate}}</label>
 
             <password-input eye-icon-ng-style="vm.confirmPasswordEyeStyle">
                 <input id="password-confirm" type="password" class="form-control" name="confirmPassword"
@@ -96,19 +96,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-md-6 mb-3">
-            <label class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.FIRSTNAME' | translate}}</label>
+            <label class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.FIRSTNAME' | translate}}</label>
             <input type="text" class="form-control" name="phone" ng-model="vm.formData.caregiverFirstName" disabled="disabled">
             <!--Display error if security answer1 field has blank value -->
         </div>
         <div class="col-md-6 mb-3">
-            <label class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.LASTNAME' | translate}}</label>
+            <label class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.LASTNAME' | translate}}</label>
             <input type="text" class="form-control" name="phone" ng-model="vm.formData.caregiverLastName" disabled="disabled">
         </div>
     </div>
 
     <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PHONE' | translate}}</label>
+            <label class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.PHONE' | translate}}</label>
             <input type="tel" class="form-control" name="phone" ng-model="vm.formData.formFieldsData.phone"
                    ng-change="vm.validatePhone()"
                    ng-class="{
@@ -127,7 +127,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <div class="row mb-2">
         <div class="col-12 mb-3">
 
-            <label for="securityquestion1" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION1' | translate}}</label>
+            <label for="securityquestion1" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION1' | translate}}</label>
 
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion1"
                     ng-class="{
@@ -149,7 +149,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="answer1" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER1' | translate}}</label>
+            <label for="answer1" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.ANSWER1' | translate}}</label>
             <input type="text" class="form-control" name="answer1" ng-model="vm.formData.formFieldsData.answer1" ng-change="vm.validateAnswer1()"
                    ng-class="{
                            'is-invalid':(vm.formData.answer1Format.status == vm.parent.STATUS_INVALID),
@@ -168,7 +168,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-12 mb-3">
-            <label for="securityquestion2" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION2' | translate}}</label>
+            <label for="securityquestion2" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION2' | translate}}</label>
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion2"
                     ng-class="{
                            'is-invalid':(vm.formData.securityQuestion2Format.status == vm.parent.STATUS_INVALID),
@@ -187,7 +187,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="answer2" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER2' | translate}}</label>
+            <label for="answer2" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.ANSWER2' | translate}}</label>
             <input type="text" class="form-control" name="answer2" ng-model="vm.formData.formFieldsData.answer2" ng-change="vm.validateAnswer2()"
                    ng-class="{
                            'is-invalid':(vm.formData.answer2Format.status == vm.parent.STATUS_INVALID),
@@ -206,7 +206,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-12 mb-3">
-            <label for="securityquestion3" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION3' | translate}}</label>
+            <label for="securityquestion3" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION3' | translate}}</label>
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion3"
                     ng-class="{
                            'is-invalid':(vm.formData.securityQuestion3Format.status == vm.parent.STATUS_INVALID),
@@ -226,7 +226,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="answer3" class="form-label font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER3' | translate}}</label>
+            <label for="answer3" class="form-label font-weight-bold text-muted pe-1">{{'SECURE.FIELDNAMES.ANSWER3' | translate}}</label>
             <input type="text" class="form-control" name="answer3" ng-model="vm.formData.formFieldsData.answer3" ng-change="vm.validateAnswer3()"
                    ng-class="{
                            'is-invalid':(vm.formData.answer3Format.status == vm.parent.STATUS_INVALID),
@@ -256,10 +256,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
             <button type="reset" class="btn btn-secondary text-white me-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
-                <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
+                <i class="far fa-arrow-alt-circle-left pe-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
             <button type="submit" class="btn btn-secondary text-white me-2 px-3 px-md-5" tabindex="12" ng-disabled="vm.secureFormValid">
-                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
+                {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right ps-1"></i>
             </button>
         </div>
     </div>
