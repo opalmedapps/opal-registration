@@ -26,12 +26,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </div>
         </div>
     </div>
+
     <!--Horizontal line-->
     <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Option buttons-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-md-4 mb-2">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-md-4 mb-3">
             <button type="button" class="btn btn-secondary mr-2" ng-click="vm.openAccount()">
                 {{'ACCOUNT.OPTION.EXISTS' | translate}}
             </button>
@@ -46,7 +47,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <!--Navigation button-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
             <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ng-click="vm.onPrev()" ui-sref="form.search" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>

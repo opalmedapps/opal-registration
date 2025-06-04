@@ -25,7 +25,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </div>
         </div>
     </div>
-    <!--Horizontal line----------------------------------->
+
+    <!--Horizontal line-->
     <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Send verification code-->
@@ -89,12 +90,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <div class="text-muted col-md-12 alert alert-danger verify-code-info"
          ng-if="vm.verifyCode && !vm.isCodeValid">{{'VERIFICATION.VERIFY.INVALID' | translate}}</div>
 
-    <!--Horizontal line----------------------------------------------->
+    <!--Horizontal line-->
     <hr class="bg-opal mt-3 mb-3 mb-md-2">
 
     <!--Navigation button-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
             <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>

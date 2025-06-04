@@ -25,12 +25,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </div>
         </div>
     </div>
+
     <!--Horizontal line-->
     <hr class="bg-opal mb-3">
 
     <!--Option buttons-->
     <div class="row justify-content-center">
-        <div class="form-group col-md-3 col-sm-12 mb-3">
+        <div class="col-md-3 col-sm-12 mb-3">
             <label for="email" class="font-weight-bold text-muted" style="margin-right: 15px;">{{'LOGIN.INPUT.EMAIL' | translate}}</label>
             <input type="email" name="email" ng-model="vm.email" ng-keydown="vm.inputChange()"
                    class="form-control" tabindex="1" required>
@@ -40,7 +41,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </span>
         </div>
 
-        <div class="form-group col-md-3 col-sm-12">
+        <div class="col-md-3 col-sm-12 mb-3">
             <label for="password-login" class="font-weight-bold text-muted">{{'LOGIN.INPUT.PASSWORD' | translate}}</label>
             <password-input>
                 <input id="password-login" type="password" name="password" ng-model="vm.password" ng-keyup="vm.inputChange()"
@@ -49,7 +50,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
     <div class="row" ng-show="vm.loginError">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-4 alert alert-danger">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-4 mb-3 alert alert-danger">
             {{'LOGIN.ERROR.INVALID' | translate}}
         </div>
     </div>
@@ -59,7 +60,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <!--Navigation button-->
     <div class="row">
-        <div class="form-group col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4">
+        <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
             <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
