@@ -30,7 +30,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Form section-->
-    <div class="form-row mb-2 mt-4">
+    <div class="row mb-2 mt-4">
         <div class="col-md-6 col-sm-12 mb-3">
             <label for="email" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.EMAIL' | translate}}</label>
             <input type="text" class="form-control" name="email" ng-model="vm.formData.formFieldsData.email"
@@ -41,7 +41,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
             <label for="password-new" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PASSWORD' | translate}}</label>
 
@@ -94,7 +94,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-md-6 mb-3">
             <label class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.FIRSTNAME' | translate}}</label>
             <input type="text" class="form-control" name="phone" ng-model="vm.formData.caregiverFirstName" disabled="disabled">
@@ -106,7 +106,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
             <label class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.PHONE' | translate}}</label>
             <input type="tel" class="form-control" name="phone" ng-model="vm.formData.formFieldsData.phone"
@@ -124,7 +124,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-12 mb-3">
 
             <label for="securityquestion1" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION1' | translate}}</label>
@@ -147,7 +147,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
             <label for="answer1" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER1' | translate}}</label>
             <input type="text" class="form-control" name="answer1" ng-model="vm.formData.formFieldsData.answer1" ng-change="vm.validateAnswer1()"
@@ -166,7 +166,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-12 mb-3">
             <label for="securityquestion2" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION2' | translate}}</label>
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion2"
@@ -185,7 +185,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
             <label for="answer2" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER2' | translate}}</label>
             <input type="text" class="form-control" name="answer2" ng-model="vm.formData.formFieldsData.answer2" ng-change="vm.validateAnswer2()"
@@ -204,7 +204,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-12 mb-3">
             <label for="securityquestion3" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.SECURITYQUESTION3' | translate}}</label>
             <select class="form-control" ng-model="vm.formData.formFieldsData.securityQuestion3"
@@ -224,7 +224,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2">
+    <div class="row mb-2">
         <div class="col-md-6 col-sm-12 mb-3">
             <label for="answer3" class="font-weight-bold text-muted pr-1">{{'SECURE.FIELDNAMES.ANSWER3' | translate}}</label>
             <input type="text" class="form-control" name="answer3" ng-model="vm.formData.formFieldsData.answer3" ng-change="vm.validateAnswer3()"
@@ -245,7 +245,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <!--Display error if any fields has a blank value-->
     <div ng-hide="vm.sharedErrorMessage">
-        <div class="form-row mt-4">
+        <div class="row mt-4">
             <div class="col-md-12 col-sm-12 mb-3">
                 <small class="text-danger font-weight-bold">{{'SHARED.ERRORMESSAGE' | translate}}</small>
             </div>

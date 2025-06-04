@@ -36,7 +36,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <hr class="bg-opal mb-3 mb-md-2">
 
     <!--Form section-->
-    <div class="form-row mb-2 mt-4">
+    <div class="row mb-2 mt-4">
         <div class="col-md-12 col-sm-12 mb-3">
             <label for="accessLevel" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.ACCESSLEVEL' | translate}}</label>
             <div class="text-muted">
@@ -47,7 +47,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row text-muted">
+    <div class="row text-muted">
         <div class="col-md-6 col-sm-12 mb-3">
             <div class="border rounded">
                 <div class="bg-white rounded m-3">
@@ -59,7 +59,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
         </div>
     </div>
 
-    <div class="form-row mb-2 mt-3">
+    <div class="row mb-2 mt-3">
         <div class="col-md-6 col-sm-12 mb-3">
             <label for="language" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.LANGUAGE' | translate}}</label>
             <select class="form-control col-md-4" name="language" ng-model="vm.formData.formFieldsData.language" ng-change="vm.validateLanguage()"
@@ -81,7 +81,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <!--Display error if any fields has a blank value-->
     <div ng-hide="vm.sharedErrorMessage">
-        <div class="form-row mt-4">
+        <div class="row mt-4">
             <div class="col-md-12 col-sm-12 mb-3">
                 <small class="text-danger font-weight-bold">{{'SHARED.ERRORMESSAGE' | translate}}</small>
             </div>
@@ -89,7 +89,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     </div>
 
     <!--Navigation button-->
-    <div class="form-row">
+    <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
             <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="5">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i>  {{'FORM.BUTTONS.PREVIOUS' | translate}}
