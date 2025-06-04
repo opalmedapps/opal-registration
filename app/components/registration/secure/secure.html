@@ -16,7 +16,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Instruction to follow-->
             <div class="d-flex justify-content-between text-muted ">
-                <div class="mr-2"><label>{{'SECURE.INSTRUCTION' | translate}}</label></div>
+                <div class= me-2"><label>{{'SECURE.INSTRUCTION' | translate}}</label></div>
             </div>
         </div>
         <div class="col-sm-3">
@@ -62,7 +62,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if password format and length is inappropriate-->
             <div ng-show="vm.formData.passwordFormat.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.passwordFormat.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.passwordFormat.message}}</small>
             </div>
 
             <!--Password length strength meter-->
@@ -89,7 +89,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if confirm password format is inappropriate-->
             <div ng-show="vm.formData.confirmPasswordFormat.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.confirmPasswordFormat.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.confirmPasswordFormat.message}}</small>
             </div>
         </div>
     </div>
@@ -117,7 +117,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                    tabindex="4" required> (+1 123 456 7890)
             <!--Display error if confirm password format is inappropriate-->
             <div ng-show="vm.formData.phoneFormat.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.phoneFormat.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.phoneFormat.message}}</small>
             </div>
         </div>
         <div class="col-md-6 mb-3">
@@ -141,7 +141,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if security question1 field has not been selected -->
             <div ng-show="vm.formData.securityQuestion1Format.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion1Format.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.securityQuestion1Format.message}}</small>
             </div>
 
         </div>
@@ -158,7 +158,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if security answer1 field has blank value -->
             <div ng-show="vm.formData.answer1Format.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer1Format.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.answer1Format.message}}</small>
             </div>
 
         </div>
@@ -179,7 +179,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </select>
             <!--Display error if security question2 field has not been selected -->
             <div ng-show="vm.formData.securityQuestion2Format.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion2Format.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.securityQuestion2Format.message}}</small>
             </div>
 
         </div>
@@ -196,7 +196,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if security answer2 field has blank value -->
             <div ng-show="vm.formData.answer2Format.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer2Format.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.answer2Format.message}}</small>
             </div>
 
         </div>
@@ -218,7 +218,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if security question3 field has not been selected -->
             <div ng-show="vm.formData.securityQuestion3Format.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.securityQuestion3Format.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.securityQuestion3Format.message}}</small>
             </div>
 
         </div>
@@ -235,7 +235,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
             <!--Display error if security answer3 field has blank value -->
             <div ng-show="vm.formData.answer3Format.status == vm.parent.STATUS_INVALID">
-                <small class="text-danger font-weight-bold ml-1"> {{vm.formData.answer3Format.message}}</small>
+                <small class="text-danger font-weight-bold ms-1"> {{vm.formData.answer3Format.message}}</small>
             </div>
 
         </div>
@@ -255,10 +255,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Navigation buttons-->
     <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
+            <button type="reset" class="btn btn-secondary text-white me-2 px-3 px-md-5" ui-sref="form.account" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <button type="submit" class="btn btn-secondary text-white mr-2 px-3 px-md-5" tabindex="12" ng-disabled="vm.secureFormValid">
+            <button type="submit" class="btn btn-secondary text-white me-2 px-3 px-md-5" tabindex="12" ng-disabled="vm.secureFormValid">
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button>
         </div>

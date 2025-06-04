@@ -15,7 +15,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             </div>
             <!--Instruction to follow-->
             <div class="d-flex justify-content-between">
-                <div class="text-muted mr-2"><label>{{'SUCCESS.INSTRUCTION' | translate}}</label></div>
+                <div class="text-muted me-2"><label>{{'SUCCESS.INSTRUCTION' | translate}}</label></div>
             </div>
         </div>
         <div class="col-sm-3">
@@ -30,7 +30,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <!--notifciation note-->
     <div ng-if="vm.formData.relationship != 'SELF'" class="alert alert-primary mt-0 mt-md-4">
-        <i class="fas fa-info-circle mr-1"></i>
+        <i class="fas fa-info-circle me-1"></i>
         {{'SUCCESS.NOTIFICATION1' | translate}}
         <span style="font-weight: bold;">{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</span>
         {{'SUCCESS.NOTIFICATION2' | translate}}
@@ -89,7 +89,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!-- Navigation button -->
     <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
-            <button class="btn btn-secondary text-white mr-2 px-3 px-md-5" ng-click="vm.backToHome()">
+            <button class="btn btn-secondary text-white me-2 px-3 px-md-5" ng-click="vm.backToHome()">
               <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.BACK_TO_HOME' | translate}}
             </button>
         </div>

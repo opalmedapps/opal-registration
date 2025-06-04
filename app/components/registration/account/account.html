@@ -14,7 +14,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
             <div class="text-muted"><h4 class="font-weight-bold">{{'ACCOUNT.STEPS' | translate}}{{'ACCOUNT.TITLE' | translate}}</h4></div>
             <!--Instruction to follow-->
             <div class="d-flex justify-content-between ">
-                <div class="text-muted mr-2">
+                <div class="text-muted me-2">
                     <label>{{'ACCOUNT.INSTRUCTION.EXISTS' | translate}}<span style="font-weight: bold;">{{vm.formData.firstName}}&nbsp;{{vm.formData.lastName}}</span></label>
                     <label>{{'ACCOUNT.INSTRUCTION.CREATE' | translate}}</label>
                 </div>
@@ -33,10 +33,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Option buttons-->
     <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-md-4 mb-3">
-            <button type="button" class="btn btn-secondary mr-2" ng-click="vm.openAccount()">
+            <button type="button" class="btn btn-secondary me-2" ng-click="vm.openAccount()">
                 {{'ACCOUNT.OPTION.EXISTS' | translate}}
             </button>
-            <button type="button" class="btn btn-secondary ml-2" ng-click="vm.createAccount()">
+            <button type="button" class="btn btn-secondary ms-2" ng-click="vm.createAccount()">
                 {{'ACCOUNT.OPTION.CREATE' | translate}}
             </button>
         </div>
@@ -48,10 +48,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Navigation button-->
     <div class="row">
         <div class="col-md-12 col-xs-12 d-flex justify-content-center mt-2 mt-md-4 mb-3">
-            <button type="reset" class="btn btn-secondary text-white mr-2 px-3 px-md-5" ng-click="vm.onPrev()" ui-sref="form.search" tabindex="11">
+            <button type="reset" class="btn btn-secondary text-white me-2 px-3 px-md-5" ng-click="vm.onPrev()" ui-sref="form.search" tabindex="11">
                 <i class="far fa-arrow-alt-circle-left pr-1"></i> {{'FORM.BUTTONS.PREVIOUS' | translate}}
             </button>
-            <!-- <button type="submit" class="btn btn-secondary text-white mr-2 px-5 px-md-5" tabindex="12" ng-disabled="true">
+            <!-- <button type="submit" class="btn btn-secondary text-white me-2 px-5 px-md-5" tabindex="12" ng-disabled="true">
                 {{'FORM.BUTTONS.NEXT' | translate}} <i class="far fa-arrow-alt-circle-right pl-1"></i>
             </button> -->
         </div>
