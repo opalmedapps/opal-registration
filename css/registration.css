@@ -72,11 +72,6 @@ section.page-title h1 {
     cursor: pointer;
 }
 
-.display-popover {
-    display: none;
-}
-
-
 /*Password strength meter styles*/
 .password-count {
     float: right;
