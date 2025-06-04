@@ -32,12 +32,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Send verification code-->
     <div ng-if="!vm.sendCode">
         <div class="text-muted col-md-7 px-0"><h4>{{'VERIFICATION.SEND.TITLE' | translate}}</h4></div>
-        <div class="d-flex justify-content-between col-md-7 px-0">
+        <div class="d-flex justify-content-between col-md-7 px-0 mb-2">
             <div class="text-muted mr-2">
                 <label>{{'VERIFICATION.SEND.INSTRUCTION' | translate}}</label>
             </div>
         </div>
-        <div class="text-muted col-md-7 px-0"><label for="email" class="font-weight-bold text-muted">{{'VERIFICATION.SEND.EMAIL' | translate}}</label></div>
+        <div class="text-muted col-md-7 px-0"><label for="email" class="form-label font-weight-bold text-muted">{{'VERIFICATION.SEND.EMAIL' | translate}}</label></div>
         <div class="text-muted col-md-7 px-0">
             <input type="email" name="email" ng-model="vm.email" class="form-control"
                     ng-class="{
@@ -59,7 +59,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Verify Email Address-->
     <div ng-show="vm.sendCode" class="mt-md-4">
         <div class="text-muted col-md-7 px-0"><h4>{{'VERIFICATION.VERIFY.TITLE' | translate}}</h4></div>
-        <div class="d-flex justify-content-between col-md-7 px-0">
+        <div class="d-flex justify-content-between col-md-7 px-0 mb-2">
             <div class="text-muted mr-2">
                 <label>
                     {{'VERIFICATION.VERIFY.INSTRUCTION_START' | translate}}
@@ -68,7 +68,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                 </label>
             </div>
         </div>
-        <div class="text-muted col-md-7 px-0"><label for="code" class="font-weight-bold text-muted">{{'VERIFICATION.VERIFY.CODE' | translate}}</label></div>
+        <div class="text-muted col-md-7 px-0"><label for="code" class="form-label font-weight-bold text-muted">{{'VERIFICATION.VERIFY.CODE' | translate}}</label></div>
         <div class="text-muted col-md-10 px-0">
             <!-- TODO consider replacing maxlength with a regex -->
             <input type="number" name="code" maxlength="6" pattern="\d*" numeric-format name="code" ng-model="vm.inputCode" class="form-control mr-3 px-3" ng-change="vm.resetCodeValidity()"

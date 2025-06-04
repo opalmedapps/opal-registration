@@ -38,7 +38,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
     <!--Form section-->
     <div class="row mb-2 mt-4">
         <div class="col-md-12 col-sm-12 mb-3">
-            <label for="accessLevel" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.ACCESSLEVEL' | translate}}</label>
+            <label for="accessLevel" class="form-label font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.ACCESSLEVEL' | translate}}</label>
             <div class="text-muted">
                 <label>
                     {{'PREFERENCE.FIELDNAMES.ACCESSLEVELINSTRUCTION1' | translate}}
@@ -61,7 +61,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
     <div class="row mb-2 mt-3">
         <div class="col-md-6 col-sm-12 mb-3">
-            <label for="language" class="font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.LANGUAGE' | translate}}</label>
+            <label for="language" class="form-label font-weight-bold text-muted pr-1">{{'PREFERENCE.FIELDNAMES.LANGUAGE' | translate}}</label>
             <select class="form-control col-md-4" name="language" ng-model="vm.formData.formFieldsData.language" ng-change="vm.validateLanguage()"
                     ng-class="{
                             'is-invalid':(vm.formData.languageFormat.status == 'invalid'),

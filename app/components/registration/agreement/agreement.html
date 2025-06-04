@@ -50,7 +50,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
                            'is-invalid':(vm.formData.termsAndAgreementSignFormat.status == 'invalid'),
                            'is-valid': (vm.formData.termsAndAgreementSignFormat.status == 'valid')}"
                        ng-model="vm.formData.formFieldsData.termsAndAgreementSign" id="termsAndAgreementSign" ng-change="vm.validateAgreementSign()" tabindex="1" required>
-                <label class="custom-control-label" for="termsAndAgreementSign"></label>
+                <label class="form-label custom-control-label" for="termsAndAgreementSign"></label>
                 <span class="font-weight-bold" for="termsAndAgreementSign">{{'AGREEMENT.FIELDNAMES.ACCEPTCHECKBOX' | translate}}</span>
 
                 <!--Display error if registration code field is blank or format is inappropriate-->
