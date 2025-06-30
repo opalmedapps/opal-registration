@@ -13,7 +13,7 @@ WORKDIR /app
 
 COPY package.json ./
 COPY package-lock.json ./
-COPY .npmrc ./
+#COPY .npmrc ./
 
 RUN npm ci
 

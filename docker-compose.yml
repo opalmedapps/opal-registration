@@ -4,6 +4,7 @@
 
 services:
   app:
+    restart: always
     build:
       context: .
     ports:
