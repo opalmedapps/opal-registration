@@ -46,6 +46,7 @@ const config = (env, argv) => {
             compress: true,
             // Docker setting, see: https://www.okteto.com/docs/1.4/tutorials/webpack/
             host: '0.0.0.0',
+	    allowedHosts: ["mycarexregister.shoprideon.com"],
             hot: false,
             liveReload: true,
             open: true,

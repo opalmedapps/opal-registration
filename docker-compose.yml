@@ -7,10 +7,28 @@ services:
     restart: always
     build:
       context: .
-    ports:
-      - 8083:80
+    expose:
+      - "80"
     volumes:
       - ./:/app
       # Don't link node_modules between the file system and the container (rebuild to get dependency updates)
       - /app/node_modules
     command: npm run start
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      args:
+        NGINX_CONF: nginx_ec2.conf
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/www/.well-known/acme-challenge:/var/www/.well-known/acme-challenge
+      - /etc/letsencrypt/live/mycarexregister.shoprideon.com/fullchain.pem:/etc/ssl/certs/fullchain.pem
+      - /etc/letsencrypt/live/mycarexregister.shoprideon.com/privkey.pem:/etc/ssl/private/privkey.pem
+    depends_on:
+      - app
