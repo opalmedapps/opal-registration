@@ -13,7 +13,9 @@ WORKDIR /app
 
 COPY package.json ./
 COPY package-lock.json ./
-COPY .npmrc ./
+
+# uncomment the line when .npmrc file is created
+# COPY .npmrc ./
 
 RUN npm ci
 

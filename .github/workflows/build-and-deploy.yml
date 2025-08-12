@@ -53,7 +53,6 @@ jobs:
         uses: ./.github/actions/build-setup
         with:
           CONFIG: ${{ vars[format('{0}_CONFIG', env.ENVIRONMENT)] }}
-          NPMRC_FILE: ${{ secrets.NPMRC_FILE }}
 
       # Build
       - name: Build the registration website
