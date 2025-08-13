@@ -309,7 +309,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 * Homepage: http://angularjs.org
 * Repository: https://github.com/angular/angular.js
-* License: `MIT` (see note below)
+* License: `MIT`
 
 ```text
 The MIT License
@@ -334,10 +334,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
-
-### Notes
-
-We use the extended long-term support version provided by HeroDevs (paid service).
 
 ## angular-translate
 

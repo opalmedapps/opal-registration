@@ -32,7 +32,6 @@ jobs:
         with:
           # No actual config is required, since this job just checks that all dependencies can be installed
           CONFIG: "{}"
-          NPMRC_FILE: ${{ secrets.NPMRC_FILE }}
 
   lint:
     runs-on: ubuntu-latest
