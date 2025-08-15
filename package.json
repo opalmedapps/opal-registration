@@ -23,7 +23,7 @@
     "crypto-js": "4.2.0",
     "firebase": "11.8.1",
     "jquery": "3.7.1",
-    "marked": "15.0.12",
+    "marked": "16.1.2",
     "tweetnacl": "1.0.3",
     "tweetnacl-util": "0.15.1"
   },
