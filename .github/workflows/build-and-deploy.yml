@@ -78,7 +78,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Download build artifact
-        uses: actions/download-artifact@v4.3.0
+        uses: actions/download-artifact@v5.0.0
         with:
           name: web-build
           run-id: ${{ github.run_id }}
