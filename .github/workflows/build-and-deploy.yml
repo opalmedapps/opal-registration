@@ -62,7 +62,7 @@ jobs:
           mkdir web-build
           cp -r dist web-build
       - name: Archive build output
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: web-build
           path: web-build
