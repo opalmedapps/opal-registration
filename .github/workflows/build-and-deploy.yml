@@ -46,7 +46,7 @@ jobs:
       # Setup
       - name: Print environment
         run: echo "Environment = $ENVIRONMENT"
-      - uses: actions/checkout@v6.0.0
+      - uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
       - name: Set up build
@@ -74,7 +74,7 @@ jobs:
     if: ${{ inputs.DEPLOY || github.ref_name == 'main' }}
     steps:
       # Setup
-      - uses: actions/checkout@v6.0.0
+      - uses: actions/checkout@v6.0.2
         with:
           persist-credentials: false
       - name: Download build artifact
