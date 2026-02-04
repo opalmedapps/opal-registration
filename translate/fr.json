@@ -1,4 +1,4 @@
-﻿{
+{
   "ABOUT_OPAL": {
     "LICENSE_INFORMATION_TITLE": "Informations sur la licence",
     "LICENSE_INFORMATION": "Sauf indication contraire, ce code est soumis aux termes de la <a href='LICENSE' class='url-link'>GNU Affero General Public License version 3 ou ultérieure (AGPL)</a>, dont une copie est liée ici pour votre commodité. Ce code est également distribué aux termes de la <a href='' ng-click='vm.gotoDisclaimer()' class='url-link'>clause de non-responsabilité en matière de soins de santé</a>, que vous trouverez en bas de cette page.",
