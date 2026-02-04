@@ -21,7 +21,7 @@
     "angular-ui-router": "1.1.2",
     "bootstrap": "4.6.2",
     "crypto-js": "4.2.0",
-    "firebase": "12.6.0",
+    "firebase": "12.8.0",
     "jquery": "3.7.1",
     "marked": "17.0.1",
     "tweetnacl": "1.0.3",
