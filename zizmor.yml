@@ -6,5 +6,4 @@ rules:
   unpinned-uses:
     config:
       policies:
-        actions/*: ref-pin
         opalmedapps/*: ref-pin
