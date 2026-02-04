@@ -4,7 +4,7 @@
 
 /**
      Filename     :   form.controller.js
-     Description  :   Controlle the form.html data(modal values, event, etc.).
+     Description  :   Controller for form.html data(modal values, event, etc.).
      Created by   :   Jinal Vyas
      Date         :   June 2019
  **/
