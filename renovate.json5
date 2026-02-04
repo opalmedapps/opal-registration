@@ -13,10 +13,15 @@
     // set timezone to local one to ensure schedules are run
     // https://docs.renovatebot.com/configuration-options/#timezone
     ":timezone(America/Toronto)",
-    // Keep uv lockfile updated regularly
     // https://docs.renovatebot.com/configuration-options/#lockfilemaintenance
     // https://docs.renovatebot.com/presets-default/#maintainlockfilesweekly
     ":maintainLockFilesWeekly",
+    // https://docs.renovatebot.com/presets-security/#securityminimumreleaseagenpm
+    "security:minimumReleaseAgeNpm",
+    // https://docs.renovatebot.com/presets-default/#configmigration
+    ":configMigration",
+    // https://docs.renovatebot.com/presets-helpers/#helperspingithubactiondigeststosemver
+    "helpers:pinGitHubActionDigestsToSemver",
     // get updates for alpine version of node images
     "github>mschoettle/renovate-presets//presets/docker-alpine.json5",
     // Regex manager for GitHub Actions
