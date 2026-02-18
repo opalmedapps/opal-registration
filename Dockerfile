@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Note: this file is set up for local development only. For builds deployed to our Opal environments, see .gitlab-ci.yml
-FROM node:24.13.0-alpine3.23 AS dependencies
+FROM node:24.13.1-alpine3.23 AS dependencies
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ COPY package-lock.json ./
 RUN npm ci
 
 
-FROM node:24.13.0-alpine3.23
+FROM node:24.13.1-alpine3.23
 
 WORKDIR /app
 
