@@ -34,9 +34,9 @@ jobs:
           CONFIG: "{}"
 
   lint:
-    uses: opalmedapps/actions/.github/workflows/prek.yaml@main
+    uses: opalmedapps/actions/.github/workflows/prek.yaml@9d20dc43687635178ec6bd4bd7a7cda5db481284 # main
     with:
       skip: reuse-lint-file
 
   run-reuse-workflow:
-    uses: opalmedapps/.github/.github/workflows/reuse.yaml@main
+    uses: opalmedapps/.github/.github/workflows/reuse.yaml@c4370fac27e3347093784a56e2eaca34f7c4e283 # main
