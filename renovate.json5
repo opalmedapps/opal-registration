@@ -6,6 +6,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
+    // Require dashboard approvals: https://docs.renovatebot.com/presets-default/#dependencydashboardapproval
+    ":dependencyDashboardApproval",
     // https://docs.renovatebot.com/presets-default/#pinallexceptpeerdependencies
     ":pinAllExceptPeerDependencies",
     // https://docs.renovatebot.com/presets-default/#separatemultiplemajorreleases
@@ -32,7 +34,7 @@
   // Ensure that node docker versioning doesn't interfere with the custom managers.
   "ignorePresets": ["workarounds:nodeDockerVersioning"],
   // https://docs.renovatebot.com/getting-started/private-packages/#automatically-authenticate-for-npm-package-stored-in-private-github-npm-repository
-  "assignees": ["staceybeard"],
+  "assignees": [],
   "labels": ["dependencies"],
   // Only rebase existing MRs when the branch is conflicted
   // This avoids getting spammed by updates to existing MRs
