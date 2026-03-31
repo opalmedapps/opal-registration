@@ -70,7 +70,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: environments
+    environment:
+      name: environments
+      deployment: false
     # Deploy manually via inputs, or automatically (to dev) when building on main
     if: ${{ inputs.DEPLOY || github.ref_name == 'main' }}
     steps:
