@@ -7,7 +7,6 @@
 .idea/
 .vs/
 .vscode/
-.npmrc
 logs/*.log
 node_modules
 config.json
