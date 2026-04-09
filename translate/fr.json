@@ -196,13 +196,11 @@
     "INSTRUCTION3": " dans Opal, et aux données médicales de tout patient auquel vous demanderez l'accès plus tard dans cette institution, vous devrez donner votre consentement par moyen du formulaire ci-dessous.",
     "FIELDNAMES": {
       "ACCESSLEVEL": "Niveau d'accès aux données",
-      "ACCESSLEVELINSTRUCTION": "Veuillez choisir le niveau d'accès à vos données médicales personnelles que vous aimeriez avoir avec Opal. Chaque niveau d'accès est expliqué ci-dessous:",
       "ACCESSLEVELINSTRUCTION1": "Les données suivantes sont généralement disponibles (sous réserve de disponibilité à ",
       "ACCESSLEVELINSTRUCTION2": "):",
       "LANGUAGE": "Votre choix de langue",
       "LANGUAGEDROPDOWNDEAFULT": "--- Sélectionnez une langue ---",
       "AUTHORIZETRANSMISSION": "Autorisation",
-      "AUTHORIZETRANSMISSIONCHECKBOXTEXT": "J'autorise la transmission sécurisée des données médicales que j'ai sélectionnées ci-dessus à l'application Opal.",
       "AUTHORIZETRANSMISSIONCHECKBOXTEXT_START": "J'autorise la transmission sécurisée des données médicales de ",
       "AUTHORIZETRANSMISSIONCHECKBOXTEXT_END": " à mon application Opal."
     },
